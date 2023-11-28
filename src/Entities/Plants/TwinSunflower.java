@@ -10,9 +10,9 @@ public class TwinSunflower extends Plant implements SunProducer {
   int sunCtr = 0;
 
   public TwinSunflower(int row, int col) {
-    super(row, col, 150, 7.5, "twinsunflower", 422, 422, 1);
-    animStart[0] = 8;
-    animEnd[0] = 33;
+    super(row, col, 150, 100, 7.5, "twinsunflower", 422, 422, 1);
+    anim_start[0] = 8;
+    anim_end[0] = 33;
   }
 
   public void update() {
