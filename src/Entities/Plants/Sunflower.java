@@ -22,7 +22,7 @@ public class Sunflower extends Plant implements SunProducer{
         sun_ctr++;
         if(sun_ctr>=sun_cooldown){
             sun_ctr=0;
-            this.add(produceSun(25,row*100,col*80,60));
+            this.add(produceSun(25,col*80,row*100-100,60));
         }
     }
     public void paintComponent(Graphics2D g) { //px 364 py 365

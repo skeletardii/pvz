@@ -17,8 +17,7 @@ public class Main {
         game.add(new GameUI(3));
         game.add(new Sunflower(1, 1));
         game.add(new Sunflower(1, 2));
-        game.add(new Sunflower(1, 3));
+        game.add(new Sunflower(5, 3));
         game.add(new Sunflower(1, 4));
-
     }
 }
