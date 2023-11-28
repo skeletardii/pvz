@@ -1,8 +1,6 @@
 package Entities.Misc;
 
 import GameUtils.RenderObj;
-import GameUtils.RenderObj;
-import GameUtils.Updater;
 import GameUtils.Updater;
 import java.awt.Graphics2D;
 import java.awt.Image;
