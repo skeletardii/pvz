@@ -18,12 +18,14 @@ public abstract class Plant extends RenderObj implements Updater {
     private final Image sprite;
     private int lx, ly, frame, frame_ctr=0;
     private final double scale = 0.25;
+    private int health;
     public int[] anim_start;
     public int[] anim_end;
-    public Plant(int row, int col, int sun_cost, double packet_cooldown, Image sprite,int spriteWidth, int spriteHeight, int animRow){
+    public Plant(int row, int col, int sun_cost, int health, double packet_cooldown, Image sprite,int spriteWidth, int spriteHeight, int animRow){
         this.row=row;
         this.col=col;
         this.sun_cost=sun_cost;
+        this.health=health;
         this.packet_cooldown=packet_cooldown;
         this.sprite=sprite;
         offsetX=(int)(Math.random()*10);
@@ -33,11 +35,11 @@ public abstract class Plant extends RenderObj implements Updater {
         anim_start = new int[animRow];
         anim_end = new int[animRow];
     }
-    public Plant(int row, int col, int sun_cost, double packet_cooldown, String sprite_name,int spriteWidth, int spriteHeight, int animRow){
-        this(row,col,sun_cost,packet_cooldown,new ImageIcon("assets/plants/"+sprite_name+".png").getImage(),spriteWidth,spriteHeight,animRow);
+    public Plant(int row, int col, int sun_cost,int health, double packet_cooldown, String sprite_name,int spriteWidth, int spriteHeight, int animRow){
+        this(row,col,sun_cost,health,packet_cooldown,new ImageIcon("assets/plants/"+sprite_name+".png").getImage(),spriteWidth,spriteHeight,animRow);
     }
     public Plant(){
-        this(0,0,25,1,"_placeholder",0,0,1);
+        this(0,0,25,10,1,"_placeholder",0,0,1);
     }
     public void setFrame(int frame){
         this.frame = frame;
@@ -49,8 +51,8 @@ public abstract class Plant extends RenderObj implements Updater {
         int sx, sy, dx, dy;
         sx=frame * lx; 
         sy=anim;
-        dx=col*80 + offsetX +30;
-        dy=(row-1)*100 + offsetY + 40;
+        dx=(col+1)*80 + offsetX +30;
+        dy=(row-1)*88 + offsetY + 60;
         g.drawImage(sprite,
             dx,dy,
             dx+(int)Math.round(lx*scale),dy+(int)Math.round(ly*scale),
