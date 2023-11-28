@@ -51,7 +51,7 @@ public class Sun extends RenderObj implements Updater{
         int y1 = (int)Math.round(cy-(ly*scale)/4);
         int x2 = (int)Math.round(cx+(lx*scale)/4);
         int y2 = (int)Math.round(cy+(ly*scale)/4);
-        return(
+        return( //check the mpuose spdao wds
             mouse.x >= x1 &&
             mouse.x <= x2 &&
             mouse.y >= y1 &&
