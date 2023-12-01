@@ -14,13 +14,15 @@ public class TwinSunflower extends Plant implements SunProducer {
     anim_start[0] = 8;
     anim_end[0] = 33;
   }
-
+  public TwinSunflower(){
+    this(-1,-1);
+  }
   public void update() {
     sun_ctr++;
     if (sun_ctr >= sun_cooldown) {
       sun_ctr = 0;
-      this.add(produceSun(25, (col + 1) * 80, (row - 1) * 100, 60));
-      this.add(produceSun(25, (col + 1) * 75, (row - 1) * 100, 60));
+      this.add(produceSun(25, (col ) * 80, (row) * 100, 60));
+      this.add(produceSun(25, (col ) * 75, (row) * 100, 60));
     }
   }
 

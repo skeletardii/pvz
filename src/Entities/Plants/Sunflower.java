@@ -26,12 +26,14 @@ public class Sunflower extends Plant implements SunProducer {
     anim_end[0] = 28;
     setFrame(4);
   }
-
+  public Sunflower(){
+    this(-1,-1);
+  }
   public void update() {
     sun_ctr++;
     if (sun_ctr >= sun_cooldown) {
       sun_ctr = 0;
-      this.add(produceSun(25, (col + 1) * 80, (row - 1) * 100, 60));
+      this.add(produceSun(25, (col) * 80, (row) * 100, 60));
     }
   }
 

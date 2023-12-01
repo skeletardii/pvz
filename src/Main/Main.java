@@ -1,6 +1,5 @@
 package Main;
 
-import Entities.Misc.*;
 import Entities.Plants.*;
 import GUI.*;
 import GameUtils.*;
@@ -29,13 +28,21 @@ public class Main {
     window.setVisible(true);
 
     Game game = new Game(window, WINDOW_SIZE_X, WINDOW_SIZE_Y);
-
+    Global.game=game;
+    Global global = new Global();
+    game.add(global);
     game.start();
     game.add(new GameUI(GAME_MODE.POOL_DAY));
-    game.add(new Sunflower(1, 1));
-    game.add(new Sunflower(1, 2));
-    game.add(new Sunflower(5, 3));
-    game.add(new TwinSunflower(1, 4));
-    game.add(new TwinSunflower(2, 5));
+    // game.add(new Sunflower(1, 1));
+    // game.add(new Sunflower(1, 2));
+    // game.add(new Sunflower(5, 3));
+    // game.add(new TwinSunflower(1, 4));
+    // game.add(new TwinSunflower(2, 5));
+    global.addPlant(new Sunflower(), 0, 0);
+    global.addPlant(new Sunflower(), 1, 2);
+    global.addPlant(new Sunflower(), 5, 3);
+    global.addPlant(new TwinSunflower(), 1, 4);
+    global.addPlant(new TwinSunflower(), 2, 5);
+    global.addSeedPacket(new SeedPacket(new Sunflower()));
   }
 }

@@ -2,6 +2,7 @@ package GUI;
 
 import GameUtils.RenderObj;
 import GameUtils.Updater;
+import Main.Global;
 import Main.Main.GAME_MODE;
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -32,11 +33,11 @@ public class GameUI extends RenderObj implements Updater {
 class Navbar extends RenderObj implements Updater {
 
   public int sun = 0;
-  private static Image sprite = new ImageIcon("assets/ui/SeedBank.png")
+  private static final Image sprite = new ImageIcon("assets/ui/SeedBank.png")
     .getImage();
 
   public void update() {
-    sun++;
+    sun = Global.sun;
   }
 
   public void paintComponent(Graphics2D g) {

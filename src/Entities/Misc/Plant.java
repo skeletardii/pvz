@@ -4,6 +4,8 @@ import GameUtils.RenderObj;
 import GameUtils.Updater;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
+
 import javax.swing.ImageIcon;
 
 public abstract class Plant extends RenderObj implements Updater {
@@ -81,13 +83,15 @@ public abstract class Plant extends RenderObj implements Updater {
   public void setFrame(int frame, int anim) {
     this.frame = frame + anim_start[anim];
   }
+  public void setRow(int row){ this.row = row;}
+  public void setCol(int col){ this.col = col;}
 
   public void renderPlant(Graphics2D g, int anim) {
     int sx, sy, dx, dy;
     sx = frame * lx;
     sy = anim;
-    dx = (col + 1) * 80 + offsetX + 30;
-    dy = (row - 1) * 88 + offsetY + 60;
+    dx = (col) * 80 + offsetX + 30;
+    dy = (row) * 88 + offsetY + 60;
     g.drawImage(
       sprite,
       dx,
@@ -107,5 +111,23 @@ public abstract class Plant extends RenderObj implements Updater {
       frame++;
       if (frame == anim_end[anim]) frame = anim_start[anim];
     }
+  }
+  public double getCooldown(){
+    return packet_cooldown;
+  }
+  public int getSunCost(){
+    return sun_cost;
+  }
+  public Image getPreview(){
+    return sprite;
+  }
+  public int getSx(){
+    return anim_start[0]*lx;
+  }
+  public int getLx(){
+    return lx;
+  }
+  public int getLy(){
+    return ly;
   }
 }

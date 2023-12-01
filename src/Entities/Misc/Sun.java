@@ -3,18 +3,22 @@ package Entities.Misc;
 import GameUtils.Mouse;
 import GameUtils.RenderObj;
 import GameUtils.Updater;
+import Main.Global;
+
 import java.awt.Graphics2D;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 
 public class Sun extends RenderObj implements Updater {
-
-  private int sun_value, posX, posY, frame, fall_max, fall_ctr, frame_ctr = 0;
+  private static final int maxStep = 10;
+  private int stepCtr=0;
+  private int sun_value, posX, posY, distInitX, distInitY, frame, fall_max, fall_ctr, frame_ctr = 0;
   private final int lx = 688;
   private final int ly = 689;
   private boolean left_last = false;
   private double scale = 1.0;
   private Mouse mouse;
+  private boolean going_corner = false;
   private static Image sprite = new ImageIcon("assets/projectiles/sun.png")
     .getImage();
 
@@ -30,6 +34,17 @@ public class Sun extends RenderObj implements Updater {
   }
 
   public void update() {
+    if(going_corner){
+      if((posX < 0 && posY <0 )|| stepCtr>maxStep) {
+        Global.sun += sun_value;
+        this.remove();
+      } else {
+        posX -= distInitX/maxStep;
+        posY -= distInitY/maxStep;
+        stepCtr++;
+      }
+      return;
+    }
     mouse = game.mouse;
 
     if (fall_ctr++ <= fall_max) {
@@ -37,7 +52,9 @@ public class Sun extends RenderObj implements Updater {
     }
     if (mouse.left && !left_last && mouseHover()) {
       //   collect();
-      this.remove();
+      distInitX=posX;
+      distInitY=posY;
+      going_corner = true;
     }
     left_last = mouse.left;
   }
@@ -68,7 +85,7 @@ public class Sun extends RenderObj implements Updater {
       ly,
       null
     );
-    if (mouse != null && mouseHover()) g.drawRect(
+    if (mouse != null && mouseHover() && false) g.drawRect(
       posX,
       posY,
       (int) Math.round(lx * scale),
