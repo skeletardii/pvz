@@ -1,19 +1,19 @@
+
+
+
 package Entities.Plants;
 
+import Entities.Misc.InstaKiller;
 import Entities.Misc.Plant;
-import Entities.Misc.SunProducer;
 import java.awt.Graphics2D;
 
-public class Sunflower extends Plant implements SunProducer {
+public class CherryBomb extends Plant implements InstaKiller  {
 
-  int sunCooldown = 60;
-  int sunCtr = 0;
-
-  public Sunflower(int row, int col) {
+  public CherryBomb(int row, int col) {
     super(
       row,
       col,
-      50,
+      500,
       100,
       7.5,
       "sunflower",
@@ -25,14 +25,16 @@ public class Sunflower extends Plant implements SunProducer {
     anim_end[0] = 28;
     setFrame(4);
   }
-  public Sunflower(){
+
+  public CherryBomb(){
     this(-1,-1);
   }
+
   public void update() {
-    sunCtr++;
-    if (sunCtr >= sunCooldown) {
-      sunCtr = 0;
-      this.add(produceSun(25, (col) * 80, (row) * 100, 60));
+    this.health -= explodeTime;
+
+    if (health <= 0) {
+      this.remove();
     }
   }
 

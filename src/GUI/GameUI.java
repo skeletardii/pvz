@@ -6,10 +6,7 @@ import Main.Global;
 import Main.Main.GAME_MODE;
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.Image;
-import javax.swing.ImageIcon;
 import javax.swing.ImageIcon;
 
 public class GameUI extends RenderObj implements Updater {

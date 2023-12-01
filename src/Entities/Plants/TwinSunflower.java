@@ -6,8 +6,8 @@ import java.awt.Graphics2D;
 
 public class TwinSunflower extends Plant implements SunProducer {
 
-  int sun_cooldown = 60;
-  int sun_ctr = 0;
+  int sunCooldown = 60;
+  int sunCtr = 0;
 
   public TwinSunflower(int row, int col) {
     super(row, col, 150, 100, 7.5, "twinsunflower", 422, 422, 1);
@@ -18,9 +18,9 @@ public class TwinSunflower extends Plant implements SunProducer {
     this(-1,-1);
   }
   public void update() {
-    sun_ctr++;
-    if (sun_ctr >= sun_cooldown) {
-      sun_ctr = 0;
+    sunCtr++;
+    if (sunCtr >= sunCooldown) {
+      sunCtr = 0;
       this.add(produceSun(25, (col ) * 80, (row) * 100, 60));
       this.add(produceSun(25, (col ) * 75, (row) * 100, 60));
     }
