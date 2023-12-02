@@ -4,13 +4,11 @@ import Entities.Misc.LawnMower;
 import Entities.Misc.Plant;
 import Entities.Misc.Zombie;
 import Entities.Misc.ZombieSpawner;
-import Entities.Zombies.NormalZombie;
 import GUI.SeedPacket;
 import GameUtils.Game;
 import GameUtils.Mouse;
 import GameUtils.Updater;
 import java.util.ArrayList;
-import java.util.Random;
 
 public class Global implements Updater {
 
@@ -55,7 +53,7 @@ public class Global implements Updater {
     p.setRow(row);
     p.setCol(col);
     game.add(p);
-    p.zIndex = 5 + row + col * 0.1;
+    p.setZindex(5 + row + col * 0.1);
   }
 
   public static void removePlant(int row, int col) {
@@ -68,9 +66,9 @@ public class Global implements Updater {
   }
 
   public static void addZombie(Zombie z) {
+    z.setZindex(5);
     zombies.add(z);
     game.add(z);
-    z.zIndex = 5;
   }
 
   public static void checkZombiesToRemove() {
@@ -97,7 +95,7 @@ public class Global implements Updater {
   public static void addSeedPacket(SeedPacket sp) {
     seeds[seedsNum++] = sp;
     game.add(sp);
-    sp.zIndex = 3;
+    sp.setZindex(3);
     sp.setPosX((seedsNum - 1) * 55 + 77);
   }
 }

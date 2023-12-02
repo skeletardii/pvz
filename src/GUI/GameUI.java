@@ -17,12 +17,13 @@ public class GameUI extends RenderObj implements Updater, SunProducer {
   private Random rand = new Random();
   private int sunCooldown = 200;
   private int sunCtr = 0;
-
+  
   public GameUI(GAME_MODE mode) {
     sprite =
       new ImageIcon("assets/ui/background" + mode.ordinal() + ".jpg")
         .getImage();
-    this.add(new Navbar());
+    Navbar navbar = new Navbar();
+    this.add(navbar);
   }
 
   // sakto raba na naa ni diri?
@@ -33,7 +34,7 @@ public class GameUI extends RenderObj implements Updater, SunProducer {
       sunCtr = 0;
       double spawnRow = rand.nextDouble(Global.PLANT_ROWS_COUNT);
       double spawnColumn = rand.nextDouble(Global.PLANT_COLS_COUNT);
-      this.add(produceSunGrid(25, spawnRow, spawnColumn, 120));
+      Global.game.add(produceSunGrid(25, spawnRow, spawnColumn, 120));
     }
   }
 

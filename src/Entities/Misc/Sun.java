@@ -2,13 +2,11 @@ package Entities.Misc;
 
 import GameUtils.Mouse;
 import GameUtils.RenderObj;
-import GameUtils.Sound;
 import GameUtils.Updater;
 import Main.Global;
 
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.io.File;
 
 import javax.swing.ImageIcon;
 
@@ -23,6 +21,7 @@ public class Sun extends RenderObj implements Updater {
   private Mouse mouse;
   private boolean going_corner = false;
   private static final Image sprite = new ImageIcon("assets/projectiles/sun.png").getImage();
+
   public Sun(int sunValue, double position_X, int position_Y, int fall_frames) {
     this.sunValue = sunValue;
     posX = (int)Math.round(position_X);
@@ -31,6 +30,7 @@ public class Sun extends RenderObj implements Updater {
     frame = 0;
     scale = this.sunValue / 25;
     scale /= 4;
+    setZindex(30);
   }
 
   public void update() {
@@ -49,6 +49,7 @@ public class Sun extends RenderObj implements Updater {
 
     if (fallCtr-- >=0 && posY<500) {
       posY += 1;
+      if(fallCtr == 0 ) setZindex(31);
     }
     if (mouse.left && !left_last && mouseHover()) {
       //   collect();

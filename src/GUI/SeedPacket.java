@@ -16,6 +16,7 @@ public class SeedPacket extends RenderObj implements Updater{
     private static final File seed_click = new File("assets/sound/seedlift.wav");
     private static final File seed_plant = new File("assets/sound/plant.wav");
     private int posX,cost,lx,ly,sx;
+    private double initZ;
     private int state=0; //0 = not enough sun, 1 = enough sun, 2 = hovered, 3= dragged
     private int state_prev=0;
     private Class<?> plant;
@@ -27,6 +28,7 @@ public class SeedPacket extends RenderObj implements Updater{
         ly=p.getLy();
         cost = p.getSunCost();
         plant = p.getClass();
+        initZ=3;
     }
     public void paintComponent(Graphics2D g) {
         //g.drawImage(sprite,posX,3,50,50,null);
@@ -54,10 +56,14 @@ public class SeedPacket extends RenderObj implements Updater{
             ly,
             null
             );
-        if(state==0) return;
+        if(state==0) {
+setZindex(initZ);
+return;
+        }
         if(state==3){
             int dx,dy;
             
+                setZindex(100);
             int row = (int)Math.round((Global.mouse.y-60)/88);
             int col = (int)Math.round((Global.mouse.x-30)/80);
             if(row>=Global.PLANT_ROWS_COUNT) row = Global.PLANT_ROWS_COUNT - 1;
@@ -125,6 +131,7 @@ public class SeedPacket extends RenderObj implements Updater{
 
                 Sound.play(seed_plant);
                 state=0; 
+                
                 
             } catch (Exception e ){
                 System.out.println("aaa");

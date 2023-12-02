@@ -2,7 +2,6 @@ package Main;
 
 import Entities.Misc.SunManager;
 import Entities.Plants.*;
-import Entities.Zombies.*;
 import GUI.*;
 import GameUtils.*;
 import javax.swing.JFrame;

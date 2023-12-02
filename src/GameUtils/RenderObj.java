@@ -6,16 +6,23 @@ import java.util.Collections;
 
 public abstract class RenderObj implements Comparable<RenderObj> {
 
-  public double zIndex = 0.0;
+  private double zIndex = 0.0;
   protected Game game;
   private boolean visible = true;
   private boolean childrenVisible = true;
   private ArrayList<RenderObj> children;
   private RenderObj parent;
+  private boolean resort = false;
+  private int childrenIndex = 0;
 
   protected void setGame(Game game) {
     this.game = game;
   }
+  public void setZindex(double zIndex){
+    this.zIndex=zIndex;
+    if(parent!=null) parent.resort();
+  }
+  public double getZindex(){return zIndex;}
 
   public boolean isVisible() {
     return visible;
@@ -53,6 +60,7 @@ public abstract class RenderObj implements Comparable<RenderObj> {
     c.setParent(this);
     c.setGame(game);
     children.add(c);
+    resort=true;
   }
 
   public void remove() {
@@ -61,6 +69,7 @@ public abstract class RenderObj implements Comparable<RenderObj> {
 
   public void removeChild(RenderObj c) {
     children.remove(c);
+    resort();
   }
 
   @Override
@@ -69,14 +78,23 @@ public abstract class RenderObj implements Comparable<RenderObj> {
   }
 
   public void render(Graphics2D g) {
-    if (visible) paintComponent(g);
-    if (childrenVisible) {
-      Collections.sort(children);
+    if (resort) {
+      resort();
+      resort=false;
+    }
+    if (childrenVisible && children.size()>0) {
       for (int i = 0; i < children.size(); i++) {
+        if(i==childrenIndex && visible) paintComponent(g);
         children.get(i).render(g);
       }
-    }
+    } else if(visible) paintComponent(g);
   }
-
+  public void resort(){
+    Collections.sort(children);
+      childrenIndex=0;
+      for (int i = 0; i < children.size(); i++) {
+        if (zIndex < children.get(i).zIndex) childrenIndex = i;
+      }
+  }
   public abstract void paintComponent(Graphics2D g);
 }
