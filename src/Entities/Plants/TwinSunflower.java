@@ -14,19 +14,24 @@ public class TwinSunflower extends Plant implements SunProducer {
     anim_start[0] = 8;
     anim_end[0] = 33;
   }
-  public TwinSunflower(){
-    this(-1,-1);
+
+  public TwinSunflower() {
+    this(-1, -1);
   }
+
+  @Override
   public void update() {
+    super.update();
+
     sunCtr++;
     if (sunCtr >= sunCooldown) {
       sunCtr = 0;
-      this.add(produceSun(25, (col ) * 80, (row) * 100, 60));
-      this.add(produceSun(25, (col ) * 75, (row) * 100, 60));
+      this.add(produceSun(25, (col) * 80, (row) * 100, 60));
+      this.add(produceSun(25, (col) * 75, (row) * 100, 60));
     }
   }
 
   public void paintComponent(Graphics2D g) { //px 364 py 365
-    renderPlant(g, 0);
+    renderSprite(g, 0);
   }
 }

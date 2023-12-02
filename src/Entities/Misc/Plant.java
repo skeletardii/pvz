@@ -2,8 +2,7 @@ package Entities.Misc;
 
 import javax.swing.ImageIcon;
 
-public abstract class Plant extends LiveEntity  {
-
+public abstract class Plant extends LiveEntity {
 
   public final int sunCost;
   public final double packetCooldown;
@@ -28,17 +27,15 @@ public abstract class Plant extends LiveEntity  {
       spriteHeight,
       animRow
     );
-
     this.sunCost = sunCost;
     this.packetCooldown = packetCooldown;
   }
 
-
-
-  public double getCooldown(){
+  public double getCooldown() {
     return packetCooldown;
   }
-  public int getSunCost(){
+
+  public int getSunCost() {
     return sunCost;
   }
 }

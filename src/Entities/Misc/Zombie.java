@@ -1,22 +1,19 @@
-
-
 package Entities.Misc;
 
+import Main.Global;
 import javax.swing.ImageIcon;
 
 public abstract class Zombie extends LiveEntity {
 
-  protected final double movementSpeed;
-  protected final int attackSpeed;
+  protected double movementSpeed = 0.01;
+  protected int dps = 1;
+  protected Armor armor = null;
 
-  protected int movementCtr = 0;
-  protected int attackSpeedCtr = 0;
-
-  public Zombie(
+  protected Zombie(
     int row,
     int health,
     double movementSpeed,
-    int attackSpeed,
+    int dps,
     String spriteName,
     int spriteWidth,
     int spriteHeight,
@@ -31,13 +28,31 @@ public abstract class Zombie extends LiveEntity {
       spriteHeight,
       animRow
     );
-
     this.movementSpeed = movementSpeed;
-    this.attackSpeed  = attackSpeed;
+    this.dps = dps;
   }
 
+  @Override
   public void update() {
-    this.col -=movementSpeed;
-  }
+    super.update();
 
+    int col = (int) Math.round(this.col);
+
+    // zombie moves
+    if (
+      col >= Global.PLANT_COLS_COUNT ||
+      col < 0 ||
+      Global.plants[row][col] == null
+    ) {
+      this.col -= this.movementSpeed;
+      return;
+    }
+
+    // zombie attacks
+    if (this.armor != null) {
+      this.armor.health -= this.dps;
+    } else {
+      Global.plants[row][col].health -= this.dps;
+    }
+  }
 }

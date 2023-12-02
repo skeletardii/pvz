@@ -1,10 +1,11 @@
 package Entities.Misc;
 
+import Entities.Plants.TwinSunflower;
 import GameUtils.RenderObj;
 import GameUtils.Updater;
+import Main.Global;
 import java.awt.Graphics2D;
 import java.awt.Image;
-
 
 public abstract class LiveEntity extends RenderObj implements Updater {
 
@@ -19,8 +20,7 @@ public abstract class LiveEntity extends RenderObj implements Updater {
   public int[] anim_start;
   public int[] anim_end;
 
-
-  public LiveEntity(
+  protected LiveEntity(
     int row,
     double col,
     int health,
@@ -31,6 +31,7 @@ public abstract class LiveEntity extends RenderObj implements Updater {
   ) {
     this.row = row;
     this.col = col;
+    this.health = health;
     this.sprite = sprite;
 
     offsetX = (int) (Math.random() * 10);
@@ -41,6 +42,25 @@ public abstract class LiveEntity extends RenderObj implements Updater {
     anim_end = new int[animRow];
   }
 
+  protected LiveEntity(
+    int row,
+    double col,
+    Image sprite,
+    int spriteWidth,
+    int spriteHeight,
+    int animRow
+  ) {
+    this(
+      row,
+      col,
+      Integer.MAX_VALUE,
+      sprite,
+      spriteWidth,
+      spriteHeight,
+      animRow
+    );
+  }
+
   public void setFrame(int frame) {
     this.frame = frame;
   }
@@ -48,14 +68,20 @@ public abstract class LiveEntity extends RenderObj implements Updater {
   public void setFrame(int frame, int anim) {
     this.frame = frame + anim_start[anim];
   }
-  public void setRow(int row){ this.row = row;}
-  public void setCol(int col){ this.col = col;}
 
-  public void renderPlant(Graphics2D g, int anim) {
+  public void setRow(int row) {
+    this.row = row;
+  }
+
+  public void setCol(int col) {
+    this.col = col;
+  }
+
+  public void renderSprite(Graphics2D g, int anim) {
     int sx, sy, dx, dy;
     sx = frame * lx;
     sy = anim;
-    dx = (int)Math.round((col) * 80 + offsetX + 30);
+    dx = (int) Math.round((col) * 80 + offsetX + 30);
     dy = (row) * 88 + offsetY + 60;
     g.drawImage(
       sprite,
@@ -69,7 +95,6 @@ public abstract class LiveEntity extends RenderObj implements Updater {
       sy + ly,
       null
     );
-    //g.drawString(""+frame_idle,300,300);
 
     if (frameCtr++ > 1) {
       frameCtr = 0;
@@ -77,16 +102,35 @@ public abstract class LiveEntity extends RenderObj implements Updater {
       if (frame == anim_end[anim]) frame = anim_start[anim];
     }
   }
-  public Image getPreview(){
+
+  public void update() {
+    if (this.health <= 0) {
+      this.remove();
+    }
+  }
+
+  @Override
+  public void remove() {
+    super.remove();
+
+    if (this instanceof Plant) {
+      Global.plants[row][(int) Math.round(col)] = null;
+    }
+  }
+
+  public Image getPreview() {
     return sprite;
   }
-  public int getSx(){
-    return anim_start[0]*lx;
+
+  public int getSx() {
+    return anim_start[0] * lx;
   }
-  public int getLx(){
+
+  public int getLx() {
     return lx;
   }
-  public int getLy(){
+
+  public int getLy() {
     return ly;
   }
 }

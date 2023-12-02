@@ -29,17 +29,15 @@ public class GameUI extends RenderObj implements Updater {
 
 class Navbar extends RenderObj implements Updater {
 
-  public int sun = 0;
   private static final Image sprite = new ImageIcon("assets/ui/SeedBank.png")
     .getImage();
-
-  public void update() {
-    sun = Global.sun;
-  }
 
   public void paintComponent(Graphics2D g) {
     g.drawImage(sprite, 0, 0, null);
     g.setColor(Color.black);
-    g.drawString("" + sun, 27, 76);
+    g.drawString("" + Global.sun, 27, 76);
   }
+
+  @Override
+  public void update() {}
 }
