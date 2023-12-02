@@ -20,7 +20,7 @@ public abstract class LiveEntity extends RenderObj implements Updater {
   public int[] anim_start;
   public int[] anim_end;
 
-  public LiveEntity(
+  protected LiveEntity(
     int row,
     double col,
     int health,
@@ -40,6 +40,25 @@ public abstract class LiveEntity extends RenderObj implements Updater {
     ly = spriteHeight;
     anim_start = new int[animRow];
     anim_end = new int[animRow];
+  }
+
+  protected LiveEntity(
+    int row,
+    double col,
+    Image sprite,
+    int spriteWidth,
+    int spriteHeight,
+    int animRow
+  ) {
+    this(
+      row,
+      col,
+      Integer.MAX_VALUE,
+      sprite,
+      spriteWidth,
+      spriteHeight,
+      animRow
+    );
   }
 
   public void setFrame(int frame) {
