@@ -1,5 +1,7 @@
 package Entities.Misc;
 
+import Main.Global;
+
 public interface SunProducer {
   default Sun produceSun(
     int sunValue,
@@ -13,8 +15,8 @@ public interface SunProducer {
   default Sun produceSunGrid(int sunValue, double row, double col, int fall) {
     return produceSun(
       sunValue,
-      (int) Math.round(row * 80),
-      (int) Math.round(col * 100),
+      (int) Math.round(row * Global.ROW_PIXEL_OFFSET),
+      (int) Math.round(col * Global.COL_PIXEL_OFFSET),
       fall
     );
   }

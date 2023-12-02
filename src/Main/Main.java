@@ -26,12 +26,11 @@ public class Main {
   public static void main(String[] args) throws Exception {
     JFrame window = new JFrame("The zombies are cumming");
     window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-    window.setResizable(false);
     window.setVisible(true);
 
     Game game = new Game(window, WINDOW_SIZE_X, WINDOW_SIZE_Y);
-    Global.game=game;
-    Global.mouse=game.mouse;
+    Global.game = game;
+    Global.mouse = game.mouse;
     Global global = new Global();
     game.add(global);
     game.start();
@@ -43,8 +42,6 @@ public class Main {
     Global.addPlant(new Sunflower(), 5, 3);
     Global.addPlant(new TwinSunflower(), 1, 4);
     Global.addPlant(new TwinSunflower(), 2, 7);
-
-    Global.addZombie(new NormalZombie(2));
 
     Global.addSeedPacket(new SeedPacket(new Sunflower()));
     Global.addSeedPacket(new SeedPacket(new TwinSunflower()));

@@ -1,11 +1,13 @@
 package Entities.Misc;
 
+import Main.Global;
 import java.awt.Graphics2D;
 import javax.swing.ImageIcon;
 
 public class LawnMower extends LiveEntity {
 
   protected boolean isActivated = false;
+  protected static final double MOVEMENT_SPEED = 0.2;
 
   public LawnMower(int row) {
     this(row, "sunflower");
@@ -28,6 +30,26 @@ public class LawnMower extends LiveEntity {
   @Override
   public void update() {
     // make shit move
+
+    if (!isActivated) {
+      // may possibly implement as a more general case??
+      for (Zombie z : Global.zombies) {
+        if (z.row == this.row && this.isTouching(z)) {
+          isActivated = true;
+        }
+      }
+    }
+
+    if (isActivated) {
+      this.col += LawnMower.MOVEMENT_SPEED;
+
+      // hmm murag mu break ni if i remove sila while running pani
+      for (Zombie z : Global.zombies) {
+        if (z.row == this.row && this.isTouching(z)) {
+          z.health = 0;
+        }
+      }
+    }
   }
 
   @Override

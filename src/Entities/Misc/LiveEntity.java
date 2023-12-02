@@ -13,6 +13,7 @@ public abstract class LiveEntity extends RenderObj implements Updater {
   protected int health;
   protected final int offsetX;
   protected final int offsetY;
+  protected boolean targetable = false;
   protected Image sprite;
   protected int lx, ly, frame, frameCtr = 0;
   protected final double scale = 0.25;
@@ -60,6 +61,11 @@ public abstract class LiveEntity extends RenderObj implements Updater {
     );
   }
 
+  // rough function implementation
+  public boolean isTouching(LiveEntity e) {
+    return this.col >= e.col && this.col - 1 <= e.col;
+  }
+
   public void setFrame(int frame) {
     this.frame = frame;
   }
@@ -102,20 +108,7 @@ public abstract class LiveEntity extends RenderObj implements Updater {
     }
   }
 
-  public void update() {
-    if (this.health <= 0) {
-      this.remove();
-    }
-  }
-
-  @Override
-  public void remove() {
-    super.remove();
-
-    if (this instanceof Plant) {
-      Global.plants[row][(int) Math.round(col)] = null;
-    }
-  }
+  public void update() {}
 
   public Image getPreview() {
     return sprite;
@@ -131,5 +124,13 @@ public abstract class LiveEntity extends RenderObj implements Updater {
 
   public int getLy() {
     return ly;
+  }
+
+  public int getHealth() {
+    return health;
+  }
+
+  public void setHealth(int health) {
+    this.health = health;
   }
 }
