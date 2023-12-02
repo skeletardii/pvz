@@ -1,5 +1,6 @@
 package Main;
 
+import Entities.Misc.SunManager;
 import Entities.Plants.*;
 import Entities.Zombies.*;
 import GUI.*;
@@ -14,8 +15,8 @@ public class Main {
 
   public enum GAME_MODE {
     EMPTY_LAWN,
-    DAY,
-    NIGHT,
+    LAWN_DAY,
+    LAWN_NIGHT,
     POOL_DAY,
     POOL_NIGHT,
     ROOF_DAY,
@@ -35,7 +36,8 @@ public class Main {
     game.add(global);
     game.start();
     game.add(new GameUI(GAME_MODE.POOL_DAY));
-
+    game.add(new SunManager());
+    
     Global.addPlant(new Sunflower(), 0, 0);
     Global.addPlant(new CherryBomb(), 1, 2);
     Global.addPlant(new Sunflower(), 5, 3);

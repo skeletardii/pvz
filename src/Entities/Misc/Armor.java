@@ -1,6 +1,5 @@
 package Entities.Misc;
 
-import GameUtils.RenderObj;
 import java.awt.Graphics2D;
 import javax.swing.ImageIcon;
 

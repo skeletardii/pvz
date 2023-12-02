@@ -3,6 +3,7 @@ package GUI;
 import java.awt.AlphaComposite;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.io.File;
 
 import javax.swing.ImageIcon;
 
@@ -12,6 +13,8 @@ import Main.Global;
 
 public class SeedPacket extends RenderObj implements Updater{
     private static final Image card = new ImageIcon("assets/ui/seedpacket.png").getImage();
+    private static final File seed_click = new File("assets/sound/seedlift.wav");
+    private static final File seed_plant = new File("assets/sound/plant.wav");
     private int posX,cost,lx,ly,sx;
     private int state=0; //0 = not enough sun, 1 = enough sun, 2 = hovered, 3= dragged
     private int state_prev=0;
@@ -57,6 +60,10 @@ public class SeedPacket extends RenderObj implements Updater{
             
             int row = (int)Math.round((Global.mouse.y-60)/88);
             int col = (int)Math.round((Global.mouse.x-30)/80);
+            if(row>=Global.PLANT_ROWS_COUNT) row = Global.PLANT_ROWS_COUNT - 1;
+            if(col>=Global.PLANT_COLS_COUNT) col = Global.PLANT_COLS_COUNT - 1;
+            if(row<0) row = 0;
+            if(col<0) col = 0;
             if(Global.plants[row][col]==null){
                 g.setComposite(makeComposite(0.5f));
                 dx = col*80 + 30;
@@ -105,6 +112,7 @@ public class SeedPacket extends RenderObj implements Updater{
             Global.mouse.y > 8 &&
             Global.mouse.y < 79){
                 state=3;
+                Sound.play(seed_click);
             }
         if(state_prev==3 && Global.mouse.left && Global.mouse_prev.left) state = 3;
         if(!Global.mouse.left && state==3) {
@@ -115,6 +123,7 @@ public class SeedPacket extends RenderObj implements Updater{
                 Global.addPlant((Plant)newPlant,row,col);
                 Global.sun -= cost;
 
+                Sound.play(seed_plant);
                 state=0; 
                 
             } catch (Exception e ){

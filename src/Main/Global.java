@@ -20,7 +20,6 @@ public class Global implements Updater {
     public static Plant[][] plants = new Plant[PLANT_ROWS_COUNT][PLANT_COLS_COUNT];
     public static ArrayList<Zombie> zombies = new ArrayList<>();
     public static LawnMower[] lawnMowers = new LawnMower[PLANT_ROWS_COUNT];
-    
     public void update() {
         updateMouse();
     }
@@ -56,6 +55,10 @@ public class Global implements Updater {
         mouse_prev.x=mouse.x;
         mouse_prev.y=mouse.y;
         mouse=game.mouse;
+        if(mouse.x>=800) mouse.x=799;
+        if(mouse.x<=0)   mouse.x=0;
+        if(mouse.y>=600) mouse.y=599;
+        if(mouse.y<=0)   mouse.x=0;
     }
 
   public static void addZombie(Zombie z) {

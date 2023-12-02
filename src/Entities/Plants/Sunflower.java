@@ -6,7 +6,7 @@ import java.awt.Graphics2D;
 
 public class Sunflower extends Plant implements SunProducer {
 
-  int sunCooldown = 1440;
+  int sunCooldown = 60;//1440;
   int sunCtr = 0;
 
   public Sunflower(int row, int col) {

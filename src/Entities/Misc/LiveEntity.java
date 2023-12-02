@@ -1,6 +1,5 @@
 package Entities.Misc;
 
-import Entities.Plants.TwinSunflower;
 import GameUtils.RenderObj;
 import GameUtils.Updater;
 import Main.Global;

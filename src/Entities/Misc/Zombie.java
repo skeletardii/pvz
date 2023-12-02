@@ -4,7 +4,6 @@ import Main.Global;
 import javax.swing.ImageIcon;
 
 public abstract class Zombie extends LiveEntity {
-
   protected double movementSpeed = 0.01;
   protected int dps = 1;
   protected Armor armor = null;
