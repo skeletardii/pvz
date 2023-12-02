@@ -1,5 +1,6 @@
 package Entities.Misc;
 
+import Main.Global;
 import javax.swing.ImageIcon;
 
 public abstract class Plant extends LiveEntity {
@@ -29,6 +30,13 @@ public abstract class Plant extends LiveEntity {
     );
     this.sunCost = sunCost;
     this.packetCooldown = packetCooldown;
+  }
+
+  @Override
+  public void update() {
+    if (this.health <= 0) {
+      Global.removePlant(this.row, (int) this.col);
+    }
   }
 
   public double getCooldown() {

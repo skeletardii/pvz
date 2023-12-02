@@ -27,7 +27,7 @@ public class Sunflower extends Plant implements SunProducer {
     sunCtr++;
     if (sunCtr >= sunCooldown) {
       sunCtr = 0;
-      this.add(produceSun(25, (col) * 80, (row) * 100, 60));
+      this.add(produceSunGrid(25, col, row, 60));
     }
   }
 
