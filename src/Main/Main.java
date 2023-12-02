@@ -30,6 +30,7 @@ public class Main {
 
     Game game = new Game(window, WINDOW_SIZE_X, WINDOW_SIZE_Y);
     Global.game=game;
+    Global.mouse=game.mouse;
     Global global = new Global();
     game.add(global);
     game.start();

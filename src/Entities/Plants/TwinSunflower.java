@@ -6,7 +6,7 @@ import java.awt.Graphics2D;
 
 public class TwinSunflower extends Plant implements SunProducer {
 
-  int sunCooldown = 60;
+  int sunCooldown = 1440;
   int sunCtr = 0;
 
   public TwinSunflower(int row, int col) {

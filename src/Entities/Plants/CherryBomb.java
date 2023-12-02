@@ -5,6 +5,8 @@ package Entities.Plants;
 
 import Entities.Misc.InstaKiller;
 import Entities.Misc.Plant;
+import Main.Global;
+
 import java.awt.Graphics2D;
 
 public class CherryBomb extends Plant implements InstaKiller  {
@@ -34,7 +36,7 @@ public class CherryBomb extends Plant implements InstaKiller  {
     this.health -= explodeTime;
 
     if (health <= 0) {
-      this.remove();
+      Global.removePlant(row, (int)(col));
     }
   }
 
