@@ -1,5 +1,8 @@
 package GameUtils;
 
+import Entities.Misc.LiveEntity;
+import Entities.Misc.Plant;
+import Main.Global;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.Collections;

@@ -3,41 +3,57 @@ package Entities.Misc;
 import GameUtils.Mouse;
 import GameUtils.RenderObj;
 import GameUtils.Updater;
+import Main.Global;
+
 import java.awt.Graphics2D;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 
 public class Sun extends RenderObj implements Updater {
-
-  private int sun_value, posX, posY, frame, fall_max, fall_ctr, frame_ctr = 0;
+  private static final int maxStep = 10;
+  private int stepCtr=0;
+  private int sunValue, posX, posY, distInitX, distInitY, frame, fallCtr, frameCtr = 0;
   private final int lx = 688;
   private final int ly = 689;
   private boolean left_last = false;
   private double scale = 1.0;
   private Mouse mouse;
+  private boolean going_corner = false;
   private static Image sprite = new ImageIcon("assets/projectiles/sun.png")
     .getImage();
 
-  public Sun(int sun_value, int position_X, int position_Y, int fall_frames) {
-    this.sun_value = sun_value;
-    posX = position_X;
+  public Sun(int sunValue, double position_X, int position_Y, int fall_frames) {
+    this.sunValue = sunValue;
+    posX = (int)Math.round(position_X);
     posY = position_Y;
-    fall_max = fall_frames;
-    fall_ctr = 0;
+    fallCtr = fall_frames;
     frame = 0;
-    scale = this.sun_value / 25;
+    scale = this.sunValue / 25;
     scale /= 4;
   }
 
   public void update() {
+    if(going_corner){
+      if((posX < 0 && posY <0 )|| stepCtr>maxStep) {
+        Global.sun += sunValue;
+        this.remove();
+      } else {
+        posX -= distInitX/maxStep;
+        posY -= distInitY/maxStep;
+        stepCtr++;
+      }
+      return;
+    }
     mouse = game.mouse;
 
-    if (fall_ctr++ <= fall_max) {
+    if (fallCtr-- >=0 && posY<500) {
       posY += 1;
     }
     if (mouse.left && !left_last && mouseHover()) {
       //   collect();
-      this.remove();
+      distInitX=posX +30;
+      distInitY=posY;
+      going_corner = true;
     }
     left_last = mouse.left;
   }
@@ -68,14 +84,8 @@ public class Sun extends RenderObj implements Updater {
       ly,
       null
     );
-    if (mouse != null && mouseHover()) g.drawRect(
-      posX,
-      posY,
-      (int) Math.round(lx * scale),
-      (int) Math.round(ly * scale)
-    );
-    if (frame_ctr++ > 1) {
-      frame_ctr = 0;
+    if (frameCtr++ > 1) {
+      frameCtr = 0;
       frame++;
       if (frame == 12) frame = 0;
     }
