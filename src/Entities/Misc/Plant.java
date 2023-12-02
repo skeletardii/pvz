@@ -35,7 +35,7 @@ public abstract class Plant extends LiveEntity {
   @Override
   public void update() {
     if (this.health <= 0) {
-      Global.removePlant(this.row, (int) this.col);
+      Global.removePlant((int) this.row, (int) this.col);
     }
   }
 

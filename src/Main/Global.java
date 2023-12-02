@@ -3,6 +3,7 @@ package Main;
 import Entities.Misc.LawnMower;
 import Entities.Misc.Plant;
 import Entities.Misc.Zombie;
+import Entities.Misc.ZombieSpawner;
 import Entities.Zombies.NormalZombie;
 import GUI.SeedPacket;
 import GameUtils.Game;
@@ -24,27 +25,27 @@ public class Global implements Updater {
   public static Plant[][] plants = new Plant[PLANT_ROWS_COUNT][PLANT_COLS_COUNT];
   public static ArrayList<Zombie> zombies = new ArrayList<>();
   public static LawnMower[] lawnMowers = new LawnMower[PLANT_ROWS_COUNT];
+  public static ZombieSpawner zombieSpawner = new ZombieSpawner();
 
   public void update() {
     updateMouse();
-    removeZombies();
+    checkZombiesToRemove();
+    zombieSpawner.spawnZombie();
   }
 
-  
+  private void updateMouse() {
+    mouse_prev.left = mouse.left;
+    mouse_prev.right = mouse.right;
+    mouse_prev.middle = mouse.middle;
+    mouse_prev.x = mouse.x;
+    mouse_prev.y = mouse.y;
+    mouse = game.mouse;
+    if (mouse.x >= 800) mouse.x = 799;
+    if (mouse.x <= 0) mouse.x = 0;
+    if (mouse.y >= 600) mouse.y = 599;
+    if (mouse.y <= 0) mouse.x = 0;
+  }
 
-
-    private void updateMouse(){
-        mouse_prev.left=mouse.left;
-        mouse_prev.right=mouse.right;
-        mouse_prev.middle=mouse.middle;
-        mouse_prev.x=mouse.x;
-        mouse_prev.y=mouse.y;
-        mouse=game.mouse;
-        if(mouse.x>=800) mouse.x=799;
-        if(mouse.x<=0)   mouse.x=0;
-        if(mouse.y>=600) mouse.y=599;
-        if(mouse.y<=0)   mouse.x=0;
-    }
   public static void addPlant(Plant p, int row, int col) {
     if (plants[row][col] != null) {
       System.out.println("PLANT ALREADY INSIDE!");
@@ -66,14 +67,13 @@ public class Global implements Updater {
     plants[row][col] = null;
   }
 
-
   public static void addZombie(Zombie z) {
     zombies.add(z);
     game.add(z);
     z.zIndex = 5;
   }
 
-  public static void removeZombies() {
+  public static void checkZombiesToRemove() {
     ArrayList<Zombie> updatedZombies = new ArrayList<>();
     for (Zombie z : zombies) {
       if (z.getHealth() <= 0) {

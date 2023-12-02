@@ -1,12 +1,12 @@
 package Entities.Plants;
 
+import Entities.Interfaces.SunProducer;
 import Entities.Misc.Plant;
-import Entities.Misc.SunProducer;
 import java.awt.Graphics2D;
 
 public class Sunflower extends Plant implements SunProducer {
 
-  int sunCooldown = 60;//1440;
+  int sunCooldown = 60; //1440;
   int sunCtr = 0;
 
   public Sunflower(int row, int col) {

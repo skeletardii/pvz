@@ -4,6 +4,7 @@ import Main.Global;
 import javax.swing.ImageIcon;
 
 public abstract class Zombie extends LiveEntity {
+
   protected double movementSpeed = 0.01;
   protected int dps = 1;
   protected Armor armor = null;
@@ -35,6 +36,7 @@ public abstract class Zombie extends LiveEntity {
   public void update() {
     super.update();
 
+    int row = (int) Math.round(this.row);
     int col = (int) Math.round(this.col);
 
     // zombie moves

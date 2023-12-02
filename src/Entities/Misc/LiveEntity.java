@@ -8,8 +8,9 @@ import java.awt.Image;
 
 public abstract class LiveEntity extends RenderObj implements Updater {
 
-  protected int row;
-  protected double col;
+  // gi public rasa nako oi, maybe i change rani to setters later
+  public double row;
+  public double col;
   protected int health;
   protected final int offsetX;
   protected final int offsetY;
@@ -87,7 +88,7 @@ public abstract class LiveEntity extends RenderObj implements Updater {
     sx = frame * lx;
     sy = anim;
     dx = (int) Math.round((col) * 80 + offsetX + 30);
-    dy = (row) * 88 + offsetY + 60;
+    dy = (int) Math.round((row) * 88 + offsetY + 60);
     g.drawImage(
       sprite,
       dx,

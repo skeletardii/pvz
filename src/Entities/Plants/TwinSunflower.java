@@ -1,7 +1,7 @@
 package Entities.Plants;
 
+import Entities.Interfaces.SunProducer;
 import Entities.Misc.Plant;
-import Entities.Misc.SunProducer;
 import java.awt.Graphics2D;
 
 public class TwinSunflower extends Plant implements SunProducer {

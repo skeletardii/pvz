@@ -1,6 +1,6 @@
 package GUI;
 
-import Entities.Misc.SunProducer;
+import Entities.Interfaces.SunProducer;
 import GameUtils.RenderObj;
 import GameUtils.Updater;
 import Main.Global;

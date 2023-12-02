@@ -36,7 +36,7 @@ public class Main {
     game.start();
     game.add(new GameUI(GAME_MODE.POOL_DAY));
     game.add(new SunManager());
-    
+
     Global.addPlant(new Sunflower(), 0, 0);
     Global.addPlant(new CherryBomb(), 1, 2);
     Global.addPlant(new Sunflower(), 5, 3);
@@ -45,7 +45,7 @@ public class Main {
 
     Global.addSeedPacket(new SeedPacket(new Sunflower()));
     Global.addSeedPacket(new SeedPacket(new TwinSunflower()));
-    Global.addSeedPacket(new SeedPacket(new Sunflower()));
+    Global.addSeedPacket(new SeedPacket(new CherryBomb()));
 
     for (int i = 0; i < Global.PLANT_ROWS_COUNT; ++i) {
       Global.addLawnMowers(i);

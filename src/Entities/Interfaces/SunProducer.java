@@ -1,5 +1,6 @@
-package Entities.Misc;
+package Entities.Interfaces;
 
+import Entities.Misc.Sun;
 import Main.Global;
 
 public interface SunProducer {
