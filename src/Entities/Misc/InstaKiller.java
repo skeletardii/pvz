@@ -1,7 +1,6 @@
 package Entities.Misc;
 
 import GameUtils.Sound;
-import Main.Global;
 import java.io.File;
 
 public abstract class InstaKiller extends Plant {

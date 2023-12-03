@@ -4,11 +4,14 @@ import Entities.Interfaces.SunProducer;
 import Entities.Misc.Plant;
 import Entities.Misc.Zombie;
 import Entities.Misc.Zombie.DeathType;
+import GameUtils.Sound;
 import Main.Global;
 import java.awt.Graphics2D;
+import java.io.File;
 
 public class Chomper extends Plant implements SunProducer {
 
+  private static final File chomp = new File("assets/sound/bigchomp.wav");
   private int eatingTime = 0;
 
   public Chomper(int row, int col) {
@@ -56,6 +59,7 @@ public class Chomper extends Plant implements SunProducer {
   public void eatZombie(Zombie z) {
     z.kill(DeathType.NORMAL);
     this.eatingTime = 1000;
+    Sound.play(chomp);
   }
 
   public void paintComponent(Graphics2D g) { //px 364 py 365

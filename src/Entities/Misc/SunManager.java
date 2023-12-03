@@ -21,13 +21,14 @@ public class SunManager implements Updater {
 
   static void playSound() {
     if (sound_cooldown <= 0) {
-      Sound.play(sndfiles[sun_streak / 2]);
+      Sound.play(sndfiles[sun_streak/2]);
       sound_cooldown = SOUND_COOLDOWN_MAX;
       if (sun_streak < 12) sun_streak++;
     }
   }
 
   public void update() {
-    if (sound_cooldown > -20) sound_cooldown--; else sun_streak = 0;
+    if (sound_cooldown > -30) sound_cooldown--; 
+    else sun_streak = 1;
   }
 }

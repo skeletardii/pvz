@@ -2,6 +2,7 @@ package Entities.Misc;
 
 import GameUtils.RenderObj;
 import GameUtils.Updater;
+
 import java.awt.Graphics2D;
 import java.awt.Image;
 import javax.swing.ImageIcon;
@@ -17,12 +18,12 @@ public abstract class LiveEntity extends RenderObj implements Updater {
   protected boolean targetable = false;
   protected Image sprite;
   protected int lx, ly, frame, frameCtr = 0;
-  protected final double scale = 0.25;
+  protected double scale = 0.25;
   public int[] anim_start;
   public int[] anim_end;
-  private static final Image shadow = new ImageIcon("assets/ui/shadow.png")
-    .getImage();
-
+  private static final Image shadow = new ImageIcon("assets/ui/shadow.png").getImage();
+  protected int offsetOY=0;
+  protected int offsetOX=0;
   protected LiveEntity(
     int row,
     double col,
@@ -86,19 +87,20 @@ public abstract class LiveEntity extends RenderObj implements Updater {
   }
 
   public void renderSprite(Graphics2D g, int anim) {
+    if(frame<anim_start[anim] || frame>anim_end[anim]) frame=anim_start[anim];
+    int ox = (int) Math.round((col) * 80 + offsetX + 30 + 45);
+    int oy = (int) Math.round((row) * 88 + offsetY + 60 + 84);
     int sx, sy, dx, dy;
     sx = frame * lx;
     sy = anim;
-    dx = (int) Math.round((col) * 80 + offsetX + 30);
-    dy = (int) Math.round((row) * 88 + offsetY + 60);
-    int ox = dx + (int) Math.round(lx * scale / 2);
-    int oy = dy + (int) Math.round(ly * scale / 2);
+    dx = ox-(int)(lx*scale)/2;
+    dy = oy-(int)(ly*scale);
     g.drawImage(
       shadow,
-      dx + 5,
-      dy + (int) (ly * scale), //oy+(int)(ly*scale),
-      ox + (ox - dx) - 5,
-      oy + (int) Math.round(49 * scale) + 20,
+      ox-35,
+      oy-20,
+      ox+35,
+      oy,
       0,
       0,
       73,
@@ -107,10 +109,10 @@ public abstract class LiveEntity extends RenderObj implements Updater {
     );
     g.drawImage(
       sprite,
-      dx,
-      dy,
-      dx + (int) Math.round(lx * scale),
-      dy + (int) Math.round(ly * scale),
+      dx + offsetOX,
+      dy + offsetOY,
+      dx + offsetOX + (int)(lx * scale),
+      dy + offsetOY + (int)(ly * scale),
       sx,
       sy,
       sx + lx,
@@ -122,6 +124,9 @@ public abstract class LiveEntity extends RenderObj implements Updater {
       frame++;
       if (frame == anim_end[anim]) frame = anim_start[anim];
     }
+
+    //g.setColor(Color.white);
+    //g.drawOval(ox-5,oy-5,10,10);
   }
 
   public void update() {}
@@ -148,5 +153,14 @@ public abstract class LiveEntity extends RenderObj implements Updater {
 
   public void setHealth(int health) {
     this.health = health;
+  }
+  public double getScale(){
+    return scale;
+  }
+  public int getOffsetOX(){
+    return offsetOX;
+  }
+  public int getOffsetOY(){
+    return offsetOY;
   }
 }

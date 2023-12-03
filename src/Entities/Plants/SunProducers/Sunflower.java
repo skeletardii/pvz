@@ -4,12 +4,11 @@ import Entities.Interfaces.SunProducer;
 import Entities.Interfaces.Upgradable;
 import Entities.Interfaces.Upgraded;
 import Entities.Misc.Plant;
-import Main.Global;
 import java.awt.Graphics2D;
 
 public class Sunflower extends Plant implements SunProducer, Upgradable {
 
-  int sunCooldown = 60; // 1440;
+  int sunCooldown = 1440;
   int sunCtr = 0;
 
   public Sunflower(

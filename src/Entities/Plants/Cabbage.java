@@ -7,7 +7,6 @@ public class Cabbage extends Plant {
 
   int attack_cooldown = 60;
   int attack_ctr = 0;
-
   public Cabbage(
     int row,
     int col,

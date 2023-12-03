@@ -15,7 +15,7 @@ public class Jalapeno extends InstaKiller {
       125,
       100,
       SeedPacketRechargeTime.SLOW.getValue(),
-      "sunflower",
+      "jalapeno",
       364,
       365,
       1

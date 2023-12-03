@@ -18,7 +18,7 @@ public class PotatoMine extends InstaKiller {
       25,
       300,
       SeedPacketRechargeTime.VERY_SLOW.getValue(),
-      "sunflower",
+      "potatomine",
       364,
       365,
       1
@@ -51,7 +51,9 @@ public class PotatoMine extends InstaKiller {
   }
 
   public void paintComponent(Graphics2D g) { //px 364 py 365
-    renderSprite(g, 0);
+    if (timeTillActivation == 0) renderSprite(g, 2); else if (
+      timeTillActivation <= 38
+    ) renderSprite(g, 1); else renderSprite(g, 0);
   }
 
   @Override

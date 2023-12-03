@@ -64,10 +64,9 @@ public class Global implements Updater {
     if (mouse.y <= 0) mouse.x = 0;
   }
 
-  public static void addPlant(Plant p, int row, int col) {
+  public static void addPlant(Plant p, int row, int col) throws ArrayStoreException{
     if (plants[row][col] != null) {
-      System.out.println("PLANT ALREADY INSIDE!");
-      return;
+      throw new ArrayStoreException("Plant already in plot");
     }
     plants[row][col] = p;
     p.setRow(row);
@@ -86,7 +85,7 @@ public class Global implements Updater {
   }
 
   public static void addZombie(Zombie z) {
-    z.setZindex(5);
+    z.setZindex(6 + z.row);
     zombies.add(z);
     game.add(z);
   }

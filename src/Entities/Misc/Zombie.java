@@ -28,13 +28,16 @@ public abstract class Zombie extends LiveEntity {
       row,
       10,
       health,
-      new ImageIcon("assets/plants/" + spriteName + ".png").getImage(),
+      new ImageIcon("assets/zombies/" + spriteName + ".png").getImage(),
       spriteWidth,
       spriteHeight,
       animRow
     );
     this.movementSpeed = movementSpeed;
     this.dps = dps;
+    offsetOX=-50;
+    offsetOY=10;
+    scale=0.225;
   }
 
   @Override
