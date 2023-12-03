@@ -9,6 +9,11 @@ public abstract class Zombie extends LiveEntity {
   protected int dps = 1;
   protected Armor armor = null;
 
+  public enum DeathType {
+    NORMAL,
+    EXPLODED,
+  }
+
   protected Zombie(
     int row,
     int health,
@@ -55,5 +60,9 @@ public abstract class Zombie extends LiveEntity {
     } else {
       Global.plants[row][col].health -= this.dps;
     }
+  }
+
+  public void kill(DeathType type) {
+    this.health = 0;
   }
 }

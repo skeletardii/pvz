@@ -1,7 +1,8 @@
-package Entities.Plants;
+package Entities.Plants.InstaKillers;
 
 import Entities.Misc.InstaKiller;
 import Entities.Misc.Zombie;
+import Entities.Misc.Zombie.DeathType;
 import Main.Global;
 import java.awt.Graphics2D;
 
@@ -21,6 +22,7 @@ public class CherryBomb extends InstaKiller {
   @Override
   public void update() {
     this.health -= EXPLODE_TIME;
+    if (this.health <= 0) explode();
     super.update();
   }
 
@@ -35,8 +37,11 @@ public class CherryBomb extends InstaKiller {
       if (
         Math.abs(z.row - this.row) <= 1.5 && Math.abs(z.col - this.col) <= 1.5
       ) {
-        z.setHealth(0);
+        // if naa nay animations, dapat sad sila ma BLACKED
+        z.kill(DeathType.EXPLODED);
       }
     }
+
+    super.explode();
   }
 }
