@@ -20,8 +20,7 @@ public class Main {
     POOL_NIGHT,
     ROOF_DAY,
     ROOF_NIGHT,
-    ROW5_DAY,
-    ROW5_NIGHT
+    LAKE_DAY,
   }
 
   public static void main(String[] args) throws Exception {
@@ -35,7 +34,7 @@ public class Main {
     Global global = new Global();
     game.add(global);
     game.start();
-    game.add(new GameUI(GAME_MODE.LAWN_DAY));
+    game.add(new GameUI(GAME_MODE.LAKE_DAY));
     Global.init();
     game.add(new SunManager());
     
