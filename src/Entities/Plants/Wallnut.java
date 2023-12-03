@@ -13,14 +13,14 @@ public class WallNut extends Plant {
       50,
       4000,
       Global.SeedPacketRechargeTime.VERY_SLOW.getValue(),
-      "wallnut",
-      509,
-      496,
+      "sunflower",
+      364,
+      365,
       1
     );
-    anim_start[0] = 0;
-    anim_end[0] = 16;
-    offsetOY = 15;
+    anim_start[0] = 4;
+    anim_end[0] = 28;
+    setFrame(4);
   }
 
   public WallNut(int row, int col, int health, int sunCost, String spriteName) {
