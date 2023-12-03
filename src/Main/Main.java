@@ -34,7 +34,7 @@ public class Main {
     Global global = new Global();
     game.add(global);
     game.start();
-    game.add(new GameUI(GAME_MODE.LAKE_DAY));
+    game.add(new GameUI(GAME_MODE.LAWN_DAY));
     Global.init();
     game.add(new SunManager());
     
