@@ -1,12 +1,13 @@
 package Entities.Plants;
 
+import Entities.Interfaces.Upgradable;
+import Entities.Interfaces.Upgraded;
 import Entities.Misc.Plant;
-import Main.Global;
 import java.awt.Graphics2D;
 
-public class WallNut extends Plant {
+public class SpikeWeed extends Plant implements Upgradable {
 
-  public WallNut(int row, int col) {
+  public SpikeWeed(int row, int col) {
     super(
       row,
       col,
@@ -21,9 +22,16 @@ public class WallNut extends Plant {
     anim_start[0] = 4;
     anim_end[0] = 28;
     setFrame(4);
+    this.targetable = false;
   }
 
-  public WallNut(int row, int col, int health, int sunCost, String spriteName) {
+  public SpikeWeed(
+    int row,
+    int col,
+    int health,
+    int sunCost,
+    String spriteName
+  ) {
     super(
       row,
       col,
@@ -37,8 +45,13 @@ public class WallNut extends Plant {
     );
   }
 
-  public WallNut() {
+  public SpikeWeed() {
     this(-1, -1);
+  }
+
+  @Override
+  public Upgraded upgrade() {
+    return new SpikeRock();
   }
 
   @Override
@@ -46,14 +59,5 @@ public class WallNut extends Plant {
     renderSprite(g, 0);
   }
 
-  public static class TallNut extends WallNut {
-
-    public TallNut(int row, int col) {
-      super(row, col, 8000, 125, "sunflower");
-    }
-
-    public TallNut() {
-      this(-1, -1);
-    }
-  }
+  public static class SpikeRock extends SpikeWeed implements Upgraded {}
 }

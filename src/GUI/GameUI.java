@@ -4,7 +4,6 @@ import Entities.Interfaces.SunProducer;
 import GameUtils.RenderObj;
 import GameUtils.Updater;
 import Main.Global;
-import Main.Main.GAME_MODE;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -16,8 +15,8 @@ public class GameUI extends RenderObj implements Updater, SunProducer {
   private Random rand = new Random();
   private int sunCooldown = 200;
   private int sunCtr = 0;
-  
-  public GameUI(GAME_MODE mode) {
+
+  public GameUI(Global.GameMode mode) {
     sprite =
       new ImageIcon("assets/ui/background" + mode.ordinal() + ".jpg")
         .getImage();

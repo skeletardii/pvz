@@ -5,10 +5,11 @@ import java.io.File;
 
 public abstract class InstaKiller extends Plant {
 
-  protected static final int EXPLODE_TIME = 1;
-  private static final File explodeSnd = new File("assets/sound/cherrybomb.wav");
+  protected int explodeTime = 100;
+  protected int explodeSpeed = 1;
+  private static final File explodeSnd = new File("assets/sound/explosion.wav");
 
-  public InstaKiller(
+  protected InstaKiller(
     int row,
     int col,
     int sunCost,
@@ -32,7 +33,15 @@ public abstract class InstaKiller extends Plant {
     );
   }
 
-  public void explode() {
+  @Override
+  public void update() {
+    this.explodeTime -= this.explodeSpeed;
+    if (this.explodeTime <= 0) activate();
+
+    super.update();
+  }
+
+  public void activate() {
     this.health = 0;
     Sound.play(explodeSnd);
   }

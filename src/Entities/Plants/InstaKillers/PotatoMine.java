@@ -17,19 +17,20 @@ public class PotatoMine extends InstaKiller {
       col,
       25,
       300,
-      Global.SeedPacketRechargeTime.VERY_SLOW.getValue(),
+      SeedPacketRechargeTime.VERY_SLOW.getValue(),
       "potatomine",
       467,
       381,
       3
     );
+    this.explodeSpeed = 0;
     anim_start[0] = 0;
     anim_end[0] = 0;
     anim_start[1] = 1;
     anim_end[1] = 19;
     anim_start[2]=20;
     anim_end[2]=35;
-    scale = 0.2;
+    scale=0.2;
   }
 
   public PotatoMine() {
@@ -46,7 +47,7 @@ public class PotatoMine extends InstaKiller {
       // check if zombie is touching, if so explode
       for (Zombie z : Global.zombies) {
         if (z.row == this.row && isTouching(z)) {
-          explode();
+          activate();
           return;
         }
       }
@@ -54,13 +55,13 @@ public class PotatoMine extends InstaKiller {
   }
 
   public void paintComponent(Graphics2D g) { //px 364 py 365
-    if(timeTillActivation==0) renderSprite(g, 2);
-    else if (timeTillActivation<=38) renderSprite(g, 1);
-    else renderSprite(g, 0);
+    if (timeTillActivation == 0) renderSprite(g, 2); else if (
+      timeTillActivation <= 38
+    ) renderSprite(g, 1); else renderSprite(g, 0);
   }
 
   @Override
-  public void explode() {
+  public void activate() {
     for (Zombie z : Global.zombies) {
       // if zombie is in a 1x1 ish radius
       if (z.row == this.row && isTouching(z)) {
@@ -68,6 +69,6 @@ public class PotatoMine extends InstaKiller {
       }
     }
 
-    super.explode();
+    super.activate();
   }
 }

@@ -4,12 +4,10 @@ import Entities.Misc.SunManager;
 import Entities.Plants.*;
 import Entities.Plants.InstaKillers.*;
 import Entities.Plants.SunProducers.*;
-import Entities.Zombies.NormalZombie;
+import Entities.Zombies.*;
 import GUI.*;
 import GameUtils.*;
-
 import java.io.File;
-
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
@@ -17,17 +15,6 @@ public class Main {
 
   static final int WINDOW_SIZE_X = 800;
   static final int WINDOW_SIZE_Y = 600;
-
-  public enum GAME_MODE {
-    LAWN_EMPTY,
-    LAWN_DAY,
-    LAWN_NIGHT,
-    POOL_DAY,
-    POOL_NIGHT,
-    ROOF_DAY,
-    ROOF_NIGHT,
-    LAKE_DAY,
-  }
 
   public static void main(String[] args) throws Exception {
     JFrame window = new JFrame("The zombies are cumming");
@@ -40,21 +27,23 @@ public class Main {
     Global global = new Global();
     game.add(global);
     game.start();
-    game.add(new GameUI(GAME_MODE.LAWN_DAY));
+    game.add(new GameUI(Global.gameMode));
     Global.init();
     game.add(new SunManager());
-    Sound.play(new File("assets/sound/bg0.wav"),-10f);
-    Global.addPlant(new Sunflower(), 0, 0);
-    Global.addPlant(new TwinSunflower(), 1, 4);
 
-    Global.addSeedPacket(new SeedPacket(new PotatoMine()));
-    Global.addSeedPacket(new SeedPacket(new TwinSunflower()));
+    Sound.play(new File("assets/sound/bg0.wav"), -10f);
+
+    Global.addPlant(new Sunflower(), 0, 0);
+    Global.addPlant(new Sunflower.TwinSunflower(), 1, 4);
+
     Global.addSeedPacket(new SeedPacket(new Sunflower()));
-    Global.addSeedPacket(new SeedPacket(new Peashooter()));
+    Global.addSeedPacket(new SeedPacket(new Sunflower.TwinSunflower()));
     Global.addSeedPacket(new SeedPacket(new CherryBomb()));
     Global.addSeedPacket(new SeedPacket(new WallNut()));
     Global.addSeedPacket(new SeedPacket(new WallNut.TallNut()));
+    Global.addSeedPacket(new SeedPacket(new PotatoMine()));
     Global.addSeedPacket(new SeedPacket(new Chomper()));
+    Global.addSeedPacket(new SeedPacket(new Jalapeno()));
 
     Global.addZombie(new NormalZombie(0));
 

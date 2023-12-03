@@ -1,21 +1,19 @@
 package Entities.Plants;
 
 import Entities.Misc.Plant;
-import Main.Global;
 import java.awt.Graphics2D;
 
 public class WallNut extends Plant {
-
   public WallNut(int row, int col) {
     super(
       row,
       col,
       50,
       4000,
-      Global.SeedPacketRechargeTime.VERY_SLOW.getValue(),
-      "sunflower",
-      364,
-      365,
+    SeedPacketRechargeTime.VERY_SLOW.getValue(),
+      "wallnut",
+      509,
+      496,
       1
     );
     anim_start[0] = 4;
@@ -29,7 +27,7 @@ public class WallNut extends Plant {
       col,
       sunCost,
       health,
-      Global.SeedPacketRechargeTime.VERY_SLOW.getValue(),
+      SeedPacketRechargeTime.VERY_SLOW.getValue(),
       spriteName,
       364,
       365,
@@ -49,7 +47,7 @@ public class WallNut extends Plant {
   public static class TallNut extends WallNut {
 
     public TallNut(int row, int col) {
-      super(row, col, 8000, 125, "sunflower");
+      super(row, col, 8000, 125, "wallnut");
     }
 
     public TallNut() {
