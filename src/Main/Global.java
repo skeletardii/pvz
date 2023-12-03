@@ -11,11 +11,11 @@ import GameUtils.Updater;
 import java.util.ArrayList;
 
 public class Global implements Updater {
-
   public static Game game;
   public static Mouse mouse;
   public static Mouse mouse_prev = new Mouse();
   public static int sun = 0;
+  public static int mode = 0;
   public static final int PLANT_ROWS_COUNT = 6;
   public static final int PLANT_COLS_COUNT = 9;
   public static final int ROW_PIXEL_OFFSET = 80;
@@ -25,6 +25,11 @@ public class Global implements Updater {
   public static LawnMower[] lawnMowers = new LawnMower[PLANT_ROWS_COUNT];
   public static ZombieSpawner zombieSpawner = new ZombieSpawner();
 
+  public static void init(){
+    // if(mode==2 || mode==3){
+    //     PLANT_ROWS_COUNT = 6;
+    // }
+  }
   public void update() {
     updateMouse();
     checkZombiesToRemove();

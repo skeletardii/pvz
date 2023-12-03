@@ -1,7 +1,6 @@
 package Entities.Plants;
 
 import Entities.Misc.InstaKiller;
-import Entities.Misc.Plant;
 import Entities.Misc.Zombie;
 import Main.Global;
 import java.awt.Graphics2D;

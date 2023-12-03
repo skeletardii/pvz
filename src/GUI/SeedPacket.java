@@ -124,6 +124,10 @@ return;
         if(!Global.mouse.left && state==3) {
             int row = (int)Math.round((Global.mouse.y-60)/88);
             int col = (int)Math.round((Global.mouse.x-30)/80);
+            if(row>=Global.PLANT_ROWS_COUNT) row = Global.PLANT_ROWS_COUNT - 1;
+            if(col>=Global.PLANT_COLS_COUNT) col = Global.PLANT_COLS_COUNT - 1;
+            if(row<0) row = 0;
+            if(col<0) col = 0;
             try{
                 Object newPlant = plant.getDeclaredConstructor().newInstance();
                 Global.addPlant((Plant)newPlant,row,col);
@@ -134,7 +138,7 @@ return;
                 
                 
             } catch (Exception e ){
-                System.out.println("aaa");
+                e.printStackTrace();
             }
         }
     }

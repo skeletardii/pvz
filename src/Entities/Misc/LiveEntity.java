@@ -2,9 +2,10 @@ package Entities.Misc;
 
 import GameUtils.RenderObj;
 import GameUtils.Updater;
-import Main.Global;
 import java.awt.Graphics2D;
 import java.awt.Image;
+
+import javax.swing.ImageIcon;
 
 public abstract class LiveEntity extends RenderObj implements Updater {
 
@@ -20,6 +21,7 @@ public abstract class LiveEntity extends RenderObj implements Updater {
   protected final double scale = 0.25;
   public int[] anim_start;
   public int[] anim_end;
+  private static final Image shadow = new ImageIcon("assets/ui/shadow.png").getImage();
 
   protected LiveEntity(
     int row,
@@ -89,6 +91,20 @@ public abstract class LiveEntity extends RenderObj implements Updater {
     sy = anim;
     dx = (int) Math.round((col) * 80 + offsetX + 30);
     dy = (int) Math.round((row) * 88 + offsetY + 60);
+    int ox = dx + (int) Math.round(lx * scale / 2);
+    int oy = dy + (int) Math.round(ly * scale / 2);
+    g.drawImage(
+      shadow,
+      dx +5,
+      dy +(int)(ly*scale),//oy+(int)(ly*scale),
+      ox+(ox-dx) -5,
+      oy + (int) Math.round(49 * scale) +20,
+      0,
+      0,
+      73,
+      49,
+      null
+    );
     g.drawImage(
       sprite,
       dx,
@@ -101,7 +117,6 @@ public abstract class LiveEntity extends RenderObj implements Updater {
       sy + ly,
       null
     );
-
     if (frameCtr++ > 1) {
       frameCtr = 0;
       frame++;

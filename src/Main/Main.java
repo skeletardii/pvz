@@ -13,13 +13,15 @@ public class Main {
   static final int WINDOW_SIZE_Y = 600;
 
   public enum GAME_MODE {
-    EMPTY_LAWN,
+    LAWN_EMPTY,
     LAWN_DAY,
     LAWN_NIGHT,
     POOL_DAY,
     POOL_NIGHT,
     ROOF_DAY,
     ROOF_NIGHT,
+    ROW5_DAY,
+    ROW5_NIGHT
   }
 
   public static void main(String[] args) throws Exception {
@@ -33,12 +35,14 @@ public class Main {
     Global global = new Global();
     game.add(global);
     game.start();
-    game.add(new GameUI(GAME_MODE.POOL_DAY));
+    game.add(new GameUI(GAME_MODE.LAWN_DAY));
+    Global.init();
     game.add(new SunManager());
+    
 
     Global.addPlant(new Sunflower(), 0, 0);
     Global.addPlant(new CherryBomb(), 1, 2);
-    Global.addPlant(new Sunflower(), 5, 3);
+    Global.addPlant(new Sunflower(), 4, 3);
     Global.addPlant(new TwinSunflower(), 1, 4);
     Global.addPlant(new TwinSunflower(), 2, 7);
 
