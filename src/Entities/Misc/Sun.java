@@ -4,61 +4,69 @@ import GameUtils.Mouse;
 import GameUtils.RenderObj;
 import GameUtils.Updater;
 import Main.Global;
-
 import java.awt.Graphics2D;
 import java.awt.Image;
-
 import javax.swing.ImageIcon;
 
 public class Sun extends RenderObj implements Updater {
+
   private static final int maxStep = 10;
-  private int stepCtr=0;
-  private int sunValue, posX, posY, distInitX, distInitY, frame, fallCtr, frameCtr = 0;
+  private int stepCtr = 0;
+  private int sunValue, posX, posY, distInitX, distInitY, frame, fallCtr, frameCtr =
+    0;
   private final int lx = 688;
   private final int ly = 689;
-  private boolean left_last = false;
+  private boolean leftLast = false;
   private double scale = 1.0;
   private Mouse mouse;
-  private boolean going_corner = false;
-  private static final Image sprite = new ImageIcon("assets/projectiles/sun.png").getImage();
+  private boolean goingCorner = false;
+  private static final Image sprite = new ImageIcon(
+    "assets/projectiles/sun.png"
+  )
+    .getImage();
 
-  public Sun(int sunValue, double position_X, int position_Y, int fall_frames) {
+  public Sun(
+    int sunValue,
+    double position_Y,
+    double position_X,
+    int fall_frames
+  ) {
     this.sunValue = sunValue;
-    posX = (int)Math.round(position_X);
-    posY = position_Y;
+    posX = (int) Math.round(position_X);
+    posY = (int) position_Y;
     fallCtr = fall_frames;
     frame = 0;
-    scale = this.sunValue / 25;
+    scale = this.sunValue / 25.0;
     scale /= 4;
     setZindex(30);
   }
 
   public void update() {
-    if(going_corner){
-      if((posX < 0 && posY <0 )|| stepCtr>maxStep) {
+    if (goingCorner) {
+      if ((posX < 0 && posY < 0) || stepCtr > maxStep) {
         Global.sun += sunValue;
         this.remove();
       } else {
-        posX -= distInitX/maxStep;
-        posY -= distInitY/maxStep;
+        posX -= distInitX / maxStep;
+        posY -= distInitY / maxStep;
         stepCtr++;
       }
       return;
     }
     mouse = game.mouse;
 
-    if (fallCtr-- >=0 && posY<500) {
+    if (fallCtr-- >= 0 && posY < 500) {
       posY += 1;
-      if(fallCtr == 0 ) setZindex(31);
+      if (fallCtr == 0) setZindex(31);
     }
-    if (mouse.left && !left_last && mouseHover()) {
+    if (mouse.left && !leftLast && mouseHover()) {
       //   collect();
-      distInitX=posX +30;
-      distInitY=posY;
-      going_corner = true;
+      distInitX = posX + 30;
+      distInitY = posY;
+      goingCorner = true;
       SunManager.playSound();
     }
-    left_last = mouse.left;
+    leftLast = mouse.left;
   }
 
   private boolean mouseHover() {

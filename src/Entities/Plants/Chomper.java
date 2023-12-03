@@ -17,7 +17,7 @@ public class Chomper extends Plant implements SunProducer {
       col,
       150,
       300,
-      Global.SeedPacketRechargeTime.SLOW.getValue(),
+      SeedPacketRechargeTime.SLOW.getValue(),
       "sunflower",
       364,
       365,

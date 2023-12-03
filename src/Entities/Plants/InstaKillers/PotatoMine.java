@@ -17,12 +17,13 @@ public class PotatoMine extends InstaKiller {
       col,
       25,
       300,
-      Global.SeedPacketRechargeTime.VERY_SLOW.getValue(),
+      SeedPacketRechargeTime.VERY_SLOW.getValue(),
       "sunflower",
       364,
       365,
       1
     );
+    this.explodeSpeed = 0;
     anim_start[0] = 4;
     anim_end[0] = 28;
     setFrame(4);
@@ -42,7 +43,7 @@ public class PotatoMine extends InstaKiller {
       // check if zombie is touching, if so explode
       for (Zombie z : Global.zombies) {
         if (z.row == this.row && isTouching(z)) {
-          explode();
+          activate();
           return;
         }
       }
@@ -54,7 +55,7 @@ public class PotatoMine extends InstaKiller {
   }
 
   @Override
-  public void explode() {
+  public void activate() {
     for (Zombie z : Global.zombies) {
       // if zombie is in a 1x1 ish radius
       if (z.row == this.row && isTouching(z)) {
@@ -62,6 +63,6 @@ public class PotatoMine extends InstaKiller {
       }
     }
 
-    super.explode();
+    super.activate();
   }
 }

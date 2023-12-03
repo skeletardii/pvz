@@ -1,13 +1,10 @@
 package Entities.Misc;
 
-import Main.Global;
-import Main.Global.GameMode;
+import java.awt.Graphics2D;
 
-public abstract class Shroom extends Plant {
+public abstract class Aquatic extends Plant {
 
-  public boolean isAsleep;
-
-  protected Shroom(
+  public Aquatic(
     int row,
     int col,
     int sunCost,
@@ -29,9 +26,7 @@ public abstract class Shroom extends Plant {
       spriteHeight,
       animRow
     );
-    this.isAsleep =
-      Global.gameMode == GameMode.LAWN_DAY ||
-      Global.gameMode == GameMode.POOL_DAY ||
-      Global.gameMode == GameMode.ROOF_DAY;
+    // some logic here para dili siya ma create if dili water??
+    // or maybe ang logic i implement somewhere
   }
 }

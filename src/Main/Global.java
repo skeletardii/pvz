@@ -12,6 +12,17 @@ import java.util.ArrayList;
 
 public class Global implements Updater {
 
+  public enum GameMode {
+    LAWN_EMPTY,
+    LAWN_DAY,
+    LAWN_NIGHT,
+    POOL_DAY,
+    POOL_NIGHT,
+    ROOF_DAY,
+    ROOF_NIGHT,
+    LAKE_DAY,
+  }
+
   public static Game game;
   public static Mouse mouse;
   public static Mouse mouse_prev = new Mouse();
@@ -26,22 +37,7 @@ public class Global implements Updater {
   public static LawnMower[] lawnMowers = new LawnMower[PLANT_ROWS_COUNT];
   public static ZombieSpawner zombieSpawner = new ZombieSpawner();
 
-  // temp numbers rani
-  public enum SeedPacketRechargeTime {
-    VERY_SLOW(20),
-    SLOW(15),
-    FAST(7.5);
-
-    private final double value;
-
-    SeedPacketRechargeTime(double value) {
-      this.value = value;
-    }
-
-    public double getValue() {
-      return value;
-    }
-  }
+  public static final GameMode gameMode = GameMode.LAWN_DAY;
 
   public static void init() {
     // if(mode==2 || mode==3){

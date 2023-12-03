@@ -6,11 +6,11 @@ import Main.Global;
 public interface SunProducer {
   default Sun produceSun(
     int sunValue,
+    double positionY,
     double positionX,
-    int positionY,
     int fall
   ) {
-    return new Sun(sunValue, positionX, positionY, fall);
+    return new Sun(sunValue, positionY, positionX, fall);
   }
 
   default Sun produceSunGrid(int sunValue, double row, double col, int fall) {

@@ -66,7 +66,7 @@ public abstract class LiveEntity extends RenderObj implements Updater {
 
   // rough function implementation
   public boolean isTouching(LiveEntity e) {
-    return (int) (e.col) == (int) (this.col);
+    return Math.abs(this.col - e.col) <= 1;
   }
 
   public void setFrame(int frame) {

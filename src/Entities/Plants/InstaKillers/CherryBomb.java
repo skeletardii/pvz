@@ -19,19 +19,12 @@ public class CherryBomb extends InstaKiller {
     this(-1, -1);
   }
 
-  @Override
-  public void update() {
-    this.health -= EXPLODE_TIME;
-    if (this.health <= 0) explode();
-    super.update();
-  }
-
   public void paintComponent(Graphics2D g) { //px 364 py 365
     renderSprite(g, 0);
   }
 
   @Override
-  public void explode() {
+  public void activate() {
     for (Zombie z : Global.zombies) {
       // if zombie is in a 3x3 ish radius
       if (
@@ -42,6 +35,6 @@ public class CherryBomb extends InstaKiller {
       }
     }
 
-    super.explode();
+    super.activate();
   }
 }
