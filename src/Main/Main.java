@@ -24,7 +24,7 @@ public class Main {
     JFrame window = new JFrame("The zombies are cumming");
     window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     window.setVisible(true);
-    // window.setResizable(false);
+    window.setResizable(false);
     Game game = new Game(window, WINDOW_SIZE_X, WINDOW_SIZE_Y);
     Global.game = game;
     Global.mouse = game.mouse;

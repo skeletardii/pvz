@@ -64,7 +64,8 @@ public class Global implements Updater {
     if (mouse.y <= 0) mouse.x = 0;
   }
 
-  public static void addPlant(Plant p, int row, int col) throws ArrayStoreException{
+  public static void addPlant(Plant p, int row, int col)
+    throws ArrayStoreException {
     if (plants[row][col] != null) {
       throw new ArrayStoreException("Plant already in plot");
     }
