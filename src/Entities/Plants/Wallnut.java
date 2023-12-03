@@ -16,9 +16,9 @@ public class WallNut extends Plant {
       496,
       1
     );
-    anim_start[0] = 4;
-    anim_end[0] = 28;
-    setFrame(4);
+    anim_start[0] = 0;
+    anim_end[0] = 16;
+    offsetOY=20;
   }
 
   public WallNut(int row, int col, int health, int sunCost, String spriteName) {
