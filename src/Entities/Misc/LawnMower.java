@@ -2,12 +2,17 @@ package Entities.Misc;
 
 import Main.Global;
 import java.awt.Graphics2D;
+import java.io.File;
+
 import javax.swing.ImageIcon;
+
+import GameUtils.Sound;
 
 public class LawnMower extends LiveEntity {
 
   protected boolean isActivated = false;
-  protected static final double MOVEMENT_SPEED = 0.2;
+  protected static final double MOVEMENT_SPEED = 0.1;
+    private static final File sndfile = new File("assets/sound/lawnmower.wav");
 
   public LawnMower(int row) {
     this(row, "lawnmower");
@@ -37,6 +42,7 @@ public class LawnMower extends LiveEntity {
       for (Zombie z : Global.zombies) {
         if (z.row == this.row && this.isTouching(z)) {
           isActivated = true;
+          Sound.play(sndfile);
         }
       }
     }

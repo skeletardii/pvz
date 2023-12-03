@@ -24,6 +24,7 @@ public abstract class LiveEntity extends RenderObj implements Updater {
   private static final Image shadow = new ImageIcon("assets/ui/shadow.png").getImage();
   protected int offsetOY=0;
   protected int offsetOX=0;
+  protected int anim_speed=1;
   protected LiveEntity(
     int row,
     double col,
@@ -119,7 +120,7 @@ public abstract class LiveEntity extends RenderObj implements Updater {
       sy + ly,
       null
     );
-    if (frameCtr++ > 1) {
+    if (frameCtr++ > anim_speed) {
       frameCtr = 0;
       frame++;
       if (frame == anim_end[anim]) frame = anim_start[anim];

@@ -68,7 +68,7 @@ public class SeedPacket extends RenderObj implements Updater{
             ly,
             null
             );
-        g.drawString(""+cost, posX+15, 75);
+        g.drawString(""+cost, posX+20 - (5* (cost/100)), 75);
         if(state==0) {
 setZindex(initZ);
 return;

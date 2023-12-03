@@ -1,14 +1,23 @@
 package Entities.Misc;
 
 import Main.Global;
-import javax.swing.ImageIcon;
+
+import java.awt.Image;
+import java.io.File;
+
+import GameUtils.Sound;
 
 public abstract class Zombie extends LiveEntity {
 
   protected double movementSpeed = 0.01;
   protected int dps = 1;
   protected Armor armor = null;
-
+  protected boolean isEating = false;
+  private int eat_frame = 0;
+  private static final File[] eat_snd = {
+    new File("assets/sound/chomp0.wav"),
+    new File("assets/sound/chomp1.wav")
+  };
   public enum DeathType {
     NORMAL,
     EXPLODED,
@@ -19,7 +28,7 @@ public abstract class Zombie extends LiveEntity {
     int health,
     double movementSpeed,
     int dps,
-    String spriteName,
+    Image sprite,
     int spriteWidth,
     int spriteHeight,
     int animRow
@@ -28,7 +37,7 @@ public abstract class Zombie extends LiveEntity {
       row,
       10,
       health,
-      new ImageIcon("assets/zombies/" + spriteName + ".png").getImage(),
+      sprite,
       spriteWidth,
       spriteHeight,
       animRow
@@ -54,6 +63,9 @@ public abstract class Zombie extends LiveEntity {
       Global.plants[row][col] == null
     ) {
       this.col -= this.movementSpeed;
+      isEating = false;
+      anim_speed=1;
+      eat_frame=-10;
       return;
     }
 
@@ -61,7 +73,13 @@ public abstract class Zombie extends LiveEntity {
     if (this.armor != null) {
       this.armor.health -= this.dps;
     } else {
-      Global.plants[row][col].health -= this.dps;
+      if(Global.plants[row][col]!=null){
+        isEating = true;
+        anim_speed=0;
+        Global.plants[row][col].health -= this.dps;
+        if(eat_frame++ >=45) eat_frame=0;
+        if(eat_frame==0) Sound.play(eat_snd[(int)Math.round(Math.random())]);
+      }
     }
   }
 
