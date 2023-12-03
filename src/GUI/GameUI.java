@@ -14,7 +14,7 @@ public class GameUI extends RenderObj implements Updater, SunProducer {
 
   private static Image sprite;
   private Random rand = new Random();
-  private int sunCooldown = 20;
+  private int sunCooldown = 1440;
   private int sunCtr = 0;
 
   public GameUI(Global.GameMode mode) {
@@ -31,8 +31,8 @@ public class GameUI extends RenderObj implements Updater, SunProducer {
 
     if (sunCtr >= sunCooldown) {
       sunCtr = 0;
-      double spawnRow = rand.nextDouble(Global.PLANT_ROWS_COUNT);
-      double spawnColumn = rand.nextDouble(Global.PLANT_COLS_COUNT);
+      double spawnRow = rand.nextDouble(Global.PLANT_ROWS_COUNT - 2.0) - 1;
+      double spawnColumn = rand.nextDouble(Global.PLANT_COLS_COUNT) - 1;
       Global.game.add(produceSunGrid(25, spawnRow, spawnColumn, 120));
     }
   }

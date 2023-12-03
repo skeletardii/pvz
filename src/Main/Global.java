@@ -30,8 +30,8 @@ public class Global implements Updater {
   public static int mode = 0;
   public static final int PLANT_ROWS_COUNT = 6;
   public static final int PLANT_COLS_COUNT = 9;
-  public static final int ROW_PIXEL_OFFSET = 80;
-  public static final int COL_PIXEL_OFFSET = 100;
+  public static final int ROW_PIXEL_OFFSET = 100;
+  public static final int COL_PIXEL_OFFSET = 80;
   public static Plant[][] plants = new Plant[PLANT_ROWS_COUNT][PLANT_COLS_COUNT];
   public static ArrayList<Zombie> zombies = new ArrayList<>();
   public static LawnMower[] lawnMowers = new LawnMower[PLANT_ROWS_COUNT];

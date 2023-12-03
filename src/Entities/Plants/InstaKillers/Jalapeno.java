@@ -16,13 +16,13 @@ public class Jalapeno extends InstaKiller {
       100,
       SeedPacketRechargeTime.SLOW.getValue(),
       "jalapeno",
-      364,
-      365,
+      351,
+      468,
       1
     );
-    anim_start[0] = 4;
-    anim_end[0] = 28;
-    setFrame(4);
+    anim_start[0] = 0;
+    anim_end[0] = 24;
+    anim_speed=2;
   }
 
   public Jalapeno() {

@@ -2,14 +2,20 @@ package Entities.Zombies;
 
 import Entities.Misc.Zombie;
 import java.awt.Graphics2D;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 
 public class NormalZombie extends Zombie {
 
+  private static final Image sprite = new ImageIcon("assets/zombies/zombie.png")
+    .getImage();
+
   public NormalZombie(int row) {
-    super(row, 10, 0.005, 1, "basiczombie0001", 961, 723, 1);
+    super(row, 181, 0.005, 1, sprite, 961, 723, 2);
     anim_start[0] = 0;
-    anim_end[0] = 0;
-    setFrame(0);
+    anim_end[0] = 98;
+    anim_start[1] = 99;
+    anim_end[1] = 138;
   }
 
   public NormalZombie() {
@@ -17,6 +23,6 @@ public class NormalZombie extends Zombie {
   }
 
   public void paintComponent(Graphics2D g) { //px 364 py 365
-    renderSprite(g, 0);
+    if (isEating) renderSprite(g, 1); else renderSprite(g, 0);
   }
 }

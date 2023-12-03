@@ -3,26 +3,16 @@ package Entities.Plants;
 import Entities.Interfaces.Upgradable;
 import Entities.Interfaces.Upgraded;
 import Entities.Misc.Plant;
+import Entities.Misc.Zombie;
+import Main.Global;
 import java.awt.Graphics2D;
 
 public class SpikeWeed extends Plant implements Upgradable {
 
+  private int dps;
+
   public SpikeWeed(int row, int col) {
-    super(
-      row,
-      col,
-      50,
-      4000,
-      SeedPacketRechargeTime.VERY_SLOW.getValue(),
-      "sunflower",
-      364,
-      365,
-      1
-    );
-    anim_start[0] = 4;
-    anim_end[0] = 28;
-    setFrame(4);
-    this.targetable = false;
+    this(row, col, 50, 125, 30, "sunflower");
   }
 
   public SpikeWeed(
@@ -30,6 +20,7 @@ public class SpikeWeed extends Plant implements Upgradable {
     int col,
     int health,
     int sunCost,
+    int dps,
     String spriteName
   ) {
     super(
@@ -43,6 +34,11 @@ public class SpikeWeed extends Plant implements Upgradable {
       365,
       1
     );
+    this.dps = dps;
+    anim_start[0] = 4;
+    anim_end[0] = 28;
+    setFrame(4);
+    setTargetable(false);
   }
 
   public SpikeWeed() {
@@ -51,7 +47,7 @@ public class SpikeWeed extends Plant implements Upgradable {
 
   @Override
   public Upgraded upgrade() {
-    return new SpikeRock();
+    return new SpikeRock((int) this.row, (int) this.col);
   }
 
   @Override
@@ -59,5 +55,24 @@ public class SpikeWeed extends Plant implements Upgradable {
     renderSprite(g, 0);
   }
 
-  public static class SpikeRock extends SpikeWeed implements Upgraded {}
+  @Override
+  public void update() {
+    // adjust damage or maybe deal it in seconds
+    for (Zombie z : Global.zombies) {
+      if (this.isTouching(z)) {
+        z.setHealth(z.getHealth() - dps);
+      }
+    }
+  }
+
+  public static class SpikeRock extends SpikeWeed implements Upgraded {
+
+    public SpikeRock(int row, int col) {
+      super(row, col, 9, 125, 40, "sunflower");
+    }
+
+    public SpikeRock() {
+      this(-1, -1);
+    }
+  }
 }

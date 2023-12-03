@@ -1,6 +1,5 @@
 package Entities.Misc;
 
-import java.awt.Graphics2D;
 
 public abstract class Aquatic extends Plant {
 

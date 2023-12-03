@@ -1,14 +1,10 @@
 package Main;
 
 import Entities.Misc.SunManager;
-import Entities.Plants.Chomper;
-import Entities.Plants.InstaKillers.CherryBomb;
-import Entities.Plants.InstaKillers.Jalapeno;
-import Entities.Plants.InstaKillers.PotatoMine;
-import Entities.Plants.SunProducers.Sunflower;
-import Entities.Plants.SunProducers.Sunflower.TwinSunflower;
-import Entities.Plants.WallNut;
-import Entities.Zombies.NormalZombie;
+import Entities.Plants.*;
+import Entities.Plants.InstaKillers.*;
+import Entities.Plants.SunProducers.*;
+import Entities.Zombies.*;
 import GUI.*;
 import GameUtils.*;
 import java.io.File;
@@ -37,17 +33,16 @@ public class Main {
 
     Sound.play(new File("assets/sound/bg0.wav"), -10f);
 
-    Global.addPlant(new Sunflower(), 0, 0);
-    Global.addPlant(new Sunflower.TwinSunflower(), 1, 4);
-
-    Global.addSeedPacket(new SeedPacket(new Sunflower()));
-    Global.addSeedPacket(new SeedPacket(new Sunflower.TwinSunflower()));
-    Global.addSeedPacket(new SeedPacket(new CherryBomb()));
-    Global.addSeedPacket(new SeedPacket(new WallNut()));
-    Global.addSeedPacket(new SeedPacket(new WallNut.TallNut()));
-    Global.addSeedPacket(new SeedPacket(new PotatoMine()));
-    Global.addSeedPacket(new SeedPacket(new Chomper()));
-    Global.addSeedPacket(new SeedPacket(new Jalapeno()));
+    // Global.addSeedPacket(new SeedPacket(new Sunflower()));
+    // Global.addSeedPacket(new SeedPacket(new Sunflower.TwinSunflower()));
+    // Global.addSeedPacket(new SeedPacket(new CherryBomb()));
+    // Global.addSeedPacket(new SeedPacket(new WallNut()));
+    // Global.addSeedPacket(new SeedPacket(new Peashooter()));
+    // Global.addSeedPacket(new SeedPacket(new PotatoMine()));
+    // Global.addSeedPacket(new SeedPacket(new Chomper()));
+    // Global.addSeedPacket(new SeedPacket(new Jalapeno()));
+    Global.addSeedPacket(new SeedPacket(new SpikeWeed()));
+    Global.addSeedPacket(new SeedPacket(new SpikeWeed.SpikeRock()));
 
     Global.addZombie(new NormalZombie(0));
 

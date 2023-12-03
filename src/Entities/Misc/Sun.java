@@ -27,13 +27,13 @@ public class Sun extends RenderObj implements Updater {
 
   public Sun(
     int sunValue,
-    double position_Y,
     double position_X,
+    double position_Y,
     int fall_frames
   ) {
     this.sunValue = sunValue;
-    posX = (int) Math.round(position_X);
-    posY = (int) position_Y;
+    posX = (int) position_Y;
+    posY = (int) position_X;
     fallCtr = fall_frames;
     frame = 0;
     scale = this.sunValue / 25.0;
