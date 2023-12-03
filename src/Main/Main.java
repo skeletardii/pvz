@@ -7,6 +7,9 @@ import Entities.Plants.SunProducers.*;
 import Entities.Zombies.NormalZombie;
 import GUI.*;
 import GameUtils.*;
+
+import java.io.File;
+
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
@@ -40,7 +43,7 @@ public class Main {
     game.add(new GameUI(GAME_MODE.LAWN_DAY));
     Global.init();
     game.add(new SunManager());
-
+    Sound.play(new File("assets/sound/bg0.wav"),-10f);
     Global.addPlant(new Sunflower(), 0, 0);
     Global.addPlant(new TwinSunflower(), 1, 4);
 

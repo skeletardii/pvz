@@ -16,6 +16,7 @@ public class SeedPacket extends RenderObj implements Updater{
     private static final Image card = new ImageIcon("assets/ui/seedpacket.png").getImage();
     private static final File seed_click = new File("assets/sound/seedlift.wav");
     private static final File seed_plant = new File("assets/sound/plant.wav");
+    private static final File seed_error = new File("assets/sound/buzzer.wav");
     private int posX,cost,lx,ly,sx;
     private double initZ;
     private int state=0; //0 = not enough sun, 1 = enough sun, 2 = hovered, 3= dragged
@@ -145,10 +146,16 @@ return;
             if(col<0) col = 0;
             try{
                 Object newPlant = plant.getDeclaredConstructor().newInstance();
-                Global.addPlant((Plant)newPlant,row,col);
-                Global.sun -= cost;
-
-                Sound.play(seed_plant);
+                
+                
+                try{
+                    Global.addPlant((Plant)newPlant,row,col);
+                    Global.sun -= cost;
+                    Sound.play(seed_plant);
+                } catch (ArrayStoreException e) {
+                    Sound.play(seed_error);
+                }
+                
                 state=0; 
                 
                 

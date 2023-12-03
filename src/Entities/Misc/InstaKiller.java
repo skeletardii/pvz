@@ -6,7 +6,7 @@ import java.io.File;
 public abstract class InstaKiller extends Plant {
 
   protected static final int EXPLODE_TIME = 1;
-  private static final File explodeSnd = new File("assets/sound/explosion.wav");
+  private static final File explodeSnd = new File("assets/sound/cherrybomb.wav");
 
   public InstaKiller(
     int row,
