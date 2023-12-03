@@ -17,12 +17,12 @@ public class Main {
   static final int WINDOW_SIZE_Y = 600;
 
   public static void main(String[] args) throws Exception {
-    preload();
     JFrame window = new JFrame("The zombies are cumming");
     window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     window.setVisible(true);
     window.setResizable(false);
     Game game = new Game(window, WINDOW_SIZE_X, WINDOW_SIZE_Y);
+    preload();
     Global.game = game;
     Global.mouse = game.mouse;
     Global global = new Global();
@@ -32,7 +32,7 @@ public class Main {
     Global.init();
     game.add(new SunManager());
 
-    Sound.play(new File("assets/sound/bg0.wav"), -10f);
+    //Sound.play(new File("assets/sound/bg0.wav"), -10f);
 
     Global.addPlant(new Sunflower(), 0, 0);
     Global.addPlant(new Sunflower.TwinSunflower(), 1, 4);
