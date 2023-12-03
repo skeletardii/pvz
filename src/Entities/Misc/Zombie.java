@@ -35,9 +35,9 @@ public abstract class Zombie extends LiveEntity {
     );
     this.movementSpeed = movementSpeed;
     this.dps = dps;
-    offsetOX=-50;
-    offsetOY=10;
-    scale=0.225;
+    offsetOX = -50;
+    offsetOY = 10;
+    scale = 0.225;
   }
 
   @Override
@@ -51,7 +51,8 @@ public abstract class Zombie extends LiveEntity {
     if (
       col >= Global.PLANT_COLS_COUNT ||
       col < 0 ||
-      Global.plants[row][col] == null
+      Global.plants[row][col] == null ||
+      !Global.plants[row][col].targetable
     ) {
       this.col -= this.movementSpeed;
       return;

@@ -11,9 +11,10 @@ import java.util.Random;
 import javax.swing.ImageIcon;
 
 public class GameUI extends RenderObj implements Updater, SunProducer {
+
   private static Image sprite;
   private Random rand = new Random();
-  private int sunCooldown = 200;
+  private int sunCooldown = 20;
   private int sunCtr = 0;
 
   public GameUI(Global.GameMode mode) {
@@ -42,6 +43,7 @@ public class GameUI extends RenderObj implements Updater, SunProducer {
 }
 
 class Navbar extends RenderObj implements Updater {
+
   private double initZ;
   private static final Image sprite = new ImageIcon("assets/ui/SeedBank.png")
     .getImage();
@@ -54,10 +56,10 @@ class Navbar extends RenderObj implements Updater {
 
   @Override
   public void update() {
-    if(Global.mouse.y < 80 && getZindex()!=29) {
+    if (Global.mouse.y < 80 && getZindex() != 29) {
       initZ = getZindex();
       this.setZindex(29);
-    } else if (getZindex() != initZ){
+    } else if (getZindex() != initZ) {
       this.setZindex(initZ);
     }
   }

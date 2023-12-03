@@ -31,6 +31,7 @@ public abstract class InstaKiller extends Plant {
       spriteHeight,
       animRow
     );
+    this.targetable = false;
   }
 
   @Override
