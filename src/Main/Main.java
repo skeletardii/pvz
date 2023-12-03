@@ -17,6 +17,7 @@ public class Main {
   static final int WINDOW_SIZE_Y = 600;
 
   public static void main(String[] args) throws Exception {
+    preload();
     JFrame window = new JFrame("The zombies are cumming");
     window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     window.setVisible(true);
@@ -49,6 +50,42 @@ public class Main {
 
     for (int i = 0; i < Global.PLANT_ROWS_COUNT; ++i) {
       Global.addLawnMowers(i);
+    }
+  }
+  private static void preload(){
+    String[] classes = {
+      "Main.Global",
+      "GameUtils.Game",
+      "GameUtils.Mouse",
+      "GameUtils.RenderObj",
+      "GameUtils.Updater",
+      "GameUtils.Sound",
+      "Entities.Misc.LiveEntity",
+      "Entities.Misc.Plant",
+      "Entities.Misc.Zombie",
+      "Entities.Misc.LawnMower",
+      "Entities.Misc.Sun",
+      "Entities.Zombies.NormalZombie",
+      "Entities.Plants.Cabbage",
+      "Entities.Plants.Chomper",
+      "Entities.Plants.Peashooter",
+      "Entities.Plants.SpikeWeed",
+      "Entities.Plants.WallNut",
+      "Entities.Plants.SunProducers.Sunflower",
+      "Entities.Plants.InstaKillers.CherryBomb",
+      "Entities.Plants.InstaKillers.Jalapeno",
+      "Entities.Plants.InstaKillers.PotatoMine",
+      "Entities.Plants.InstaKillers.Squash",
+      "GUI.SeedPacket",
+      "GUI.GameUI",
+      "GUI.Selector"
+    };
+    for(String c : classes){
+      try{
+        Class.forName(c);
+      } catch (Exception e){
+        e.printStackTrace();
+      }
     }
   }
 }
