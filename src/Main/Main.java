@@ -27,7 +27,7 @@ public class Main {
     JFrame window = new JFrame("The zombies are cumming");
     window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     window.setVisible(true);
-
+    window.setResizable(false);
     Game game = new Game(window, WINDOW_SIZE_X, WINDOW_SIZE_Y);
     Global.game = game;
     Global.mouse = game.mouse;
@@ -47,6 +47,8 @@ public class Main {
 
     Global.addSeedPacket(new SeedPacket(new Sunflower()));
     Global.addSeedPacket(new SeedPacket(new TwinSunflower()));
+    Global.addSeedPacket(new SeedPacket(new Peashooter()));
+    Global.addSeedPacket(new SeedPacket(new Wallnut()));
     Global.addSeedPacket(new SeedPacket(new CherryBomb()));
 
     for (int i = 0; i < Global.PLANT_ROWS_COUNT; ++i) {

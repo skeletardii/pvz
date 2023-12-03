@@ -10,7 +10,7 @@ public class LawnMower extends LiveEntity {
   protected static final double MOVEMENT_SPEED = 0.2;
 
   public LawnMower(int row) {
-    this(row, "sunflower");
+    this(row, "lawnmower");
   }
 
   public LawnMower(int row, String spriteName) {
@@ -18,13 +18,14 @@ public class LawnMower extends LiveEntity {
       row,
       -1,
       new ImageIcon("assets/plants/" + spriteName + ".png").getImage(),
+      450,
       364,
-      365,
       1
     );
-    anim_start[0] = 4;
-    anim_end[0] = 28;
-    setFrame(4);
+    anim_start[0] = 0;
+    anim_end[0] = 16;
+    offsetOY=20;
+    scale=0.20;
   }
 
   @Override
@@ -54,7 +55,12 @@ public class LawnMower extends LiveEntity {
 
   @Override
   public void paintComponent(Graphics2D g) {
-    renderSprite(g, 0);
+    if (isActivated) {
+      renderSprite(g, 0);
+    } else {
+      setFrame(0);
+      renderSprite(g, 0);
+    }
   }
 
   public static class PoolCleaner extends LawnMower {

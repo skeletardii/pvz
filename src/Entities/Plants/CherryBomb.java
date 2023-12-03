@@ -8,10 +8,13 @@ import java.awt.Graphics2D;
 public class CherryBomb extends InstaKiller {
 
   public CherryBomb(int row, int col) {
-    super(row, col, 125, 100, 7.5, "sunflower", 364, 365, 1);
-    anim_start[0] = 4;
-    anim_end[0] = 28;
-    setFrame(4);
+    super(row, col, 125, 100, 7.5, "cherrybomb", 625, 458, 2);
+    anim_start[0] = 14;
+    anim_end[0] = 26;
+    anim_start[1] = 0;
+    anim_end[1] = 13;
+    setFrame(14);
+    offsetOY = 10;
   }
 
   public CherryBomb() {
@@ -25,7 +28,13 @@ public class CherryBomb extends InstaKiller {
   }
 
   public void paintComponent(Graphics2D g) { //px 364 py 365
-    renderSprite(g, 0);
+    
+    if(health <= (anim_end[0]-anim_start[0])*2){
+      //setFrame((anim_end[0]-anim_start[0])-health);
+      renderSprite(g, 1);
+    } else {
+      renderSprite(g, 0);
+    }
   }
 
   @Override
