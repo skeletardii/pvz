@@ -22,6 +22,7 @@ public class Main {
     window.setVisible(true);
     window.setResizable(false);
     Game game = new Game(window, WINDOW_SIZE_X, WINDOW_SIZE_Y);
+    preload();
     Global.game = game;
     Global.mouse = game.mouse;
     Global global = new Global();
@@ -31,7 +32,7 @@ public class Main {
     Global.init();
     game.add(new SunManager());
 
-    Sound.play(new File("assets/sound/bg0.wav"), -10f);
+    //Sound.play(new File("assets/sound/bg0.wav"), -10f);
 
     // Global.addSeedPacket(new SeedPacket(new Sunflower()));
     // Global.addSeedPacket(new SeedPacket(new Sunflower.TwinSunflower()));
@@ -48,6 +49,43 @@ public class Main {
 
     for (int i = 0; i < Global.PLANT_ROWS_COUNT; ++i) {
       Global.addLawnMowers(i);
+    }
+  }
+
+  private static void preload() {
+    String[] classes = {
+      "Main.Global",
+      "GameUtils.Game",
+      "GameUtils.Mouse",
+      "GameUtils.RenderObj",
+      "GameUtils.Updater",
+      "GameUtils.Sound",
+      "Entities.Misc.LiveEntity",
+      "Entities.Misc.Plant",
+      "Entities.Misc.Zombie",
+      "Entities.Misc.LawnMower",
+      "Entities.Misc.Sun",
+      "Entities.Zombies.NormalZombie",
+      "Entities.Plants.Cabbage",
+      "Entities.Plants.Chomper",
+      "Entities.Plants.Peashooter",
+      "Entities.Plants.SpikeWeed",
+      "Entities.Plants.WallNut",
+      "Entities.Plants.SunProducers.Sunflower",
+      "Entities.Plants.InstaKillers.CherryBomb",
+      "Entities.Plants.InstaKillers.Jalapeno",
+      "Entities.Plants.InstaKillers.PotatoMine",
+      "Entities.Plants.InstaKillers.Squash",
+      "GUI.SeedPacket",
+      "GUI.GameUI",
+      "GUI.Selector",
+    };
+    for (String c : classes) {
+      try {
+        Class.forName(c);
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
     }
   }
 }
