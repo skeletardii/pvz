@@ -8,6 +8,7 @@ import java.io.File;
 import javax.swing.ImageIcon;
 
 import Entities.Misc.Plant;
+import Entities.Plants.InstaKillers.PotatoMine;
 import GameUtils.*;
 import Main.Global;
 
@@ -19,6 +20,7 @@ public class SeedPacket extends RenderObj implements Updater{
     private double initZ;
     private int state=0; //0 = not enough sun, 1 = enough sun, 2 = hovered, 3= dragged
     private int state_prev=0;
+    private int prevX,prevY;
     private double scale=0.25;
     private int offsetCX;
     private int offsetCY;
@@ -35,6 +37,9 @@ public class SeedPacket extends RenderObj implements Updater{
         scale = p.getScale();
         offsetCX=p.getOffsetOX();
         offsetCY=p.getOffsetOY();
+        prevX = 50;
+        prevY = (int)((1.0*ly/lx) * prevX);
+        if(p instanceof PotatoMine) sx = lx*30;
     }
     public void paintComponent(Graphics2D g) {
         //g.drawImage(sprite,posX,3,50,50,null);
@@ -52,16 +57,17 @@ public class SeedPacket extends RenderObj implements Updater{
             );
         g.drawImage(
             sprite,
-            posX,
-            7,
-            posX+55,
-            7+75,
+            posX + 30 - prevX/2,
+            7 + 30 - prevY/2,
+            posX + 30 + prevX/2,
+            7 + 30 + prevY/2,
             sx,
             0,
             sx + lx,
             ly,
             null
             );
+        g.drawString(""+cost, posX+15, 75);
         if(state==0) {
 setZindex(initZ);
 return;
@@ -97,14 +103,14 @@ return;
                     );
                 g.setComposite(makeComposite(1f));
             }
-            dx = Global.mouse.x - (int) Math.round(lx * 0.25 * 0.5);
-            dy = Global.mouse.y - (int) Math.round(ly * 0.25 * 0.5);
+            dx = Global.mouse.x - (int) Math.round(lx * scale * 0.5);
+            dy = Global.mouse.y - (int) Math.round(ly * scale * 0.5);
             g.drawImage(
                     sprite,
                     dx,
                     dy,
-                    dx + (int) Math.round(lx * 0.25),
-                    dy + (int) Math.round(ly * 0.25),
+                    dx + (int) Math.round(lx * scale),
+                    dy + (int) Math.round(ly * scale),
                     sx,
                     0,
                     sx + lx,

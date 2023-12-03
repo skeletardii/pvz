@@ -29,6 +29,7 @@ public class PotatoMine extends InstaKiller {
     anim_end[1] = 19;
     anim_start[2]=20;
     anim_end[2]=35;
+    scale = 0.2;
   }
 
   public PotatoMine() {
