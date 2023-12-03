@@ -32,14 +32,8 @@ public abstract class InstaKiller extends Plant {
     );
   }
 
-  @Override
-  public void update() {
-    if (this.health <= 0) {
-      explode();
-      Sound.play(explodeSnd);
-    }
-    super.update();
+  public void explode() {
+    this.health = 0;
+    Sound.play(explodeSnd);
   }
-
-  public abstract void explode();
 }

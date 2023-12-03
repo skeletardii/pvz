@@ -6,7 +6,6 @@ import GameUtils.Updater;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
-
 import javax.swing.ImageIcon;
 
 public abstract class LiveEntity extends RenderObj implements Updater {
@@ -69,7 +68,7 @@ public abstract class LiveEntity extends RenderObj implements Updater {
 
   // rough function implementation
   public boolean isTouching(LiveEntity e) {
-    return this.col >= e.col && this.col - 1 <= e.col;
+    return (int) (e.col) == (int) (this.col);
   }
 
   public void setFrame(int frame) {

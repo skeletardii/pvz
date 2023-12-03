@@ -11,6 +11,7 @@ import GameUtils.Updater;
 import java.util.ArrayList;
 
 public class Global implements Updater {
+
   public static Game game;
   public static Mouse mouse;
   public static Mouse mouse_prev = new Mouse();
@@ -25,11 +26,29 @@ public class Global implements Updater {
   public static LawnMower[] lawnMowers = new LawnMower[PLANT_ROWS_COUNT];
   public static ZombieSpawner zombieSpawner = new ZombieSpawner();
 
-  public static void init(){
+  // temp numbers rani
+  public enum SeedPacketRechargeTime {
+    VERY_SLOW(20),
+    SLOW(15),
+    FAST(7.5);
+
+    private final double value;
+
+    SeedPacketRechargeTime(double value) {
+      this.value = value;
+    }
+
+    public double getValue() {
+      return value;
+    }
+  }
+
+  public static void init() {
     // if(mode==2 || mode==3){
     //     PLANT_ROWS_COUNT = 6;
     // }
   }
+
   public void update() {
     updateMouse();
     checkZombiesToRemove();

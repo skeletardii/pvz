@@ -2,6 +2,11 @@ package Main;
 
 import Entities.Misc.SunManager;
 import Entities.Plants.*;
+import Entities.Plants.InstaKillers.CherryBomb;
+import Entities.Plants.InstaKillers.PotatoMine;
+import Entities.Plants.SunProducers.Sunflower;
+import Entities.Plants.SunProducers.TwinSunflower;
+import Entities.Zombies.NormalZombie;
 import GUI.*;
 import GameUtils.*;
 import javax.swing.JFrame;
@@ -37,19 +42,21 @@ public class Main {
     game.add(new GameUI(GAME_MODE.LAWN_DAY));
     Global.init();
     game.add(new SunManager());
-    
 
     Global.addPlant(new Sunflower(), 0, 0);
-    Global.addPlant(new CherryBomb(), 1, 2);
-    Global.addPlant(new Sunflower(), 4, 3);
     Global.addPlant(new TwinSunflower(), 1, 4);
-    Global.addPlant(new TwinSunflower(), 2, 7);
 
-    Global.addSeedPacket(new SeedPacket(new Sunflower()));
+    Global.addSeedPacket(new SeedPacket(new PotatoMine()));
     Global.addSeedPacket(new SeedPacket(new TwinSunflower()));
     Global.addSeedPacket(new SeedPacket(new Peashooter()));
     Global.addSeedPacket(new SeedPacket(new Wallnut()));
     Global.addSeedPacket(new SeedPacket(new CherryBomb()));
+    Global.addSeedPacket(new SeedPacket(new WallNut()));
+    Global.addSeedPacket(new SeedPacket(new WallNut.TallNut()));
+    Global.addSeedPacket(new SeedPacket(new PotatoMine()));
+    Global.addSeedPacket(new SeedPacket(new Chomper()));
+
+    Global.addZombie(new NormalZombie(0));
 
     for (int i = 0; i < Global.PLANT_ROWS_COUNT; ++i) {
       Global.addLawnMowers(i);
