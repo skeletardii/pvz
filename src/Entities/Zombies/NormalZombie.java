@@ -6,7 +6,7 @@ import java.awt.Graphics2D;
 public class NormalZombie extends Zombie {
 
   public NormalZombie(int row) {
-    super(row, 10, 0.01, 1, "basiczombie0001", 961, 723, 1);
+    super(row, 10, 0.005, 1, "basiczombie0001", 961, 723, 1);
     anim_start[0] = 0;
     anim_end[0] = 0;
     setFrame(0);

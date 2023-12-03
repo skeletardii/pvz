@@ -18,14 +18,17 @@ public class PotatoMine extends InstaKiller {
       25,
       300,
       Global.SeedPacketRechargeTime.VERY_SLOW.getValue(),
-      "sunflower",
-      364,
-      365,
-      1
+      "potatomine",
+      467,
+      381,
+      3
     );
-    anim_start[0] = 4;
-    anim_end[0] = 28;
-    setFrame(4);
+    anim_start[0] = 0;
+    anim_end[0] = 0;
+    anim_start[1] = 1;
+    anim_end[1] = 19;
+    anim_start[2]=20;
+    anim_end[2]=35;
   }
 
   public PotatoMine() {
@@ -50,7 +53,9 @@ public class PotatoMine extends InstaKiller {
   }
 
   public void paintComponent(Graphics2D g) { //px 364 py 365
-    renderSprite(g, 0);
+    if(timeTillActivation==0) renderSprite(g, 2);
+    else if (timeTillActivation<=38) renderSprite(g, 1);
+    else renderSprite(g, 0);
   }
 
   @Override

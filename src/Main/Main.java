@@ -2,10 +2,8 @@ package Main;
 
 import Entities.Misc.SunManager;
 import Entities.Plants.*;
-import Entities.Plants.InstaKillers.CherryBomb;
-import Entities.Plants.InstaKillers.PotatoMine;
-import Entities.Plants.SunProducers.Sunflower;
-import Entities.Plants.SunProducers.TwinSunflower;
+import Entities.Plants.InstaKillers.*;
+import Entities.Plants.SunProducers.*;
 import Entities.Zombies.NormalZombie;
 import GUI.*;
 import GameUtils.*;
@@ -48,12 +46,11 @@ public class Main {
 
     Global.addSeedPacket(new SeedPacket(new PotatoMine()));
     Global.addSeedPacket(new SeedPacket(new TwinSunflower()));
+    Global.addSeedPacket(new SeedPacket(new Sunflower()));
     Global.addSeedPacket(new SeedPacket(new Peashooter()));
-    Global.addSeedPacket(new SeedPacket(new Wallnut()));
     Global.addSeedPacket(new SeedPacket(new CherryBomb()));
     Global.addSeedPacket(new SeedPacket(new WallNut()));
     Global.addSeedPacket(new SeedPacket(new WallNut.TallNut()));
-    Global.addSeedPacket(new SeedPacket(new PotatoMine()));
     Global.addSeedPacket(new SeedPacket(new Chomper()));
 
     Global.addZombie(new NormalZombie(0));
