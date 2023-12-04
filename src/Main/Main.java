@@ -7,12 +7,10 @@ import Entities.Plants.SunProducers.*;
 import Entities.Zombies.*;
 import GUI.*;
 import GameUtils.*;
-import java.io.File;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
 public class Main {
-
   static final int WINDOW_SIZE_X = 800;
   static final int WINDOW_SIZE_Y = 600;
 
@@ -53,6 +51,7 @@ public class Main {
   }
 
   private static void preload() {
+    double percent = 0;
     String[] classes = {
       "Main.Global",
       "GameUtils.Game",
@@ -80,12 +79,15 @@ public class Main {
       "GUI.GameUI",
       "GUI.Selector",
     };
-    for (String c : classes) {
+    for (int i=0; i<classes.length; i++) {
+      percent = 100.0*i/classes.length ;
+      System.out.println("Loading: "+percent+"%");
       try {
-        Class.forName(c);
+        Class.forName(classes[i]);
       } catch (Exception e) {
         e.printStackTrace();
       }
     }
+    System.out.println("Loading: "+100+"%");
   }
 }
