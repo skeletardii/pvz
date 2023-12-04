@@ -67,8 +67,8 @@ public class SeedPacket extends RenderObj implements Updater {
       int dx, dy;
 
       setZindex(100);
-      int row = (int) Math.round((Global.mouse.y - 60) / 88.0);
-      int col = (int) Math.round((Global.mouse.x - 30) / 80.0);
+      int row = ((Global.mouse.y - 60) / 88);
+      int col = ((Global.mouse.x - 30) / 80);
       if (row >= Global.PLANT_ROWS_COUNT) row = Global.PLANT_ROWS_COUNT - 1;
       if (col >= Global.PLANT_COLS_COUNT) col = Global.PLANT_COLS_COUNT - 1;
       if (row < 0) row = 0;
@@ -131,8 +131,8 @@ public class SeedPacket extends RenderObj implements Updater {
     if (statePrev == 3 && Global.mouse.left && Global.mouse_prev.left) state =
       3;
     if (!Global.mouse.left && state == 3) {
-      int row = (int) Math.round((Global.mouse.y - 60) / 88);
-      int col = (int) Math.round((Global.mouse.x - 30) / 80);
+      int row = ((Global.mouse.y - 60) / 88);
+      int col = ((Global.mouse.x - 30) / 80);
       if (row >= Global.PLANT_ROWS_COUNT) row = Global.PLANT_ROWS_COUNT - 1;
       if (col >= Global.PLANT_COLS_COUNT) col = Global.PLANT_COLS_COUNT - 1;
       if (row < 0) row = 0;

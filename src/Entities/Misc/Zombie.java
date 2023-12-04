@@ -80,4 +80,8 @@ public abstract class Zombie extends LiveEntity {
   public void kill(DeathType type) {
     this.health = 0;
   }
+
+  public void takeDamage(int projectileDamage) {
+    this.health = Math.max(0, this.health - projectileDamage);
+  }
 }
