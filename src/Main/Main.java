@@ -32,18 +32,18 @@ public class Main {
     Global.init();
     game.add(new SunManager());
 
-    //Sound.play(new File("assets/sound/bg0.wav"), -10f);
+    Sound.play(new File("assets/sound/bg0.wav"), -10f);
 
-    // Global.addSeedPacket(new SeedPacket(new Sunflower()));
-    // Global.addSeedPacket(new SeedPacket(new Sunflower.TwinSunflower()));
-    // Global.addSeedPacket(new SeedPacket(new CherryBomb()));
-    // Global.addSeedPacket(new SeedPacket(new WallNut()));
-    // Global.addSeedPacket(new SeedPacket(new Peashooter()));
-    // Global.addSeedPacket(new SeedPacket(new PotatoMine()));
-    // Global.addSeedPacket(new SeedPacket(new Chomper()));
-    // Global.addSeedPacket(new SeedPacket(new Jalapeno()));
-    Global.addSeedPacket(new SeedPacket(new SpikeWeed()));
-    Global.addSeedPacket(new SeedPacket(new SpikeWeed.SpikeRock()));
+    Global.addSeedPacket(new SeedPacket(new Sunflower()));
+    Global.addSeedPacket(new SeedPacket(new Sunflower.TwinSunflower()));
+    Global.addSeedPacket(new SeedPacket(new CherryBomb()));
+    Global.addSeedPacket(new SeedPacket(new WallNut()));
+    Global.addSeedPacket(new SeedPacket(new Peashooter()));
+    Global.addSeedPacket(new SeedPacket(new PotatoMine()));
+    Global.addSeedPacket(new SeedPacket(new Chomper()));
+    Global.addSeedPacket(new SeedPacket(new Jalapeno()));
+    // Global.addSeedPacket(new SeedPacket(new SpikeWeed()));
+    // Global.addSeedPacket(new SeedPacket(new SpikeWeed.SpikeRock()));
 
     Global.addZombie(new NormalZombie(0));
 

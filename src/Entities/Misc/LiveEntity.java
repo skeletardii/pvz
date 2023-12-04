@@ -91,6 +91,7 @@ public abstract class LiveEntity extends RenderObj implements Updater {
   public void renderSprite(Graphics2D g, int anim) {
     if (frame < anim_start[anim] || frame > anim_end[anim]) frame =
       anim_start[anim];
+
     int ox = (int) Math.round((col) * 80 + offsetX + 30 + 45);
     int oy = (int) Math.round((row) * 88 + offsetY + 60 + 84);
     int sx, sy, dx, dy;
