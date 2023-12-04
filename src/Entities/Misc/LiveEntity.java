@@ -27,7 +27,7 @@ public abstract class LiveEntity extends RenderObj implements Updater {
   protected int anim_speed = 1;
 
   protected LiveEntity(
-    int row,
+    double row,
     double col,
     int health,
     Image sprite,
@@ -49,7 +49,7 @@ public abstract class LiveEntity extends RenderObj implements Updater {
   }
 
   protected LiveEntity(
-    int row,
+    double row,
     double col,
     Image sprite,
     int spriteWidth,

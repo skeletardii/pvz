@@ -6,12 +6,14 @@ import Entities.Interfaces.Upgraded;
 import Entities.Misc.Plant;
 import java.awt.Graphics2D;
 import java.awt.Image;
-
 import javax.swing.ImageIcon;
 
 public class Sunflower extends Plant implements SunProducer, Upgradable {
 
-  private static final Image sprite = new ImageIcon("assets/plants/sunflower.png").getImage();
+  private static final Image sprite = new ImageIcon(
+    "assets/plants/sunflower.png"
+  )
+    .getImage();
   int sunCooldown = 1440;
   int sunCtr = 0;
 
@@ -75,8 +77,12 @@ public class Sunflower extends Plant implements SunProducer, Upgradable {
   }
 
   public static class TwinSunflower extends Sunflower implements Upgraded {
-    
-  private static final Image sprite = new ImageIcon("assets/plants/twinsunflower.png").getImage();
+
+    private static final Image sprite = new ImageIcon(
+      "assets/plants/twinsunflower.png"
+    )
+      .getImage();
+
     public TwinSunflower(int row, int col) {
       super(
         row,
@@ -102,6 +108,11 @@ public class Sunflower extends Plant implements SunProducer, Upgradable {
     public void selfProduceSun() {
       this.add(produceSunGrid(25, row, col, 60));
       this.add(produceSunGrid(25, row, col - 1, 60));
+    }
+
+    @Override
+    public int getIncreasingSunCost() {
+      return 50;
     }
   }
 }

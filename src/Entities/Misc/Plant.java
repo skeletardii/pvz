@@ -1,5 +1,6 @@
 package Entities.Misc;
 
+import Entities.Interfaces.Upgraded;
 import GameUtils.Sound;
 import Main.Global;
 import Main.Global;
@@ -33,8 +34,8 @@ public abstract class Plant extends LiveEntity {
   private static final File gulp = new File("assets/sound/gulp.wav");
 
   public Plant(
-    int row,
-    int col,
+    double row,
+    double col,
     int sunCost,
     int health,
     double packetCooldown,
@@ -61,6 +62,10 @@ public abstract class Plant extends LiveEntity {
   }
 
   public int getSunCost() {
-    return sunCost;
+    int currentSunCost = sunCost;
+    if (this instanceof Upgraded) {
+      currentSunCost += ((Upgraded) this).concurrentSunCost(this.getClass());
+    }
+    return currentSunCost;
   }
 }
