@@ -1,5 +1,7 @@
 package Entities.Misc;
 
+import java.awt.Image;
+
 import Main.Global;
 import Main.Global.GameMode;
 
@@ -13,7 +15,7 @@ public abstract class Shroom extends Plant {
     int sunCost,
     int health,
     double packetCooldown,
-    String spriteName,
+    Image sprite,
     int spriteWidth,
     int spriteHeight,
     int animRow
@@ -24,7 +26,7 @@ public abstract class Shroom extends Plant {
       sunCost,
       health,
       packetCooldown,
-      spriteName,
+      sprite,
       spriteWidth,
       spriteHeight,
       animRow

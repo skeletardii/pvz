@@ -2,6 +2,7 @@ package Entities.Misc;
 
 import Main.Global;
 
+import java.awt.Image;
 import java.io.File;
 
 import javax.swing.ImageIcon;
@@ -36,7 +37,7 @@ public abstract class Plant extends LiveEntity {
     int sunCost,
     int health,
     double packetCooldown,
-    String spriteName,
+    Image sprite,
     int spriteWidth,
     int spriteHeight,
     int animRow
@@ -45,7 +46,7 @@ public abstract class Plant extends LiveEntity {
       row,
       col,
       health,
-      new ImageIcon("assets/plants/" + spriteName + ".png").getImage(),
+      sprite,
       spriteWidth,
       spriteHeight,
       animRow

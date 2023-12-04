@@ -7,10 +7,13 @@ import Entities.Misc.Zombie.DeathType;
 import GameUtils.Sound;
 import Main.Global;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.io.File;
 
-public class Chomper extends Plant implements SunProducer {
+import javax.swing.ImageIcon;
 
+public class Chomper extends Plant implements SunProducer {
+  private static final Image sprite = new ImageIcon("assets/plants/sunflower.png").getImage();
   private static final File chomp = new File("assets/sound/bigchomp.wav");
   private int eatingTime = 0;
 
@@ -21,7 +24,7 @@ public class Chomper extends Plant implements SunProducer {
       150,
       300,
       SeedPacketRechargeTime.SLOW.getValue(),
-      "sunflower",
+      sprite,
       364,
       365,
       1

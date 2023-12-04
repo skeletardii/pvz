@@ -5,9 +5,13 @@ import Entities.Interfaces.Upgradable;
 import Entities.Interfaces.Upgraded;
 import Entities.Misc.Plant;
 import java.awt.Graphics2D;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
 
 public class Sunflower extends Plant implements SunProducer, Upgradable {
 
+  private static final Image sprite = new ImageIcon("assets/plants/sunflower.png").getImage();
   int sunCooldown = 1440;
   int sunCtr = 0;
 
@@ -17,7 +21,7 @@ public class Sunflower extends Plant implements SunProducer, Upgradable {
     int sunCost,
     int health,
     double packetCooldown,
-    String spriteName,
+    Image sprite,
     int spriteWidth,
     int spriteHeight,
     int animRow
@@ -28,7 +32,7 @@ public class Sunflower extends Plant implements SunProducer, Upgradable {
       sunCost,
       health,
       packetCooldown,
-      spriteName,
+      sprite,
       spriteWidth,
       spriteHeight,
       animRow
@@ -36,7 +40,7 @@ public class Sunflower extends Plant implements SunProducer, Upgradable {
   }
 
   public Sunflower(int row, int col) {
-    this(row, col, 50, 100, 7.5, "sunflower", 364, 365, 1);
+    this(row, col, 50, 100, 7.5, sprite, 364, 365, 1);
     anim_start[0] = 4;
     anim_end[0] = 28;
     setFrame(4);
@@ -71,7 +75,8 @@ public class Sunflower extends Plant implements SunProducer, Upgradable {
   }
 
   public static class TwinSunflower extends Sunflower implements Upgraded {
-
+    
+  private static final Image sprite = new ImageIcon("assets/plants/twinsunflower.png").getImage();
     public TwinSunflower(int row, int col) {
       super(
         row,
@@ -79,7 +84,7 @@ public class Sunflower extends Plant implements SunProducer, Upgradable {
         150,
         150,
         SeedPacketRechargeTime.SLOW.getValue(),
-        "twinsunflower",
+        sprite,
         422,
         422,
         1

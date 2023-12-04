@@ -5,9 +5,12 @@ import Entities.Misc.Zombie;
 import Entities.Misc.Zombie.DeathType;
 import Main.Global;
 import java.awt.Graphics2D;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
 
 public class Squash extends InstaKiller {
-
+  private static final Image sprite = new ImageIcon("assets/plants/sunflower.png").getImage();
   public Squash(int row, int col) {
     super(
       row,
@@ -15,7 +18,7 @@ public class Squash extends InstaKiller {
       25,
       Integer.MAX_VALUE,
       SeedPacketRechargeTime.VERY_SLOW.getValue(),
-      "sunflower",
+      sprite,
       364,
       365,
       1

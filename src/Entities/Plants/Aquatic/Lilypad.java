@@ -2,9 +2,13 @@ package Entities.Plants.Aquatic;
 
 import Entities.Misc.Aquatic;
 import java.awt.Graphics2D;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
 
 public class Lilypad extends Aquatic {
-
+  
+  private static final Image sprite = new ImageIcon("assets/plants/sunflower.png").getImage();
   public Lilypad(int row, int col) {
     super(
       row,
@@ -12,7 +16,7 @@ public class Lilypad extends Aquatic {
       25,
       300,
       SeedPacketRechargeTime.FAST.getValue(),
-      "sunflower",
+      sprite,
       364,
       365,
       1

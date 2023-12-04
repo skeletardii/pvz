@@ -37,7 +37,7 @@ public class Global implements Updater {
   public static LawnMower[] lawnMowers = new LawnMower[PLANT_ROWS_COUNT];
   public static ZombieSpawner zombieSpawner = new ZombieSpawner();
 
-  public static final GameMode gameMode = GameMode.LAWN_DAY;
+  public static final GameMode gameMode = GameMode.ROOF_DAY;
 
   public static void init() {
     // if(mode==2 || mode==3){
