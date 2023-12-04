@@ -1,6 +1,8 @@
 package Entities.Misc;
 
 import GameUtils.Sound;
+
+import java.awt.Image;
 import java.io.File;
 
 public abstract class InstaKiller extends Plant {
@@ -15,7 +17,7 @@ public abstract class InstaKiller extends Plant {
     int sunCost,
     int health,
     double packetCooldown,
-    String spriteName,
+    Image sprite,
     int spriteWidth,
     int spriteHeight,
     int animRow
@@ -26,7 +28,7 @@ public abstract class InstaKiller extends Plant {
       sunCost,
       health,
       packetCooldown,
-      spriteName,
+      sprite,
       spriteWidth,
       spriteHeight,
       animRow

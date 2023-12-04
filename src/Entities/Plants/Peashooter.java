@@ -2,13 +2,18 @@ package Entities.Plants;
 
 import Entities.Misc.Plant;
 import java.awt.Graphics2D;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 
 public class Peashooter extends Plant {
 
-  protected int shotsLeft = 0;
+  private static final Image sprite = new ImageIcon(
+    "assets/plants/peashooter.png"
+  )
+    .getImage();
 
   public Peashooter() {
-    this(-1, -1, 100, 100, 7.5, "peashooter", 375, 353, 1);
+    this(-1, -1, 100, 100, 7.5, sprite, 375, 353, 1);
     anim_start[0] = 79;
     anim_end[0] = 103;
   }
@@ -19,7 +24,7 @@ public class Peashooter extends Plant {
     int sunCost,
     int health,
     double packetCooldown,
-    String spriteName,
+    Image sprite,
     int spriteWidth,
     int spriteHeight,
     int animRow
@@ -30,7 +35,7 @@ public class Peashooter extends Plant {
       sunCost,
       health,
       packetCooldown,
-      spriteName,
+      sprite,
       spriteWidth,
       spriteHeight,
       animRow
@@ -44,9 +49,10 @@ public class Peashooter extends Plant {
 
   @Override
   public void update() {
-    if (shotsLeft > 0) {
-      shoot();
-    } else {}
+    // if (shotsLeft > 0) {
+    //   shoot();
+    // } else {}
+    super.update();
   }
 
   public void shoot() {

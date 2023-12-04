@@ -5,6 +5,7 @@ import Entities.Plants.InstaKillers.PotatoMine;
 import GameUtils.*;
 import Main.Global;
 import java.awt.AlphaComposite;
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.io.File;
@@ -67,25 +68,25 @@ public class SeedPacket extends RenderObj implements Updater {
       int dx, dy;
 
       setZindex(100);
-      int row = ((Global.mouse.y - 60) / 88);
-      int col = ((Global.mouse.x - 30) / 80);
+      int row = (int) Math.round((Global.mouse.y - 60) / 88);
+      int col = (int) Math.round((Global.mouse.x - 30) / 80);
       if (row >= Global.PLANT_ROWS_COUNT) row = Global.PLANT_ROWS_COUNT - 1;
       if (col >= Global.PLANT_COLS_COUNT) col = Global.PLANT_COLS_COUNT - 1;
       if (row < 0) row = 0;
       if (col < 0) col = 0;
       if (Global.plants[row][col] == null) {
         g.setComposite(makeComposite(0.5f));
-        int ox = (int) Math.round((col) * 80 + 5 + 30 + 45.0);
-        int oy = (int) Math.round((row) * 88 + 5 + 60 + 84.0);
 
+        int ox = (int) Math.round((col) * 80 + 30 + 45);
+        int oy = (int) Math.round((row) * 88 + 60 + 84);
         dx = ox - (int) (lx * scale) / 2;
         dy = oy - (int) (ly * scale);
         g.drawImage(
           sprite,
           dx + offsetCX,
           dy + offsetCY,
-          dx + offsetCX + (int) Math.round(lx * scale),
-          dy + offsetCY + (int) Math.round(ly * scale),
+          dx + offsetCX + (int) (lx * scale),
+          dy + offsetCY + (int) (ly * scale),
           sx,
           0,
           sx + lx,

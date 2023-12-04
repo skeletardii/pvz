@@ -6,13 +6,16 @@ import Entities.Misc.Plant;
 import Entities.Misc.Zombie;
 import Main.Global;
 import java.awt.Graphics2D;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
 
 public class SpikeWeed extends Plant implements Upgradable {
-
+  private static final Image sprite = new ImageIcon("assets/plants/sunflower.png").getImage();
   private int dps;
 
   public SpikeWeed(int row, int col) {
-    this(row, col, 50, 125, 30, "sunflower");
+    this(row, col, 50, 125, 30, sprite);
   }
 
   public SpikeWeed(
@@ -21,7 +24,7 @@ public class SpikeWeed extends Plant implements Upgradable {
     int health,
     int sunCost,
     int dps,
-    String spriteName
+    Image sprite
   ) {
     super(
       row,
@@ -29,7 +32,7 @@ public class SpikeWeed extends Plant implements Upgradable {
       sunCost,
       health,
       SeedPacketRechargeTime.VERY_SLOW.getValue(),
-      spriteName,
+      sprite,
       364,
       365,
       1
@@ -67,8 +70,9 @@ public class SpikeWeed extends Plant implements Upgradable {
 
   public static class SpikeRock extends SpikeWeed implements Upgraded {
 
+    private static final Image sprite = new ImageIcon("assets/plants/sunflower.png").getImage();
     public SpikeRock(int row, int col) {
-      super(row, col, 9, 125, 40, "sunflower");
+      super(row, col, 9, 125, 40, sprite);
     }
 
     public SpikeRock() {

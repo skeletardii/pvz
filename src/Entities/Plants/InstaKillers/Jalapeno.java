@@ -5,9 +5,13 @@ import Entities.Misc.Zombie;
 import Entities.Misc.Zombie.DeathType;
 import Main.Global;
 import java.awt.Graphics2D;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
 
 public class Jalapeno extends InstaKiller {
 
+  private static final Image sprite = new ImageIcon("assets/plants/jalapeno.png").getImage();
   public Jalapeno(int row, int col) {
     super(
       row,
@@ -15,7 +19,7 @@ public class Jalapeno extends InstaKiller {
       125,
       100,
       SeedPacketRechargeTime.SLOW.getValue(),
-      "jalapeno",
+      sprite,
       351,
       468,
       1

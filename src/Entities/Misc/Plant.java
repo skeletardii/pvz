@@ -2,7 +2,11 @@ package Entities.Misc;
 
 import GameUtils.Sound;
 import Main.Global;
+import Main.Global;
+import java.awt.Image;
 import java.io.File;
+import java.io.File;
+import javax.swing.ImageIcon;
 import javax.swing.ImageIcon;
 
 public abstract class Plant extends LiveEntity {
@@ -34,20 +38,12 @@ public abstract class Plant extends LiveEntity {
     int sunCost,
     int health,
     double packetCooldown,
-    String spriteName,
+    Image sprite,
     int spriteWidth,
     int spriteHeight,
     int animRow
   ) {
-    super(
-      row,
-      col,
-      health,
-      new ImageIcon("assets/plants/" + spriteName + ".png").getImage(),
-      spriteWidth,
-      spriteHeight,
-      animRow
-    );
+    super(row, col, health, sprite, spriteWidth, spriteHeight, animRow);
     this.sunCost = sunCost;
     this.packetCooldown = packetCooldown;
   }

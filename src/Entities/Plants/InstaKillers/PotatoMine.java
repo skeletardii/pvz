@@ -5,12 +5,16 @@ import Entities.Misc.Zombie;
 import Entities.Misc.Zombie.DeathType;
 import Main.Global;
 import java.awt.Graphics2D;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
 
 public class PotatoMine extends InstaKiller {
 
   // 14 seconds
   private int timeTillActivation = 14 * 60;
 
+  private static final Image sprite = new ImageIcon("assets/plants/potatomine.png").getImage();
   public PotatoMine(int row, int col) {
     super(
       row,
@@ -18,7 +22,7 @@ public class PotatoMine extends InstaKiller {
       25,
       300,
       SeedPacketRechargeTime.VERY_SLOW.getValue(),
-      "potatomine",
+      sprite,
       467,
       381,
       3

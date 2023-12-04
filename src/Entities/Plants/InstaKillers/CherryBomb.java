@@ -5,11 +5,15 @@ import Entities.Misc.Zombie;
 import Entities.Misc.Zombie.DeathType;
 import Main.Global;
 import java.awt.Graphics2D;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
 
 public class CherryBomb extends InstaKiller {
 
+  private static final Image sprite = new ImageIcon("assets/plants/cherrybomb.png").getImage();
   public CherryBomb(int row, int col) {
-    super(row, col, 125, 100, 7.5, "cherrybomb", 625, 458, 2);
+    super(row, col, 125, 100, 7.5, sprite, 625, 458, 2);
     anim_start[0] = 14;
     anim_end[0] = 26;
     anim_start[1] = 0;

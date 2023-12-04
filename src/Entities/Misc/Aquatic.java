@@ -1,5 +1,6 @@
 package Entities.Misc;
 
+import java.awt.Image;
 
 public abstract class Aquatic extends Plant {
 
@@ -9,7 +10,7 @@ public abstract class Aquatic extends Plant {
     int sunCost,
     int health,
     double packetCooldown,
-    String spriteName,
+    Image sprite,
     int spriteWidth,
     int spriteHeight,
     int animRow
@@ -20,7 +21,7 @@ public abstract class Aquatic extends Plant {
       sunCost,
       health,
       packetCooldown,
-      spriteName,
+      sprite,
       spriteWidth,
       spriteHeight,
       animRow

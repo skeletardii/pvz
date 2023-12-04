@@ -31,7 +31,9 @@ public class Main {
     game.add(new GameUI(Global.gameMode));
     Global.init();
     game.add(new SunManager());
-
+    for (int i = 0; i < Global.PLANT_ROWS_COUNT; ++i) {
+      Global.addLawnMowers(i);
+    }
     Sound.play(new File("assets/sound/bg0.wav"), -10f);
 
     Global.addSeedPacket(new SeedPacket(new Sunflower()));
@@ -46,13 +48,10 @@ public class Main {
     // Global.addSeedPacket(new SeedPacket(new SpikeWeed.SpikeRock()));
 
     Global.addZombie(new NormalZombie(0));
-
-    for (int i = 0; i < Global.PLANT_ROWS_COUNT; ++i) {
-      Global.addLawnMowers(i);
-    }
   }
 
   private static void preload() {
+    double percent = 0;
     String[] classes = {
       "Main.Global",
       "GameUtils.Game",
@@ -80,12 +79,15 @@ public class Main {
       "GUI.GameUI",
       "GUI.Selector",
     };
-    for (String c : classes) {
+    for (int i = 0; i < classes.length; i++) {
+      percent = 100.0 * i / classes.length;
+      System.out.println("Loading: " + percent + "%");
       try {
-        Class.forName(c);
+        Class.forName(classes[i]);
       } catch (Exception e) {
         e.printStackTrace();
       }
     }
+    System.out.println("Loading: " + 100 + "%");
   }
 }

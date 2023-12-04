@@ -2,9 +2,12 @@ package Entities.Plants;
 
 import Entities.Misc.Plant;
 import java.awt.Graphics2D;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
 
 public class WallNut extends Plant {
-
+  public static final Image sprite = new ImageIcon("assets/plants/wallnut.png").getImage();
   public WallNut(int row, int col) {
     super(
       row,
@@ -12,7 +15,7 @@ public class WallNut extends Plant {
       50,
       4000,
       SeedPacketRechargeTime.VERY_SLOW.getValue(),
-      "wallnut",
+      sprite,
       509,
       496,
       1
@@ -22,14 +25,14 @@ public class WallNut extends Plant {
     offsetOY = 20;
   }
 
-  public WallNut(int row, int col, int health, int sunCost, String spriteName) {
+  public WallNut(int row, int col, int health, int sunCost, Image sprite) {
     super(
       row,
       col,
       sunCost,
       health,
       SeedPacketRechargeTime.VERY_SLOW.getValue(),
-      spriteName,
+      sprite,
       364,
       365,
       1
@@ -46,9 +49,9 @@ public class WallNut extends Plant {
   }
 
   public static class TallNut extends WallNut {
-
+    private static final Image sprite2 = new ImageIcon("assets/plants/wallnut.png").getImage();
     public TallNut(int row, int col) {
-      super(row, col, 8000, 125, "wallnut");
+      super(row, col, 8000, 125, sprite2);
     }
 
     public TallNut() {
