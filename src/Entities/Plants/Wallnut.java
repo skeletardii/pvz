@@ -3,11 +3,13 @@ package Entities.Plants;
 import Entities.Misc.Plant;
 import java.awt.Graphics2D;
 import java.awt.Image;
-
 import javax.swing.ImageIcon;
 
 public class WallNut extends Plant {
-  public static final Image sprite = new ImageIcon("assets/plants/wallnut.png").getImage();
+
+  public static final Image sprite = new ImageIcon("assets/plants/wallnut.png")
+    .getImage();
+
   public WallNut(int row, int col) {
     super(
       row,

@@ -1,12 +1,10 @@
 package Entities.Misc;
 
+import Entities.Interfaces.Upgraded;
+import GameUtils.Sound;
 import Main.Global;
-
 import java.awt.Image;
 import java.io.File;
-
-
-import GameUtils.Sound;
 
 public abstract class Plant extends LiveEntity {
   protected int previewFrame=0;
@@ -30,9 +28,10 @@ public abstract class Plant extends LiveEntity {
   public final int sunCost;
   public final double packetCooldown;
   private static final File gulp = new File("assets/sound/gulp.wav");
+
   public Plant(
-    int row,
-    int col,
+    double row,
+    double col,
     int sunCost,
     int health,
     double packetCooldown,
@@ -41,15 +40,7 @@ public abstract class Plant extends LiveEntity {
     int spriteHeight,
     int animRow
   ) {
-    super(
-      row,
-      col,
-      health,
-      sprite,
-      spriteWidth,
-      spriteHeight,
-      animRow
-    );
+    super(row, col, health, sprite, spriteWidth, spriteHeight, animRow);
     this.sunCost = sunCost;
     this.packetCooldown = packetCooldown;
   }
@@ -57,7 +48,7 @@ public abstract class Plant extends LiveEntity {
   @Override
   public void update() {
     if (this.health <= 0) {
-      Sound.play(gulp,-3f);
+      Sound.play(gulp, -3f);
       Global.removePlant((int) this.row, (int) this.col);
     }
   }
@@ -67,6 +58,10 @@ public abstract class Plant extends LiveEntity {
   }
 
   public int getSunCost() {
-    return sunCost;
+    int currentSunCost = sunCost;
+    if (this instanceof Upgraded) {
+      currentSunCost += ((Upgraded) this).concurrentSunCost(this.getClass());
+    }
+    return currentSunCost;
   }
 }

@@ -29,8 +29,10 @@ public class SeedPacket extends RenderObj implements Updater {
   private int offsetCY;
   private Class<?> plant;
   private Image sprite;
+  private Plant p;
 
   public SeedPacket(Plant p) {
+    this.p = p;
     sprite = p.getPreview();
     sx = p.getSx();
     lx = p.getLx();
@@ -75,25 +77,25 @@ public class SeedPacket extends RenderObj implements Updater {
       int dx, dy;
 
       setZindex(100);
-      int row = (int) Math.round((Global.mouse.y - 60) / 88);
-      int col = (int) Math.round((Global.mouse.x - 30) / 80);
+      int row = (Global.mouse.y - 60) / 88;
+      int col = (Global.mouse.x - 30) / 80;
       if (row >= Global.PLANT_ROWS_COUNT) row = Global.PLANT_ROWS_COUNT - 1;
       if (col >= Global.PLANT_COLS_COUNT) col = Global.PLANT_COLS_COUNT - 1;
       if (row < 0) row = 0;
       if (col < 0) col = 0;
       if (Global.plants[row][col] == null) {
         g.setComposite(makeComposite(0.5f));
-        
-        int ox = (int) Math.round((col) * 80 + 30 + 45);
-        int oy = (int) Math.round((row) * 88  + 60 + 84);
+
+        int ox = (col) * 80 + 30 + 45;
+        int oy = (row) * 88 + 60 + 84;
         dx = ox - (int) (lx * scale) / 2;
         dy = oy - (int) (ly * scale);
         g.drawImage(
           sprite,
           dx + offsetCX,
           dy + offsetCY,
-          dx + offsetCX + (int)(lx * scale),
-          dy + offsetCY + (int)(ly * scale),
+          dx + offsetCX + (int) (lx * scale),
+          dy + offsetCY + (int) (ly * scale),
           sx,
           0,
           sx + lx,
@@ -124,6 +126,10 @@ public class SeedPacket extends RenderObj implements Updater {
   }
 
   public void update() {
+    // gi addan nako ani para mu change ang sunCost sa mga upgradables
+    // pero mu move ang cost tho lol, basta mu increase na
+    this.cost = this.p.getSunCost();
+
     statePrev = state;
     if (
       Global.mouse.left &&
@@ -139,8 +145,8 @@ public class SeedPacket extends RenderObj implements Updater {
     if (statePrev == 3 && Global.mouse.left && Global.mouse_prev.left) state =
       3;
     if (!Global.mouse.left && state == 3) {
-      int row = (int) Math.round((Global.mouse.y - 60) / 88);
-      int col = (int) Math.round((Global.mouse.x - 30) / 80);
+      int row = ((Global.mouse.y - 60) / 88);
+      int col = ((Global.mouse.x - 30) / 80);
       if (row >= Global.PLANT_ROWS_COUNT) row = Global.PLANT_ROWS_COUNT - 1;
       if (col >= Global.PLANT_COLS_COUNT) col = Global.PLANT_COLS_COUNT - 1;
       if (row < 0) row = 0;

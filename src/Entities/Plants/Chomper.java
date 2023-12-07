@@ -9,7 +9,6 @@ import Main.Global;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.io.File;
-
 import javax.swing.ImageIcon;
 
 public class Chomper extends Plant implements SunProducer {

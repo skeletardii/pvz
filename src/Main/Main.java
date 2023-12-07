@@ -2,18 +2,16 @@ package Main;
 
 import Entities.Misc.SunManager;
 import Entities.Plants.*;
-import Entities.Plants.InstaKillers.*;
-import Entities.Plants.SunProducers.*;
-import Entities.Zombies.*;
+import Entities.Plants.InstaKillers.Jalapeno;
+import Entities.Plants.InstaKillers.PotatoMine;
 import GUI.*;
 import GameUtils.*;
-
 import java.io.File;
-
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
 public class Main {
+
   static final int WINDOW_SIZE_X = 800;
   static final int WINDOW_SIZE_Y = 600;
 
@@ -33,25 +31,24 @@ public class Main {
     Global.init();
     game.add(new SunManager());
     for (int i = 0; i < Global.PLANT_ROWS_COUNT; ++i) {
-          Global.addLawnMowers(i);
-        }
+      Global.addLawnMowers(i);
+    }
     Sound.play(new File("assets/sound/bg0.wav"), -10f);
-    Global.addPlant(new Chomper(), 0, 0);
-    Global.addPlant(new Chomper(), 1, 0);
-    Global.addPlant(new Chomper(), 2, 0);
-    Global.addPlant(new Chomper(), 3, 0);
-    Global.addSeedPacket(new SeedPacket(new Sunflower()));
-    Global.addSeedPacket(new SeedPacket(new Sunflower.TwinSunflower()));
-    Global.addSeedPacket(new SeedPacket(new CherryBomb()));
+
+    // Global.addSeedPacket(new SeedPacket(new Sunflower()));
+    // Global.addSeedPacket(new SeedPacket(new Sunflower.TwinSunflower()));
+    // Global.addSeedPacket(new SeedPacket(new CherryBomb()));
     Global.addSeedPacket(new SeedPacket(new WallNut()));
-    Global.addSeedPacket(new SeedPacket(new WallNut.TallNut()));
-    Global.addSeedPacket(new SeedPacket(new Peashooter()));
+    // Global.addSeedPacket(new SeedPacket(new Peashooter()));
     Global.addSeedPacket(new SeedPacket(new PotatoMine()));
     Global.addSeedPacket(new SeedPacket(new Chomper()));
     Global.addSeedPacket(new SeedPacket(new Jalapeno()));
     // Global.addSeedPacket(new SeedPacket(new SpikeWeed()));
-    // Global.addSeedPacket(new SeedPacket(new SpikeWeed.SpikeRock()));
-    Global.addZombie(new NormalZombie(0));
+
+    Global.addSeedPacket(new SeedPacket(new Peashooter()));
+    Global.addSeedPacket(new SeedPacket(new Repeater()));
+    Global.addSeedPacket(new SeedPacket(new GatlingPea()));
+    // Global.addZombie(new NormalZombie(0));
   }
 
   private static void preload() {
@@ -83,15 +80,15 @@ public class Main {
       "GUI.GameUI",
       "GUI.Selector",
     };
-    for (int i=0; i<classes.length; i++) {
-      percent = 100.0*i/classes.length ;
-      System.out.println("Loading: "+percent+"%");
+    for (int i = 0; i < classes.length; i++) {
+      percent = 100.0 * i / classes.length;
+      System.out.println("Loading: " + percent + "%");
       try {
         Class.forName(classes[i]);
       } catch (Exception e) {
         e.printStackTrace();
       }
     }
-    System.out.println("Loading: "+100+"%");
+    System.out.println("Loading: " + 100 + "%");
   }
 }
