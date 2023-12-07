@@ -24,6 +24,9 @@ public abstract class LiveEntity extends RenderObj implements Updater {
     .getImage();
   protected int offsetOY = 0;
   protected int offsetOX = 0;
+  protected int shadowOffsetX = 0;
+  protected int shadowOffsetY = 0;
+  protected double shadowScale = 1.0;
   protected int anim_speed = 1;
 
   protected LiveEntity(
@@ -89,23 +92,33 @@ public abstract class LiveEntity extends RenderObj implements Updater {
   }
 
   public void renderSprite(Graphics2D g, int anim) {
-    if (frame < anim_start[anim] || frame > anim_end[anim]) frame =
-      anim_start[anim];
+    if (frame < anim_start[anim] || frame > anim_end[anim]) 
+      frame = anim_start[anim];
     int ox = (int) Math.round((col) * 80 + offsetX + 30 + 45);
     int oy = (int) Math.round((row) * 88 + offsetY + 60 + 84);
     int sx, sy, dx, dy;
     sx = frame * lx;
-    sy = anim;
+    sy = 0;
     dx = ox - (int) (lx * scale) / 2;
     dy = oy - (int) (ly * scale);
-    g.drawImage(shadow, ox - 35, oy - 20, ox + 35, oy, 0, 0, 73, 49, null);
+    g.drawImage(
+      shadow, 
+      ox + shadowOffsetX - (int)(35.0 * shadowScale), //dx1
+      oy + shadowOffsetY - (int)(20.0 * shadowScale), //dy1
+      ox + shadowOffsetX + (int)(35.0 * shadowScale), //dx2
+      oy + shadowOffsetY,                             //dy2
+      0, 
+      0, 
+      73, 
+      49, 
+      null);
     g.drawImage(
       sprite,
-      dx + offsetOX,
-      dy + offsetOY,
-      dx + offsetOX + (int) (lx * scale),
-      dy + offsetOY + (int) (ly * scale),
-      sx,
+      dx + offsetOX, //dx1
+      dy + offsetOY, //dy1
+      dx + offsetOX + (int) (lx * scale), //dx2
+      dy + offsetOY + (int) (ly * scale), //dy2
+      sx, //sx1 source
       sy,
       sx + lx,
       sy + ly,

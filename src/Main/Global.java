@@ -37,7 +37,7 @@ public class Global implements Updater {
   public static LawnMower[] lawnMowers = new LawnMower[PLANT_ROWS_COUNT];
   public static ZombieSpawner zombieSpawner = new ZombieSpawner();
 
-  public static final GameMode gameMode = GameMode.LAKE_DAY;
+  public static final GameMode gameMode = GameMode.POOL_DAY;
 
   public static void init() {
     // if(mode==2 || mode==3){
@@ -109,7 +109,7 @@ public class Global implements Updater {
     game.add(l);
   }
 
-  public static SeedPacket[] seeds = new SeedPacket[10];
+  public static SeedPacket[] seeds = new SeedPacket[20];
   public static int seedsNum = 0;
 
   public static void addSeedPacket(SeedPacket sp) {

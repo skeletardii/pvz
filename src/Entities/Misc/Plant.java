@@ -5,12 +5,11 @@ import Main.Global;
 import java.awt.Image;
 import java.io.File;
 
-import javax.swing.ImageIcon;
 
 import GameUtils.Sound;
 
 public abstract class Plant extends LiveEntity {
-
+  protected int previewFrame=0;
   // temp numbers rani
   public enum SeedPacketRechargeTime {
     VERY_SLOW(20),
