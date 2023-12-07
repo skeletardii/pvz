@@ -1,5 +1,6 @@
 package Entities.Misc;
 
+import Entities.ZombieItems.Armor;
 import GameUtils.Sound;
 import Main.Global;
 import java.awt.Image;
@@ -25,6 +26,7 @@ public abstract class Zombie extends LiveEntity {
   protected Zombie(
     int row,
     int health,
+    Armor armor,
     double movementSpeed,
     int dps,
     Image sprite,
@@ -33,6 +35,7 @@ public abstract class Zombie extends LiveEntity {
     int animRow
   ) {
     super(row, 10, health, sprite, spriteWidth, spriteHeight, animRow);
+    this.armor = armor;
     this.movementSpeed = movementSpeed;
     this.dps = dps;
     offsetOX = -50;

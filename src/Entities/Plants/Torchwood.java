@@ -5,17 +5,17 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 
-public class WallNut extends Plant {
+public class Torchwood extends Plant {
 
   public static final Image sprite = new ImageIcon("assets/plants/wallnut.png")
     .getImage();
 
-  public WallNut(int row, int col) {
+  public Torchwood(int row, int col) {
     super(
       row,
       col,
-      50,
-      4000,
+      100,
+      400300,
       SeedPacketRechargeTime.VERY_SLOW.getValue(),
       sprite,
       509,
@@ -27,7 +27,7 @@ public class WallNut extends Plant {
     offsetOY = 20;
   }
 
-  public WallNut(int row, int col, int health, int sunCost, Image sprite) {
+  public Torchwood(int row, int col, int health, int sunCost, Image sprite) {
     super(
       row,
       col,
@@ -41,28 +41,12 @@ public class WallNut extends Plant {
     );
   }
 
-  public WallNut() {
+  public Torchwood() {
     this(-1, -1);
   }
 
   @Override
   public void paintComponent(Graphics2D g) {
     renderSprite(g, 0);
-  }
-
-  public static class TallNut extends WallNut {
-
-    private static final Image sprite2 = new ImageIcon(
-      "assets/plants/wallnut.png"
-    )
-      .getImage();
-
-    public TallNut(int row, int col) {
-      super(row, col, 8000, 125, sprite2);
-    }
-
-    public TallNut() {
-      this(-1, -1);
-    }
   }
 }

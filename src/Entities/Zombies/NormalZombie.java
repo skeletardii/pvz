@@ -11,7 +11,7 @@ public class NormalZombie extends Zombie {
     .getImage();
 
   public NormalZombie(int row) {
-    super(row, 181, 0.005, 1, sprite, 961, 723, 2);
+    super(row, 181, null, 0.01, 30, sprite, 961, 723, 2);
     anim_start[0] = 0;
     anim_end[0] = 98;
     anim_start[1] = 99;
@@ -22,7 +22,7 @@ public class NormalZombie extends Zombie {
     this(-1);
   }
 
-  public void paintComponent(Graphics2D g) { //px 364 py 365
+  public void paintComponent(Graphics2D g) { // px 364 py 365
     if (isEating) renderSprite(g, 1); else renderSprite(g, 0);
   }
 }

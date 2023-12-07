@@ -3,12 +3,8 @@ package Entities.Misc;
 import Entities.Interfaces.Upgraded;
 import GameUtils.Sound;
 import Main.Global;
-import Main.Global;
 import java.awt.Image;
 import java.io.File;
-import java.io.File;
-import javax.swing.ImageIcon;
-import javax.swing.ImageIcon;
 
 public abstract class Plant extends LiveEntity {
 

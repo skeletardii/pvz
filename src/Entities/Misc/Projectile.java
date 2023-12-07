@@ -1,6 +1,7 @@
 package Entities.Misc;
 
 import java.awt.Graphics2D;
+import java.awt.Image;
 import javax.swing.ImageIcon;
 
 public abstract class Projectile extends LiveEntity {
@@ -13,19 +14,12 @@ public abstract class Projectile extends LiveEntity {
     double col,
     double projectileSpeed,
     int projectileDamage,
-    String spriteName,
+    Image sprite,
     int spriteWidth,
     int spriteHeight,
     int animRow
   ) {
-    super(
-      row,
-      col,
-      new ImageIcon("assets/plants/" + spriteName + ".png").getImage(),
-      spriteWidth,
-      spriteHeight,
-      animRow
-    );
+    super(row, col, sprite, spriteWidth, spriteHeight, animRow);
     this.projectileSpeed = projectileSpeed;
     this.projectileDamage = projectileDamage;
   }

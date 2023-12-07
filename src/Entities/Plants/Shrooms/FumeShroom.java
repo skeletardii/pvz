@@ -1,13 +1,18 @@
 package Entities.Plants.Shrooms;
 
+import Entities.Interfaces.Attacker;
 import Entities.Misc.Shroom;
 import java.awt.Graphics2D;
 import java.awt.Image;
-
 import javax.swing.ImageIcon;
 
-public class FumeShroom extends Shroom {
-private static final Image sprite = new ImageIcon("assets/plants/sunflower.png").getImage();
+public class FumeShroom extends Shroom implements Attacker {
+
+  private static final Image sprite = new ImageIcon(
+    "assets/plants/sunflower.png"
+  )
+    .getImage();
+
   protected FumeShroom(int row, int col) {
     super(
       row,
@@ -29,4 +34,7 @@ private static final Image sprite = new ImageIcon("assets/plants/sunflower.png")
 
   @Override
   public void update() {}
+
+  @Override
+  public void attack() {}
 }
