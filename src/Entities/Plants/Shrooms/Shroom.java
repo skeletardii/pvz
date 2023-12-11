@@ -4,7 +4,6 @@ import Entities.Plants.Plant;
 import Entities.Plants.PlantBuilder;
 import Main.Global;
 import Main.Global.GameMode;
-import java.awt.Image;
 
 public abstract class Shroom extends Plant {
 

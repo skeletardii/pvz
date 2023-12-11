@@ -8,7 +8,6 @@ import Main.Global;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import javax.swing.ImageIcon;
-import javax.swing.text.PlainDocument;
 
 public class CherryBomb extends InstaKiller {
 

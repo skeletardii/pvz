@@ -8,6 +8,7 @@ import java.awt.RenderingHints;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
+import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import javax.swing.JFrame;
@@ -54,6 +55,8 @@ public class Game implements Runnable {
         @Override
         protected void paintComponent(Graphics g) {
           Graphics2D g2d = (Graphics2D)g;
+          //g2d.setTransform(AffineTransform.getScaleInstance(frame.getSize().getWidth()/814.0,frame.getSize().getHeight()/637.0));
+          //System.out.println(frame.getSize().getHeight());
           g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
           g2d.setRenderingHint(RenderingHints.KEY_RENDERING,RenderingHints.VALUE_RENDER_SPEED);
           renders.render(g2d);
