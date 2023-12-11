@@ -9,14 +9,17 @@ import javax.sound.sampled.FloatControl;
 public class Sound {
 
   public static void play(File sndfile) {
-    play(sndfile,1f);
+    play(sndfile, 1f);
   }
-  public static void play(File sndfile, float volume){
+
+  public static void play(File sndfile, float volume) {
     try {
       AudioInputStream ais = AudioSystem.getAudioInputStream(sndfile);
       Clip clip = AudioSystem.getClip();
       clip.open(ais);
-      FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+      FloatControl gainControl = (FloatControl) clip.getControl(
+        FloatControl.Type.MASTER_GAIN
+      );
       gainControl.setValue(volume);
       clip.start();
     } catch (Exception e) {

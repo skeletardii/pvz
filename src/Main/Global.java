@@ -1,9 +1,9 @@
 package Main;
 
 import Entities.Misc.LawnMower;
-import Entities.Misc.Plant;
-import Entities.Misc.Zombie;
 import Entities.Misc.ZombieSpawner;
+import Entities.Plants.Plant;
+import Entities.Zombies.Zombie;
 import GUI.SeedPacket;
 import GameUtils.Game;
 import GameUtils.Mouse;
@@ -33,7 +33,7 @@ public class Global implements Updater {
   public static final int ROW_PIXEL_OFFSET = 100;
   public static final int COL_PIXEL_OFFSET = 80;
   public static Plant[][] plants = new Plant[PLANT_ROWS_COUNT][PLANT_COLS_COUNT];
-  public static ArrayList<Zombie> zombies = new ArrayList<>();
+  public static ArrayList<Zombie>[] zombies = new ArrayList[PLANT_ROWS_COUNT];
   public static LawnMower[] lawnMowers = new LawnMower[PLANT_ROWS_COUNT];
   public static ZombieSpawner zombieSpawner = new ZombieSpawner();
 
@@ -43,6 +43,10 @@ public class Global implements Updater {
     // if(mode==2 || mode==3){
     //     PLANT_ROWS_COUNT = 6;
     // }
+
+    for (int i = 0; i < PLANT_ROWS_COUNT; i++) {
+      zombies[i] = new ArrayList<>();
+    }
   }
 
   public void update() {
@@ -51,13 +55,15 @@ public class Global implements Updater {
     zombieSpawner.spawnZombie();
   }
 
-  private void updateMouse() {
+  // changed to static
+  private static void updateMouse() {
     mouse_prev.left = mouse.left;
     mouse_prev.right = mouse.right;
     mouse_prev.middle = mouse.middle;
     mouse_prev.x = mouse.x;
     mouse_prev.y = mouse.y;
     mouse = game.mouse;
+
     if (mouse.x >= 800) mouse.x = 799;
     if (mouse.x <= 0) mouse.x = 0;
     if (mouse.y >= 600) mouse.y = 599;
@@ -86,18 +92,34 @@ public class Global implements Updater {
   }
 
   public static void addZombie(Zombie z) {
-    z.setZindex(6 + z.row);
-    zombies.add(z);
+    z.setZindex(6.0 + z.getRow());
+    zombies[z.getRow()].add(z);
     game.add(z);
   }
 
-  public static void checkZombiesToRemove() {
-    ArrayList<Zombie> updatedZombies = new ArrayList<>();
-    for (Zombie z : zombies) {
-      if (z.getHealth() <= 0) {
-        z.remove();
-      } else {
-        updatedZombies.add(z);
+  public static void checkZombiesToRemove() { //wtf is this bro
+    // ArrayList<Zombie> updatedZombies = new ArrayList<>();
+    // for (ArrayList alz: zombies)
+    //   for (Zombie z : alz) {
+    //     if (z.getHealth() <= 0) {
+    //       z.remove();
+    //     } else {
+    //       updatedZombies.add(z);
+    //     }
+    //   }
+    // }
+    // zombies = updatedZombies;
+    ArrayList<Zombie>[] updatedZombies = new ArrayList[PLANT_ROWS_COUNT];
+    for (int i = 0; i < PLANT_ROWS_COUNT; i++) {
+      updatedZombies[i] = new ArrayList<Zombie>();
+    }
+    for (int i = 0; i < PLANT_ROWS_COUNT; i++) {
+      for (Zombie z : zombies[i]) {
+        if (z.getHealth() <= 0) {
+          z.remove();
+        } else {
+          updatedZombies[i].add(z);
+        }
       }
     }
     zombies = updatedZombies;

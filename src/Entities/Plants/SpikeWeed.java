@@ -2,8 +2,7 @@ package Entities.Plants;
 
 import Entities.Interfaces.Upgradable;
 import Entities.Interfaces.Upgraded;
-import Entities.Misc.Plant;
-import Entities.Misc.Zombie;
+import Entities.Zombies.Zombie;
 import Main.Global;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -12,10 +11,14 @@ import javax.swing.ImageIcon;
 public class SpikeWeed extends Plant implements Upgradable {
 
   private static final Image sprite = new ImageIcon(
-    "assets/plants/sunflower.png"
+    "assets/plants/peashooter.png"
   )
     .getImage();
   private int dps;
+
+  public SpikeWeed() {
+    this(-1, -1);
+  }
 
   public SpikeWeed(int row, int col) {
     this(row, col, 50, 125, 30, sprite);
@@ -30,15 +33,13 @@ public class SpikeWeed extends Plant implements Upgradable {
     Image sprite
   ) {
     super(
-      row,
-      col,
-      sunCost,
-      health,
-      SeedPacketRechargeTime.VERY_SLOW.getValue(),
-      sprite,
-      364,
-      365,
-      1
+      new PlantBuilder()
+        .setRow(row)
+        .setCol(col)
+        .setSunCost(sunCost)
+        .setHealth(health)
+        .setPacketCooldown(SeedPacketRechargeTime.VERY_SLOW.getValue())
+        .setSprite(sprite)
     );
     this.dps = dps;
     anim_start[0] = 4;
@@ -47,13 +48,9 @@ public class SpikeWeed extends Plant implements Upgradable {
     setTargetable(false);
   }
 
-  public SpikeWeed() {
-    this(-1, -1);
-  }
-
   @Override
   public Upgraded upgrade() {
-    return new SpikeRock((int) this.row, (int) this.col);
+    return new SpikeRock(this.getRow(), (int) this.getCol());
   }
 
   @Override
@@ -63,8 +60,7 @@ public class SpikeWeed extends Plant implements Upgradable {
 
   @Override
   public void update() {
-    // adjust damage or maybe deal it in seconds
-    for (Zombie z : Global.zombies) {
+    for (Zombie z : Global.zombies[this.getRow()]) {
       if (this.isTouching(z)) {
         z.setHealth(z.getHealth() - dps);
       }

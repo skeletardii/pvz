@@ -1,7 +1,6 @@
 package Entities.Misc;
 
-import Entities.Zombies.NormalZombie;
-import GameUtils.SetInterval;
+import Entities.Zombies.Zombie;
 import Main.Global;
 import java.util.Random;
 
@@ -19,7 +18,7 @@ public class ZombieSpawner {
     if (zombieSpawnCtr >= zombieSpawnRate) {
       zombieSpawnCtr = 0;
       int spawnRow = RAND.nextInt(Global.PLANT_ROWS_COUNT);
-      Global.addZombie(new NormalZombie(spawnRow));
+      Global.addZombie(new Zombie(spawnRow));
     }
   }
 }

@@ -1,14 +1,14 @@
-package Entities.Misc;
+package Entities.Plants;
 
 import Entities.Interfaces.Upgraded;
+import Entities.Misc.LiveEntity;
 import GameUtils.Sound;
 import Main.Global;
-import java.awt.Image;
+import java.awt.Graphics2D;
 import java.io.File;
 
-public abstract class Plant extends LiveEntity {
-  protected int previewFrame=0;
-  // temp numbers rani
+public class Plant extends LiveEntity {
+
   public enum SeedPacketRechargeTime {
     VERY_SLOW(20),
     SLOW(15),
@@ -25,31 +25,30 @@ public abstract class Plant extends LiveEntity {
     }
   }
 
+  protected int previewFrame = 0;
   public final int sunCost;
   public final double packetCooldown;
   private static final File gulp = new File("assets/sound/gulp.wav");
 
-  public Plant(
-    double row,
-    double col,
-    int sunCost,
-    int health,
-    double packetCooldown,
-    Image sprite,
-    int spriteWidth,
-    int spriteHeight,
-    int animRow
-  ) {
-    super(row, col, health, sprite, spriteWidth, spriteHeight, animRow);
-    this.sunCost = sunCost;
-    this.packetCooldown = packetCooldown;
+  protected Plant(PlantBuilder pBuilder) {
+    super(
+      pBuilder.row,
+      pBuilder.col,
+      pBuilder.health,
+      pBuilder.sprite,
+      pBuilder.spriteWidth,
+      pBuilder.spriteHeight,
+      pBuilder.animRow
+    );
+    this.sunCost = pBuilder.sunCost;
+    this.packetCooldown = pBuilder.packetCooldown;
   }
 
   @Override
   public void update() {
-    if (this.health <= 0) {
+    if (this.getHealth() <= 0) {
       Sound.play(gulp, -3f);
-      Global.removePlant((int) this.row, (int) this.col);
+      Global.removePlant(this.getRow(), (int) this.getCol());
     }
   }
 
@@ -63,5 +62,10 @@ public abstract class Plant extends LiveEntity {
       currentSunCost += ((Upgraded) this).concurrentSunCost(this.getClass());
     }
     return currentSunCost;
+  }
+
+  @Override
+  public void paintComponent(Graphics2D g) {
+    renderSprite(g, 0);
   }
 }

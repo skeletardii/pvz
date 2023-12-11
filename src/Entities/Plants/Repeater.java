@@ -9,11 +9,11 @@ public class Repeater extends Peashooter implements Upgradable {
     this(-1, -1);
   }
 
-  public Repeater(double row, double col) {
+  public Repeater(int row, double col) {
     super(row, col, 2, 150);
   }
 
-  public Repeater(double row, double col, int shotsPerAttack, int sunCost) {
+  public Repeater(int row, double col, int shotsPerAttack, int sunCost) {
     super(row, col, shotsPerAttack, sunCost);
   }
 

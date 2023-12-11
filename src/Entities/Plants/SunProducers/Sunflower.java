@@ -3,7 +3,9 @@ package Entities.Plants.SunProducers;
 import Entities.Interfaces.SunProducer;
 import Entities.Interfaces.Upgradable;
 import Entities.Interfaces.Upgraded;
-import Entities.Misc.Plant;
+import Entities.Plants.Plant;
+import Entities.Plants.PlantBuilder;
+import Main.Global;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import javax.swing.ImageIcon;
@@ -17,35 +19,25 @@ public class Sunflower extends Plant implements SunProducer, Upgradable {
   int sunCooldown = 1440;
   int sunCtr = 0;
 
-  public Sunflower(
-    int row,
-    int col,
-    int sunCost,
-    int health,
-    double packetCooldown,
-    Image sprite,
-    int spriteWidth,
-    int spriteHeight,
-    int animRow
-  ) {
-    super(
-      row,
-      col,
-      sunCost,
-      health,
-      packetCooldown,
-      sprite,
-      spriteWidth,
-      spriteHeight,
-      animRow
-    );
-  }
-
   public Sunflower(int row, int col) {
-    this(row, col, 50, 100, 7.5, sprite, 364, 365, 1);
+    super(
+      new PlantBuilder()
+        .setRow(row)
+        .setCol(col)
+        .setSunCost(50)
+        .setHealth(100)
+        .setPacketCooldown(SeedPacketRechargeTime.SLOW.getValue())
+        .setSprite(sprite)
+        .setSpriteWidth(364)
+        .setSpriteHeight(365)
+    );
     anim_start[0] = 4;
     anim_end[0] = 28;
     setFrame(4);
+  }
+
+  public Sunflower(PlantBuilder pBuilder) {
+    super(pBuilder);
   }
 
   public Sunflower() {
@@ -64,10 +56,10 @@ public class Sunflower extends Plant implements SunProducer, Upgradable {
   }
 
   public void selfProduceSun() {
-    this.add(produceSunGrid(25, row, col, 60));
+    Global.game.add(produceSunGrid(25, getRow(), getCol(), 60));
   }
 
-  public void paintComponent(Graphics2D g) { //px 364 py 365
+  public void paintComponent(Graphics2D g) {
     renderSprite(g, 0);
   }
 
@@ -85,15 +77,15 @@ public class Sunflower extends Plant implements SunProducer, Upgradable {
 
     public TwinSunflower(int row, int col) {
       super(
-        row,
-        col,
-        150,
-        150,
-        SeedPacketRechargeTime.SLOW.getValue(),
-        sprite,
-        422,
-        422,
-        1
+        new PlantBuilder()
+          .setRow(row)
+          .setCol(col)
+          .setHealth(150)
+          .setSunCost(150)
+          .setPacketCooldown(SeedPacketRechargeTime.SLOW.getValue())
+          .setSprite(sprite)
+          .setSpriteWidth(422)
+          .setSpriteHeight(422)
       );
       anim_start[0] = 8;
       anim_end[0] = 33;
@@ -106,8 +98,8 @@ public class Sunflower extends Plant implements SunProducer, Upgradable {
 
     @Override
     public void selfProduceSun() {
-      this.add(produceSunGrid(25, row, col, 60));
-      this.add(produceSunGrid(25, row, col - 1, 60));
+      Global.game.add(produceSunGrid(25, getRow(), getCol(), 60));
+      Global.game.add(produceSunGrid(25, getRow(), getCol() - 1, 60));
     }
 
     @Override

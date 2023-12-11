@@ -1,32 +1,35 @@
 package Entities.Plants.InstaKillers;
 
-import Entities.Misc.InstaKiller;
-import Entities.Misc.Zombie;
-import Entities.Misc.Zombie.DeathType;
+import Entities.Plants.PlantBuilder;
+import Entities.Zombies.Zombie;
+import Entities.Zombies.Zombie.DeathType;
 import Main.Global;
 import java.awt.Graphics2D;
 import java.awt.Image;
-
 import javax.swing.ImageIcon;
 
 public class Jalapeno extends InstaKiller {
 
-  private static final Image sprite = new ImageIcon("assets/plants/jalapeno.png").getImage();
+  private static final Image sprite = new ImageIcon(
+    "assets/plants/jalapeno.png"
+  )
+    .getImage();
+
   public Jalapeno(int row, int col) {
     super(
-      row,
-      col,
-      125,
-      100,
-      SeedPacketRechargeTime.SLOW.getValue(),
-      sprite,
-      351,
-      468,
-      1
+      new PlantBuilder()
+        .setRow(row)
+        .setCol(col)
+        .setSunCost(125)
+        .setHealth(100)
+        .setPacketCooldown(SeedPacketRechargeTime.SLOW.getValue())
+        .setSprite(sprite)
+        .setSpriteWidth(351)
+        .setSpriteHeight(468)
     );
     anim_start[0] = 0;
     anim_end[0] = 24;
-    anim_speed=2;
+    anim_speed = 2;
   }
 
   public Jalapeno() {
@@ -39,8 +42,8 @@ public class Jalapeno extends InstaKiller {
 
   @Override
   public void activate() {
-    for (Zombie z : Global.zombies) {
-      if (z.row == this.row) {
+    for (Zombie z : Global.zombies[this.getRow()]) {
+      if (z.getRow() == this.getRow()) {
         z.kill(DeathType.EXPLODED);
       }
     }

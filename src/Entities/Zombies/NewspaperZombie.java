@@ -2,11 +2,10 @@ package Entities.Zombies;
 
 import Entities.ZombieItems.Armor;
 
-public class NewspaperZombie extends NormalZombie {
+public class NewspaperZombie extends Zombie {
 
   protected NewspaperZombie(int row) {
-    super(row);
-    armor = new Armor.Newspaper();
+    super(new ZombieBuilder().setRow(row).setArmor(new Armor.Newspaper()));
   }
 
   @Override

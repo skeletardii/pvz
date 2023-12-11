@@ -1,9 +1,9 @@
 package Entities.Zombies;
 
-import Entities.Misc.Plant;
+import Entities.Plants.Plant;
 import Main.Global;
 
-public class PoleVaultingZombie extends NormalZombie {
+public class PoleVaultingZombie extends Zombie {
 
   private boolean jumped = false;
 
@@ -11,13 +11,17 @@ public class PoleVaultingZombie extends NormalZombie {
     super(row);
   }
 
-  // fucking shitty as implementation
+  protected PoleVaultingZombie(ZombieBuilder zBuilder) {
+    super(zBuilder);
+  }
+
+  // fucking shitty ass implementation
   @Override
   public void update() {
     if (!this.jumped) {
-      for (Plant p : Global.plants[(int) this.row]) {
+      for (Plant p : Global.plants[this.getRow()]) {
         if (this.isTouching(p)) {
-          this.col -= 1;
+          this.moveCol(-1);
           this.jumped = true;
         }
       }

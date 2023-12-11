@@ -1,27 +1,30 @@
 package Entities.Plants.InstaKillers;
 
-import Entities.Misc.InstaKiller;
-import Entities.Misc.Zombie;
-import Entities.Misc.Zombie.DeathType;
+import Entities.Plants.PlantBuilder;
+import Entities.Zombies.Zombie;
+import Entities.Zombies.Zombie.DeathType;
 import Main.Global;
 import java.awt.Graphics2D;
 import java.awt.Image;
-
 import javax.swing.ImageIcon;
 
 public class Squash extends InstaKiller {
-  private static final Image sprite = new ImageIcon("assets/plants/sunflower.png").getImage();
+
+  private static final Image sprite = new ImageIcon(
+    "assets/plants/sunflower.png"
+  )
+    .getImage();
+
   public Squash(int row, int col) {
     super(
-      row,
-      col,
-      25,
-      Integer.MAX_VALUE,
-      SeedPacketRechargeTime.VERY_SLOW.getValue(),
-      sprite,
-      364,
-      365,
-      1
+      new PlantBuilder()
+        .setRow(row)
+        .setCol(col)
+        .setSunCost(25)
+        .setPacketCooldown(SeedPacketRechargeTime.VERY_SLOW.getValue())
+        .setSprite(sprite)
+        .setSpriteWidth(364)
+        .setSpriteHeight(365)
     );
     this.explodeSpeed = 0;
     anim_start[0] = 4;
@@ -38,8 +41,8 @@ public class Squash extends InstaKiller {
     super.update();
 
     // check if zombie is near, if so explode
-    for (Zombie z : Global.zombies) {
-      if (z.row == this.row && Math.abs(z.col - this.col) <= 1) {
+    for (Zombie z : Global.zombies[this.getRow()]) {
+      if (Math.abs(z.getCol() - this.getCol()) <= 1) {
         activate();
         return;
       }
@@ -55,8 +58,8 @@ public class Squash extends InstaKiller {
     // will add pa ani, dapat mu jump sya
     // also gi "activate" nako kay di mani siya technically mu explode
 
-    for (Zombie z : Global.zombies) {
-      if (z.row == this.row && Math.abs(z.col - this.col) <= 1) {
+    for (Zombie z : Global.zombies[getRow()]) {
+      if (Math.abs(z.getCol() - this.getCol()) <= 1) {
         z.kill(DeathType.NORMAL);
       }
     }

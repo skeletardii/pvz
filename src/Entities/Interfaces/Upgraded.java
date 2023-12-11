@@ -1,6 +1,6 @@
 package Entities.Interfaces;
 
-import Entities.Misc.Plant;
+import Entities.Plants.Plant;
 import Main.Global;
 
 public interface Upgraded {

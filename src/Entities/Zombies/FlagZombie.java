@@ -1,9 +1,8 @@
 package Entities.Zombies;
 
-public class FlagZombie extends NormalZombie {
+public class FlagZombie extends Zombie {
 
   public FlagZombie(int row) {
-    super(row);
-    // pero naa syay flag
+    super(new ZombieBuilder().setRow(row));
   }
 }

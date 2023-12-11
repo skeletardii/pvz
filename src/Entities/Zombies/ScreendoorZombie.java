@@ -2,10 +2,9 @@ package Entities.Zombies;
 
 import Entities.ZombieItems.Armor;
 
-public class ScreendoorZombie extends NormalZombie {
+public class ScreendoorZombie extends Zombie {
 
   public ScreendoorZombie(int row) {
-    super(row);
-    armor = new Armor.Screendoor();
+    super(new ZombieBuilder().setRow(row).setArmor(new Armor.Screendoor()));
   }
 }

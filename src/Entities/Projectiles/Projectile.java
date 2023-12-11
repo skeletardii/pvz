@@ -1,5 +1,6 @@
-package Entities.Misc;
+package Entities.Projectiles;
 
+import Entities.Misc.LiveEntity;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import javax.swing.ImageIcon;
@@ -10,7 +11,7 @@ public abstract class Projectile extends LiveEntity {
   protected int projectileDamage;
 
   protected Projectile(
-    double row,
+    int row,
     double col,
     double projectileSpeed,
     int projectileDamage,

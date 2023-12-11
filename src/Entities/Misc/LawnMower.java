@@ -1,5 +1,6 @@
 package Entities.Misc;
 
+import Entities.Zombies.Zombie;
 import GameUtils.Sound;
 import Main.Global;
 import java.awt.Graphics2D;
@@ -12,19 +13,13 @@ public class LawnMower extends LiveEntity {
   protected boolean isActivated = false;
   protected static final double MOVEMENT_SPEED = 0.1;
   private static final File sndfile = new File("assets/sound/lawnmower.wav");
-  private static final Image sprite = new ImageIcon("assets/plants/lawnmower.png").getImage();
-
-
+  private static final Image sprite = new ImageIcon(
+    "assets/plants/lawnmower.png"
+  )
+    .getImage();
 
   public LawnMower(int row) {
-    super(
-      row,
-      -1,
-      sprite,
-      450,
-      364,
-      1
-    );
+    super(row, -1, sprite, 450, 364, 1);
     anim_start[0] = 0;
     anim_end[0] = 16;
     offsetOY = 20;
@@ -37,7 +32,7 @@ public class LawnMower extends LiveEntity {
 
     if (!isActivated) {
       // may possibly implement as a more general case??
-      for (Zombie z : Global.zombies) {
+      for (Zombie z : Global.zombies[this.getRow()]) {
         if (this.isTouching(z)) {
           isActivated = true;
           Sound.play(sndfile);
@@ -46,12 +41,11 @@ public class LawnMower extends LiveEntity {
     }
 
     if (isActivated) {
-      this.col += LawnMower.MOVEMENT_SPEED;
+      this.moveCol(LawnMower.MOVEMENT_SPEED);
 
-      // hmm murag mu break ni if i remove sila while running pani
-      for (Zombie z : Global.zombies) {
+      for (Zombie z : Global.zombies[this.getRow()]) {
         if (this.isTouching(z)) {
-          z.health = 0;
+          z.kill(null);
         }
       }
     }

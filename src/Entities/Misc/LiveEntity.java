@@ -8,13 +8,13 @@ import javax.swing.ImageIcon;
 
 public abstract class LiveEntity extends RenderObj implements Updater {
 
-  // gi public rasa nako oi, maybe i change rani to setters later
-  public double row;
-  public double col;
-  protected int health;
+  private int row;
+  private double col;
+  private int health;
+  private boolean targetable = true;
+
   protected final int offsetX;
   protected final int offsetY;
-  protected boolean targetable = true;
   protected Image sprite;
   protected int lx, ly, frame, frameCtr = 0;
   protected double scale = 0.25;
@@ -30,7 +30,7 @@ public abstract class LiveEntity extends RenderObj implements Updater {
   protected int anim_speed = 1;
 
   protected LiveEntity(
-    double row,
+    int row,
     double col,
     int health,
     Image sprite,
@@ -45,14 +45,14 @@ public abstract class LiveEntity extends RenderObj implements Updater {
 
     offsetX = (int) (Math.random() * 10);
     offsetY = (int) (Math.random() * 10);
-    lx = spriteWidth;
-    ly = spriteHeight;
     anim_start = new int[animRow];
     anim_end = new int[animRow];
+    lx = spriteWidth;
+    ly = spriteHeight;
   }
 
   protected LiveEntity(
-    double row,
+    int row,
     double col,
     Image sprite,
     int spriteWidth,
@@ -70,9 +70,12 @@ public abstract class LiveEntity extends RenderObj implements Updater {
     );
   }
 
-  // rough function implementation
   public boolean isTouching(LiveEntity e) {
     return this.row == e.row && Math.abs(this.col - e.col) <= 1;
+  }
+
+  public void takeDamage(int damage) {
+    this.health -= damage;
   }
 
   public void setFrame(int frame) {
@@ -178,5 +181,21 @@ public abstract class LiveEntity extends RenderObj implements Updater {
 
   public void setTargetable(boolean targetable) {
     this.targetable = targetable;
+  }
+
+  public int getRow() {
+    return row;
+  }
+
+  public double getCol() {
+    return col;
+  }
+
+  public void setCol(double col) {
+    this.col = col;
+  }
+
+  public void moveCol(double deltaCol) {
+    this.col += deltaCol;
   }
 }

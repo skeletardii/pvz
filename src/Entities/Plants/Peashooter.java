@@ -1,20 +1,14 @@
 package Entities.Plants;
 
 import Entities.Interfaces.Attacker;
-import Entities.Misc.Plant;
-import Entities.Misc.Zombie;
 import Entities.Projectiles.Pea;
+import Entities.Zombies.Zombie;
 import Main.Global;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 
 public class Peashooter extends Plant implements Attacker {
-
-  private static final Image sprite = new ImageIcon(
-    "assets/plants/peashooter.png"
-  )
-    .getImage();
 
   protected int attacksLeft = 0;
   protected int shotsPerAttack;
@@ -26,15 +20,24 @@ public class Peashooter extends Plant implements Attacker {
     this(-1, -1);
   }
 
-  public Peashooter(double row, double col) {
+  public Peashooter(int row, double col) {
     this(row, col, 1, 100);
   }
 
-  public Peashooter(double row, double col, int shotsPerAttack, int sunCost) {
-    super(row, col, sunCost, 100, 7.5, sprite, 375, 353, 1);
+  public Peashooter(int row, double col, int shotsPerAttack, int sunCost) {
+    super(
+      new PlantBuilder()
+        .setHealth(100)
+        .setRow(row)
+        .setCol(col)
+        .setSunCost(sunCost)
+        .setSpriteWidth(375)
+        .setSpriteHeight(353)
+    );
     this.shotsPerAttack = shotsPerAttack;
     anim_start[0] = 79;
     anim_end[0] = 103;
+    sprite = new ImageIcon("assets/plants/peashooter.png").getImage();
   }
 
   @Override
@@ -44,8 +47,8 @@ public class Peashooter extends Plant implements Attacker {
 
   @Override
   public void update() {
-    for (Zombie z : Global.zombies) {
-      if (z.row == this.row && z.col >= this.col) attack();
+    for (Zombie z : Global.zombies[this.getRow()]) {
+      if (z.getCol() >= this.getCol()) attack();
     }
     super.update();
   }
@@ -57,7 +60,7 @@ public class Peashooter extends Plant implements Attacker {
       if (attackCooldownCtr <= 0) {
         attacksLeft--;
         attackCooldownCtr = ATTACK_COOLDOWN;
-        this.add(new Pea(this.row, this.col));
+        this.add(new Pea(this.getRow(), this.getCol()));
       }
     } else {
       attackRateCtr--;

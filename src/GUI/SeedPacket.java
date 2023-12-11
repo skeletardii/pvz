@@ -1,8 +1,8 @@
 package GUI;
 
-import Entities.Misc.Plant;
 import Entities.Plants.InstaKillers.CherryBomb;
 import Entities.Plants.InstaKillers.PotatoMine;
+import Entities.Plants.Plant;
 import GameUtils.*;
 import Main.Global;
 import java.awt.AlphaComposite;
@@ -43,14 +43,14 @@ public class SeedPacket extends RenderObj implements Updater {
     scale = p.getScale();
     offsetCX = p.getOffsetOX();
     offsetCY = p.getOffsetOY();
-    if(ly>lx){
+    if (ly > lx) {
       prevY = 40;
       prevX = (int) ((1.0 * lx / ly) * prevY);
     } else {
       prevX = 40;
       prevY = (int) ((1.0 * ly / lx) * prevX);
     }
-   
+
     if (p instanceof PotatoMine) sx = lx * 30;
   }
 
@@ -58,9 +58,9 @@ public class SeedPacket extends RenderObj implements Updater {
     g.drawImage(card, posX, 7, posX + 55, 7 + 73, 0, 0, 100, 140, null);
     g.drawImage(
       sprite,
-      posX + 30 -3 - prevX / 2,
+      posX + 30 - 3 - prevX / 2,
       7 + 30 - prevY / 2,
-      posX + 30 -3 + prevX / 2,
+      posX + 30 - 3 + prevX / 2,
       7 + 30 + prevY / 2,
       sx,
       0,

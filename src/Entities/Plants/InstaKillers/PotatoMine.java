@@ -1,12 +1,11 @@
 package Entities.Plants.InstaKillers;
 
-import Entities.Misc.InstaKiller;
-import Entities.Misc.Zombie;
-import Entities.Misc.Zombie.DeathType;
+import Entities.Plants.PlantBuilder;
+import Entities.Zombies.Zombie;
+import Entities.Zombies.Zombie.DeathType;
 import Main.Global;
 import java.awt.Graphics2D;
 import java.awt.Image;
-
 import javax.swing.ImageIcon;
 
 public class PotatoMine extends InstaKiller {
@@ -14,18 +13,23 @@ public class PotatoMine extends InstaKiller {
   // 14 seconds
   private int timeTillActivation = 14 * 60;
 
-  private static final Image sprite = new ImageIcon("assets/plants/potatomine.png").getImage();
+  private static final Image sprite = new ImageIcon(
+    "assets/plants/potatomine.png"
+  )
+    .getImage();
+
   public PotatoMine(int row, int col) {
     super(
-      row,
-      col,
-      25,
-      300,
-      SeedPacketRechargeTime.VERY_SLOW.getValue(),
-      sprite,
-      467,
-      381,
-      3
+      new PlantBuilder()
+        .setRow(row)
+        .setCol(col)
+        .setSunCost(25)
+        .setHealth(300)
+        .setPacketCooldown(SeedPacketRechargeTime.VERY_SLOW.getValue())
+        .setSprite(sprite)
+        .setSpriteWidth(467)
+        .setSpriteHeight(381)
+        .setAnimRow(3)
     );
     this.explodeSpeed = 0;
     anim_start[0] = 0;
@@ -49,7 +53,7 @@ public class PotatoMine extends InstaKiller {
       timeTillActivation -= 1;
     } else {
       // check if zombie is touching, if so explode
-      for (Zombie z : Global.zombies) {
+      for (Zombie z : Global.zombies[this.getRow()]) {
         if (isTouching(z)) {
           activate();
           return;
@@ -66,8 +70,7 @@ public class PotatoMine extends InstaKiller {
 
   @Override
   public void activate() {
-    for (Zombie z : Global.zombies) {
-      // if zombie is in a 1x1 ish radius
+    for (Zombie z : Global.zombies[this.getRow()]) {
       if (isTouching(z)) {
         z.kill(DeathType.EXPLODED);
       }

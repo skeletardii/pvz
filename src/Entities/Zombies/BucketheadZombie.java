@@ -2,10 +2,9 @@ package Entities.Zombies;
 
 import Entities.ZombieItems.Armor;
 
-public class BucketheadZombie extends NormalZombie {
+public class BucketheadZombie extends Zombie {
 
   protected BucketheadZombie(int row) {
-    super(row);
-    armor = new Armor.Bucket();
+    super(new ZombieBuilder().setRow(row).setArmor(new Armor.Bucket()));
   }
 }

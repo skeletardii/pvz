@@ -1,7 +1,7 @@
 package Entities.Plants.Shrooms;
 
 import Entities.Interfaces.Attacker;
-import Entities.Misc.Shroom;
+import Entities.Plants.PlantBuilder;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import javax.swing.ImageIcon;
@@ -15,15 +15,15 @@ public class FumeShroom extends Shroom implements Attacker {
 
   protected FumeShroom(int row, int col) {
     super(
-      row,
-      col,
-      75,
-      300,
-      SeedPacketRechargeTime.FAST.getValue(),
-      sprite,
-      364,
-      365,
-      1
+      new PlantBuilder()
+        .setRow(row)
+        .setCol(col)
+        .setSunCost(75)
+        .setHealth(300)
+        .setPacketCooldown(SeedPacketRechargeTime.FAST.getValue())
+        .setSprite(sprite)
+        .setSpriteWidth(364)
+        .setSpriteHeight(365)
     );
   }
 

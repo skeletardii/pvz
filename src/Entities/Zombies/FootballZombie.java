@@ -2,10 +2,14 @@ package Entities.Zombies;
 
 import Entities.ZombieItems.Armor;
 
-public class FootballZombie extends NormalZombie {
+public class FootballZombie extends Zombie {
 
   protected FootballZombie(int row) {
-    super(row);
-    armor = new Armor.FootballGear();
+    super(
+      new ZombieBuilder()
+        .setRow(row)
+        .setArmor(new Armor.FootballGear())
+        .setMovementSpeed(0.02)
+    );
   }
 }
