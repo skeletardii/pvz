@@ -8,6 +8,8 @@ import java.io.File;
 
 public abstract class Plant extends LiveEntity {
   protected int previewFrame=0;
+  protected int actionSpeed=-1;
+  protected int actionCtr = 0;
   // temp numbers rani
   public enum SeedPacketRechargeTime {
     VERY_SLOW(20),

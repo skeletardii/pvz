@@ -2,8 +2,7 @@ package Main;
 
 import Entities.Misc.SunManager;
 import Entities.Plants.*;
-import Entities.Plants.InstaKillers.Jalapeno;
-import Entities.Plants.InstaKillers.PotatoMine;
+import Entities.Plants.InstaKillers.*;
 import GUI.*;
 import GameUtils.*;
 import java.io.File;
@@ -22,6 +21,9 @@ public class Main {
     window.setResizable(true);
     Game game = new Game(window, WINDOW_SIZE_X, WINDOW_SIZE_Y);
     //preload();
+    Class.forName("Entities.Misc.Zombie");
+    Class.forName("Entities.Plants.Cabbagepult");
+    Class.forName("Entities.Zombies.NormalZombie");
     Global.init();
     Global.game = game;
     Global.mouse = game.mouse;
@@ -38,12 +40,13 @@ public class Main {
 
     // Global.addSeedPacket(new SeedPacket(new Sunflower()));
     // Global.addSeedPacket(new SeedPacket(new Sunflower.TwinSunflower()));
-    // Global.addSeedPacket(new SeedPacket(new CherryBomb()));
+    Global.addSeedPacket(new SeedPacket(new CherryBomb()));
+    Global.addPlant(new Cabbagepult(), 0, 0);
+    Global.addSeedPacket(new SeedPacket(new Cabbagepult()));
     Global.addSeedPacket(new SeedPacket(new WallNut()));
     // Global.addSeedPacket(new SeedPacket(new Peashooter()));
-    Global.addSeedPacket(new SeedPacket(new PotatoMine()));
-    Global.addSeedPacket(new SeedPacket(new Chomper()));
-    Global.addSeedPacket(new SeedPacket(new Jalapeno()));
+    // Global.addSeedPacket(new SeedPacket(new PotatoMine()));
+    // Global.addSeedPacket(new SeedPacket(new Jalapeno()));
     // Global.addSeedPacket(new SeedPacket(new SpikeWeed()));
 
     Global.addSeedPacket(new SeedPacket(new Peashooter()));
@@ -67,7 +70,7 @@ public class Main {
       "Entities.Misc.LawnMower",
       "Entities.Misc.Sun",
       "Entities.Zombies.NormalZombie",
-      "Entities.Plants.Cabbage",
+      "Entities.Plants.Cabbagepult",
       "Entities.Plants.Chomper",
       "Entities.Plants.Peashooter",
       "Entities.Plants.SpikeWeed",

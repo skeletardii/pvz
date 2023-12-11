@@ -6,7 +6,6 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 
 public class NormalZombie extends Zombie {
-
   private static final Image sprite = new ImageIcon("assets/zombies/zombie.png")
     .getImage();
 
