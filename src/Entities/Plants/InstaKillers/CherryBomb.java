@@ -8,7 +8,6 @@ import Main.Global;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import javax.swing.ImageIcon;
-import javax.swing.text.PlainDocument;
 
 public class CherryBomb extends InstaKiller {
 
@@ -55,7 +54,7 @@ public class CherryBomb extends InstaKiller {
     for (int k = -1; k < 2; ++k) {
       if (
         this.getRow() + k >= 0 && this.getRow() < Global.PLANT_ROWS_COUNT
-      ) return;
+      ) break;
 
       for (Zombie z : Global.zombies[this.getRow() + k]) {
         if (Math.abs(z.getCol() - this.getRow()) <= 1.5) {
