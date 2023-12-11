@@ -12,7 +12,7 @@ public class ZombieBuilder {
   int health = 181;
   Armor armor = null;
   double movementSpeed = 0.005;
-  int dps = 30;
+  int dps = 1;
   Image sprite = new ImageIcon("assets/zombies/zombie.png").getImage();
   int spriteWidth = 961;
   int spriteHeight = 723;
