@@ -22,7 +22,6 @@ public abstract class InstaKiller extends Plant {
   public void update() {
     this.explodeTime -= this.explodeSpeed;
     if (this.explodeTime <= 0) activate();
-
     super.update();
   }
 
