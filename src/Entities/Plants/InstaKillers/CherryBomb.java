@@ -30,7 +30,7 @@ public class CherryBomb extends InstaKiller {
   }
 
   public void paintComponent(Graphics2D g) { //px 364 py 365
-    if (health <= (anim_end[0] - anim_start[0]) * 2) {
+    if (explodeTime <= (anim_end[0] - anim_start[0]) * 2) {
       //setFrame((anim_end[0]-anim_start[0])-health);
       renderSprite(g, 1);
     } else {

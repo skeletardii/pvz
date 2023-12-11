@@ -109,7 +109,7 @@ public class Global implements Updater {
     game.add(l);
   }
 
-  public static SeedPacket[] seeds = new SeedPacket[10];
+  public static SeedPacket[] seeds = new SeedPacket[20];
   public static int seedsNum = 0;
 
   public static void addSeedPacket(SeedPacket sp) {

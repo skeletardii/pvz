@@ -25,9 +25,11 @@ public class WallNut extends Plant {
     anim_start[0] = 0;
     anim_end[0] = 16;
     offsetOY = 20;
+    
+    anim_speed=2;
   }
 
-  public WallNut(int row, int col, int health, int sunCost, Image sprite) {
+  public WallNut(int row, int col, int health, int sunCost, Image sprite, int sw, int sh) {
     super(
       row,
       col,
@@ -35,8 +37,8 @@ public class WallNut extends Plant {
       health,
       SeedPacketRechargeTime.VERY_SLOW.getValue(),
       sprite,
-      364,
-      365,
+      sw,
+      sh,
       1
     );
   }
@@ -51,14 +53,16 @@ public class WallNut extends Plant {
   }
 
   public static class TallNut extends WallNut {
-
-    private static final Image sprite2 = new ImageIcon(
-      "assets/plants/wallnut.png"
-    )
-      .getImage();
-
+    private static final Image sprite2 = new ImageIcon("assets/plants/tallnut.png").getImage();
     public TallNut(int row, int col) {
-      super(row, col, 8000, 125, sprite2);
+      super(row, col, 8000, 125, sprite2, 414, 584);
+      anim_start[0] = 20;
+      anim_end[0] = 36;
+      scale = 0.2;
+      shadowScale=1.25;
+      shadowOffsetY=15;
+      offsetOY=10;
+      anim_speed=2;
     }
 
     public TallNut() {

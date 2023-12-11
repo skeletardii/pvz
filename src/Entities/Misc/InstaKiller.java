@@ -9,7 +9,7 @@ public abstract class InstaKiller extends Plant {
 
   protected int explodeTime = 100;
   protected int explodeSpeed = 1;
-  private static final File explodeSnd = new File("assets/sound/explosion.wav");
+  private static final File explodeSnd = new File("assets/sound/cherrybomb.wav");
 
   protected InstaKiller(
     int row,

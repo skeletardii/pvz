@@ -86,12 +86,12 @@ public abstract class RenderObj implements Comparable<RenderObj> {
       resort();
       resort = false;
     }
+    if(visible) paintComponent(g);
     if (childrenVisible && children.size() > 0) {
       for (int i = 0; i < children.size(); i++) {
-        if (i == childrenIndex && visible) paintComponent(g);
         children.get(i).render(g);
       }
-    } else if (visible) paintComponent(g);
+    }
   }
 
   public void resort() {
