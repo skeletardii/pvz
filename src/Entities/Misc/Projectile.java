@@ -10,7 +10,7 @@ public abstract class Projectile extends LiveEntity {
   protected int projectileDamage;
 
   protected Projectile(
-    double row,
+    int row,
     double col,
     double projectileSpeed,
     int projectileDamage,

@@ -15,7 +15,6 @@ public class LawnMower extends LiveEntity {
   private static final Image sprite = new ImageIcon("assets/plants/lawnmower.png").getImage();
 
 
-
   public LawnMower(int row) {
     super(
       row,
@@ -37,7 +36,7 @@ public class LawnMower extends LiveEntity {
 
     if (!isActivated) {
       // may possibly implement as a more general case??
-      for (Zombie z : Global.zombies) {
+      for (Zombie z : Global.zombies[row]) {
         if (this.isTouching(z)) {
           isActivated = true;
           Sound.play(sndfile);
@@ -49,7 +48,7 @@ public class LawnMower extends LiveEntity {
       this.col += LawnMower.MOVEMENT_SPEED;
 
       // hmm murag mu break ni if i remove sila while running pani
-      for (Zombie z : Global.zombies) {
+      for (Zombie z : Global.zombies[row]) {
         if (this.isTouching(z)) {
           z.health = 0;
         }

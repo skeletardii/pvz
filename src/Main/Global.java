@@ -33,7 +33,7 @@ public class Global implements Updater {
   public static final int ROW_PIXEL_OFFSET = 100;
   public static final int COL_PIXEL_OFFSET = 80;
   public static Plant[][] plants = new Plant[PLANT_ROWS_COUNT][PLANT_COLS_COUNT];
-  public static ArrayList<Zombie> zombies = new ArrayList<>();
+  public static ArrayList<Zombie>[] zombies = new ArrayList[PLANT_ROWS_COUNT];
   public static LawnMower[] lawnMowers = new LawnMower[PLANT_ROWS_COUNT];
   public static ZombieSpawner zombieSpawner = new ZombieSpawner();
 
@@ -43,6 +43,9 @@ public class Global implements Updater {
     // if(mode==2 || mode==3){
     //     PLANT_ROWS_COUNT = 6;
     // }
+    for(int i=0; i<PLANT_ROWS_COUNT; i++){
+      zombies[i] = new ArrayList<Zombie>();
+    }
   }
 
   public void update() {
@@ -87,17 +90,33 @@ public class Global implements Updater {
 
   public static void addZombie(Zombie z) {
     z.setZindex(6 + z.row);
-    zombies.add(z);
+    zombies[(int)z.row].add(z);
     game.add(z);
   }
 
-  public static void checkZombiesToRemove() {
-    ArrayList<Zombie> updatedZombies = new ArrayList<>();
-    for (Zombie z : zombies) {
-      if (z.getHealth() <= 0) {
-        z.remove();
-      } else {
-        updatedZombies.add(z);
+  public static void checkZombiesToRemove() { //wtf is this bro 
+    // ArrayList<Zombie> updatedZombies = new ArrayList<>();
+    // for (ArrayList alz: zombies)
+    //   for (Zombie z : alz) {
+    //     if (z.getHealth() <= 0) {
+    //       z.remove();
+    //     } else {
+    //       updatedZombies.add(z);
+    //     }
+    //   }
+    // }
+    // zombies = updatedZombies;
+    ArrayList<Zombie>[] updatedZombies = new ArrayList[PLANT_ROWS_COUNT];
+    for(int i=0; i<PLANT_ROWS_COUNT; i++){
+      updatedZombies[i] = new ArrayList<Zombie>();
+    }
+    for(int i=0; i<PLANT_ROWS_COUNT; i++){
+      for(Zombie z : zombies[i]){
+        if(z.getHealth() <= 0){
+          z.remove();
+        } else {
+          updatedZombies[i].add(z);
+        }
       }
     }
     zombies = updatedZombies;

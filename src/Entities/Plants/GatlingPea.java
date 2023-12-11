@@ -15,7 +15,7 @@ public class GatlingPea extends Repeater implements Upgraded {
     this(-1, -1);
   }
 
-  public GatlingPea(double row, double col) {
+  public GatlingPea(int row, double col) {
     super(row, col, 4, 250);
   }
 

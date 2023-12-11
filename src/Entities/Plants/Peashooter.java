@@ -26,11 +26,11 @@ public class Peashooter extends Plant implements Attacker {
     this(-1, -1);
   }
 
-  public Peashooter(double row, double col) {
+  public Peashooter(int row, double col) {
     this(row, col, 1, 100);
   }
 
-  public Peashooter(double row, double col, int shotsPerAttack, int sunCost) {
+  public Peashooter(int row, double col, int shotsPerAttack, int sunCost) {
     super(row, col, sunCost, 100, 7.5, sprite, 375, 353, 1);
     this.shotsPerAttack = shotsPerAttack;
     anim_start[0] = 79;
@@ -44,8 +44,8 @@ public class Peashooter extends Plant implements Attacker {
 
   @Override
   public void update() {
-    for (Zombie z : Global.zombies) {
-      if (z.row == this.row && z.col >= this.col) attack();
+    for (Zombie z : Global.zombies[row]) {
+      if (z.col >= this.col) attack();
     }
     super.update();
   }

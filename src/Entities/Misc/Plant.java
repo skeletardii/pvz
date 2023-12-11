@@ -30,7 +30,7 @@ public abstract class Plant extends LiveEntity {
   private static final File gulp = new File("assets/sound/gulp.wav");
 
   public Plant(
-    double row,
+    int row,
     double col,
     int sunCost,
     int health,

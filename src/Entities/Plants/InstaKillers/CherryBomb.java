@@ -40,7 +40,7 @@ public class CherryBomb extends InstaKiller {
 
   @Override
   public void activate() {
-    for (Zombie z : Global.zombies) {
+    for (Zombie z : Global.zombies[row]) {
       // if zombie is in a 3x3 ish radius
       if (
         Math.abs(z.row - this.row) <= 1.5 && Math.abs(z.col - this.col) <= 1.5

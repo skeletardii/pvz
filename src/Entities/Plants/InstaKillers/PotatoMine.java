@@ -49,7 +49,7 @@ public class PotatoMine extends InstaKiller {
       timeTillActivation -= 1;
     } else {
       // check if zombie is touching, if so explode
-      for (Zombie z : Global.zombies) {
+      for (Zombie z : Global.zombies[row]) {
         if (isTouching(z)) {
           activate();
           return;
@@ -66,7 +66,7 @@ public class PotatoMine extends InstaKiller {
 
   @Override
   public void activate() {
-    for (Zombie z : Global.zombies) {
+    for (Zombie z : Global.zombies[row]) {
       // if zombie is in a 1x1 ish radius
       if (isTouching(z)) {
         z.kill(DeathType.EXPLODED);

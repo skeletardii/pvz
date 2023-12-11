@@ -39,7 +39,7 @@ public class Jalapeno extends InstaKiller {
 
   @Override
   public void activate() {
-    for (Zombie z : Global.zombies) {
+    for (Zombie z : Global.zombies[row]) {
       if (z.row == this.row) {
         z.kill(DeathType.EXPLODED);
       }

@@ -61,7 +61,7 @@ public class Chomper extends Plant implements SunProducer {
 
     Zombie chosenZombie = null;
 
-    for (Zombie z : Global.zombies) {
+    for (Zombie z : Global.zombies[row]) {
 
       if (
         !isEating() &&

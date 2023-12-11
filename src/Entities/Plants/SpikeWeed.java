@@ -64,7 +64,7 @@ public class SpikeWeed extends Plant implements Upgradable {
   @Override
   public void update() {
     // adjust damage or maybe deal it in seconds
-    for (Zombie z : Global.zombies) {
+    for (Zombie z : Global.zombies[row]) {
       if (this.isTouching(z)) {
         z.setHealth(z.getHealth() - dps);
       }

@@ -38,7 +38,7 @@ public class Squash extends InstaKiller {
     super.update();
 
     // check if zombie is near, if so explode
-    for (Zombie z : Global.zombies) {
+    for (Zombie z : Global.zombies[row]) {
       if (z.row == this.row && Math.abs(z.col - this.col) <= 1) {
         activate();
         return;
@@ -55,7 +55,7 @@ public class Squash extends InstaKiller {
     // will add pa ani, dapat mu jump sya
     // also gi "activate" nako kay di mani siya technically mu explode
 
-    for (Zombie z : Global.zombies) {
+    for (Zombie z : Global.zombies[row]) {
       if (z.row == this.row && Math.abs(z.col - this.col) <= 1) {
         z.kill(DeathType.NORMAL);
       }

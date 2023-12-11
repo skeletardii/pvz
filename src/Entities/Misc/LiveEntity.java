@@ -9,7 +9,7 @@ import javax.swing.ImageIcon;
 public abstract class LiveEntity extends RenderObj implements Updater {
 
   // gi public rasa nako oi, maybe i change rani to setters later
-  public double row;
+  public int row;
   public double col;
   protected int health;
   protected final int offsetX;
@@ -30,7 +30,7 @@ public abstract class LiveEntity extends RenderObj implements Updater {
   protected int anim_speed = 1;
 
   protected LiveEntity(
-    double row,
+    int row,
     double col,
     int health,
     Image sprite,
@@ -52,7 +52,7 @@ public abstract class LiveEntity extends RenderObj implements Updater {
   }
 
   protected LiveEntity(
-    double row,
+    int row,
     double col,
     Image sprite,
     int spriteWidth,
