@@ -53,7 +53,14 @@ public class SeedPacket extends RenderObj implements Updater {
 
     if (p instanceof PotatoMine) sx = lx * 30;
   }
-
+  private int getDigits(int num){
+    int ctr = 0;
+    while(num>1){
+      num/=10;
+      ctr++;
+    }
+    return ctr;
+  }
   public void paintComponent(Graphics2D g) {
     g.drawImage(card, posX, 7, posX + 55, 7 + 73, 0, 0, 100, 140, null);
     g.drawImage(
@@ -68,7 +75,7 @@ public class SeedPacket extends RenderObj implements Updater {
       ly,
       null
     );
-    g.drawString("" + cost, posX + 20 - (5 * (cost / 100)), 75);
+    g.drawString("" + cost, posX + 20 - (5 * (getDigits(cost)-1)), 75);
     if (state == 0) {
       setZindex(initZ);
       return;
@@ -128,7 +135,7 @@ public class SeedPacket extends RenderObj implements Updater {
   public void update() {
     // gi addan nako ani para mu change ang sunCost sa mga upgradables
     // pero mu move ang cost tho lol, basta mu increase na
-    this.cost = this.p.getSunCost();
+    cost = this.p.getSunCost();
 
     statePrev = state;
     if (
@@ -172,5 +179,6 @@ public class SeedPacket extends RenderObj implements Updater {
   private AlphaComposite makeComposite(float alpha) {
     int type = AlphaComposite.SRC_OVER;
     return (AlphaComposite.getInstance(type, alpha));
+    //AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha)
   }
 }

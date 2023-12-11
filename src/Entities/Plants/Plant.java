@@ -25,6 +25,8 @@ public class Plant extends LiveEntity {
     }
   }
 
+  protected int actionSpeed = -1;
+  protected int actionCtr = 0;
   protected int previewFrame = 0;
   public final int sunCost;
   public final double packetCooldown;

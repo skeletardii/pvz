@@ -11,7 +11,7 @@ public class ZombieBuilder {
   double col = Global.PLANT_COLS_COUNT + 2;
   int health = 181;
   Armor armor = null;
-  double movementSpeed = 0.01;
+  double movementSpeed = 0.005;
   int dps = 30;
   Image sprite = new ImageIcon("assets/zombies/zombie.png").getImage();
   int spriteWidth = 961;

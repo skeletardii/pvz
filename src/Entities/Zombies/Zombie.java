@@ -9,9 +9,9 @@ import java.io.File;
 
 public class Zombie extends LiveEntity {
 
-  protected Armor armor = null;
-  protected double movementSpeed = 0.01;
-  protected int dps = 1;
+  protected Armor armor;
+  protected double movementSpeed;
+  protected int dps;
 
   private int eatFrame = 0;
   private boolean isEating = false;

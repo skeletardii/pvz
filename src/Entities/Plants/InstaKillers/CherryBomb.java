@@ -1,5 +1,6 @@
 package Entities.Plants.InstaKillers;
 
+import Entities.Misc.Explosion;
 import Entities.Plants.PlantBuilder;
 import Entities.Zombies.Zombie;
 import Entities.Zombies.Zombie.DeathType;
@@ -62,7 +63,7 @@ public class CherryBomb extends InstaKiller {
         }
       }
     }
-
+    Global.game.add(new Explosion(getRow(), getCol()));
     super.activate();
   }
 }
