@@ -12,7 +12,7 @@ public class NormalZombie extends Zombie {
 
   public NormalZombie(int row) {
     super(row, 181, null, 0.01, 30, sprite, 961, 723, 2);
-    anim_start[0] = 0;
+    anim_start[0] = 0;L
     anim_end[0] = 98;
     anim_start[1] = 99;
     anim_end[1] = 138;
