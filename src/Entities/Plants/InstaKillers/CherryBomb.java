@@ -33,15 +33,16 @@ public class CherryBomb extends InstaKiller {
     anim_end[0] = 26;
     anim_start[1] = 0;
     anim_end[1] = 13;
-    setFrame(14);
     offsetOY = 10;
+    setFrame(14);
   }
 
   public CherryBomb() {
     this(-1, -1);
   }
 
-  public void paintComponent(Graphics2D g) { //px 364 py 365
+  @Override
+  public void paintComponent(Graphics2D g) {
     if (explodeTime <= (anim_end[0] - anim_start[0]) * 2) {
       renderSprite(g, 1);
     } else {
@@ -53,11 +54,11 @@ public class CherryBomb extends InstaKiller {
   public void activate() {
     for (int k = -1; k < 2; ++k) {
       if (
-        this.getRow() + k >= 0 && this.getRow() < Global.PLANT_ROWS_COUNT
+        this.getRow() + k < 0 || this.getRow() >= Global.PLANT_ROWS_COUNT
       ) break;
 
       for (Zombie z : Global.zombies[this.getRow() + k]) {
-        if (Math.abs(z.getCol() - this.getRow()) <= 1.5) {
+        if (Math.abs(z.getCol() - this.getCol()) <= 1.5) {
           z.kill(DeathType.EXPLODED);
         }
       }
