@@ -81,10 +81,26 @@ public abstract class Zombie extends LiveEntity {
   }
 
   public void kill(DeathType type) {
-    this.health = 0;
+    setHealth(0);
   }
 
   public void takeDamage(int projectileDamage) {
-    this.health = Math.max(0, this.health - projectileDamage);
+    if (this.armor != null) {
+      this.armor.setHealth(Math.max(0, getHealth() - projectileDamage));
+    } else {
+      setHealth(Math.max(0, getHealth() - projectileDamage));
+    }
+  }
+
+  public void removeArmor() {
+    armor = null;
+  }
+
+  public double getMovementSpeed() {
+    return movementSpeed;
+  }
+
+  public void setMovementSpeed(double movementSpeed) {
+    this.movementSpeed = movementSpeed;
   }
 }

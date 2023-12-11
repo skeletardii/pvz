@@ -1,3 +1,11 @@
 package Entities.Zombies;
 
-public class FootballZombie {}
+import Entities.ZombieItems.Armor;
+
+public class FootballZombie extends NormalZombie {
+
+  protected FootballZombie(int row) {
+    super(row);
+    armor = new Armor.FootballGear();
+  }
+}

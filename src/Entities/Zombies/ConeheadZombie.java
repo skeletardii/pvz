@@ -1,10 +1,11 @@
 package Entities.Zombies;
 
+import Entities.ZombieItems.Armor;
+
 public class ConeheadZombie extends NormalZombie {
 
   protected ConeheadZombie(int row) {
     super(row);
-    // Armor a = new (Armor.Cone());
-    // this.add(a);
+    armor = new Armor.Cone();
   }
 }

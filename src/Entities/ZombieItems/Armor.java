@@ -38,7 +38,7 @@ public abstract class Armor extends ZombieItem {
     )
       .getImage();
 
-    protected Cone() {
+    public Cone() {
       super(300, false, sprite, 509, 496, 1);
     }
   }
@@ -50,7 +50,7 @@ public abstract class Armor extends ZombieItem {
     )
       .getImage();
 
-    protected Bucket() {
+    public Bucket() {
       super(600, false, sprite, 509, 496, 1);
     }
   }
@@ -62,7 +62,7 @@ public abstract class Armor extends ZombieItem {
     )
       .getImage();
 
-    protected FootballGear() {
+    public FootballGear() {
       super(300, true, sprite, 509, 496, 1);
     }
   }
@@ -74,7 +74,7 @@ public abstract class Armor extends ZombieItem {
     )
       .getImage();
 
-    protected Newspaper() {
+    public Newspaper() {
       super(300, true, sprite, 509, 496, 1);
     }
   }
@@ -86,7 +86,7 @@ public abstract class Armor extends ZombieItem {
     )
       .getImage();
 
-    protected Screendoor() {
+    public Screendoor() {
       super(300, true, true, sprite, 509, 496, 1);
     }
   }
