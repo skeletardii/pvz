@@ -8,7 +8,7 @@ public class PoleVaultingZombie extends Zombie {
   private boolean jumped = false;
 
   protected PoleVaultingZombie(int row) {
-    super(row);
+    super(new ZombieBuilder().setRow(row).setMovementSpeed(0.01));
   }
 
   protected PoleVaultingZombie(ZombieBuilder zBuilder) {
@@ -18,10 +18,12 @@ public class PoleVaultingZombie extends Zombie {
   // fucking shitty ass implementation
   @Override
   public void update() {
+    super.update();
+
     if (!this.jumped) {
       for (Plant p : Global.plants[this.getRow()]) {
-        if (this.isTouching(p)) {
-          this.moveCol(-1);
+        if (p != null && this.isTouching(p)) {
+          this.moveCol(-1.5);
           this.jumped = true;
         }
       }
