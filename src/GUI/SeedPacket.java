@@ -1,12 +1,10 @@
 package GUI;
 
-import Entities.Plants.InstaKillers.CherryBomb;
-import Entities.Plants.InstaKillers.PotatoMine;
+import Entities.Plants.InstaKillers.*;
 import Entities.Plants.Plant;
 import GameUtils.*;
 import Main.Global;
 import java.awt.AlphaComposite;
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.io.File;

@@ -1,6 +1,6 @@
 package Entities.Plants.InstaKillers;
 
-import Entities.Misc.Explosion;
+import Entities.Particles.Explosion;
 import Entities.Plants.PlantBuilder;
 import Entities.Zombies.Zombie;
 import Entities.Zombies.Zombie.DeathType;
@@ -54,8 +54,8 @@ public class CherryBomb extends InstaKiller {
   public void activate() {
     for (int k = -1; k < 2; ++k) {
       if (
-        this.getRow() + k < 0 || this.getRow() >= Global.PLANT_ROWS_COUNT
-      ) break;
+        this.getRow() + k < 0 || this.getRow() + k >= Global.PLANT_ROWS_COUNT
+      ) continue;
 
       for (Zombie z : Global.zombies[(int) this.getRow() + k]) {
         if (Math.abs(z.getCol() - this.getCol()) <= 1.5) {
@@ -63,7 +63,11 @@ public class CherryBomb extends InstaKiller {
         }
       }
     }
+<<<<<<< HEAD
     Global.game.add(new Explosion((int) getRow(), getCol()));
+=======
+    Global.game.add(new Explosion(this.getRow(), this.getCol()));
+>>>>>>> 79fe6e997696f6e671f3e4b6b31f60796db3bd8c
     super.activate();
   }
 }

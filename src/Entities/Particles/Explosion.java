@@ -1,14 +1,11 @@
-package Entities.Misc;
+package Entities.Particles;
 
 import GameUtils.RenderObj;
 import java.awt.AlphaComposite;
-import java.awt.Color;
 import java.awt.Composite;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.geom.AffineTransform;
-import java.awt.image.AffineTransformOp;
-import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
 
 public class Explosion extends RenderObj {
@@ -18,27 +15,29 @@ public class Explosion extends RenderObj {
   }
 
   public Explosion(int row, double col) {
-    for (int i = 0; i <= 5; i++) {
+    int ox = (int) Math.round((col) * 100 + 0 + 30 + 45);
+    int oy = (int) Math.round((row) * 100 + 0 + 60 + 84);
+    for (int i = 0; i <= 10; i++) {
       this.add(
           new ExplosionCloud(
             1,
             60,
-            (int) col * 80 + 140,
-            row * 88 + 164,
-            random(-3, 3),
-            random(-3, 3)
+            ox,
+            oy,
+            random(-4, 4),
+            random(-4, 4)
           )
         );
     }
     for (int i = 0; i <= 3; i++) {
       this.add(
           new ExplosionCloud(
-            1.5,
+            2.1,
             60,
-            (int) col * 80 + 140,
-            row * 88 + 164,
-            random(-1, 1),
-            random(-1, 1)
+            ox,
+            oy,
+            random(-2, 2),
+            random(-2, 2)
           )
         );
     }
@@ -92,6 +91,9 @@ class ExplosionCloud extends RenderObj {
     );
     if (life <= 15) g.setComposite(
       AlphaComposite.getInstance(AlphaComposite.SRC_OVER, (float) (life / 15.0))
+    );
+    else g.setComposite(
+      AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.9f)
     );
     g.setTransform(at);
     // g.rotate(Math.toRadians(rot));

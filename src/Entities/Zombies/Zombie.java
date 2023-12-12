@@ -128,9 +128,9 @@ public class Zombie extends LiveEntity {
   @Override
   public void takeDamage(int projectileDamage) {
     if (this.armor != null) {
-      this.armor.setHealth(Math.max(0, getHealth() - projectileDamage));
+      this.armor.setHealth(getHealth() - projectileDamage);
     } else {
-      setHealth(Math.max(0, getHealth() - projectileDamage));
+      setHealth(getHealth() - projectileDamage);
     }
   }
 
