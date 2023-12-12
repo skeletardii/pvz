@@ -29,6 +29,28 @@ public abstract class LiveEntity extends RenderObj implements Updater {
   protected double shadowScale = 1.0;
   protected int anim_speed = 1;
 
+  protected LiveEntity(LiveEntityBuilder leBuilder) {
+    this.row = leBuilder.row;
+    this.col = leBuilder.col;
+    this.health = leBuilder.health;
+    this.targetable = leBuilder.targetable;
+    this.offsetX = leBuilder.offsetX;
+    this.offsetY = leBuilder.offsetY;
+    this.sprite = leBuilder.sprite;
+
+    this.lx = leBuilder.lx;
+    this.ly = leBuilder.ly;
+    this.frame = leBuilder.frame;
+
+    this.scale = leBuilder.scale;
+    this.anim_start = leBuilder.animStart;
+    this.anim_end = leBuilder.animEnd;
+    this.shadow = leBuilder.shadow;
+
+    this.shadowScale = leBuilder.shadowScale;
+    this.anim_speed = leBuilder.animSpeed;
+  }
+
   protected LiveEntity(
     int row,
     double col,

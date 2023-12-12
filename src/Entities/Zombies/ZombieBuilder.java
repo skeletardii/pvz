@@ -8,7 +8,7 @@ import javax.swing.ImageIcon;
 public class ZombieBuilder {
 
   int row = 0;
-  double col = Global.PLANT_COLS_COUNT + 2;
+  double col = Global.PLANT_COLS_COUNT + 2.0;
   int health = 181;
   Armor armor = null;
   double movementSpeed = 0.005;
@@ -17,6 +17,15 @@ public class ZombieBuilder {
   int spriteWidth = 961;
   int spriteHeight = 723;
   int animRow = 2;
+  boolean targetable = true;
+
+  public boolean isTargetable() {
+    return targetable;
+  }
+
+  public void setTargetable(boolean targetable) {
+    this.targetable = targetable;
+  }
 
   public ZombieBuilder setRow(int row) {
     this.row = row;
