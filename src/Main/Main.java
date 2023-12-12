@@ -3,6 +3,7 @@ package Main;
 import Entities.Misc.SunManager;
 import Entities.Plants.*;
 import Entities.Plants.InstaKillers.*;
+import Entities.Zombies.Zombie;
 import GUI.*;
 import GameUtils.*;
 import java.io.File;
@@ -31,26 +32,42 @@ public class Main {
     game.add(new GameUI(Global.gameMode));
     Global.init();
     game.add(new SunManager());
-    for (int i = 0; i < Global.PLANT_ROWS_COUNT; ++i) {
+    for (int i = 0; i < Constants.PLANT_ROWS_COUNT; ++i) {
       Global.addLawnMowers(i);
     }
+
     Sound.play(new File("assets/sound/bg0.wav"), -10f);
 
-    // Global.addSeedPacket(new SeedPacket(new Sunflower()));
-    // Global.addSeedPacket(new SeedPacket(new Sunflower.TwinSunflower()));
+    // Global.addPlant(new CabbagePult(), 0, 0);
     Global.addSeedPacket(new SeedPacket(new CherryBomb()));
-    Global.addPlant(new CabbagePult(), 0, 0);
     Global.addSeedPacket(new SeedPacket(new CabbagePult()));
     Global.addSeedPacket(new SeedPacket(new WallNut()));
-    // Global.addSeedPacket(new SeedPacket(new Peashooter()));
-    // Global.addSeedPacket(new SeedPacket(new PotatoMine()));
-    // Global.addSeedPacket(new SeedPacket(new Jalapeno()));
-    // Global.addSeedPacket(new SeedPacket(new SpikeWeed()));
 
     Global.addSeedPacket(new SeedPacket(new Peashooter()));
     Global.addSeedPacket(new SeedPacket(new Repeater()));
     Global.addSeedPacket(new SeedPacket(new GatlingPea()));
-    // Global.addZombie(new NormalZombie(0));
+
+    // Global.addZombie(new Zombie(0));
+    // Global.addZombie(new Zombie(0));
+    // Global.addZombie(new Zombie(0));
+    // Global.addZombie(new Zombie(0));
+    // Global.addZombie(new Zombie(0));
+    // Global.addZombie(new Zombie(0));
+    // Global.addZombie(new Zombie(0));
+    // Global.addZombie(new Zombie(0));
+    // Global.addZombie(new Zombie(0));
+
+    // Global.addPlant(new Peashooter(), 0, 1);
+    // Global.addPlant(new Peashooter(), 0, 2);
+    // Global.addPlant(new Peashooter(), 0, 3);
+    // Global.addPlant(new Peashooter(), 1, 1);
+    // Global.addPlant(new Peashooter(), 1, 2);
+    // Global.addPlant(new Peashooter(), 1, 3);
+
+    game.add(new Selector(game));
+    // Global.saveToFile("./testing.ser");
+
+    System.out.println(Global.plants[0][1]);
   }
 
   private static void preload() {

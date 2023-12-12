@@ -1,6 +1,7 @@
 package Entities.Zombies;
 
 import Entities.Plants.Plant;
+import Main.Constants;
 import Main.Global;
 
 public class LadderZombie extends Zombie {
@@ -27,7 +28,7 @@ public class LadderZombie extends Zombie {
     if (
       hasLadder &&
       col >= 0 &&
-      col < Global.PLANT_COLS_COUNT &&
+      col < Constants.PLANT_COLS_COUNT &&
       (p = Global.plants[row][col]) != null
     ) {
       hasLadder = false;

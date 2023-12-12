@@ -6,6 +6,7 @@ import Entities.Plants.Plant;
 import Entities.ZombieItems.Armor;
 import GameUtils.Game;
 import GameUtils.Sound;
+import Main.Constants;
 import Main.Global;
 import java.awt.Graphics2D;
 import java.io.File;
@@ -87,7 +88,8 @@ public class Zombie extends LiveEntity {
 
     int row = (int) this.getRow();
     int col = (int) Math.round(this.getCol());
-    Plant p = row < Global.PLANT_ROWS_COUNT && col < Global.PLANT_COLS_COUNT
+    Plant p = row < Constants.PLANT_ROWS_COUNT &&
+      col < Constants.PLANT_COLS_COUNT
       ? Global.plants[row][col]
       : null;
 

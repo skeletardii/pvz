@@ -2,8 +2,8 @@ package Entities.Plants.Shrooms;
 
 import Entities.Plants.Plant;
 import Entities.Plants.PlantBuilder;
+import Main.Constants.GameMode;
 import Main.Global;
-import Main.Global.GameMode;
 
 public abstract class Shroom extends Plant {
 

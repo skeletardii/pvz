@@ -13,10 +13,6 @@ public class Repeater extends Peashooter implements Upgradable {
     super(row, col, 2, 150);
   }
 
-  public Repeater(int row, double col, int shotsPerAttack, int sunCost) {
-    super(row, col, shotsPerAttack, sunCost);
-  }
-
   @Override
   public Upgraded upgrade() {
     throw new UnsupportedOperationException("Unimplemented method 'upgrade'");

@@ -4,6 +4,7 @@ import Entities.Particles.Explosion;
 import Entities.Plants.PlantBuilder;
 import Entities.Zombies.Zombie;
 import Entities.Zombies.Zombie.DeathType;
+import Main.Constants;
 import Main.Global;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -54,7 +55,7 @@ public class CherryBomb extends InstaKiller {
   public void activate() {
     for (int k = -1; k < 2; ++k) {
       if (
-        this.getRow() + k < 0 || this.getRow() + k >= Global.PLANT_ROWS_COUNT
+        this.getRow() + k < 0 || this.getRow() + k >= Constants.PLANT_ROWS_COUNT
       ) continue;
 
       for (Zombie z : Global.zombies[(int) this.getRow() + k]) {
@@ -63,11 +64,7 @@ public class CherryBomb extends InstaKiller {
         }
       }
     }
-<<<<<<< HEAD
     Global.game.add(new Explosion((int) getRow(), getCol()));
-=======
-    Global.game.add(new Explosion(this.getRow(), this.getCol()));
->>>>>>> 79fe6e997696f6e671f3e4b6b31f60796db3bd8c
     super.activate();
   }
 }

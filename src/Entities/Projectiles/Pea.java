@@ -35,7 +35,7 @@ public class Pea extends Projectile {
     for (Zombie z : Global.zombies[(int) this.getRow()]) {
       if (this.isTouching(z)) {
         z.takeDamage(this.projectileDamage);
-        Sound.play(sndFiles[(int) (Math.random() * 2)]);
+        Sound.play(sndFiles[(int)Math.round(Math.random())]);
         this.remove();
         return;
       }

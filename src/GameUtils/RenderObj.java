@@ -1,10 +1,13 @@
 package GameUtils;
 
 import java.awt.Graphics2D;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public abstract class RenderObj implements Comparable<RenderObj> {
+public abstract class RenderObj implements Comparable<RenderObj>, Serializable {
+
+  private static final long serialVersionUID = 1L; // Ensure compatibility during serialization
 
   private double zIndex = 0.0;
   protected Game game;

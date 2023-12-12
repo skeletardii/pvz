@@ -1,6 +1,8 @@
 package Entities.Particles;
 
 import GameUtils.RenderObj;
+import Main.Global;
+
 import java.awt.AlphaComposite;
 import java.awt.Composite;
 import java.awt.Graphics2D;
@@ -15,6 +17,7 @@ public class Explosion extends RenderObj {
   }
 
   public Explosion(int row, double col) {
+    setZindex(20);
     int ox = (int) Math.round((col) * 100 + 0 + 30 + 45);
     int oy = (int) Math.round((row) * 100 + 0 + 60 + 84);
     for (int i = 0; i <= 10; i++) {
@@ -44,7 +47,10 @@ public class Explosion extends RenderObj {
   }
 
   public void paintComponent(Graphics2D g) {
-    if (getChildren().size() == 0) this.remove();
+    if (getChildren().size() == 0) {
+      Global.particles.remove(this);
+      this.remove();
+    }
   }
 }
 
@@ -78,25 +84,26 @@ class ExplosionCloud extends RenderObj {
   }
 
   public void paintComponent(Graphics2D g) {
-    AffineTransform og = g.getTransform();
     Composite ogc = g.getComposite();
     life--;
     posX += (int) Math.round(velX);
     posY += (int) Math.round(velY);
-    //g.setColor(Color.white); g.fillOval(posX,posY,(int)(size*side), (int)size*side);
-    AffineTransform at = AffineTransform.getRotateInstance(
+
+    AffineTransform og = g.getTransform();
+    AffineTransform at = (AffineTransform)(og.clone());
+    at.rotate(
       Math.toRadians(rot),
       posX,
       posY
     );
+    g.setTransform(at);
     if (life <= 15) g.setComposite(
       AlphaComposite.getInstance(AlphaComposite.SRC_OVER, (float) (life / 15.0))
     );
     else g.setComposite(
       AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.9f)
     );
-    g.setTransform(at);
-    // g.rotate(Math.toRadians(rot));
+    //at.scale(0.7, 0.7);
     g.drawImage(
       cloud,
       (int) (posX - size * side / 2),

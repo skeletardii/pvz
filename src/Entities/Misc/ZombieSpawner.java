@@ -6,10 +6,14 @@ import Entities.Zombies.Gargantuar;
 import Entities.Zombies.LadderZombie;
 import Entities.Zombies.PogoZombie;
 import Entities.Zombies.Zombie;
+import Main.Constants;
 import Main.Global;
+import java.io.Serializable;
 import java.util.Random;
 
-public class ZombieSpawner {
+public class ZombieSpawner implements Serializable {
+
+  private static final long serialVersionUID = 1L;
 
   // galibog pako ani, mu spawn by wave mana diay ang zombies sa pvz diba? nya each increasing wave kay more rows sila mu spawn until sa final wave where mu spawn nas tanna
   public static final Random RAND = new Random();
@@ -22,7 +26,7 @@ public class ZombieSpawner {
 
     if (zombieSpawnCtr >= zombieSpawnRate) {
       zombieSpawnCtr = 0;
-      int spawnRow = RAND.nextInt(Global.PLANT_ROWS_COUNT);
+      int spawnRow = RAND.nextInt(Constants.PLANT_ROWS_COUNT);
       // Global.addZombie(new DolphinRiderZombie(spawnRow));
       // Global.addZombie(new DiggerZombie(spawnRow));
       // Global.addZombie(new Gargantuar(spawnRow));

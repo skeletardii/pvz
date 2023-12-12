@@ -2,7 +2,7 @@ package Entities.Plants;
 
 import Entities.Interfaces.Upgraded;
 
-public class GatlingPea extends Repeater implements Upgraded {
+public class GatlingPea extends Peashooter implements Upgraded {
 
   public GatlingPea() {
     this(-1, -1);

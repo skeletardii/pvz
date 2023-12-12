@@ -3,6 +3,7 @@ package GUI;
 import Entities.Interfaces.SunProducer;
 import GameUtils.RenderObj;
 import GameUtils.Updater;
+import Main.Constants;
 import Main.Global;
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -17,7 +18,7 @@ public class GameUI extends RenderObj implements Updater, SunProducer {
   private int sunCooldown = 1440;
   private int sunCtr = 0;
 
-  public GameUI(Global.GameMode mode) {
+  public GameUI(Constants.GameMode mode) {
     sprite =
       new ImageIcon("assets/ui/background" + mode.ordinal() + ".jpg")
         .getImage();
@@ -31,8 +32,8 @@ public class GameUI extends RenderObj implements Updater, SunProducer {
 
     if (sunCtr >= sunCooldown) {
       sunCtr = 0;
-      double spawnRow = rand.nextDouble(Global.PLANT_ROWS_COUNT - 2.0) - 1;
-      double spawnColumn = rand.nextDouble(Global.PLANT_COLS_COUNT) - 1;
+      double spawnRow = rand.nextDouble(Constants.PLANT_ROWS_COUNT - 2.0) - 1;
+      double spawnColumn = rand.nextDouble(Constants.PLANT_COLS_COUNT) - 1;
       Global.game.add(produceSunGrid(25, spawnRow, spawnColumn, 120));
     }
   }
