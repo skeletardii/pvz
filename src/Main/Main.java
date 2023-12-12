@@ -63,7 +63,7 @@ public class Main {
       "GameUtils.Updater",
       "GameUtils.Sound",
       "Entities.Misc.LiveEntity",
-      "Entities.Misc.Plant",
+      "Entities.Plants.Plant",
       "Entities.Misc.LawnMower",
       "Entities.Misc.Sun",
       "Entities.Zombies.Zombie",

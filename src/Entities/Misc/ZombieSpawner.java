@@ -1,5 +1,6 @@
 package Entities.Misc;
 
+import Entities.Zombies.BucketheadZombie;
 import Entities.Zombies.DolphinRiderZombie;
 import Entities.Zombies.Zombie;
 import Main.Global;
@@ -19,7 +20,7 @@ public class ZombieSpawner {
     if (zombieSpawnCtr >= zombieSpawnRate) {
       zombieSpawnCtr = 0;
       int spawnRow = RAND.nextInt(Global.PLANT_ROWS_COUNT);
-      Global.addZombie(new DolphinRiderZombie(spawnRow));
+      Global.addZombie(new Zombie(spawnRow));
     }
   }
 }
