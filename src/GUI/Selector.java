@@ -10,20 +10,17 @@ import java.awt.Graphics2D;
 public class Selector extends RenderObj implements Updater {
 
   Mouse mouse;
-  Mouse mousePrev;
 
   public Selector(Game game) {
     mouse = game.mouse;
-    mousePrev = mouse;
   }
 
   public void update() {
-    mousePrev = mouse;
     mouse = game.mouse;
   }
 
   public void paintComponent(Graphics2D g) {
     g.setColor(Color.white);
-    g.drawLine(mouse.x, mouse.y, mousePrev.x, mousePrev.y);
+    g.drawOval(mouse.x-5, mouse.y-5, 10, 10);
   }
 }

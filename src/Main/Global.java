@@ -33,10 +33,11 @@ public class Global implements Updater {
   public static final int ROW_PIXEL_OFFSET = 100;
   public static final int COL_PIXEL_OFFSET = 80;
   public static Plant[][] plants = new Plant[PLANT_ROWS_COUNT][PLANT_COLS_COUNT];
+  @SuppressWarnings("unchecked")
   public static ArrayList<Zombie>[] zombies = new ArrayList[PLANT_ROWS_COUNT];
   public static LawnMower[] lawnMowers = new LawnMower[PLANT_ROWS_COUNT];
   public static ZombieSpawner zombieSpawner = new ZombieSpawner();
-
+  public static ArrayList<Object> particles = new ArrayList<>();
   public static final GameMode gameMode = GameMode.LAWN_DAY;
 
   public static void init() {
@@ -63,13 +64,11 @@ public class Global implements Updater {
     mouse_prev.x = mouse.x;
     mouse_prev.y = mouse.y;
     mouse = game.mouse;
-
-    if (mouse.x >= 800) mouse.x = 799;
-    if (mouse.x <= 0) mouse.x = 0;
-    if (mouse.y >= 600) mouse.y = 599;
-    if (mouse.y <= 0) mouse.x = 0;
   }
-
+  public static void addParticle(Object particle){
+    particles.add(particle);
+    game.add(particle);
+  }
   public static void addPlant(Plant p, int row, int col)
     throws ArrayStoreException {
     if (plants[row][col] != null) {
@@ -109,6 +108,7 @@ public class Global implements Updater {
     //   }
     // }
     // zombies = updatedZombies;
+    @SuppressWarnings("unchecked")
     ArrayList<Zombie>[] updatedZombies = new ArrayList[PLANT_ROWS_COUNT];
     for (int i = 0; i < PLANT_ROWS_COUNT; i++) {
       updatedZombies[i] = new ArrayList<Zombie>();

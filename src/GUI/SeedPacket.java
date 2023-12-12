@@ -5,6 +5,7 @@ import Entities.Plants.Plant;
 import GameUtils.*;
 import Main.Global;
 import java.awt.AlphaComposite;
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.io.File;
@@ -73,6 +74,7 @@ public class SeedPacket extends RenderObj implements Updater {
       ly,
       null
     );
+    g.setColor(Color.black);
     g.drawString("" + cost, posX + 20 - (5 * (getDigits(cost)-1)), 75);
     if (state == 0) {
       setZindex(initZ);

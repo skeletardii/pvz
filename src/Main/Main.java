@@ -51,6 +51,7 @@ public class Main {
     Global.addSeedPacket(new SeedPacket(new Repeater()));
     Global.addSeedPacket(new SeedPacket(new GatlingPea()));
     // Global.addZombie(new NormalZombie(0));
+    game.add(new Selector(game));
   }
 
   private static void preload() {
