@@ -2,6 +2,7 @@ package Entities.Zombies;
 
 import Entities.Misc.LiveEntity;
 import Entities.Misc.LiveEntityBuilder;
+import Entities.Plants.Plant;
 import Entities.ZombieItems.Armor;
 import GameUtils.Game;
 import GameUtils.Sound;
@@ -84,22 +85,24 @@ public class Zombie extends LiveEntity {
   public void update() {
     super.update();
 
-    int row = this.getRow();
+    int row = (int) this.getRow();
     int col = (int) Math.round(this.getCol());
+    Plant p = row < Global.PLANT_ROWS_COUNT && col < Global.PLANT_COLS_COUNT
+      ? Global.plants[row][col]
+      : null;
 
     // zombie attacks
     if (
       isTargetable() &&
       row >= 0 &&
       col >= 0 &&
-      row < Global.PLANT_ROWS_COUNT &&
-      col < Global.PLANT_COLS_COUNT &&
-      Global.plants[row][col] != null &&
-      Global.plants[row][col].isTargetable()
+      p != null &&
+      p.isTargetable() &&
+      !p.hasLadder()
     ) {
       isEating = true;
       animSpeed = 0;
-      Global.plants[row][col].takeDamage(this.dps);
+      p.takeDamage(this.dps);
       if (eatFrame++ >= 45) eatFrame = 0;
       if (eatFrame == 0) Sound.play(eat_snd[(int) Math.round(Math.random())]);
       return;
@@ -107,6 +110,12 @@ public class Zombie extends LiveEntity {
 
     // zombie moves
     this.moveCol(-this.movementSpeed);
+
+    // if (p != null) {
+    //   double high = -(0.5 - this.getCol() + col);
+    //   this.moveRow(high);
+    // }
+
     isEating = false;
     animSpeed = 1;
     eatFrame = -10;

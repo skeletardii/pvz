@@ -21,7 +21,7 @@ public class Pea extends Projectile {
   public static final Image sprite2 = new ImageIcon("assets/plants/wallnut.png")
     .getImage();
 
-  public Pea(int row, double col) {
+  public Pea(double row, double col) {
     super(row, col, 0.05, 10, sprite1, 28, 28, 1);
     animStart[0] = 0;
     animEnd[0] = 0;
@@ -32,7 +32,7 @@ public class Pea extends Projectile {
 
   @Override
   public void update() {
-    for (Zombie z : Global.zombies[this.getRow()]) {
+    for (Zombie z : Global.zombies[(int) this.getRow()]) {
       if (this.isTouching(z)) {
         z.takeDamage(this.projectileDamage);
         Sound.play(sndFiles[(int) (Math.random() * 2)]);

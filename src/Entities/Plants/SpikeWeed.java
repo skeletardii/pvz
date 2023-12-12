@@ -50,7 +50,7 @@ public class SpikeWeed extends Plant implements Upgradable {
 
   @Override
   public Upgraded upgrade() {
-    return new SpikeRock(this.getRow(), (int) this.getCol());
+    return new SpikeRock((int) this.getRow(), (int) this.getCol());
   }
 
   @Override
@@ -60,7 +60,7 @@ public class SpikeWeed extends Plant implements Upgradable {
 
   @Override
   public void update() {
-    for (Zombie z : Global.zombies[this.getRow()]) {
+    for (Zombie z : Global.zombies[(int) this.getRow()]) {
       if (this.isTouching(z) && z.isTargetable()) {
         z.takeDamage(dps);
       }

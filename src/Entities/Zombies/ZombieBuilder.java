@@ -8,7 +8,7 @@ import javax.swing.ImageIcon;
 
 public class ZombieBuilder {
 
-  int row = 0;
+  double row = 0;
   double col = Global.PLANT_COLS_COUNT + 2.0;
   int health = 181;
   Armor armor = null;
@@ -25,7 +25,7 @@ public class ZombieBuilder {
     return this;
   }
 
-  public ZombieBuilder setRow(int row) {
+  public ZombieBuilder setRow(double row) {
     this.row = row;
     return this;
   }

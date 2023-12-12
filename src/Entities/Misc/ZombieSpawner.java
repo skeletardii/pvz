@@ -3,6 +3,8 @@ package Entities.Misc;
 import Entities.Zombies.DiggerZombie;
 import Entities.Zombies.DolphinRiderZombie;
 import Entities.Zombies.Gargantuar;
+import Entities.Zombies.LadderZombie;
+import Entities.Zombies.PogoZombie;
 import Entities.Zombies.Zombie;
 import Main.Global;
 import java.util.Random;
@@ -23,7 +25,9 @@ public class ZombieSpawner {
       int spawnRow = RAND.nextInt(Global.PLANT_ROWS_COUNT);
       // Global.addZombie(new DolphinRiderZombie(spawnRow));
       // Global.addZombie(new DiggerZombie(spawnRow));
-      Global.addZombie(new Gargantuar(spawnRow));
+      // Global.addZombie(new Gargantuar(spawnRow));
+      // Global.addZombie(new PogoZombie(spawnRow));
+      Global.addZombie(new LadderZombie(spawnRow));
     }
   }
 }

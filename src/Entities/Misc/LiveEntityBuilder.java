@@ -4,7 +4,7 @@ import java.awt.Image;
 
 public class LiveEntityBuilder {
 
-  int row;
+  double row;
   double col;
   int health;
   boolean targetable = true;
@@ -40,7 +40,7 @@ public class LiveEntityBuilder {
     return this;
   }
 
-  public LiveEntityBuilder setRow(int row) {
+  public LiveEntityBuilder setRow(double row) {
     this.row = row;
     return this;
   }

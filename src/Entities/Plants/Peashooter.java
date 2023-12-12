@@ -47,7 +47,7 @@ public class Peashooter extends Plant implements Attacker {
 
   @Override
   public void update() {
-    for (Zombie z : Global.zombies[this.getRow()]) {
+    for (Zombie z : Global.zombies[(int) this.getRow()]) {
       if (z.getCol() >= this.getCol() && z.isTargetable()) attack();
     }
     super.update();

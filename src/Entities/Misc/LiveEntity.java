@@ -8,7 +8,7 @@ import javax.swing.ImageIcon;
 
 public abstract class LiveEntity extends RenderObj implements Updater {
 
-  private int row;
+  private double row;
   private double col;
   private int health;
   private boolean targetable = true;
@@ -59,7 +59,7 @@ public abstract class LiveEntity extends RenderObj implements Updater {
   }
 
   protected LiveEntity(
-    int row,
+    double row,
     double col,
     int health,
     Image sprite,
@@ -80,7 +80,7 @@ public abstract class LiveEntity extends RenderObj implements Updater {
   }
 
   protected LiveEntity(
-    int row,
+    double row,
     double col,
     Image sprite,
     int spriteWidth,
@@ -212,7 +212,7 @@ public abstract class LiveEntity extends RenderObj implements Updater {
     this.targetable = targetable;
   }
 
-  public int getRow() {
+  public double getRow() {
     return row;
   }
 
@@ -222,6 +222,10 @@ public abstract class LiveEntity extends RenderObj implements Updater {
 
   public void setCol(double col) {
     this.col = col;
+  }
+
+  public void moveRow(double deltaRow) {
+    this.row += deltaRow;
   }
 
   public void moveCol(double deltaCol) {

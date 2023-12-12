@@ -57,13 +57,13 @@ public class CherryBomb extends InstaKiller {
         this.getRow() + k < 0 || this.getRow() >= Global.PLANT_ROWS_COUNT
       ) break;
 
-      for (Zombie z : Global.zombies[this.getRow() + k]) {
+      for (Zombie z : Global.zombies[(int) this.getRow() + k]) {
         if (Math.abs(z.getCol() - this.getCol()) <= 1.5) {
           z.kill(DeathType.EXPLODED);
         }
       }
     }
-    Global.game.add(new Explosion(getRow(), getCol()));
+    Global.game.add(new Explosion((int) getRow(), getCol()));
     super.activate();
   }
 }

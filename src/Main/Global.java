@@ -93,7 +93,7 @@ public class Global implements Updater {
 
   public static void addZombie(Zombie z) {
     z.setZindex(6.0 + z.getRow());
-    zombies[z.getRow()].add(z);
+    zombies[(int) z.getRow()].add(z);
     game.add(z);
   }
 
