@@ -68,6 +68,7 @@ public class Main {
       "Entities.Misc.Sun",
       "Entities.Zombies.Zombie",
       "Entities.Zombies.ZombieBuilder",
+      "Entities.Particles.Explosion",
       "Entities.Plants.PlantBuilder",
       "Entities.Plants.CabbagePult",
       "Entities.Plants.Chomper",

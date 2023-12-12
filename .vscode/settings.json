@@ -3,5 +3,6 @@
     "java.project.outputPath": "bin",
     "java.project.referencedLibraries": [
         "lib/**/*.jar"
-    ]
+    ],
+    "code-runner.customCommand": " c:; cd 'c:\\Users\\X\\Desktop\\projects\\misc\\pvz'; & 'C:\\Program Files\\Eclipse Adoptium\\jdk-17.0.8.101-hotspot\\bin\\java.exe' '-XX:+ShowCodeDetailsInExceptionMessages' '-cp' 'C:\\Users\\X\\Desktop\\projects\\misc\\pvz\\bin' 'Main.Main'"
 }
