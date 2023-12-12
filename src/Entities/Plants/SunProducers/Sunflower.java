@@ -31,8 +31,8 @@ public class Sunflower extends Plant implements SunProducer, Upgradable {
         .setSpriteWidth(364)
         .setSpriteHeight(365)
     );
-    anim_start[0] = 4;
-    anim_end[0] = 28;
+    animStart[0] = 4;
+    animEnd[0] = 28;
     setFrame(4);
   }
 
@@ -87,8 +87,8 @@ public class Sunflower extends Plant implements SunProducer, Upgradable {
           .setSpriteWidth(422)
           .setSpriteHeight(422)
       );
-      anim_start[0] = 8;
-      anim_end[0] = 33;
+      animStart[0] = 8;
+      animEnd[0] = 33;
       setFrame(4);
     }
 

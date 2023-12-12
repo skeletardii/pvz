@@ -32,12 +32,12 @@ public class PotatoMine extends InstaKiller {
         .setAnimRow(3)
     );
     this.explodeSpeed = 0;
-    anim_start[0] = 0;
-    anim_end[0] = 0;
-    anim_start[1] = 1;
-    anim_end[1] = 19;
-    anim_start[2] = 20;
-    anim_end[2] = 35;
+    animStart[0] = 0;
+    animEnd[0] = 0;
+    animStart[1] = 1;
+    animEnd[1] = 19;
+    animStart[2] = 20;
+    animEnd[2] = 35;
     scale = 0.2;
   }
 

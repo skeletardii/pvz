@@ -24,8 +24,8 @@ public class Lilypad extends Aquatic {
         .setSpriteWidth(364)
         .setSpriteHeight(365)
     );
-    anim_start[0] = 4;
-    anim_end[0] = 28;
+    animStart[0] = 4;
+    animEnd[0] = 28;
     setFrame(4);
   }
 

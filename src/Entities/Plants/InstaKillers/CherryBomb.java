@@ -29,10 +29,10 @@ public class CherryBomb extends InstaKiller {
         .setSpriteHeight(458)
         .setAnimRow(2)
     );
-    anim_start[0] = 14;
-    anim_end[0] = 26;
-    anim_start[1] = 0;
-    anim_end[1] = 13;
+    animStart[0] = 14;
+    animEnd[0] = 26;
+    animStart[1] = 0;
+    animEnd[1] = 13;
     offsetOY = 10;
     setFrame(14);
   }
@@ -43,7 +43,7 @@ public class CherryBomb extends InstaKiller {
 
   @Override
   public void paintComponent(Graphics2D g) {
-    if (explodeTime <= (anim_end[0] - anim_start[0]) * 2) {
+    if (explodeTime <= (animEnd[0] - animStart[0]) * 2) {
       renderSprite(g, 1);
     } else {
       renderSprite(g, 0);

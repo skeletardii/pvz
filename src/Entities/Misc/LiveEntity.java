@@ -18,8 +18,8 @@ public abstract class LiveEntity extends RenderObj implements Updater {
   protected Image sprite;
   protected int lx, ly, frame, frameCtr = 0;
   protected double scale = 0.25;
-  public int[] anim_start;
-  public int[] anim_end;
+  protected int[] animStart;
+  protected int[] animEnd;
   private static final Image shadow = new ImageIcon("assets/ui/shadow.png")
     .getImage();
   protected int offsetOY = 0;
@@ -27,7 +27,7 @@ public abstract class LiveEntity extends RenderObj implements Updater {
   protected int shadowOffsetX = 0;
   protected int shadowOffsetY = 0;
   protected double shadowScale = 1.0;
-  protected int anim_speed = 1;
+  protected int animSpeed = 1;
 
   protected LiveEntity(LiveEntityBuilder leBuilder) {
     this.row = leBuilder.row;
@@ -43,12 +43,19 @@ public abstract class LiveEntity extends RenderObj implements Updater {
     this.frame = leBuilder.frame;
 
     this.scale = leBuilder.scale;
-    this.anim_start = leBuilder.animStart;
-    this.anim_end = leBuilder.animEnd;
-    this.shadow = leBuilder.shadow;
 
+    this.offsetOX = leBuilder.offsetOX;
+    this.offsetOY = leBuilder.offsetOY;
+    this.shadowOffsetX = leBuilder.shadowOffsetX;
+    this.shadowOffsetY = leBuilder.shadowOffsetY;
     this.shadowScale = leBuilder.shadowScale;
-    this.anim_speed = leBuilder.animSpeed;
+
+    this.animSpeed = leBuilder.animSpeed;
+
+    animStart = new int[leBuilder.animRow];
+    animEnd = new int[leBuilder.animRow];
+    lx = leBuilder.spriteWidth;
+    ly = leBuilder.spriteHeight;
   }
 
   protected LiveEntity(
@@ -60,17 +67,16 @@ public abstract class LiveEntity extends RenderObj implements Updater {
     int spriteHeight,
     int animRow
   ) {
-    this.row = row;
-    this.col = col;
-    this.health = health;
-    this.sprite = sprite;
-
-    offsetX = (int) (Math.random() * 10);
-    offsetY = (int) (Math.random() * 10);
-    anim_start = new int[animRow];
-    anim_end = new int[animRow];
-    lx = spriteWidth;
-    ly = spriteHeight;
+    this(
+      new LiveEntityBuilder()
+        .setRow(row)
+        .setCol(col)
+        .setHealth(health)
+        .setSprite(sprite)
+        .setSpriteWidth(spriteWidth)
+        .setSpriteHeight(spriteHeight)
+        .setAnimRow(animRow)
+    );
   }
 
   protected LiveEntity(
@@ -82,13 +88,14 @@ public abstract class LiveEntity extends RenderObj implements Updater {
     int animRow
   ) {
     this(
-      row,
-      col,
-      Integer.MAX_VALUE,
-      sprite,
-      spriteWidth,
-      spriteHeight,
-      animRow
+      new LiveEntityBuilder()
+        .setRow(row)
+        .setCol(col)
+        .setHealth(Integer.MAX_VALUE)
+        .setSprite(sprite)
+        .setSpriteWidth(spriteWidth)
+        .setSpriteHeight(spriteHeight)
+        .setAnimRow(animRow)
     );
   }
 
@@ -105,7 +112,7 @@ public abstract class LiveEntity extends RenderObj implements Updater {
   }
 
   public void setFrame(int frame, int anim) {
-    this.frame = frame + anim_start[anim];
+    this.frame = frame + animStart[anim];
   }
 
   public void setRow(int row) {
@@ -117,8 +124,8 @@ public abstract class LiveEntity extends RenderObj implements Updater {
   }
 
   public void renderSprite(Graphics2D g, int anim) {
-    if (frame < anim_start[anim] || frame > anim_end[anim]) frame =
-      anim_start[anim];
+    if (frame < animStart[anim] || frame > animEnd[anim]) frame =
+      animStart[anim];
     int ox = (int) Math.round((col) * 80 + offsetX + 30 + 45);
     int oy = (int) Math.round((row) * 88 + offsetY + 60 + 84);
     int sx, sy, dx, dy;
@@ -150,10 +157,10 @@ public abstract class LiveEntity extends RenderObj implements Updater {
       sy + ly,
       null
     );
-    if (frameCtr++ > anim_speed) {
+    if (frameCtr++ > animSpeed) {
       frameCtr = 0;
       frame++;
-      if (frame == anim_end[anim]) frame = anim_start[anim];
+      if (frame == animEnd[anim]) frame = animStart[anim];
     }
     //g.setColor(Color.white);
     //g.drawOval(ox-5,oy-5,10,10);
@@ -166,7 +173,7 @@ public abstract class LiveEntity extends RenderObj implements Updater {
   }
 
   public int getSx() {
-    return anim_start[0] * lx;
+    return animStart[0] * lx;
   }
 
   public int getLx() {

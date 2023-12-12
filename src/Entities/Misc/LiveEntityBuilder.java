@@ -1,7 +1,6 @@
 package Entities.Misc;
 
 import java.awt.Image;
-import javax.swing.ImageIcon;
 
 public class LiveEntityBuilder {
 
@@ -16,91 +15,123 @@ public class LiveEntityBuilder {
   double scale = 0.25;
   int[] animStart;
   int[] animEnd;
-  Image shadow = new ImageIcon("assets/ui/shadow.png").getImage();
   int offsetOY = (int) Math.random() * 10;
   int offsetOX = (int) Math.random() * 10;
   int shadowOffsetX = 0;
   int shadowOffsetY = 0;
   double shadowScale = 1.0;
   int animSpeed = 1;
+  int animRow = 1;
+  int spriteWidth;
+  int spriteHeight;
 
-  public void setRow(int row) {
+  public LiveEntityBuilder setSpriteWidth(int spriteWidth) {
+    this.spriteWidth = spriteWidth;
+    return this;
+  }
+
+  public LiveEntityBuilder setSpriteHeight(int spriteHeight) {
+    this.spriteHeight = spriteHeight;
+    return this;
+  }
+
+  public LiveEntityBuilder setAnimRow(int animRow) {
+    this.animRow = animRow;
+    return this;
+  }
+
+  public LiveEntityBuilder setRow(int row) {
     this.row = row;
+    return this;
   }
 
-  public void setCol(double col) {
+  public LiveEntityBuilder setCol(double col) {
     this.col = col;
+    return this;
   }
 
-  public void setHealth(int health) {
+  public LiveEntityBuilder setHealth(int health) {
     this.health = health;
+    return this;
   }
 
-  public void setTargetable(boolean targetable) {
+  public LiveEntityBuilder setTargetable(boolean targetable) {
     this.targetable = targetable;
+    return this;
   }
 
-  public void setOffsetX(int offsetX) {
+  public LiveEntityBuilder setOffsetX(int offsetX) {
     this.offsetX = offsetX;
+    return this;
   }
 
-  public void setOffsetY(int offsetY) {
+  public LiveEntityBuilder setOffsetY(int offsetY) {
     this.offsetY = offsetY;
+    return this;
   }
 
-  public void setSprite(Image sprite) {
+  public LiveEntityBuilder setSprite(Image sprite) {
     this.sprite = sprite;
+    return this;
   }
 
-  public void setLx(int lx) {
+  public LiveEntityBuilder setLx(int lx) {
     this.lx = lx;
+    return this;
   }
 
-  public void setLy(int ly) {
+  public LiveEntityBuilder setLy(int ly) {
     this.ly = ly;
+    return this;
   }
 
-  public void setFrame(int frame) {
+  public LiveEntityBuilder setFrame(int frame) {
     this.frame = frame;
+    return this;
   }
 
-  public void setScale(double scale) {
+  public LiveEntityBuilder setScale(double scale) {
     this.scale = scale;
+    return this;
   }
 
-  public void setAnimStart(int[] animStart) {
+  public LiveEntityBuilder setAnimStart(int[] animStart) {
     this.animStart = animStart;
+    return this;
   }
 
-  public void setAnimEnd(int[] animEnd) {
+  public LiveEntityBuilder setAnimEnd(int[] animEnd) {
     this.animEnd = animEnd;
+    return this;
   }
 
-  public void setShadow(Image shadow) {
-    this.shadow = shadow;
-  }
-
-  public void setOffsetOY(int offsetOY) {
+  public LiveEntityBuilder setOffsetOY(int offsetOY) {
     this.offsetOY = offsetOY;
+    return this;
   }
 
-  public void setOffsetOX(int offsetOX) {
+  public LiveEntityBuilder setOffsetOX(int offsetOX) {
     this.offsetOX = offsetOX;
+    return this;
   }
 
-  public void setShadowOffsetX(int shadowOffsetX) {
+  public LiveEntityBuilder setShadowOffsetX(int shadowOffsetX) {
     this.shadowOffsetX = shadowOffsetX;
+    return this;
   }
 
-  public void setShadowOffsetY(int shadowOffsetY) {
+  public LiveEntityBuilder setShadowOffsetY(int shadowOffsetY) {
     this.shadowOffsetY = shadowOffsetY;
+    return this;
   }
 
-  public void setShadowScale(double shadowScale) {
+  public LiveEntityBuilder setShadowScale(double shadowScale) {
     this.shadowScale = shadowScale;
+    return this;
   }
 
-  public void setAnimSpeed(int animSpeed) {
+  public LiveEntityBuilder setAnimSpeed(int animSpeed) {
     this.animSpeed = animSpeed;
+    return this;
   }
 }

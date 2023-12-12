@@ -20,8 +20,8 @@ public class LawnMower extends LiveEntity {
 
   public LawnMower(int row) {
     super(row, -1, sprite, 450, 364, 1);
-    anim_start[0] = 0;
-    anim_end[0] = 16;
+    animStart[0] = 0;
+    animEnd[0] = 16;
     offsetOY = 20;
     scale = 0.20;
   }

@@ -30,10 +30,10 @@ public class CabbagePult extends Plant {
         .setSpriteHeight(527)
         .setAnimRow(2)
     );
-    anim_start[0] = 4;
-    anim_end[0] = 35;
-    anim_start[1] = 36;
-    anim_end[1] = 73;
+    animStart[0] = 4;
+    animEnd[0] = 35;
+    animStart[1] = 36;
+    animEnd[1] = 73;
     actionSpeed = 100;
     offsetOX = -30;
   }
@@ -45,10 +45,10 @@ public class CabbagePult extends Plant {
     }
     if (actionCtr <= 37) {
       state = 1;
-      anim_speed = 0;
+      animSpeed = 0;
     } else {
       state = 0;
-      anim_speed = 1;
+      animSpeed = 1;
     }
   }
 

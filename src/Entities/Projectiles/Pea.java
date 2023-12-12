@@ -23,8 +23,8 @@ public class Pea extends Projectile {
 
   public Pea(int row, double col) {
     super(row, col, 0.05, 10, sprite1, 28, 28, 1);
-    anim_start[0] = 0;
-    anim_end[0] = 0;
+    animStart[0] = 0;
+    animEnd[0] = 0;
     scale = 1.0;
     offsetOY = -50;
     shadowScale = 0.0;

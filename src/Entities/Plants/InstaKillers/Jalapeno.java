@@ -27,9 +27,9 @@ public class Jalapeno extends InstaKiller {
         .setSpriteWidth(351)
         .setSpriteHeight(468)
     );
-    anim_start[0] = 0;
-    anim_end[0] = 24;
-    anim_speed = 2;
+    animStart[0] = 0;
+    animEnd[0] = 24;
+    animSpeed = 2;
   }
 
   public Jalapeno() {

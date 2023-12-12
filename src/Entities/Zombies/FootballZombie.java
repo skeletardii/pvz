@@ -9,7 +9,7 @@ public class FootballZombie extends Zombie {
       new ZombieBuilder()
         .setRow(row)
         .setArmor(new Armor.FootballGear())
-        .setMovementSpeed(0.02)
+        .setMovementSpeed(ZombieSpeed.FAST.getValue())
     );
   }
 }

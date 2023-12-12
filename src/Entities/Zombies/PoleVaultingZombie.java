@@ -8,7 +8,11 @@ public class PoleVaultingZombie extends Zombie {
   private boolean jumped = false;
 
   protected PoleVaultingZombie(int row) {
-    super(new ZombieBuilder().setRow(row).setMovementSpeed(0.01));
+    super(
+      new ZombieBuilder()
+        .setRow(row)
+        .setMovementSpeed(ZombieSpeed.FAST.getValue())
+    );
   }
 
   protected PoleVaultingZombie(ZombieBuilder zBuilder) {

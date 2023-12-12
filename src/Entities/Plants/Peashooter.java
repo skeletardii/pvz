@@ -35,8 +35,8 @@ public class Peashooter extends Plant implements Attacker {
         .setSpriteHeight(353)
     );
     this.shotsPerAttack = shotsPerAttack;
-    anim_start[0] = 79;
-    anim_end[0] = 103;
+    animStart[0] = 79;
+    animEnd[0] = 103;
     sprite = new ImageIcon("assets/plants/peashooter.png").getImage();
   }
 
@@ -48,7 +48,7 @@ public class Peashooter extends Plant implements Attacker {
   @Override
   public void update() {
     for (Zombie z : Global.zombies[this.getRow()]) {
-      if (z.getCol() >= this.getCol()) attack();
+      if (z.getCol() >= this.getCol() && z.isTargetable()) attack();
     }
     super.update();
   }
