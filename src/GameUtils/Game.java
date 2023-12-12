@@ -19,7 +19,7 @@ import javax.swing.event.MouseInputListener;
 public class Game implements Runnable {
 
   //Option vars
-  private static final double TARGET_FPS = 60.0;
+  public static final double TARGET_FPS = 60.0;
   private static final boolean PRINT_FPS = false;
 
   //Thread vars
@@ -54,11 +54,17 @@ public class Game implements Runnable {
       new JLayeredPane() {
         @Override
         protected void paintComponent(Graphics g) {
-          Graphics2D g2d = (Graphics2D)g;
+          Graphics2D g2d = (Graphics2D) g;
           //g2d.setTransform(AffineTransform.getScaleInstance(frame.getSize().getWidth()/814.0,frame.getSize().getHeight()/637.0));
           //System.out.println(frame.getSize().getHeight());
-          g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
-          g2d.setRenderingHint(RenderingHints.KEY_RENDERING,RenderingHints.VALUE_RENDER_SPEED);
+          g2d.setRenderingHint(
+            RenderingHints.KEY_ANTIALIASING,
+            RenderingHints.VALUE_ANTIALIAS_ON
+          );
+          g2d.setRenderingHint(
+            RenderingHints.KEY_RENDERING,
+            RenderingHints.VALUE_RENDER_SPEED
+          );
           renders.render(g2d);
         }
       };

@@ -1,6 +1,7 @@
 package Entities.Zombies;
 
 import Entities.ZombieItems.Armor;
+import Entities.Zombies.Zombie.ZombieSpeed;
 import Main.Global;
 import java.awt.Image;
 import javax.swing.ImageIcon;
@@ -8,15 +9,21 @@ import javax.swing.ImageIcon;
 public class ZombieBuilder {
 
   int row = 0;
-  double col = Global.PLANT_COLS_COUNT + 2;
+  double col = Global.PLANT_COLS_COUNT + 2.0;
   int health = 181;
   Armor armor = null;
-  double movementSpeed = 0.005;
+  double movementSpeed = ZombieSpeed.NORMAL.getValue();
   int dps = 1;
   Image sprite = new ImageIcon("assets/zombies/zombie.png").getImage();
   int spriteWidth = 961;
   int spriteHeight = 723;
   int animRow = 2;
+  boolean targetable = true;
+
+  public ZombieBuilder setTargetable(boolean targetable) {
+    this.targetable = targetable;
+    return this;
+  }
 
   public ZombieBuilder setRow(int row) {
     this.row = row;

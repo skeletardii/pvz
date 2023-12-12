@@ -36,16 +36,16 @@ public class Chomper extends Plant implements SunProducer {
     offsetOX = 30;
     offsetOY = 10;
     shadowOffsetY = 10;
-    anim_start[0] = 0;
-    anim_end[0] = 25;
-    anim_start[1] = 26;
-    anim_end[1] = 50;
-    anim_start[2] = 51;
-    anim_end[2] = 65;
-    anim_start[3] = 66;
-    anim_end[3] = 93;
-    untilEat = (anim_end[1] - anim_start[1]) * 2;
-    untilRefresh = (anim_end[3] - anim_start[3]) * 2;
+    animStart[0] = 0;
+    animEnd[0] = 25;
+    animStart[1] = 26;
+    animEnd[1] = 50;
+    animStart[2] = 51;
+    animEnd[2] = 65;
+    animStart[3] = 66;
+    animEnd[3] = 93;
+    untilEat = (animEnd[1] - animStart[1]) * 2;
+    untilRefresh = (animEnd[3] - animStart[3]) * 2;
   }
 
   public Chomper() {
@@ -65,7 +65,8 @@ public class Chomper extends Plant implements SunProducer {
         !isEating() &&
         z.getRow() == this.getRow() &&
         z.getCol() - this.getCol() <= 2 &&
-        (chosenZombie == null || chosenZombie.getCol() > z.getCol())
+        (chosenZombie == null || chosenZombie.getCol() > z.getCol()) &&
+        z.isTargetable()
       ) chosenZombie = z;
     }
 

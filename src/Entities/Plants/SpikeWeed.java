@@ -42,8 +42,8 @@ public class SpikeWeed extends Plant implements Upgradable {
         .setSprite(sprite)
     );
     this.dps = dps;
-    anim_start[0] = 4;
-    anim_end[0] = 28;
+    animStart[0] = 4;
+    animEnd[0] = 28;
     setFrame(4);
     setTargetable(false);
   }
@@ -61,8 +61,8 @@ public class SpikeWeed extends Plant implements Upgradable {
   @Override
   public void update() {
     for (Zombie z : Global.zombies[this.getRow()]) {
-      if (this.isTouching(z)) {
-        z.setHealth(z.getHealth() - dps);
+      if (this.isTouching(z) && z.isTargetable()) {
+        z.takeDamage(dps);
       }
     }
   }

@@ -19,8 +19,8 @@ public class Torchwood extends Plant {
         .setPacketCooldown(SeedPacketRechargeTime.VERY_SLOW.getValue())
         .setSprite(sprite)
     );
-    anim_start[0] = 0;
-    anim_end[0] = 16;
+    animStart[0] = 0;
+    animEnd[0] = 16;
     offsetOY = 20;
   }
 

@@ -10,6 +10,6 @@ public class NewspaperZombie extends Zombie {
 
   @Override
   public void removeArmor() {
-    setMovementSpeed(getMovementSpeed() * 2);
+    setMovementSpeed(ZombieSpeed.FAST.getValue());
   }
 }

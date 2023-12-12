@@ -1,7 +1,9 @@
 package Entities.Zombies;
 
 import Entities.Misc.LiveEntity;
+import Entities.Misc.LiveEntityBuilder;
 import Entities.ZombieItems.Armor;
+import GameUtils.Game;
 import GameUtils.Sound;
 import Main.Global;
 import java.awt.Graphics2D;
@@ -26,6 +28,24 @@ public class Zombie extends LiveEntity {
     EXPLODED,
   }
 
+  public enum ZombieSpeed {
+    VERY_SLOW(0.1),
+    SLOW(0.2),
+    NORMAL(0.3),
+    FAST(0.4),
+    VERY_FAST(0.5);
+
+    private final double value;
+
+    ZombieSpeed(double value) {
+      this.value = value;
+    }
+
+    public double getValue() {
+      return value / Game.TARGET_FPS;
+    }
+  }
+
   protected Zombie() {
     this(new ZombieBuilder());
   }
@@ -36,13 +56,15 @@ public class Zombie extends LiveEntity {
 
   protected Zombie(ZombieBuilder zBuilder) {
     super(
-      zBuilder.row,
-      zBuilder.col,
-      zBuilder.health,
-      zBuilder.sprite,
-      zBuilder.spriteWidth,
-      zBuilder.spriteHeight,
-      zBuilder.animRow
+      new LiveEntityBuilder()
+        .setRow(zBuilder.row)
+        .setCol(zBuilder.col)
+        .setHealth(zBuilder.health)
+        .setSprite(zBuilder.sprite)
+        .setSpriteWidth(zBuilder.spriteWidth)
+        .setSpriteHeight(zBuilder.spriteHeight)
+        .setAnimRow(zBuilder.animRow)
+        .setTargetable(zBuilder.targetable)
     );
     this.armor = zBuilder.armor;
     this.movementSpeed = zBuilder.movementSpeed;
@@ -52,10 +74,10 @@ public class Zombie extends LiveEntity {
     this.offsetOY = 10;
     this.scale = 0.225;
 
-    anim_start[0] = 0;
-    anim_end[0] = 98;
-    anim_start[1] = 99;
-    anim_end[1] = 138;
+    animStart[0] = 0;
+    animEnd[0] = 98;
+    animStart[1] = 99;
+    animEnd[1] = 138;
   }
 
   @Override
@@ -65,31 +87,29 @@ public class Zombie extends LiveEntity {
     int row = this.getRow();
     int col = (int) Math.round(this.getCol());
 
+    // zombie attacks
     if (
-      col >= Global.PLANT_COLS_COUNT ||
-      col < 0 ||
-      Global.plants[row][col] == null ||
-      !Global.plants[row][col].isTargetable()
+      isTargetable() &&
+      row >= 0 &&
+      col >= 0 &&
+      row < Global.PLANT_ROWS_COUNT &&
+      col < Global.PLANT_COLS_COUNT &&
+      Global.plants[row][col] != null &&
+      Global.plants[row][col].isTargetable()
     ) {
-      this.moveCol(-this.movementSpeed);
-      isEating = false;
-      anim_speed = 1;
-      eatFrame = -10;
+      isEating = true;
+      animSpeed = 0;
+      Global.plants[row][col].takeDamage(this.dps);
+      if (eatFrame++ >= 45) eatFrame = 0;
+      if (eatFrame == 0) Sound.play(eat_snd[(int) Math.round(Math.random())]);
       return;
     }
 
-    // zombie attacks
-    if (this.armor != null) {
-      this.takeDamage(row);
-    } else {
-      if (Global.plants[row][col] != null) {
-        isEating = true;
-        anim_speed = 0;
-        Global.plants[row][col].takeDamage(this.dps);
-        if (eatFrame++ >= 45) eatFrame = 0;
-        if (eatFrame == 0) Sound.play(eat_snd[(int) Math.round(Math.random())]);
-      }
-    }
+    // zombie moves
+    this.moveCol(-this.movementSpeed);
+    isEating = false;
+    animSpeed = 1;
+    eatFrame = -10;
   }
 
   public void kill(DeathType type) {

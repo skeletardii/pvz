@@ -25,10 +25,10 @@ public class WallNut extends Plant {
         .setSpriteWidth(509)
         .setSpriteHeight(496)
     );
-    anim_start[0] = 0;
-    anim_end[0] = 16;
+    animStart[0] = 0;
+    animEnd[0] = 16;
     offsetOY = 20;
-    anim_speed = 2;
+    animSpeed = 2;
   }
 
   public WallNut(PlantBuilder pBuilder) {
@@ -59,13 +59,13 @@ public class WallNut extends Plant {
           .setSpriteWidth(414)
           .setSpriteHeight(584)
       );
-      anim_start[0] = 20;
-      anim_end[0] = 36;
+      animStart[0] = 20;
+      animEnd[0] = 36;
       scale = 0.2;
       shadowScale = 1.25;
       shadowOffsetY = 15;
       offsetOY = 10;
-      anim_speed = 2;
+      animSpeed = 2;
     }
 
     public TallNut() {

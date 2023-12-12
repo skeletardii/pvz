@@ -27,8 +27,8 @@ public class Squash extends InstaKiller {
         .setSpriteHeight(365)
     );
     this.explodeSpeed = 0;
-    anim_start[0] = 4;
-    anim_end[0] = 28;
+    animStart[0] = 4;
+    animEnd[0] = 28;
     setFrame(4);
   }
 
