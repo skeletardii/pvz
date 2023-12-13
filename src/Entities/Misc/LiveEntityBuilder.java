@@ -15,8 +15,8 @@ public class LiveEntityBuilder {
   double scale = 0.25;
   int[] animStart;
   int[] animEnd;
-  int offsetOY = (int) Math.random() * 10;
-  int offsetOX = (int) Math.random() * 10;
+  int offsetOY = (int) Math.random() * 10 - 5;
+  int offsetOX = (int) Math.random() * 10 - 5;
   int shadowOffsetX = 0;
   int shadowOffsetY = 0;
   double shadowScale = 1.0;

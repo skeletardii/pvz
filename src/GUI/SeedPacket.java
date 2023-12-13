@@ -98,8 +98,8 @@ public class SeedPacket extends RenderObj implements Updater {
       if (Global.plants[row][col] == null) {
         g.setComposite(makeComposite(0.5f));
 
-        int ox = (col) * 80 + 30 + 45;
-        int oy = (row) * 88 + 60 + 84;
+        int ox = (col) * Constants.COL_PIXEL_OFFSET + Constants.GRID_OFFSET_X;
+        int oy = (row) * Constants.ROW_PIXEL_OFFSET + Constants.GRID_OFFSET_Y;
         dx = ox - (int) (lx * scale) / 2;
         dy = oy - (int) (ly * scale);
         g.drawImage(

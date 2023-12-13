@@ -84,6 +84,11 @@ public class Global implements Updater, Serializable {
     mouse_prev.x = mouse.x;
     mouse_prev.y = mouse.y;
     mouse = game.mouse;
+
+    if (mouse.x >= 800) mouse.x = 799;
+    if (mouse.x <= 0) mouse.x = 0;
+    if (mouse.y >= 600) mouse.y = 599;
+    if (mouse.y <= 0) mouse.x = 0;
   }
 
   public static void addParticle(Object particle) {
