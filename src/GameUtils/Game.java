@@ -12,6 +12,9 @@ import java.awt.geom.AffineTransform;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
+
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.OverlayLayout;
@@ -43,7 +46,7 @@ public class Game implements Runnable, Serializable {
 
   //Collection vars
   public RenderObj renders;
-  public ArrayList<Updater> updaters;
+  public RootUpdaterObj updaters;
 
   //Constructor
   public Game(JFrame _frame, int sizeX, int sizeY) {
@@ -51,7 +54,7 @@ public class Game implements Runnable, Serializable {
 
     renders = new RootRenderObj();
     renders.setGame(this);
-    updaters = new ArrayList<Updater>();
+    updaters = new RootUpdaterObj();
     updaters.add((Updater) renders);
 
     pane =
@@ -103,13 +106,20 @@ public class Game implements Runnable, Serializable {
   }
 
   public void remove(Updater obj) throws NoSuchElementException {
-    for (int i = 0; i < updaters.size(); i++) {
-      if (updaters.get(i) == obj) {
-        updaters.remove(i);
-        return;
-      }
-    }
+    try{
+    updaters.remove(obj);
+    return;
+
+    } catch (Exception e){
+      
     throw new NoSuchElementException("Object not found in Updater Collection.");
+    }
+    // for (int i = 0; i < updaters.size(); i++) {
+    //   if (updaters.get(i) == obj) {
+    //     updaters.remove(i);
+    //     return;
+    //   }
+    // }
   }
 
   public void start() {
@@ -236,9 +246,106 @@ class InputListener implements KeyListener, MouseInputListener, Serializable {
   public void mouseExited(MouseEvent e) {}
 }
 
-class RootRenderObj extends RenderObj implements Updater {
-
-  public void update() {}
-
+class RootRenderObj extends RenderObj implements Updater{
+  private static final int THREADS = 1;
+  public static BlockingQueue<RenderObj> queue = new LinkedBlockingQueue<>();
+  private Renderer[] renderers = new Renderer[THREADS];
   public void paintComponent(Graphics2D g) {}
+  public void update(){}
+  public void render(Graphics2D g){
+    resort();
+    for (int j = 0; j < THREADS; j++) {
+      renderers[j].g=g;
+    } 
+    for (int i = 0; i < getChildren().size(); i++) {
+        if(i>=0) getChildren().get(i).render(g);
+        else 
+        {
+          try{
+            queue.put(getChildren().get(i));
+          } catch(Exception e) {e.printStackTrace();}
+        }
+    }
+    while(!queue.isEmpty()){
+      try{
+        wait(1);
+      } catch(Exception e){
+      }
+    }
+  }
+  public RootRenderObj(){
+    Renderer.queue = queue;
+    for (int j = 0; j < THREADS; j++) {
+      renderers[j]=new Renderer();
+      new Thread(renderers[j]).start();
+    } 
+
+  }
+}
+class Renderer implements Runnable{
+  public Graphics2D g;
+  public static BlockingQueue<RenderObj> queue;
+  public void run(){
+    try {
+      while(true){
+        RenderObj r = queue.take();
+        r.render(g);
+      }
+    } catch (InterruptedException e){
+      Thread.currentThread().interrupt();
+    }
+  }
+}
+class RootUpdaterObj implements Updater{
+  private static final int THREADS = 5;
+  private static ArrayList<Updater> children = new ArrayList<Updater>();
+  private UpdaterConsumer[] updaterConsumers = new UpdaterConsumer[THREADS];
+  public static BlockingQueue<Updater> queue = new LinkedBlockingQueue<>();
+  public void add(Updater u){
+    children.add(u);
+  }
+  public void remove(Updater u){
+    try{
+      children.remove(u);
+    } catch (Exception e){
+
+    }
+  }
+  public Updater get(int index){
+    return children.get(index);
+  }
+  public int size(){
+    return children.size();
+  }
+  public void update() {
+    for(int i=0; i<children.size(); i++){
+      queue.add(children.get(i));
+    }
+    while(!queue.isEmpty()){
+      try{
+        wait(1);
+      } catch(Exception e){
+      }
+    }
+  }
+  public RootUpdaterObj(){
+    UpdaterConsumer.queue=queue;
+    for(int i=0; i<THREADS; i++){
+      updaterConsumers[i] = new UpdaterConsumer();
+      new Thread(updaterConsumers[i]).start();
+    }
+  }
+}
+class UpdaterConsumer implements Runnable{
+  public static BlockingQueue<Updater> queue;
+  public void run(){
+    try {
+      while(true){
+        Updater u = queue.take();
+        u.updateWithChildren();
+      }
+    } catch (InterruptedException e){
+      Thread.currentThread().interrupt();
+    }
+  }
 }

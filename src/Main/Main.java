@@ -28,9 +28,9 @@ public class Main {
     Global.game = game;
     Global.mouse = game.mouse;
     Global global = new Global();
+    game.add(new GameUI(Global.gameMode));
     game.add(global);
     game.start();
-    game.add(new GameUI(Global.gameMode));
     Global.init();
     game.add(new SunManager());
     for (int i = 0; i < Constants.PLANT_ROWS_COUNT; ++i) {
@@ -47,28 +47,8 @@ public class Main {
     Global.addSeedPacket(new SeedPacket(new Peashooter()));
     Global.addSeedPacket(new SeedPacket(new Repeater()));
     Global.addSeedPacket(new SeedPacket(new GatlingPea()));
-
-    // Global.addZombie(new Zombie(0));
-    // Global.addZombie(new Zombie(0));
-    // Global.addZombie(new Zombie(0));
-    // Global.addZombie(new Zombie(0));
-    // Global.addZombie(new Zombie(0));
-    // Global.addZombie(new Zombie(0));
-    // Global.addZombie(new Zombie(0));
-    // Global.addZombie(new Zombie(0));
-    // Global.addZombie(new Zombie(0));
-
-    // Global.addPlant(new Peashooter(), 0, 1);
-    // Global.addPlant(new Peashooter(), 0, 2);
-    // Global.addPlant(new Peashooter(), 0, 3);
-    // Global.addPlant(new Peashooter(), 1, 1);
-    // Global.addPlant(new Peashooter(), 1, 2);
-    // Global.addPlant(new Peashooter(), 1, 3);
-
-    game.add(new Selector(game));
-    // Global.saveToFile("./data/testing.ser");
-
-    System.out.println(Global.plants[0][1]);
+    // Global.addZombie(new NormalZombie(0));
+    //game.add(new Selector(game));
   }
 
   private static void preload() {
