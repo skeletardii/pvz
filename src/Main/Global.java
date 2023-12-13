@@ -30,8 +30,10 @@ public class Global implements Updater {
   public static int mode = 0;
   public static final int PLANT_ROWS_COUNT = 6;
   public static final int PLANT_COLS_COUNT = 9;
-  public static final int ROW_PIXEL_OFFSET = 100;
+  public static final int ROW_PIXEL_OFFSET = 84;
   public static final int COL_PIXEL_OFFSET = 80;
+  public static final int GRID_OFFSET_X = 80;
+  public static final int GRID_OFFSET_Y = 174;
   public static Plant[][] plants = new Plant[PLANT_ROWS_COUNT][PLANT_COLS_COUNT];
   @SuppressWarnings("unchecked")
   public static ArrayList<Zombie>[] zombies = new ArrayList[PLANT_ROWS_COUNT];
