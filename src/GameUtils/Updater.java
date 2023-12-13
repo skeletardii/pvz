@@ -1,6 +1,8 @@
 package GameUtils;
 
-public interface Updater {
+import java.io.Serializable;
+
+public interface Updater extends Serializable {
   default void updateChildren() {
     if (this instanceof RenderObj) {
       for (int i = 0; i < ((RenderObj) this).getChildren().size(); i++) {

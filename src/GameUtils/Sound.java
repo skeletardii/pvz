@@ -1,12 +1,15 @@
 package GameUtils;
 
 import java.io.File;
+import java.io.Serializable;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 
-public class Sound {
+public class Sound implements Serializable {
+
+  private static final long serialVersionUID = 1L; // Ensure compatibility during serialization
 
   public static void play(File sndfile) {
     play(sndfile, 1f);

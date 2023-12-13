@@ -179,7 +179,7 @@ public class Game implements Runnable, Serializable {
   }
 }
 
-class InputListener implements KeyListener, MouseInputListener {
+class InputListener implements KeyListener, MouseInputListener, Serializable {
 
   private boolean[] keys = new boolean[265];
   private Mouse mouse = new Mouse();

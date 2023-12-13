@@ -25,8 +25,10 @@ public class Global implements Updater, Serializable {
   public static Game game;
   public static Mouse mouse;
   public static Mouse mouse_prev = new Mouse();
-  public static int sun = 0;
   public static int mode = 0;
+  public static int sun = 0;
+
+  public static final GameMode gameMode = GameMode.LAWN_DAY;
 
   @SuppressWarnings("unchecked")
   public static ArrayList<Zombie>[] zombies = new ArrayList[Constants.PLANT_ROWS_COUNT];
@@ -36,16 +38,29 @@ public class Global implements Updater, Serializable {
   public static LawnMower[] lawnMowers = new LawnMower[Constants.PLANT_ROWS_COUNT];
   public static ZombieSpawner zombieSpawner = new ZombieSpawner();
   public static ArrayList<Object> particles = new ArrayList<>();
-  public static final GameMode gameMode = GameMode.LAWN_DAY;
 
   public static SeedPacket[] seeds = new SeedPacket[20];
   public static int seedsNum = 0;
 
   public Global() {
     try {
-      Global loadedObj = loadFromFile("./data/testing.ser");
+      GameState state = null;
+      // GameState state = loadFromFile("./data/testing.ser");
+
+      if (state == null) throw new NullPointerException("State is missing");
+
+      Global.game = state.game;
+      Global.mode = state.mode;
+      Global.sun = state.sun;
+      Global.zombies = state.zombies;
+      Global.plants = state.plants;
+      Global.lawnMowers = state.lawnMowers;
+      Global.zombieSpawner = state.zombieSpawner;
+      Global.particles = state.particles;
+      Global.seeds = state.seeds;
+      Global.seedsNum = state.seedsNum;
     } catch (Exception e) {
-      System.out.println(e.getMessage());
+      e.printStackTrace();
     }
   }
 
@@ -81,6 +96,7 @@ public class Global implements Updater, Serializable {
     if (plants[row][col] != null) {
       throw new ArrayStoreException("Plant already in plot");
     }
+
     plants[row][col] = p;
     p.setRow(row);
     p.setCol(col);
@@ -141,21 +157,23 @@ public class Global implements Updater, Serializable {
         new FileOutputStream(filePath)
       )
     ) {
-      oos.writeObject(instance);
+      GameState state = new GameState();
+      oos.writeObject(state);
       System.out.println("Game state saved to file successfully.");
     } catch (IOException e) {
       e.printStackTrace();
     }
   }
 
-  protected static Global loadFromFile(String filePath) {
+  protected static GameState loadFromFile(String filePath) {
     try (
       ObjectInputStream ois = new ObjectInputStream(
         new FileInputStream(filePath)
       )
     ) {
+      GameState state = (GameState) ois.readObject();
       System.out.println("Game state loaded from file successfully.");
-      return (Global) ois.readObject();
+      return state;
     } catch (IOException | ClassNotFoundException e) {
       e.printStackTrace();
       return null;

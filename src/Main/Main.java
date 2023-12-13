@@ -65,7 +65,7 @@ public class Main {
     // Global.addPlant(new Peashooter(), 1, 3);
 
     game.add(new Selector(game));
-    // Global.saveToFile("./testing.ser");
+    // Global.saveToFile("./data/testing.ser");
 
     System.out.println(Global.plants[0][1]);
   }
