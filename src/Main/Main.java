@@ -26,9 +26,9 @@ public class Main {
     Global.game = game;
     Global.mouse = game.mouse;
     Global global = new Global();
+    game.add(new GameUI(Global.gameMode));
     game.add(global);
     game.start();
-    game.add(new GameUI(Global.gameMode));
     Global.init();
     game.add(new SunManager());
     for (int i = 0; i < Global.PLANT_ROWS_COUNT; ++i) {

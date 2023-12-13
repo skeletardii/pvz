@@ -238,18 +238,20 @@ class InputListener implements KeyListener, MouseInputListener {
 }
 
 class RootRenderObj extends RenderObj implements Updater{
-  private static final int THREADS = 3;
+  private static final int THREADS = 1;
   public static BlockingQueue<RenderObj> queue = new LinkedBlockingQueue<>();
   private Renderer[] renderers = new Renderer[THREADS];
   public void paintComponent(Graphics2D g) {}
   public void update(){}
   public void render(Graphics2D g){
+    resort();
     for (int j = 0; j < THREADS; j++) {
       renderers[j].g=g;
     } 
     for (int i = 0; i < getChildren().size(); i++) {
-        if(i<=-1) getChildren().get(i).render(g);
-        else {
+        if(i>=0) getChildren().get(i).render(g);
+        else 
+        {
           try{
             queue.put(getChildren().get(i));
           } catch(Exception e) {e.printStackTrace();}
@@ -257,7 +259,7 @@ class RootRenderObj extends RenderObj implements Updater{
     }
     while(!queue.isEmpty()){
       try{
-        wait(0);
+        wait(1);
       } catch(Exception e){
       }
     }
@@ -286,7 +288,7 @@ class Renderer implements Runnable{
   }
 }
 class RootUpdaterObj implements Updater{
-  private static final int THREADS = 2;
+  private static final int THREADS = 5;
   private static ArrayList<Updater> children = new ArrayList<Updater>();
   private UpdaterConsumer[] updaterConsumers = new UpdaterConsumer[THREADS];
   public static BlockingQueue<Updater> queue = new LinkedBlockingQueue<>();
