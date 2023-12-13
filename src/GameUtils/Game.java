@@ -59,14 +59,14 @@ public class Game implements Runnable, Serializable {
         @Override
         protected void paintComponent(Graphics g) {
           Graphics2D g2d = (Graphics2D) g;
-          g2d.setTransform(
-            AffineTransform.getScaleInstance(
-              1.25 * frame.getSize().getWidth() / 814.0,
-              1.25 * frame.getSize().getHeight() / 637.0
-            )
-          );
+          // g2d.setTransform(
+          //   AffineTransform.getScaleInstance(
+          //     1.25 * frame.getSize().getWidth() / 814.0,
+          //     1.25 * frame.getSize().getHeight() / 637.0
+          //   )
+          // );
           // System.out.println(frame.getSize().getHeight()); //814,637
-          // g2d.setTransform(AffineTransform.getScaleInstance(1,1));
+          // g2d.setTransform(AffineTransform.getScaleInstance(1, 1));
           g2d.setRenderingHint(
             RenderingHints.KEY_ANTIALIASING,
             RenderingHints.VALUE_ANTIALIAS_ON

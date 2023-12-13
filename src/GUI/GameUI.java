@@ -8,6 +8,7 @@ import Main.Global;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.lang.invoke.ConstantCallSite;
 import java.util.Random;
 import javax.swing.ImageIcon;
 
@@ -39,7 +40,18 @@ public class GameUI extends RenderObj implements Updater, SunProducer {
   }
 
   public void paintComponent(Graphics2D g) { //228
-    g.drawImage(sprite, 0, 0, 800, 600, 220, 0, 220 + 800, 600, null);
+    g.drawImage(
+      sprite,
+      0,
+      0,
+      Constants.WINDOW_SIZE_X,
+      Constants.WINDOW_SIZE_Y,
+      220,
+      0,
+      220 + 800,
+      600,
+      null
+    );
   }
 }
 

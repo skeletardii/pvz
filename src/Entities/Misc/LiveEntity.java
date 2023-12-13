@@ -2,8 +2,8 @@ package Entities.Misc;
 
 import GameUtils.RenderObj;
 import GameUtils.Updater;
+import Main.Constants;
 import Main.Global;
-
 import java.awt.Graphics2D;
 import java.awt.Image;
 import javax.swing.ImageIcon;
@@ -128,8 +128,12 @@ public abstract class LiveEntity extends RenderObj implements Updater {
   public void renderSprite(Graphics2D g, int anim) {
     if (frame < animStart[anim] || frame > animEnd[anim]) frame =
       animStart[anim];
-    int ox = (int) Math.round((col) * Global.COL_PIXEL_OFFSET + offsetX + Global.GRID_OFFSET_X);
-    int oy = (int) Math.round((row) * Global.ROW_PIXEL_OFFSET + offsetY + Global.GRID_OFFSET_Y);
+    int ox = (int) Math.round(
+      (col) * Constants.COL_PIXEL_OFFSET + offsetX + Constants.GRID_OFFSET_X
+    );
+    int oy = (int) Math.round(
+      (row) * Constants.ROW_PIXEL_OFFSET + offsetY + Constants.GRID_OFFSET_Y
+    );
     int sx, sy, dx, dy;
     sx = frame * lx;
     sy = 0;

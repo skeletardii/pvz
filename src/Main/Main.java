@@ -12,15 +12,16 @@ import javax.swing.WindowConstants;
 
 public class Main {
 
-  static final int WINDOW_SIZE_X = 800;
-  static final int WINDOW_SIZE_Y = 600;
-
   public static void main(String[] args) throws Exception {
     JFrame window = new JFrame("The zombies are cumming");
     window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     window.setVisible(true);
     window.setResizable(true);
-    Game game = new Game(window, WINDOW_SIZE_X, WINDOW_SIZE_Y);
+    Game game = new Game(
+      window,
+      Constants.WINDOW_SIZE_X,
+      Constants.WINDOW_SIZE_Y
+    );
     preload();
 
     Global.init();
