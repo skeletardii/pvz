@@ -4,8 +4,11 @@ import GameUtils.RenderObj;
 import GameUtils.Updater;
 import Main.Constants;
 import Main.Global;
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
+
 import javax.swing.ImageIcon;
 
 public abstract class LiveEntity extends RenderObj implements Updater {
@@ -14,6 +17,8 @@ public abstract class LiveEntity extends RenderObj implements Updater {
   private double col;
   private int health;
   private boolean targetable = true;
+  private int damageFlashCooldown =20;
+  private int lastDamaged = 0;
 
   protected final int offsetX;
   protected final int offsetY;
@@ -107,6 +112,9 @@ public abstract class LiveEntity extends RenderObj implements Updater {
 
   public void takeDamage(int damage) {
     this.health -= damage;
+    if(lastDamaged==1){
+      lastDamaged--;
+    }
   }
 
   public void setFrame(int frame) {
@@ -124,8 +132,19 @@ public abstract class LiveEntity extends RenderObj implements Updater {
   public void setCol(int col) {
     this.col = col;
   }
-
+  private BufferedImage colorImage(BufferedImage loadImg, int red, int green, int blue) {
+    BufferedImage img = new BufferedImage(loadImg.getWidth(), loadImg.getHeight(),
+        BufferedImage.TRANSLUCENT);
+    Graphics2D graphics = img.createGraphics(); 
+    Color newColor = new Color(red, green, blue, 0 /* alpha needs to be zero */);
+    graphics.setXORMode(newColor);
+    graphics.drawImage(loadImg, null, 0, 0);
+    graphics.dispose();
+    return img;
+}
   public void renderSprite(Graphics2D g, int anim) {
+    Image spriteToDraw = sprite;
+    
     if (frame < animStart[anim] || frame > animEnd[anim]) frame =
       animStart[anim];
     int ox = (int) Math.round(
@@ -152,7 +171,7 @@ public abstract class LiveEntity extends RenderObj implements Updater {
       null
     );
     g.drawImage(
-      sprite,
+      spriteToDraw,
       dx + offsetOX, //dx1
       dy + offsetOY, //dy1
       dx + offsetOX + (int) (lx * scale), //dx2
@@ -163,6 +182,23 @@ public abstract class LiveEntity extends RenderObj implements Updater {
       sy + ly,
       null
     );
+    if (lastDamaged==0){
+      lastDamaged = damageFlashCooldown;
+      g.drawImage(
+        spriteToDraw,
+        dx + offsetOX, //dx1
+        dy + offsetOY, //dy1
+        dx + offsetOX + (int) (lx * scale), //dx2
+        dy + offsetOY + (int) (ly * scale), //dy2
+        sx, //sx1 source
+        sy,
+        sx + lx,
+        sy + ly,
+        null
+      );
+    } else if (lastDamaged>1){
+      lastDamaged--;
+    }
     if (frameCtr++ > animSpeed) {
       frameCtr = 0;
       frame++;
