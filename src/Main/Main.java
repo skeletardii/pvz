@@ -2,7 +2,12 @@ package Main;
 
 import Entities.Misc.SunManager;
 import Entities.Plants.*;
-import Entities.Plants.InstaKillers.*;
+import Entities.Plants.LawnDay.CherryBomb;
+import Entities.Plants.LawnDay.GatlingPea;
+import Entities.Plants.LawnDay.Peashooter;
+import Entities.Plants.LawnDay.Repeater;
+import Entities.Plants.LawnDay.Snowpea;
+import Entities.Plants.LawnDay.WallNut;
 import Entities.Zombies.Zombie;
 import GUI.*;
 import GameUtils.*;
@@ -45,8 +50,9 @@ public class Main {
     Global.addSeedPacket(new SeedPacket(new WallNut()));
 
     Global.addSeedPacket(new SeedPacket(new Peashooter()));
-    Global.addSeedPacket(new SeedPacket(new Repeater()));
-    Global.addSeedPacket(new SeedPacket(new GatlingPea()));
+    Global.addSeedPacket(new SeedPacket(new Snowpea()));
+    // Global.addSeedPacket(new SeedPacket(new Repeater()));
+    // Global.addSeedPacket(new SeedPacket(new GatlingPea()));
     // Global.addZombie(new NormalZombie(0));
     //game.add(new Selector(game));
   }

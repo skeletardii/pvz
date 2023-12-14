@@ -20,6 +20,9 @@ public class Zombie extends LiveEntity {
   private int eatFrame = 0;
   private boolean isEating = false;
 
+  private int slowed = 0;
+  private int frozen = 0;
+
   private static final File[] eat_snd = {
     new File("assets/sound/chomp0.wav"),
     new File("assets/sound/chomp1.wav"),
@@ -86,6 +89,11 @@ public class Zombie extends LiveEntity {
   public void update() {
     super.update();
 
+    this.frozen = Math.max(0, this.frozen - 1);
+    if (this.frozen > 0) return;
+
+    this.slowed = Math.max(0, this.slowed - 1);
+
     int row = (int) this.getRow();
     int col = (int) Math.round(this.getCol());
     Plant p = row < Constants.PLANT_ROWS_COUNT &&
@@ -111,13 +119,7 @@ public class Zombie extends LiveEntity {
     }
 
     // zombie moves
-    this.moveCol(-this.movementSpeed);
-
-    // if (p != null) {
-    //   double high = -(0.5 - this.getCol() + col);
-    //   this.moveRow(high);
-    // }
-
+    this.moveCol(-this.movementSpeed / (this.slowed > 0 ? 2 : 1));
     isEating = false;
     animSpeed = 1;
     eatFrame = -10;
@@ -159,5 +161,21 @@ public class Zombie extends LiveEntity {
   @Override
   public void paintComponent(Graphics2D g) {
     if (isEating) renderSprite(g, 1); else renderSprite(g, 0);
+  }
+
+  public int isSlowed() {
+    return slowed;
+  }
+
+  public void setSlowed(int isSlowed) {
+    this.slowed = isSlowed;
+  }
+
+  public int getFrozen() {
+    return frozen;
+  }
+
+  public void setFrozen(int isFrozen) {
+    this.frozen = isFrozen;
   }
 }

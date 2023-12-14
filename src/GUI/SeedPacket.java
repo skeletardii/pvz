@@ -1,6 +1,6 @@
 package GUI;
 
-import Entities.Plants.InstaKillers.*;
+import Entities.Plants.LawnDay.PotatoMine;
 import Entities.Plants.Plant;
 import GameUtils.*;
 import Main.Constants;

@@ -9,7 +9,7 @@ import javax.swing.ImageIcon;
 
 public class Pea extends Projectile {
 
-  private static final File[] sndFiles = {
+  protected static final File[] sndFiles = {
     new File("assets/sound/splat.wav"),
     new File("assets/sound/splat2.wav"),
   };
@@ -34,13 +34,17 @@ public class Pea extends Projectile {
   public void update() {
     for (Zombie z : Global.zombies[(int) this.getRow()]) {
       if (this.isTouching(z)) {
-        z.takeDamage(this.projectileDamage);
-        Sound.play(sndFiles[(int)Math.round(Math.random())]);
-        this.remove();
+        hitZombie(z);
         return;
       }
     }
 
     this.moveCol(this.projectileSpeed);
+  }
+
+  public void hitZombie(Zombie z) {
+    z.takeDamage(this.projectileDamage);
+    Sound.play(sndFiles[(int) Math.round(Math.random())]);
+    this.remove();
   }
 }
