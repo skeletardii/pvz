@@ -9,12 +9,12 @@ public class Repeater extends Peashooter implements Upgradable {
     this(-1, -1);
   }
 
-  public Repeater(int row, double col) {
+  public Repeater(double row, double col) {
     super(row, col, 2, 150);
   }
 
   @Override
   public Upgraded upgrade() {
-    throw new UnsupportedOperationException("Unimplemented method 'upgrade'");
+    return new GatlingPea(getRow(), getCol());
   }
 }

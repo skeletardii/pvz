@@ -31,7 +31,8 @@ public class ZombieSpawner implements Serializable {
       // Global.addZombie(new DiggerZombie(spawnRow));
       // Global.addZombie(new Gargantuar(spawnRow));
       // Global.addZombie(new PogoZombie(spawnRow));
-      Global.addZombie(new LadderZombie(spawnRow));
+      // Global.addZombie(new LadderZombie(spawnRow));
+      Global.addZombie(new Zombie(spawnRow));
     }
   }
 }

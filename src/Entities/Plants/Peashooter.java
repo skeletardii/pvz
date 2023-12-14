@@ -20,11 +20,11 @@ public class Peashooter extends Plant implements Attacker {
     this(-1, -1);
   }
 
-  public Peashooter(int row, double col) {
+  public Peashooter(double row, double col) {
     this(row, col, 1, 100);
   }
 
-  public Peashooter(int row, double col, int shotsPerAttack, int sunCost) {
+  public Peashooter(double row, double col, int shotsPerAttack, int sunCost) {
     super(
       new PlantBuilder()
         .setHealth(100)

@@ -1,5 +1,6 @@
 package Main;
 
+import Entities.Interfaces.Upgradable;
 import Entities.Misc.LawnMower;
 import Entities.Misc.ZombieSpawner;
 import Entities.Plants.Plant;
@@ -43,6 +44,8 @@ public class Global implements Updater, Serializable {
   public static int seedsNum = 0;
 
   public Global() {
+    // ayaw lang sa ni i mind
+
     try {
       GameState state = null;
       // GameState state = loadFromFile("./data/testing.ser");

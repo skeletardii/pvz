@@ -8,7 +8,7 @@ public class GatlingPea extends Peashooter implements Upgraded {
     this(-1, -1);
   }
 
-  public GatlingPea(int row, double col) {
+  public GatlingPea(double row, double col) {
     super(row, col, 4, 250);
   }
 
