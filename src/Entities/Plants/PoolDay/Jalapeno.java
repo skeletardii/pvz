@@ -25,8 +25,8 @@ public class Jalapeno extends InstaKiller {
         .setHealth(100)
         .setPacketCooldown(SeedPacketRechargeTime.SLOW.getValue())
         .setSprite(sprite)
-        .setSpriteWidth(351)
-        .setSpriteHeight(468)
+        .setSpriteWidth(117)
+        .setSpriteHeight(156)
     );
     animStart[0] = 0;
     animEnd[0] = 24;

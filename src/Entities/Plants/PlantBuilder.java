@@ -12,8 +12,8 @@ public class PlantBuilder {
   protected double packetCooldown = 7.5;
   protected Image sprite = new ImageIcon("assets/plants/peashooter.png")
     .getImage();
-  protected int spriteWidth = 0;
-  protected int spriteHeight = 0;
+  protected int spriteWidth = 375;
+  protected int spriteHeight = 353;
   protected int animRow = 1;
 
   public PlantBuilder setRow(double row) {

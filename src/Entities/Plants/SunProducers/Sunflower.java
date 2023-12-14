@@ -28,8 +28,8 @@ public class Sunflower extends Plant implements SunProducer, Upgradable {
         .setHealth(100)
         .setPacketCooldown(SeedPacketRechargeTime.SLOW.getValue())
         .setSprite(sprite)
-        .setSpriteWidth(364)
-        .setSpriteHeight(365)
+        .setSpriteWidth(121)
+        .setSpriteHeight(121)
     );
     animStart[0] = 4;
     animEnd[0] = 28;
@@ -84,8 +84,8 @@ public class Sunflower extends Plant implements SunProducer, Upgradable {
           .setSunCost(150)
           .setPacketCooldown(SeedPacketRechargeTime.SLOW.getValue())
           .setSprite(sprite)
-          .setSpriteWidth(422)
-          .setSpriteHeight(422)
+          .setSpriteWidth(140)
+          .setSpriteHeight(140)
       );
       animStart[0] = 8;
       animEnd[0] = 33;

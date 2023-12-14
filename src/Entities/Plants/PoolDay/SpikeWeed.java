@@ -14,7 +14,7 @@ import javax.swing.ImageIcon;
 public class SpikeWeed extends Plant implements Upgradable {
 
   private static final Image sprite = new ImageIcon(
-    "assets/plants/peashooter.png"
+    "assets/plants/spikeweed.png"
   )
     .getImage();
   private int dps;
@@ -24,7 +24,7 @@ public class SpikeWeed extends Plant implements Upgradable {
   }
 
   public SpikeWeed(int row, int col) {
-    this(row, col, 50, 125, 30, sprite);
+    this(row, col, 50, 125, 30, sprite,135,70);
   }
 
   public SpikeWeed(
@@ -33,7 +33,9 @@ public class SpikeWeed extends Plant implements Upgradable {
     int health,
     int sunCost,
     int dps,
-    Image sprite
+    Image sprite,
+    int spriteWidth,
+    int spriteHeight
   ) {
     super(
       new PlantBuilder()
@@ -43,10 +45,14 @@ public class SpikeWeed extends Plant implements Upgradable {
         .setHealth(health)
         .setPacketCooldown(SeedPacketRechargeTime.VERY_SLOW.getValue())
         .setSprite(sprite)
+        .setSpriteWidth(spriteWidth)
+        .setSpriteHeight(spriteHeight)
     );
     this.dps = dps;
     animStart[0] = 4;
-    animEnd[0] = 28;
+    animEnd[0] = 22;
+    offsetOY=10;
+    shadowScale=0.2;
     setFrame(4);
     setTargetable(false);
   }
@@ -73,12 +79,12 @@ public class SpikeWeed extends Plant implements Upgradable {
   public static class SpikeRock extends SpikeWeed implements Upgraded {
 
     private static final Image sprite = new ImageIcon(
-      "assets/plants/sunflower.png"
+      "assets/plants/spikerock.png"
     )
       .getImage();
 
     public SpikeRock(int row, int col) {
-      super(row, col, 9, 125, 40, sprite);
+      super(row, col, 9, 125, 40, sprite,137,79);
     }
 
     public SpikeRock() {

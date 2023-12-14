@@ -19,11 +19,18 @@ public class Pea extends Projectile {
     "assets/projectiles/pea.png"
   )
     .getImage();
-  public static final Image sprite2 = new ImageIcon("assets/plants/wallnut.png")
-    .getImage();
 
   public Pea(double row, double col) {
-    super(row, col, 0.05, 10, sprite1, 28, 28, 1);
+    //super(row, col, 0.05, 10, sprite1, 28, 28, 1);
+    this(row,col,sprite1,28,28);
+    animStart[0] = 0;
+    animEnd[0] = 0;
+    scale = 1.0;
+    offsetOY = -50;
+    shadowScale = 0.0;
+  }
+  public Pea(double row, double col, Image sprite, int spriteWidth, int spriteHeight){
+    super(row, col, 0.05, 10, sprite, spriteWidth, spriteHeight, 1);
     animStart[0] = 0;
     animEnd[0] = 0;
     scale = 1.0;
@@ -39,7 +46,7 @@ public class Pea extends Projectile {
     }
 
     for (Zombie z : Global.zombies[(int) this.getRow()]) {
-      if (this.isTouching(z)) {
+      if (this.isTouchingClose(z)) {
         hitZombie(z);
         return;
       }

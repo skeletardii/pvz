@@ -25,8 +25,8 @@ public class WallNut extends Plant {
         .setSunCost(50)
         .setPacketCooldown(SeedPacketRechargeTime.VERY_SLOW.getValue())
         .setSprite(sprite)
-        .setSpriteWidth(509)
-        .setSpriteHeight(496)
+        .setSpriteWidth(169)
+        .setSpriteHeight(165)
     );
     animStart[0] = 0;
     animEnd[0] = 16;

@@ -27,8 +27,8 @@ public class CherryBomb extends InstaKiller {
         .setHealth(100)
         .setPacketCooldown(SeedPacketRechargeTime.SLOW.getValue())
         .setSprite(sprite)
-        .setSpriteWidth(625)
-        .setSpriteHeight(458)
+        .setSpriteWidth(208)
+        .setSpriteHeight(152)
         .setAnimRow(2)
     );
     animStart[0] = 14;

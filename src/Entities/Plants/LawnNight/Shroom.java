@@ -17,6 +17,16 @@ public abstract class Shroom extends Plant {
       Global.gameMode == GameMode.ROOF_DAY;
   }
 
+  @Override
+  public void update() {
+    if (!isAsleep) {
+      super.update();
+      shroomUpdate();
+    }
+  }
+
+  public abstract void shroomUpdate();
+
   public boolean isAsleep() {
     return isAsleep;
   }

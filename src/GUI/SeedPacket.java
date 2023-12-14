@@ -1,6 +1,8 @@
 package GUI;
 
 import Entities.Plants.LawnDay.PotatoMine;
+import Entities.Plants.Roof.CoffeeBean;
+import Entities.Plants.Roof.Pumpkin;
 import Entities.Plants.Plant;
 import GameUtils.*;
 import Main.Constants;
@@ -30,7 +32,7 @@ public class SeedPacket extends RenderObj implements Updater {
   private Class<?> plant;
   private Image sprite;
   private Plant p;
-
+  private boolean isOnTop = false;
   public SeedPacket(Plant p) {
     this.p = p;
     sprite = p.getPreview();
@@ -52,6 +54,7 @@ public class SeedPacket extends RenderObj implements Updater {
     }
 
     if (p instanceof PotatoMine) sx = lx * 30;
+    if (p instanceof Pumpkin || p instanceof CoffeeBean) isOnTop=true;
   }
 
   private int getDigits(int num) {
@@ -95,7 +98,7 @@ public class SeedPacket extends RenderObj implements Updater {
         Constants.PLANT_COLS_COUNT - 1;
       if (row < 0) row = 0;
       if (col < 0) col = 0;
-      if (Global.plants[row][col] == null) {
+      if (Global.plants[row][col] == null ^ isOnTop) {
         g.setComposite(makeComposite(0.5f));
 
         int ox = (col) * Constants.COL_PIXEL_OFFSET + Constants.GRID_OFFSET_X;
@@ -132,7 +135,6 @@ public class SeedPacket extends RenderObj implements Updater {
       );
     }
   }
-
   public void setPosX(int posX) {
     this.posX = posX;
   }
@@ -173,6 +175,8 @@ public class SeedPacket extends RenderObj implements Updater {
           Global.sun -= cost;
           Sound.play(seed_plant);
         } catch (ArrayStoreException e) {
+          Sound.play(seed_error);
+        } catch (Exception e) {
           Sound.play(seed_error);
         }
 

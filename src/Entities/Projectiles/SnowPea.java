@@ -1,12 +1,18 @@
 package Entities.Projectiles;
 
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+
 import Entities.Zombies.Zombie;
 import GameUtils.Sound;
 
 public class SnowPea extends Pea {
-
+  public static final Image sprite = new ImageIcon(
+    "assets/projectiles/snowpea.png"
+  ).getImage();
   public SnowPea(double row, double col) {
-    super(row, col);
+    super(row, col,sprite,28,28);
   }
 
   @Override

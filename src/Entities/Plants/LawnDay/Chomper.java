@@ -31,11 +31,11 @@ public class Chomper extends Plant implements SunProducer {
         .setSunCost(300)
         .setPacketCooldown(SeedPacketRechargeTime.SLOW.getValue())
         .setSprite(sprite)
-        .setSpriteWidth(690)
-        .setSpriteHeight(694)
+        .setSpriteWidth(230)
+        .setSpriteHeight(231)
         .setAnimRow(4)
     );
-    scale = 0.23;
+    scale = 0.23*3;
     offsetOX = 30;
     offsetOY = 10;
     shadowOffsetY = 10;

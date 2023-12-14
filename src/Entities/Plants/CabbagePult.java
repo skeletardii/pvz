@@ -30,6 +30,7 @@ public class CabbagePult extends Plant {
         .setSpriteHeight(527)
         .setAnimRow(2)
     );
+    scale=scale/3;
     animStart[0] = 4;
     animEnd[0] = 35;
     animStart[1] = 36;

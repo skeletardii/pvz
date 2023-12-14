@@ -24,7 +24,7 @@ public abstract class LiveEntity extends RenderObj implements Updater {
   protected final int offsetY;
   protected Image sprite;
   protected int lx, ly, frame, frameCtr = 0;
-  protected double scale = 0.25;
+  protected double scale = 0.25 * 3;
   protected int[] animStart;
   protected int[] animEnd;
   private static final Image shadow = new ImageIcon("assets/ui/shadow.png")
@@ -109,6 +109,9 @@ public abstract class LiveEntity extends RenderObj implements Updater {
   public boolean isTouching(LiveEntity e) {
     return this.row == e.row && Math.abs(this.col - e.col) <= 1;
   }
+  public boolean isTouchingClose(LiveEntity e) {
+    return this.row == e.row && Math.abs(this.col - e.col) <= 0.5;
+  }
 
   public void takeDamage(int damage) {
     this.health -= damage;
@@ -132,6 +135,7 @@ public abstract class LiveEntity extends RenderObj implements Updater {
   public void setCol(int col) {
     this.col = col;
   }
+  @SuppressWarnings("all")
   private BufferedImage colorImage(BufferedImage loadImg, int red, int green, int blue) {
     BufferedImage img = new BufferedImage(loadImg.getWidth(), loadImg.getHeight(),
         BufferedImage.TRANSLUCENT);
@@ -142,7 +146,7 @@ public abstract class LiveEntity extends RenderObj implements Updater {
     graphics.dispose();
     return img;
 }
-  public void renderSprite(Graphics2D g, int anim) {
+  public int renderSprite(Graphics2D g, int anim) {
     Image spriteToDraw = sprite;
     
     if (frame < animStart[anim] || frame > animEnd[anim]) frame =
@@ -204,6 +208,7 @@ public abstract class LiveEntity extends RenderObj implements Updater {
       frame++;
       if (frame == animEnd[anim]) frame = animStart[anim];
     }
+    return frame;
     //g.setColor(Color.white);
     //g.drawOval(ox-5,oy-5,10,10);
   }

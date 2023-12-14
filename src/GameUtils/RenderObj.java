@@ -104,7 +104,6 @@ public abstract class RenderObj implements Comparable<RenderObj>, Serializable {
     for (int i = 0; i < children.size(); i++) {
       if (zIndex < children.get(i).zIndex) childrenIndex = i;
     }
-
   }
 
   public abstract void paintComponent(Graphics2D g);
