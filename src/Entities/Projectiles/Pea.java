@@ -2,6 +2,7 @@ package Entities.Projectiles;
 
 import Entities.Zombies.Zombie;
 import GameUtils.Sound;
+import Main.Constants;
 import Main.Global;
 import java.awt.Image;
 import java.io.File;
@@ -32,6 +33,11 @@ public class Pea extends Projectile {
 
   @Override
   public void update() {
+    if (this.getRow() < 0 || this.getRow() >= Constants.PLANT_ROWS_COUNT) {
+      this.remove();
+      return;
+    }
+
     for (Zombie z : Global.zombies[(int) this.getRow()]) {
       if (this.isTouching(z)) {
         hitZombie(z);
