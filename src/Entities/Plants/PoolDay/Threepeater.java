@@ -32,7 +32,7 @@ public class Threepeater extends Peashooter {
   }
 
   @Override
-  public void attack() {
+  public void shoot() {
     this.add(new Pea(this.getRow() - 1, this.getCol()));
     this.add(new Pea(this.getRow(), this.getCol()));
     this.add(new Pea(this.getRow() + 1, this.getCol()));
