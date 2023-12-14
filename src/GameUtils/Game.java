@@ -20,10 +20,8 @@ import javax.swing.JLayeredPane;
 import javax.swing.OverlayLayout;
 import javax.swing.event.MouseInputListener;
 
-public class Game implements Runnable, Serializable {
+public class Game implements Runnable{
 
-  // Serialization vars
-  private static final long serialVersionUID = 1L;
 
   //Option vars
   public static final double TARGET_FPS = 60.0;

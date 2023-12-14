@@ -51,6 +51,8 @@ public class Plant extends LiveEntity {
 
   @Override
   public void takeDamage(int damage) {
+    if (Global.gameSettings.plantInvulnerable) return;
+
     if (pumpkin != null) {
       pumpkin.takeDamage(damage);
     } else {
@@ -67,6 +69,8 @@ public class Plant extends LiveEntity {
   }
 
   public double getCooldown() {
+    if (Global.gameSettings.plantNoCooldown) return 0;
+
     return packetCooldown;
   }
 

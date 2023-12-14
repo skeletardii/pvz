@@ -1,30 +1,27 @@
 package Main;
 
-import Entities.Interfaces.Upgradable;
 import Entities.Misc.LawnMower;
 import Entities.Misc.ZombieSpawner;
 import Entities.Plants.LawnNight.Shroom;
 import Entities.Plants.Plant;
-import Entities.Plants.Roof.CoffeeBean;
-import Entities.Plants.Roof.Pumpkin;
+import Entities.Plants.PoolNight.CoffeeBean;
+import Entities.Plants.PoolNight.Pumpkin;
 import Entities.Zombies.Zombie;
 import GUI.SeedPacket;
 import GameUtils.Game;
 import GameUtils.Mouse;
 import GameUtils.Updater;
+import LevelEditor.GameSettings;
 import Main.Constants.GameMode;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
+
+import java.io.*;
 import java.util.ArrayList;
 
+@SuppressWarnings("CallToPrintStackTrace")
 public class Global implements Updater, Serializable {
 
+  @Serial
   private static final long serialVersionUID = 1L;
-  private static final Global instance = new Global();
 
   public static Game game;
   public static Mouse mouse;
@@ -45,30 +42,7 @@ public class Global implements Updater, Serializable {
 
   public static SeedPacket[] seeds = new SeedPacket[20];
   public static int seedsNum = 0;
-
-  public Global() {
-    // ayaw lang sa ni i mind
-
-    try {
-      GameState state = null;
-      // GameState state = loadFromFile("./data/testing.ser");
-
-      if (state == null) throw new NullPointerException("State is missing");
-
-      Global.game = state.game;
-      Global.mode = state.mode;
-      Global.sun = state.sun;
-      Global.zombies = state.zombies;
-      Global.plants = state.plants;
-      Global.lawnMowers = state.lawnMowers;
-      Global.zombieSpawner = state.zombieSpawner;
-      Global.particles = state.particles;
-      Global.seeds = state.seeds;
-      Global.seedsNum = state.seedsNum;
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-  }
+  public static GameSettings gameSettings = new GameSettings();
 
   public static void init() {
     for (int i = 0; i < Constants.PLANT_ROWS_COUNT; i++) {
@@ -175,29 +149,17 @@ public class Global implements Updater, Serializable {
     sp.setPosX((seedsNum - 1) * 55 + 77);
   }
 
-  protected static void saveToFile(String filePath) {
-    try (
-      ObjectOutputStream oos = new ObjectOutputStream(
-        new FileOutputStream(filePath)
-      )
-    ) {
-      GameState state = new GameState();
-      oos.writeObject(state);
-      System.out.println("Game state saved to file successfully.");
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-  }
 
-  protected static GameState loadFromFile(String filePath) {
+
+  protected static GameSettings loadFromFile() {
     try (
       ObjectInputStream ois = new ObjectInputStream(
-        new FileInputStream(filePath)
+        new FileInputStream("./data/settings.ser")
       )
     ) {
-      GameState state = (GameState) ois.readObject();
-      System.out.println("Game state loaded from file successfully.");
-      return state;
+      GameSettings settings = (GameSettings) ois.readObject();
+      System.out.println("Game settings loaded from file successfully.");
+      return settings;
     } catch (IOException | ClassNotFoundException e) {
       e.printStackTrace();
       return null;

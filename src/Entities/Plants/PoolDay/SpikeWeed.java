@@ -76,24 +76,4 @@ public class SpikeWeed extends Plant implements Upgradable {
     }
   }
 
-  public static class SpikeRock extends SpikeWeed implements Upgraded {
-
-    private static final Image sprite = new ImageIcon(
-      "assets/plants/spikerock.png"
-    )
-      .getImage();
-
-    public SpikeRock(int row, int col) {
-      super(row, col, 9, 125, 40, sprite,137,79);
-    }
-
-    public SpikeRock() {
-      this(-1, -1);
-    }
-
-    @Override
-    public int getIncreasingSunCost() {
-      return 100;
-    }
-  }
 }

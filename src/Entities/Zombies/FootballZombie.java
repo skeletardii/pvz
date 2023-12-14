@@ -4,7 +4,7 @@ import Entities.ZombieItems.Armor;
 
 public class FootballZombie extends Zombie {
 
-  protected FootballZombie(int row) {
+  public FootballZombie(int row) {
     super(
       new ZombieBuilder()
         .setRow(row)

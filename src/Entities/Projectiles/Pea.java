@@ -1,5 +1,8 @@
 package Entities.Projectiles;
 
+import Entities.Misc.LiveEntityBuilder;
+import Entities.Plants.Plant;
+import Entities.Plants.PoolDay.Torchwood;
 import Entities.Zombies.Zombie;
 import GameUtils.Sound;
 import Main.Constants;
@@ -15,22 +18,18 @@ public class Pea extends Projectile {
     new File("assets/sound/splat2.wav"),
   };
 
-  public static final Image sprite1 = new ImageIcon(
+  public static final Image sprite = new ImageIcon(
     "assets/projectiles/pea.png"
   )
     .getImage();
 
   public Pea(double row, double col) {
-    //super(row, col, 0.05, 10, sprite1, 28, 28, 1);
-    this(row,col,sprite1,28,28);
-    animStart[0] = 0;
-    animEnd[0] = 0;
-    scale = 1.0;
-    offsetOY = -50;
-    shadowScale = 0.0;
+    this(new LiveEntityBuilder().setRow(row).setCol(col).setSprite(sprite).setSpriteWidth(28).setSpriteHeight(28).setAnimRow(1), 10, 0.05);
   }
-  public Pea(double row, double col, Image sprite, int spriteWidth, int spriteHeight){
-    super(row, col, 0.05, 10, sprite, spriteWidth, spriteHeight, 1);
+
+  public Pea(LiveEntityBuilder leBuilder, int projectileDamage, double projectileSpeed) {
+    super(leBuilder, projectileDamage, projectileSpeed);
+
     animStart[0] = 0;
     animEnd[0] = 0;
     scale = 1.0;
@@ -52,7 +51,20 @@ public class Pea extends Projectile {
       }
     }
 
+    if (!(this instanceof BurningPea)) {
+      for (Plant p : Global.plants[(int) this.getRow()]) {
+        if (p != null && this.isTouching(p) && p instanceof Torchwood) {
+          this.transformToBurningPea();
+        }
+      }
+    }
+
     this.moveCol(this.projectileSpeed);
+  }
+
+  private void transformToBurningPea() {
+    Global.game.add(new BurningPea(this.getRow(), this.getCol()));
+    this.remove();
   }
 
   public void hitZombie(Zombie z) {

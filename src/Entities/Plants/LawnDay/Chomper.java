@@ -13,7 +13,7 @@ import java.awt.Image;
 import java.io.File;
 import javax.swing.ImageIcon;
 
-public class Chomper extends Plant implements SunProducer {
+public class Chomper extends Plant {
 
   private static final Image sprite = new ImageIcon("assets/plants/chomper.png")
     .getImage();

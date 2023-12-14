@@ -1,8 +1,6 @@
 package GUI;
 
 import Entities.Plants.LawnDay.PotatoMine;
-import Entities.Plants.Roof.CoffeeBean;
-import Entities.Plants.Roof.Pumpkin;
 import Entities.Plants.Plant;
 import GameUtils.*;
 import Main.Constants;
@@ -54,7 +52,7 @@ public class SeedPacket extends RenderObj implements Updater {
     }
 
     if (p instanceof PotatoMine) sx = lx * 30;
-    if (p instanceof Pumpkin || p instanceof CoffeeBean) isOnTop=true;
+    if (p instanceof Entities.Plants.PoolNight.Pumpkin || p instanceof Entities.Plants.PoolNight.CoffeeBean) isOnTop=true;
   }
 
   private int getDigits(int num) {
