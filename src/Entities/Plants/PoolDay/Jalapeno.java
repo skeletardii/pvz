@@ -1,12 +1,16 @@
 package Entities.Plants.PoolDay;
 
+import Entities.Particles.Flame;
 import Entities.Plants.InstaKiller;
 import Entities.Plants.PlantBuilder;
 import Entities.Zombies.Zombie;
 import Entities.Zombies.Zombie.DeathType;
+import Main.Constants;
 import Main.Global;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.lang.constant.Constable;
+
 import javax.swing.ImageIcon;
 
 public class Jalapeno extends InstaKiller {
@@ -48,7 +52,9 @@ public class Jalapeno extends InstaKiller {
         z.kill(DeathType.EXPLODED);
       }
     }
-
+    for(int i=-1; i<=Constants.PLANT_COLS_COUNT; i++){
+      Global.addParticle(new Flame(getRow(),i));
+    }
     super.activate();
   }
 }

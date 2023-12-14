@@ -1,5 +1,6 @@
 package Entities.Plants.LawnDay;
 
+import Entities.Particles.Explosion;
 import Entities.Plants.InstaKiller;
 import Entities.Plants.PlantBuilder;
 import Entities.Zombies.Zombie;
@@ -76,7 +77,7 @@ public class PotatoMine extends InstaKiller {
         z.kill(DeathType.EXPLODED);
       }
     }
-
+    Global.game.add(new Explosion((int) getRow(), getCol()));
     super.activate();
   }
 }

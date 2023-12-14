@@ -2,6 +2,7 @@ package Entities.Zombies;
 
 import Entities.Misc.LiveEntity;
 import Entities.Misc.LiveEntityBuilder;
+import Entities.Particles.CharredZombie;
 import Entities.Plants.Plant;
 import Entities.ZombieItems.Armor;
 import GameUtils.Game;
@@ -128,6 +129,10 @@ public class Zombie extends LiveEntity {
   }
 
   public void kill(DeathType type) {
+    if(type==DeathType.EXPLODED) {
+      System.out.println("aaa");
+      Global.addParticle(new CharredZombie(getRow(), getCol()));
+    }
     setHealth(0);
   }
 
