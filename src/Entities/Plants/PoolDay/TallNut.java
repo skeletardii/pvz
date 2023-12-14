@@ -19,12 +19,12 @@ public class TallNut extends WallNut {
         .setSunCost(125)
         .setPacketCooldown(SeedPacketRechargeTime.SLOW.getValue())
         .setSprite(sprite)
-        .setSpriteWidth(414)
-        .setSpriteHeight(584)
+        .setSpriteWidth(138)
+        .setSpriteHeight(194)
     );
     animStart[0] = 20;
     animEnd[0] = 36;
-    scale = 0.2;
+    scale = 0.6;
     shadowScale = 1.25;
     shadowOffsetY = 15;
     offsetOY = 10;

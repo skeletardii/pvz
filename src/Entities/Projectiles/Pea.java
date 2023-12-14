@@ -45,7 +45,7 @@ public class Pea extends Projectile {
     }
 
     for (Zombie z : Global.zombies[(int) this.getRow()]) {
-      if (this.isTouching(z)) {
+      if (this.isTouchingClose(z)) {
         hitZombie(z);
         return;
       }

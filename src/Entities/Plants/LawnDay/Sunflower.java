@@ -27,8 +27,8 @@ public class Sunflower extends Plant implements SunProducer, Upgradable {
         .setHealth(300)
         .setPacketCooldown(SeedPacketRechargeTime.FAST.getValue())
         .setSprite(sprite)
-        .setSpriteWidth(364)
-        .setSpriteHeight(365)
+        .setSpriteWidth(121)
+        .setSpriteHeight(121)
     );
     animStart[0] = 4;
     animEnd[0] = 28;

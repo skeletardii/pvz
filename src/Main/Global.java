@@ -18,7 +18,7 @@ import java.io.*;
 import java.util.ArrayList;
 
 @SuppressWarnings("CallToPrintStackTrace")
-public class Global implements Updater, Serializable {
+public class Global implements Updater {
 
   @Serial
   private static final long serialVersionUID = 1L;
@@ -65,10 +65,6 @@ public class Global implements Updater, Serializable {
     mouse_prev.y = mouse.y;
     mouse = game.mouse;
 
-    if (mouse.x >= 800) mouse.x = 799;
-    if (mouse.x <= 0) mouse.x = 0;
-    if (mouse.y >= 600) mouse.y = 599;
-    if (mouse.y <= 0) mouse.x = 0;
   }
 
   public static void addParticle(Object particle) {
@@ -90,7 +86,7 @@ public class Global implements Updater, Serializable {
       Global.plants[row][col].add(p);
     } else if (p instanceof Pumpkin) {
       if (plants[row][col] == null) {
-        throw new Exception("No plants in the cell for pumpking");
+        throw new Exception("No plants in the cell for Pumpkin");
       }
       plants[row][col].setPumpkin(p);
     } else {
@@ -103,7 +99,7 @@ public class Global implements Updater, Serializable {
     game.add(p);
     p.setRow(row);
     p.setCol(col);
-    p.setZindex(5 + row + col * 0.1);
+    p.setZindex(5 + row + (Constants.PLANT_COLS_COUNT-col) * 0.1);
   }
 
   public static void removePlant(int row, int col) {

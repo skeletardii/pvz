@@ -1,7 +1,6 @@
 package Entities.Plants.LawnDay;
 
 import Entities.Plants.Plant;
-import Entities.Plants.Plant.SeedPacketRechargeTime;
 import Entities.Plants.PlantBuilder;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -25,8 +24,8 @@ public class WallNut extends Plant {
         .setSunCost(50)
         .setPacketCooldown(SeedPacketRechargeTime.SLOW.getValue())
         .setSprite(sprite)
-        .setSpriteWidth(509)
-        .setSpriteHeight(496)
+        .setSpriteWidth(169)
+        .setSpriteHeight(165)
     );
     animStart[0] = 0;
     animEnd[0] = 16;

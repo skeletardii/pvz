@@ -14,10 +14,10 @@ public class Sun extends RenderObj implements Updater {
   private int stepCtr = 0;
   private int sunValue, posX, posY, distInitX, distInitY, frame, fallCtr, frameCtr =
     0;
-  private final int lx = 688;
-  private final int ly = 689;
+  private final int lx = 229;
+  private final int ly = 229;
   private boolean leftLast = false;
-  private double scale = 1.0;
+  private double scale = 3.0;
   private Mouse mouse;
   private boolean goingCorner = false;
   private static final Image sprite = new ImageIcon(
@@ -40,6 +40,7 @@ public class Sun extends RenderObj implements Updater {
     frame = 0;
     scale = this.sunValue / 25.0;
     scale /= 4;
+    scale *= 3;
     setZindex(30);
   }
 

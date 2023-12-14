@@ -4,13 +4,10 @@ import Entities.Misc.SunManager;
 import Entities.Misc.SunSpawner;
 import Entities.Plants.*;
 import Entities.Plants.LawnDay.*;
-import Entities.Plants.LawnNight.DoomShroom;
-import Entities.Plants.LawnNight.FumeShroom;
-import Entities.Plants.LawnNight.GloomShroom;
-import Entities.Plants.LawnNight.IceShroom;
+import Entities.Plants.LawnNight.*;
 import Entities.Plants.PoolDay.*;
-import Entities.Plants.PoolNight.CoffeeBean;
-import Entities.Plants.PoolNight.Pumpkin;
+import Entities.Plants.PoolNight.*;
+import Entities.Plants.Roof.*;
 import GUI.*;
 import GameUtils.*;
 
@@ -108,14 +105,34 @@ public class Main {
         Global.addLawnMowers(i);
       }
     }
+    
+    Sound.play(new File("assets/sound/bg0.wav"), -10f);
 
-    for (String p : Global.gameSettings.selectedPlants) {
-      Global.addSeedPacket(new SeedPacket(plantsMap.get(p)));
-    }
-
-//    Global.addSeedPacket(new SeedPacket(new Cherrybomb()));
-//    Global.addSeedPacket(new SeedPacket(new WallNut()));
-
+    Global.addPlant(new Sunflower(), 0, 0);
+    Global.addPlant(new TwinSunflower(), 1, 0);
+    Global.addPlant(new GatlingPea(), 2, 0);
+    Global.addPlant(new Peashooter(), 3, 0);
+    Global.addPlant(new Repeater(), 4, 0);
+    Global.addPlant(new Snowpea(), 5, 0);
+    Global.addPlant(new FumeShroom(), 0, 1);
+    Global.addPlant(new CabbagePult(), 1, 1);
+    Global.addPlant(new PotatoMine(), 2, 1);
+    Global.addPlant(new GloomShroom(), 3, 1);
+    Global.addPlant(new Torchwood(), 4, 1);
+    Global.addPlant(new Chomper(), 5, 1);
+    Global.addPlant(new WallNut(), 0, 2);
+    Global.addPlant(new TallNut(), 1, 2);
+    Global.addSeedPacket(new SeedPacket(new Cherrybomb()));
+    Global.addSeedPacket(new SeedPacket(new Jalapeno()));
+    Global.addSeedPacket(new SeedPacket(new WallNut()));
+    Global.addSeedPacket(new SeedPacket(new IceShroom()));
+    Global.addSeedPacket(new SeedPacket(new Squash()));
+    Global.addSeedPacket(new SeedPacket(new SpikeWeed()));
+    Global.addSeedPacket(new SeedPacket(new Pumpkin()));
+    Global.addSeedPacket(new SeedPacket(new CoffeeBean()));
+    Global.addSeedPacket(new SeedPacket(new DoomShroom()));
+    // Global.addSeedPacket(new SeedPacket(new Repeater()));
+    // Global.addSeedPacket(new SeedPacket(new GatlingPea()));
     // Global.addZombie(new NormalZombie(0));
 
     //game.add(new Selector(game));

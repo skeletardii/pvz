@@ -1,7 +1,6 @@
 package Entities.Plants.LawnNight;
 
 import Entities.Interfaces.Attacker;
-import Entities.Plants.Plant;
 import Entities.Plants.PlantBuilder;
 import Entities.Projectiles.Pea;
 import Entities.Zombies.Zombie;
@@ -11,6 +10,7 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 
 public class FumeShroom extends Shroom implements Attacker {
+  private static final Image sprite = new ImageIcon("assets/plants/fumeshroom.png").getImage();
 
   protected int attacksLeft = 0;
   protected int shotsPerAttack;
@@ -33,10 +33,18 @@ public class FumeShroom extends Shroom implements Attacker {
         .setSunCost(75)
         .setHealth(300)
         .setPacketCooldown(SeedPacketRechargeTime.FAST.getValue())
-        .setSpriteWidth(364)
-        .setSpriteHeight(365),
+        .setSprite(sprite)
+        .setSpriteWidth(216)
+        .setSpriteHeight(146)
+        .setAnimRow(2),
       shotsPerAttack
     );
+    animStart[0]=4;
+    animEnd[0]=21;
+    animStart[1]=22;
+    animEnd[1]=40;
+    offsetOX=15;
+    scale=0.7;
   }
 
   public FumeShroom() {

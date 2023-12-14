@@ -1,5 +1,9 @@
 package Entities.Plants.LawnNight;
 
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+
 import Entities.Plants.PlantBuilder;
 import Entities.Zombies.Zombie;
 import Main.Constants;
@@ -7,6 +11,7 @@ import Main.Global;
 
 @SuppressWarnings("all")
 public class IceShroom extends ShroomInstaKiller {
+  private static final Image sprite = new ImageIcon("assets/plants/iceshroom.png").getImage();
 
   public IceShroom() {
     this(-1, -1);
@@ -18,10 +23,14 @@ public class IceShroom extends ShroomInstaKiller {
         .setRow(row)
         .setCol(col).setHealth(300)
         .setSunCost(75)
+        .setSprite(sprite)
+        .setSpriteWidth(134)
+        .setSpriteHeight(123)
         .setPacketCooldown(SeedPacketRechargeTime.VERY_SLOW.getValue())
     );
-    animStart[0] = 79;
-    animEnd[0] = 103;
+    animStart[0] = 4;
+    animEnd[0] = 20;
+    
   }
 
   @Override

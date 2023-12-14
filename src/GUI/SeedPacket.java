@@ -30,7 +30,7 @@ public class SeedPacket extends RenderObj implements Updater {
   private Class<?> plant;
   private Image sprite;
   private Plant p;
-
+  private boolean isOnTop = false;
   public SeedPacket(Plant p) {
     this.p = p;
     sprite = p.getPreview();
@@ -52,6 +52,7 @@ public class SeedPacket extends RenderObj implements Updater {
     }
 
     if (p instanceof PotatoMine) sx = lx * 30;
+    if (p instanceof Entities.Plants.PoolNight.Pumpkin || p instanceof Entities.Plants.PoolNight.CoffeeBean) isOnTop=true;
   }
 
   private int getDigits(int num) {
@@ -95,7 +96,7 @@ public class SeedPacket extends RenderObj implements Updater {
         Constants.PLANT_COLS_COUNT - 1;
       if (row < 0) row = 0;
       if (col < 0) col = 0;
-      if (Global.plants[row][col] == null) {
+      if (Global.plants[row][col] == null ^ isOnTop) {
         g.setComposite(makeComposite(0.5f));
 
         int ox = (col) * Constants.COL_PIXEL_OFFSET + Constants.GRID_OFFSET_X;
@@ -132,7 +133,6 @@ public class SeedPacket extends RenderObj implements Updater {
       );
     }
   }
-
   public void setPosX(int posX) {
     this.posX = posX;
   }

@@ -1,8 +1,13 @@
 package Entities.Plants.LawnNight;
 
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+
 import Entities.Plants.PlantBuilder;
 
 public class GloomShroom extends FumeShroom {
+  private static final Image sprite = new ImageIcon("assets/plants/gloomshroom.png").getImage();
 
   protected GloomShroom(double row, double col) {
     super(
@@ -12,10 +17,13 @@ public class GloomShroom extends FumeShroom {
         .setSunCost(75)
         .setHealth(300)
         .setPacketCooldown(SeedPacketRechargeTime.FAST.getValue())
-        .setSpriteWidth(364)
-        .setSpriteHeight(365),
+        .setSprite(sprite)
+        .setSpriteWidth(161)
+        .setSpriteHeight(138),
       4
     );
+    animStart[0]=4;
+    animEnd[0]=16;
   }
 
   public GloomShroom() {

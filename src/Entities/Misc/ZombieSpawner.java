@@ -3,7 +3,6 @@ package Entities.Misc;
 import Entities.Zombies.*;
 import Main.Constants;
 import Main.Global;
-import java.io.Serializable;
 import java.util.Random;
 
 public class ZombieSpawner {

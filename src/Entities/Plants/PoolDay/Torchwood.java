@@ -1,7 +1,6 @@
 package Entities.Plants.PoolDay;
 
 import Entities.Plants.Plant;
-import Entities.Plants.Plant.SeedPacketRechargeTime;
 import Entities.Plants.PlantBuilder;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -9,7 +8,7 @@ import javax.swing.ImageIcon;
 
 public class Torchwood extends Plant {
 
-  public static final Image sprite = new ImageIcon("assets/plants/wallnut.png")
+  public static final Image sprite = new ImageIcon("assets/plants/torchwood.png")
     .getImage();
 
   public Torchwood(int row, int col) {
@@ -21,10 +20,13 @@ public class Torchwood extends Plant {
         .setSunCost(175)
         .setPacketCooldown(SeedPacketRechargeTime.FAST.getValue())
         .setSprite(sprite)
+        .setSpriteWidth(115)
+        .setSpriteHeight(152)
     );
-    animStart[0] = 0;
-    animEnd[0] = 16;
-    offsetOY = 20;
+    animStart[0] = 4;
+    animEnd[0] = 24;
+    offsetOY = 0;
+    animSpeed=3;
   }
 
   public Torchwood() {

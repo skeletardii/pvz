@@ -7,6 +7,7 @@ import java.util.TimerTask;
 public class SetInterval {
 
   private final Timer timer;
+  @SuppressWarnings("all")
   private final Runnable fc;
 
   public SetInterval(int interval, Runnable task) {

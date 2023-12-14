@@ -12,7 +12,7 @@ import javax.swing.ImageIcon;
 public class Squash extends InstaKiller {
 
   private static final Image sprite = new ImageIcon(
-    "assets/plants/sunflower.png"
+    "assets/plants/squash.png"
   )
     .getImage();
 
@@ -24,8 +24,8 @@ public class Squash extends InstaKiller {
         .setSunCost(50)
         .setPacketCooldown(SeedPacketRechargeTime.SLOW.getValue())
         .setSprite(sprite)
-        .setSpriteWidth(364)
-        .setSpriteHeight(365)
+        .setSpriteWidth(153)
+        .setSpriteHeight(162)
     );
     this.explodeSpeed = 0;
     animStart[0] = 4;

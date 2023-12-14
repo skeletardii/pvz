@@ -1,7 +1,6 @@
 package Entities.Plants.Roof;
 
 import Entities.Plants.Plant;
-import Entities.Plants.Plant.SeedPacketRechargeTime;
 import Entities.Plants.PlantBuilder;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -33,6 +32,7 @@ public class CabbagePult extends Plant {
         .setSpriteHeight(527)
         .setAnimRow(2)
     );
+    scale=scale/3;
     animStart[0] = 4;
     animEnd[0] = 35;
     animStart[1] = 36;

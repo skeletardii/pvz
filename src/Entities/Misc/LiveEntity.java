@@ -3,9 +3,11 @@ package Entities.Misc;
 import GameUtils.RenderObj;
 import GameUtils.Updater;
 import Main.Constants;
-import Main.Global;
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
+
 import javax.swing.ImageIcon;
 
 public abstract class LiveEntity extends RenderObj implements Updater {
@@ -14,11 +16,14 @@ public abstract class LiveEntity extends RenderObj implements Updater {
   private double col;
   private double health;
   private boolean targetable = true;
+  private int damageFlashCooldown =20;
+  private int lastDamaged = 0;
+
   protected final int offsetX;
   protected final int offsetY;
   protected Image sprite;
   protected int lx, ly, frame, frameCtr = 0;
-  protected double scale = 0.25;
+  protected double scale = 0.25 * 3;
   protected int[] animStart;
   protected int[] animEnd;
   private static final Image shadow = new ImageIcon("assets/ui/shadow.png")
@@ -103,9 +108,15 @@ public abstract class LiveEntity extends RenderObj implements Updater {
   public boolean isTouching(LiveEntity e) {
     return this.row == e.row && Math.abs(this.col - e.col) <= 1;
   }
+  public boolean isTouchingClose(LiveEntity e) {
+    return this.row == e.row && Math.abs(this.col - e.col) <= 0.5;
+  }
 
   public void takeDamage(double damage) {
     this.health -= damage;
+    if(lastDamaged==1){
+      lastDamaged--;
+    }
   }
 
   public void setFrame(int frame) {
@@ -123,8 +134,20 @@ public abstract class LiveEntity extends RenderObj implements Updater {
   public void setCol(int col) {
     this.col = col;
   }
-
-  public void renderSprite(Graphics2D g, int anim) {
+  @SuppressWarnings("all")
+  private BufferedImage colorImage(BufferedImage loadImg, int red, int green, int blue) {
+    BufferedImage img = new BufferedImage(loadImg.getWidth(), loadImg.getHeight(),
+        BufferedImage.TRANSLUCENT);
+    Graphics2D graphics = img.createGraphics(); 
+    Color newColor = new Color(red, green, blue, 0 /* alpha needs to be zero */);
+    graphics.setXORMode(newColor);
+    graphics.drawImage(loadImg, null, 0, 0);
+    graphics.dispose();
+    return img;
+}
+  public int renderSprite(Graphics2D g, int anim) {
+    Image spriteToDraw = sprite;
+    
     if (frame < animStart[anim] || frame > animEnd[anim]) frame =
       animStart[anim];
     int ox = (int) Math.round(
@@ -151,7 +174,7 @@ public abstract class LiveEntity extends RenderObj implements Updater {
       null
     );
     g.drawImage(
-      sprite,
+      spriteToDraw,
       dx + offsetOX, //dx1
       dy + offsetOY, //dy1
       dx + offsetOX + (int) (lx * scale), //dx2
@@ -162,11 +185,29 @@ public abstract class LiveEntity extends RenderObj implements Updater {
       sy + ly,
       null
     );
+    if (lastDamaged==0){
+      lastDamaged = damageFlashCooldown;
+      g.drawImage(
+        spriteToDraw,
+        dx + offsetOX, //dx1
+        dy + offsetOY, //dy1
+        dx + offsetOX + (int) (lx * scale), //dx2
+        dy + offsetOY + (int) (ly * scale), //dy2
+        sx, //sx1 source
+        sy,
+        sx + lx,
+        sy + ly,
+        null
+      );
+    } else if (lastDamaged>1){
+      lastDamaged--;
+    }
     if (frameCtr++ > animSpeed) {
       frameCtr = 0;
       frame++;
       if (frame == animEnd[anim]) frame = animStart[anim];
     }
+    return frame;
     //g.setColor(Color.white);
     //g.drawOval(ox-5,oy-5,10,10);
   }

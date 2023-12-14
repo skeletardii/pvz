@@ -1,8 +1,6 @@
 package Entities.Plants.LawnDay;
 
-import Entities.Interfaces.SunProducer;
 import Entities.Plants.Plant;
-import Entities.Plants.Plant.SeedPacketRechargeTime;
 import Entities.Plants.PlantBuilder;
 import Entities.Zombies.Zombie;
 import Entities.Zombies.Zombie.DeathType;
@@ -31,11 +29,11 @@ public class Chomper extends Plant {
         .setSunCost(150)
         .setPacketCooldown(SeedPacketRechargeTime.FAST.getValue())
         .setSprite(sprite)
-        .setSpriteWidth(690)
-        .setSpriteHeight(694)
+        .setSpriteWidth(230)
+        .setSpriteHeight(231)
         .setAnimRow(4)
     );
-    scale = 0.23;
+    scale = 0.23*3;
     offsetOX = 30;
     offsetOY = 10;
     shadowOffsetY = 10;

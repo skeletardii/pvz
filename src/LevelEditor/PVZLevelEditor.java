@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
-
+@SuppressWarnings("unused")
 public class PVZLevelEditor extends  JFrame {
 
 
@@ -18,6 +18,7 @@ public class PVZLevelEditor extends  JFrame {
     private JTabbedPane tabbedPane1;
     private JCheckBox cbZombie;
     private JPanel cbPlants;
+    @SuppressWarnings("all")
     private JComboBox comboMusic;
     private JSlider slSunFallRate;
     private JButton resetToDefaultButton;

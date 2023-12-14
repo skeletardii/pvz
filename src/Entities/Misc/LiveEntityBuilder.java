@@ -12,7 +12,7 @@ public class LiveEntityBuilder {
   public int offsetY;
   public Image sprite;
   public int lx, ly, frame;
-  public double scale = 0.25;
+  public double scale = 0.25 * 3;
   public int[] animStart;
   public int[] animEnd;
   public int offsetOY = (int) Math.random() * 10 - 5;

@@ -7,8 +7,12 @@ import Entities.Projectiles.Pea;
 import Entities.Zombies.Zombie;
 import Main.Global;
 import java.awt.Graphics2D;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
 
 public class Peashooter extends Plant implements Attacker {
+  private static final Image sprite = new ImageIcon("assets/plants/peashooter.png").getImage();
 
   protected int attacksLeft = 0;
   protected int shotsPerAttack;
@@ -21,20 +25,25 @@ public class Peashooter extends Plant implements Attacker {
   }
 
   public Peashooter(double row, double col) {
-    this(new PlantBuilder().setRow(row).setCol(col), 1);
+    this(row, col, 1, 100,sprite,125,117);
   }
 
-  public Peashooter(PlantBuilder plantBuilder, int shotsPerAttack) {
+  public Peashooter(double row, double col, int shotsPerAttack, int sunCost, Image sprite, int spriteWidth, int spriteHeight) {
     super(
       new PlantBuilder()
-        .setHealth(300)
-        .setSpriteWidth(375)
-        .setSpriteHeight(353)
+        .setHealth(100)
+        .setRow(row)
+        .setCol(col)
+        .setSunCost(sunCost)
+        .setSprite(sprite)
+        .setSpriteWidth(spriteWidth)
+        .setSpriteHeight(spriteHeight)
+        .setAnimRow(5)
     );
-
     this.shotsPerAttack = shotsPerAttack;
     animStart[0] = 79;
     animEnd[0] = 103;
+    // sprite = new ImageIcon("assets/plants/peashooter.png").getImage();
   }
 
   @Override

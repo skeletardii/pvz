@@ -28,8 +28,8 @@ public class PotatoMine extends InstaKiller {
         .setHealth(300)
         .setPacketCooldown(SeedPacketRechargeTime.SLOW.getValue())
         .setSprite(sprite)
-        .setSpriteWidth(467)
-        .setSpriteHeight(381)
+        .setSpriteWidth(155)
+        .setSpriteHeight(127)
         .setAnimRow(3)
     );
     this.explodeSpeed = 0;
@@ -39,7 +39,7 @@ public class PotatoMine extends InstaKiller {
     animEnd[1] = 19;
     animStart[2] = 20;
     animEnd[2] = 35;
-    scale = 0.2;
+    scale = 0.6;
   }
 
   public PotatoMine() {

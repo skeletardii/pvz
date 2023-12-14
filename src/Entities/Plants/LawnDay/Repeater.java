@@ -1,17 +1,21 @@
 package Entities.Plants.LawnDay;
 
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+
 import Entities.Interfaces.Upgradable;
 import Entities.Interfaces.Upgraded;
-import Entities.Plants.PlantBuilder;
 
 public class Repeater extends Peashooter implements Upgradable {
+  private static final Image sprite = new ImageIcon("assets/plants/repeater.png").getImage();
 
   public Repeater() {
     this(-1, -1);
   }
 
   public Repeater(double row, double col) {
-    super(new PlantBuilder().setRow(row).setCol(col).setSunCost(200), 2);
+    super(row, col, 2, 150,sprite,126,117);
   }
 
   @Override

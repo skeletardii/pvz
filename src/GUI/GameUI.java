@@ -1,6 +1,4 @@
 package GUI;
-
-import Entities.Interfaces.SunProducer;
 import GameUtils.RenderObj;
 import GameUtils.Updater;
 import Main.Constants;
@@ -8,8 +6,6 @@ import Main.Global;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.lang.invoke.ConstantCallSite;
-import java.util.Random;
 import javax.swing.ImageIcon;
 
 public class GameUI extends RenderObj implements Updater {

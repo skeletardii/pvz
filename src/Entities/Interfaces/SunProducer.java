@@ -2,7 +2,6 @@ package Entities.Interfaces;
 
 import Entities.Misc.Sun;
 import Main.Constants;
-import Main.Global;
 
 public interface SunProducer {
   default Sun produceSun(

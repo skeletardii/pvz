@@ -13,7 +13,7 @@ public class SpikeRock extends SpikeWeed implements Upgraded {
             .getImage();
 
     public SpikeRock(int row, int col) {
-        super(row, col, 9, 125, 40, sprite);
+        super(row, col, 9, 125, 40, sprite,137,79);
     }
 
     public SpikeRock() {
