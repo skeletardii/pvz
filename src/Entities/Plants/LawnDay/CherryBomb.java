@@ -11,14 +11,14 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 
-public class CherryBomb extends InstaKiller {
+public class Cherrybomb extends InstaKiller {
 
   private static final Image sprite = new ImageIcon(
     "assets/plants/cherrybomb.png"
   )
     .getImage();
 
-  public CherryBomb(int row, int col) {
+  public Cherrybomb(int row, int col) {
     super(
       new PlantBuilder()
         .setRow(row)
@@ -39,7 +39,7 @@ public class CherryBomb extends InstaKiller {
     setFrame(14);
   }
 
-  public CherryBomb() {
+  public Cherrybomb() {
     this(-1, -1);
   }
 

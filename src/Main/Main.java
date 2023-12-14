@@ -2,7 +2,7 @@ package Main;
 
 import Entities.Misc.SunManager;
 import Entities.Plants.*;
-import Entities.Plants.LawnDay.CherryBomb;
+import Entities.Plants.LawnDay.Cherrybomb;
 import Entities.Plants.LawnDay.GatlingPea;
 import Entities.Plants.LawnDay.Peashooter;
 import Entities.Plants.LawnDay.Repeater;
@@ -14,9 +14,9 @@ import Entities.Plants.LawnNight.GloomShroom;
 import Entities.Plants.LawnNight.IceShroom;
 import Entities.Plants.LawnNight.Shroom;
 import Entities.Plants.PoolDay.Threepeater;
+import Entities.Plants.PoolNight.CoffeeBean;
+import Entities.Plants.PoolNight.Pumpkin;
 import Entities.Plants.Roof.CabbagePult;
-import Entities.Plants.Roof.CoffeeBean;
-import Entities.Plants.Roof.Pumpkin;
 import Entities.Zombies.Zombie;
 import GUI.*;
 import GameUtils.*;
@@ -55,7 +55,7 @@ public class Main {
     Sound.play(new File("assets/sound/bg0.wav"), -10f);
 
     // Global.addPlant(new CabbagePult(), 0, 0);
-    Global.addSeedPacket(new SeedPacket(new CherryBomb()));
+    Global.addSeedPacket(new SeedPacket(new Cherrybomb()));
     Global.addSeedPacket(new SeedPacket(new CabbagePult()));
     Global.addSeedPacket(new SeedPacket(new WallNut()));
 
