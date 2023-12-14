@@ -7,17 +7,11 @@ import Entities.Plants.LawnNight.DoomShroom;
 import Entities.Plants.LawnNight.FumeShroom;
 import Entities.Plants.LawnNight.GloomShroom;
 import Entities.Plants.LawnNight.IceShroom;
-import Entities.Plants.LawnNight.Shroom;
 import Entities.Plants.PoolDay.*;
 import Entities.Plants.PoolNight.CoffeeBean;
 import Entities.Plants.PoolNight.Pumpkin;
-import Entities.Plants.Roof.CabbagePult;
-import Entities.Projectiles.Pea;
-import Entities.Zombies.*;
 import GUI.*;
 import GameUtils.*;
-import LevelEditor.GameSettings;
-import LevelEditor.PVZLevelEditor;
 
 import java.io.File;
 import java.util.HashMap;
@@ -96,7 +90,7 @@ public class Main {
     plantsMap.put("Pumpkin", new Pumpkin());
     plantsMap.put("CoffeeBean", new CoffeeBean());
 
-    Global.gameSettings = Global.loadFromFile("./data/settings.ser");
+    Global.gameSettings = Global.loadFromFile();
 
       assert Global.gameSettings != null;
       Sound.play(new File("assets/sound/" + Global.gameSettings.music +  ".wav"), -10f);
@@ -114,7 +108,6 @@ public class Main {
   }
 
   private static void preload() {
-    double percent = 0;
     String[] classes = {
       "Main.Global",
       "GameUtils.Game",
@@ -145,7 +138,7 @@ public class Main {
       "GUI.Selector",
     };
     for (int i = 0; i < classes.length; i++) {
-      percent = 100.0 * i / classes.length;
+      double percent = 100.0 * i / classes.length;
       System.out.println("Loading: " + percent + "%");
       try {
         Class.forName(classes[i]);
