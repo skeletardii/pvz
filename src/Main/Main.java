@@ -26,6 +26,7 @@ public class Main {
     Global.game = game;
     Global.mouse = game.mouse;
     Global global = new Global();
+    game.setPrintFPS(true);
     game.add(new GameUI(Global.gameMode));
     game.add(global);
     game.start();

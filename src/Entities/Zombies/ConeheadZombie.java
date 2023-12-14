@@ -8,9 +8,11 @@ import Entities.ZombieItems.Armor;
 
 public class ConeheadZombie extends Zombie {
   private static final Image sprite = new ImageIcon("assets/zombies/conehead.png").getImage();
-  protected ConeheadZombie(int row) {
+  public ConeheadZombie(int row) {
     super(new ZombieBuilder().setRow(row)
     .setSprite(sprite)
-    .setArmor(new Armor.Cone()));
+    .setArmor(new Armor.Cone())
+    .setSpriteHeight(274)
+    .setSpriteWidth(320));
   }
 }

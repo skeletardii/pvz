@@ -23,7 +23,7 @@ public class Game implements Runnable {
 
   //Option vars
   public static final double TARGET_FPS = 60.0;
-  private static final boolean PRINT_FPS = false;
+  private static boolean PRINT_FPS = false;
 
   //Thread vars
   private Thread thread;
@@ -113,6 +113,9 @@ public class Game implements Runnable {
     // }
   }
 
+  public void setPrintFPS(boolean set){
+    PRINT_FPS=set;
+  }
   public void start() {
     thread = new Thread(this);
     Runnable r = new Runnable() { //spooky
