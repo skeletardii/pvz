@@ -238,39 +238,51 @@ class InputListener implements KeyListener, MouseInputListener {
 }
 
 class RootRenderObj extends RenderObj implements Updater{
-  private static final int THREADS = 1;
-  public static BlockingQueue<RenderObj> queue = new LinkedBlockingQueue<>();
-  private Renderer[] renderers = new Renderer[THREADS];
+  private static final int THREADS = 0;
+  public static BlockingQueue<RenderObj> queue;
+  private Renderer[] renderers;
   public void paintComponent(Graphics2D g) {}
   public void update(){}
+  @SuppressWarnings("all")
   public void render(Graphics2D g){
     resort();
-    for (int j = 0; j < THREADS; j++) {
-      renderers[j].g=g;
-    } 
-    for (int i = 0; i < getChildren().size(); i++) {
-        if(i>=0) getChildren().get(i).render(g);
-        else 
-        {
-          try{
-            queue.put(getChildren().get(i));
-          } catch(Exception e) {e.printStackTrace();}
+    if(THREADS==0) {
+      for (int i = 0; i < getChildren().size(); i++)
+        getChildren().get(i).render(g);
+    } else {
+      for (int j = 0; j < THREADS; j++) {
+        renderers[j].g=g;
+      } 
+      for (int i = 0; i < getChildren().size(); i++) {
+          if(i<=2) getChildren().get(i).render(g);
+          else //if (i<=getChildren().size()-2)
+          {
+            try{
+              queue.put(getChildren().get(i));
+            } catch(Exception e) {e.printStackTrace();}
+          }
+          //else getChildren().get(i).render(g);
+      }
+      while(!queue.isEmpty()){
+        try{
+          wait(1);
+        } catch(Exception e){
         }
-    }
-    while(!queue.isEmpty()){
-      try{
-        wait(1);
-      } catch(Exception e){
       }
     }
   }
   public RootRenderObj(){
-    Renderer.queue = queue;
-    for (int j = 0; j < THREADS; j++) {
-      renderers[j]=new Renderer();
-      new Thread(renderers[j]).start();
-    } 
-
+    
+    if(THREADS>=0){
+      Renderer.queue = queue;
+      queue = new LinkedBlockingQueue<>();
+      renderers = new Renderer[THREADS];
+      for (int j = 0; j < THREADS; j++) {
+        renderers[j]=new Renderer();
+        new Thread(renderers[j]).start();
+      } 
+    }
+    
   }
 }
 class Renderer implements Runnable{
@@ -288,7 +300,7 @@ class Renderer implements Runnable{
   }
 }
 class RootUpdaterObj implements Updater{
-  private static final int THREADS = 5;
+  private static final int THREADS = 2;
   private static ArrayList<Updater> children = new ArrayList<Updater>();
   private UpdaterConsumer[] updaterConsumers = new UpdaterConsumer[THREADS];
   public static BlockingQueue<Updater> queue = new LinkedBlockingQueue<>();
