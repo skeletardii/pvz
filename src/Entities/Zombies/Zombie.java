@@ -51,7 +51,7 @@ public class Zombie extends LiveEntity {
     }
   }
 
-  protected Zombie() {
+  public Zombie() {
     this(new ZombieBuilder());
   }
 

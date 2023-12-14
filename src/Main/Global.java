@@ -12,6 +12,7 @@ import GUI.SeedPacket;
 import GameUtils.Game;
 import GameUtils.Mouse;
 import GameUtils.Updater;
+import LevelEditor.GameSettings;
 import Main.Constants.GameMode;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -45,6 +46,7 @@ public class Global implements Updater, Serializable {
 
   public static SeedPacket[] seeds = new SeedPacket[20];
   public static int seedsNum = 0;
+  public static GameSettings gameSettings = null;
 
   public Global() {
     // ayaw lang sa ni i mind
@@ -193,15 +195,15 @@ public class Global implements Updater, Serializable {
     }
   }
 
-  protected static GameState loadFromFile(String filePath) {
+  protected static GameSettings loadFromFile(String filePath) {
     try (
       ObjectInputStream ois = new ObjectInputStream(
         new FileInputStream(filePath)
       )
     ) {
-      GameState state = (GameState) ois.readObject();
-      System.out.println("Game state loaded from file successfully.");
-      return state;
+      GameSettings settings = (GameSettings) ois.readObject();
+      System.out.println("Game settings loaded from file successfully.");
+      return settings;
     } catch (IOException | ClassNotFoundException e) {
       e.printStackTrace();
       return null;
