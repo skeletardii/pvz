@@ -3,7 +3,6 @@ package Entities.Misc;
 import GameUtils.RenderObj;
 import GameUtils.Updater;
 import Main.Constants;
-import Main.Global;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
