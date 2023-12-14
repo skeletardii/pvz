@@ -1,5 +1,8 @@
-package Entities.Plants;
+package Entities.Plants.Roof;
 
+import Entities.Plants.Plant;
+import Entities.Plants.Plant.SeedPacketRechargeTime;
+import Entities.Plants.PlantBuilder;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import javax.swing.ImageIcon;

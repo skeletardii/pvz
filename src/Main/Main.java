@@ -14,6 +14,7 @@ import Entities.Plants.LawnNight.GloomShroom;
 import Entities.Plants.LawnNight.IceShroom;
 import Entities.Plants.LawnNight.Shroom;
 import Entities.Plants.PoolDay.Threepeater;
+import Entities.Plants.Roof.CabbagePult;
 import Entities.Plants.Roof.CoffeeBean;
 import Entities.Plants.Roof.Pumpkin;
 import Entities.Zombies.Zombie;

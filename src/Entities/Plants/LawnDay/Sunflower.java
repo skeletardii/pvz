@@ -1,4 +1,4 @@
-package Entities.Plants.SunProducers;
+package Entities.Plants.LawnDay;
 
 import Entities.Interfaces.SunProducer;
 import Entities.Interfaces.Upgradable;
