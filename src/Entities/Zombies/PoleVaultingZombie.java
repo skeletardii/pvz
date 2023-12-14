@@ -29,7 +29,11 @@ public class PoleVaultingZombie extends Zombie {
     super(zBuilder);
   }
 
-  @Override
+    public PoleVaultingZombie() {
+        this(-1);
+    }
+
+    @Override
   public void update() {
     super.update();
 

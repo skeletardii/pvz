@@ -12,7 +12,11 @@ public class PogoZombie extends Zombie {
     super(row);
   }
 
-  @Override
+    public PogoZombie() {
+        this(-1);
+    }
+
+    @Override
   public void update() {
     double dist;
 

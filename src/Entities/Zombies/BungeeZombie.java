@@ -11,7 +11,11 @@ public class BungeeZombie extends Zombie {
     super(new ZombieBuilder().setRow(row));
   }
 
-  @Override
+    public BungeeZombie() {
+        this(-1);
+    }
+
+    @Override
   public void update() {
     if (xMarkCtr > 0) {
       xMarkCtr--;

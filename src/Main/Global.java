@@ -32,6 +32,7 @@ public class Global implements Updater {
 
   public static final GameMode gameMode = GameMode.LAWN_DAY;
 
+  public static GameSettings gameSettings = new GameSettings();
   @SuppressWarnings("unchecked")
   public static ArrayList<Zombie>[] zombies = new ArrayList[Constants.PLANT_ROWS_COUNT];
 
@@ -43,7 +44,6 @@ public class Global implements Updater {
 
   public static SeedPacket[] seeds = new SeedPacket[20];
   public static int seedsNum = 0;
-  public static GameSettings gameSettings = new GameSettings();
 
   public static void init() {
     for (int i = 0; i < Constants.PLANT_ROWS_COUNT; i++) {
@@ -54,7 +54,6 @@ public class Global implements Updater {
   public void update() {
     updateMouse();
     checkZombiesToRemove();
-    zombieSpawner.spawnZombie();
   }
 
   // changed to static

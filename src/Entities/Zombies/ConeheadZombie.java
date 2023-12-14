@@ -15,4 +15,8 @@ public class ConeheadZombie extends Zombie {
     .setSpriteHeight(274)
     .setSpriteWidth(320));
   }
+
+  public ConeheadZombie() {
+    this(-1);
+  }
 }

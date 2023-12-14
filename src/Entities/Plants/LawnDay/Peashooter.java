@@ -31,7 +31,6 @@ public class Peashooter extends Plant implements Attacker {
   public Peashooter(double row, double col, int shotsPerAttack, int sunCost, Image sprite, int spriteWidth, int spriteHeight) {
     super(
       new PlantBuilder()
-        .setHealth(100)
         .setRow(row)
         .setCol(col)
         .setSunCost(sunCost)
@@ -43,7 +42,6 @@ public class Peashooter extends Plant implements Attacker {
     this.shotsPerAttack = shotsPerAttack;
     animStart[0] = 79;
     animEnd[0] = 103;
-    // sprite = new ImageIcon("assets/plants/peashooter.png").getImage();
   }
 
   @Override

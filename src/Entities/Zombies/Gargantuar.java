@@ -16,6 +16,10 @@ public class Gargantuar extends Zombie {
     );
   }
 
+  public Gargantuar() {
+    this(-1);
+  }
+
   @Override
   public void update() {
     super.update();

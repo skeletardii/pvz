@@ -9,7 +9,7 @@ import javax.swing.ImageIcon;
 public class ZombieBuilder {
 
   double row = 0;
-  double col = Constants.PLANT_COLS_COUNT + 2.0;
+  double col = Constants.PLANT_COLS_COUNT + 1.0;
   int health = 181;
   Armor armor = null;
   double movementSpeed = ZombieSpeed.NORMAL.getValue();

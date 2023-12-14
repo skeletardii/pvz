@@ -12,4 +12,8 @@ public class FootballZombie extends Zombie {
         .setMovementSpeed(ZombieSpeed.FAST.getValue())
     );
   }
+
+
+  public FootballZombie() { this(-1);
+  }
 }

@@ -2,26 +2,21 @@ package Main;
 
 import Entities.Misc.SunManager;
 import Entities.Misc.SunSpawner;
-import Entities.Plants.*;
-import Entities.Plants.LawnDay.*;
-import Entities.Plants.LawnNight.*;
-import Entities.Plants.PoolDay.*;
-import Entities.Plants.PoolNight.*;
-import Entities.Plants.Roof.*;
+import Entities.Misc.ZombieSpawner;
 import GUI.*;
 import GameUtils.*;
 
 import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
-import javax.swing.JFrame;
-import javax.swing.WindowConstants;
+import javax.swing.*;
+
+import Main.Constants;
 
 public class Main {
 
   public static void main(String[] args) throws Exception {
 
     Global.init();
+    Constants constants = new Constants();
     Global.gameSettings = Global.loadFromFile();
 
     if (Global.gameSettings == null) {
@@ -51,51 +46,12 @@ public class Main {
     game.add(global);
     game.start();
 
-    Global.init();
-
     game.add(new SunManager());
     game.add(new SunSpawner());
+    game.add(new ZombieSpawner());
 
-//    Map<String, Zombie> zombiesMap = new HashMap<>();
-//    zombiesMap.put("Zombie", new Zombie());
-//    zombiesMap.put("ConeheadZombie", new ConeheadZombie());
-//    zombiesMap.put("BucketheadZombie", new BucketheadZombie());
-//    zombiesMap.put("FootballZombie", new FootballZombie());
-//    zombiesMap.put("PoleVaultingZombie", new PoleVaultingZombie());
-//    zombiesMap.put("NewspaperZombie", cbNewspaperZombie);
-//    zombiesMap.put("PogoZombie", cbPogoZombie);
-//    zombiesMap.put("ScreendoorZombie", cbScreendoorZombie);
-//    zombiesMap.put("GargantuarZombie", cbGargantuar);
-//    zombiesMap.put("BungeeZombie", cbBungeeZombie);
-
-    Map<String, Plant> plantsMap = new HashMap<>();
-
-    plantsMap.put("Sunflower", new Sunflower());
-    plantsMap.put("TwinSunflower", new TwinSunflower());
-    plantsMap.put("Peashooter", new Peashooter());
-    plantsMap.put("Repeater", new Repeater());
-    plantsMap.put("GatlingPea", new GatlingPea());
-    plantsMap.put("PotatoMine", new PotatoMine());
-    plantsMap.put("Cherrybomb", new Cherrybomb());
-    plantsMap.put("WallNut", new WallNut());
-    plantsMap.put("Chomper", new Chomper());
-    plantsMap.put("Snowpea", new Snowpea());
-
-    plantsMap.put("FumeShroom", new FumeShroom());
-    plantsMap.put("GloomShroom", new GloomShroom());
-    plantsMap.put("IceShroom", new IceShroom());
-    plantsMap.put("DoomShroom", new DoomShroom());
-
-    plantsMap.put("Threepeater", new Threepeater());
-    plantsMap.put("Squash", new Squash());
-    plantsMap.put("SpikeWeed", new SpikeWeed());
-    plantsMap.put("SpikeRock", new SpikeRock());
-    plantsMap.put("TallNut", new TallNut());
-    plantsMap.put("Jalapeno", new Jalapeno());
-    plantsMap.put("Torchwood", new Torchwood());
-
-    plantsMap.put("Pumpkin", new Pumpkin());
-    plantsMap.put("CoffeeBean", new CoffeeBean());
+    Global.init();
+    Global.zombieSpawner.init();
 
 
     Sound.play(new File("assets/sound/" + Global.gameSettings.music +  ".wav"), -10f);
@@ -105,18 +61,22 @@ public class Main {
         Global.addLawnMowers(i);
       }
     }
+
+    for (String s : Global.gameSettings.selectedPlants) {
+      Global.addSeedPacket(new SeedPacket(Constants.plantsMap.get(s)));
+    }
     
-    Global.addPlant(new Sunflower(), 0, 0);
-    Global.addPlant(new Peashooter(), 3, 0);
-    Global.addPlant(new Repeater(), 4, 0);
-    Global.addPlant(new Snowpea(), 5, 0);
-    Global.addPlant(new FumeShroom(), 0, 1);
-    Global.addPlant(new CabbagePult(), 1, 1);
-    Global.addPlant(new PotatoMine(), 2, 1);
-    Global.addPlant(new Torchwood(), 4, 1);
-    Global.addPlant(new Chomper(), 5, 1);
-    Global.addPlant(new WallNut(), 0, 2);
-    Global.addPlant(new TallNut(), 1, 2);
+//    Global.addPlant(new Sunflower(), 0, 0);
+//    Global.addPlant(new Peashooter(), 3, 0);
+//    Global.addPlant(new Repeater(), 4, 0);
+//    Global.addPlant(new Snowpea(), 5, 0);
+//    Global.addPlant(new FumeShroom(), 0, 1);
+//    Global.addPlant(new CabbagePult(), 1, 1);
+//    Global.addPlant(new PotatoMine(), 2, 1);
+//    Global.addPlant(new Torchwood(), 4, 1);
+//    Global.addPlant(new Chomper(), 5, 1);
+//    Global.addPlant(new WallNut(), 0, 2);
+//    Global.addPlant(new TallNut(), 1, 2);
 
 //    Global.addSeedPacket(new SeedPacket(new Cherrybomb()));
 //    Global.addSeedPacket(new SeedPacket(new Jalapeno()));
@@ -127,14 +87,14 @@ public class Main {
 //    Global.addSeedPacket(new SeedPacket(new Pumpkin()));
 //    Global.addSeedPacket(new SeedPacket(new CoffeeBean()));
 //    Global.addSeedPacket(new SeedPacket(new DoomShroom()));
-     Global.addSeedPacket(new SeedPacket(new Repeater()));
-     Global.addSeedPacket(new SeedPacket(new GatlingPea()));
-
-    Global.addSeedPacket(new SeedPacket(new Sunflower()));
-    Global.addSeedPacket(new SeedPacket(new TwinSunflower()));
-
-    Global.addSeedPacket(new SeedPacket(new FumeShroom()));
-    Global.addSeedPacket(new SeedPacket(new GloomShroom()));
+//     Global.addSeedPacket(new SeedPacket(new Repeater()));
+//     Global.addSeedPacket(new SeedPacket(new GatlingPea()));
+//
+//    Global.addSeedPacket(new SeedPacket(new Sunflower()));
+//    Global.addSeedPacket(new SeedPacket(new TwinSunflower()));
+//
+//    Global.addSeedPacket(new SeedPacket(new FumeShroom()));
+//    Global.addSeedPacket(new SeedPacket(new GloomShroom()));
     // Global.addZombie(new NormalZombie(0));
 
     //game.add(new Selector(game));

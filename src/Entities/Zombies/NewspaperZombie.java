@@ -19,6 +19,10 @@ public class NewspaperZombie extends Zombie {
     animEnd[0]=68;
   }
 
+  public NewspaperZombie() {
+    this(-1);
+  }
+
   @Override
   public void removeArmor() {
     setMovementSpeed(ZombieSpeed.FAST.getValue());

@@ -89,8 +89,8 @@ public class PVZLevelEditor extends  JFrame {
     protected static final String filePath = "./data/settings.ser";
 
 
-    protected Map<String, JCheckBox> zombiesMap = null;
-    protected Map<String, JCheckBox> plantsMap = null;
+    protected Map<String, JCheckBox> zombiesMap;
+    protected Map<String, JCheckBox> plantsMap;
 
 
     public void loadFromFile(String file) {
@@ -167,7 +167,7 @@ public class PVZLevelEditor extends  JFrame {
         zombiesMap.put("NewspaperZombie", cbNewspaperZombie);
         zombiesMap.put("PogoZombie", cbPogoZombie);
         zombiesMap.put("ScreendoorZombie", cbScreendoorZombie);
-        zombiesMap.put("GargantuarZombie", cbGargantuar);
+        zombiesMap.put("Gargantuar", cbGargantuar);
         zombiesMap.put("BungeeZombie", cbBungeeZombie);
 
         plantsMap.put("Sunflower", cbSunflower);

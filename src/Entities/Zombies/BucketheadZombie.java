@@ -15,4 +15,8 @@ public class BucketheadZombie extends Zombie {
     .setSpriteWidth(320)
     .setSpriteHeight(259));
   }
+
+  public BucketheadZombie() {
+    this(-1);
+  }
 }
