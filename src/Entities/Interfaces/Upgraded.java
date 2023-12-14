@@ -7,6 +7,8 @@ import Main.Global;
 public interface Upgraded {
   abstract int getIncreasingSunCost();
 
+  abstract Object getLowerClass();
+
   default int concurrentSunCost(Class<? extends Plant> plantClass) {
     int similarPlantCount = 0;
 

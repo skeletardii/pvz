@@ -1,7 +1,5 @@
 package Entities.Plants.PoolDay;
 
-import Entities.Interfaces.Upgradable;
-import Entities.Interfaces.Upgraded;
 import Entities.Plants.Plant;
 import Entities.Plants.PlantBuilder;
 import Entities.Zombies.Zombie;
@@ -10,7 +8,7 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 
-public class SpikeWeed extends Plant implements Upgradable {
+public class SpikeWeed extends Plant {
 
   private static final Image sprite = new ImageIcon(
     "assets/plants/spikeweed.png"
@@ -56,10 +54,6 @@ public class SpikeWeed extends Plant implements Upgradable {
     setTargetable(false);
   }
 
-  @Override
-  public Upgraded upgrade() {
-    return new SpikeRock((int) this.getRow(), (int) this.getCol());
-  }
 
   @Override
   public void paintComponent(Graphics2D g) {

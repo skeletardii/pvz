@@ -106,33 +106,35 @@ public class Main {
       }
     }
     
-    Sound.play(new File("assets/sound/bg0.wav"), -10f);
-
     Global.addPlant(new Sunflower(), 0, 0);
-    Global.addPlant(new TwinSunflower(), 1, 0);
-    Global.addPlant(new GatlingPea(), 2, 0);
     Global.addPlant(new Peashooter(), 3, 0);
     Global.addPlant(new Repeater(), 4, 0);
     Global.addPlant(new Snowpea(), 5, 0);
     Global.addPlant(new FumeShroom(), 0, 1);
     Global.addPlant(new CabbagePult(), 1, 1);
     Global.addPlant(new PotatoMine(), 2, 1);
-    Global.addPlant(new GloomShroom(), 3, 1);
     Global.addPlant(new Torchwood(), 4, 1);
     Global.addPlant(new Chomper(), 5, 1);
     Global.addPlant(new WallNut(), 0, 2);
     Global.addPlant(new TallNut(), 1, 2);
-    Global.addSeedPacket(new SeedPacket(new Cherrybomb()));
-    Global.addSeedPacket(new SeedPacket(new Jalapeno()));
-    Global.addSeedPacket(new SeedPacket(new WallNut()));
-    Global.addSeedPacket(new SeedPacket(new IceShroom()));
-    Global.addSeedPacket(new SeedPacket(new Squash()));
-    Global.addSeedPacket(new SeedPacket(new SpikeWeed()));
-    Global.addSeedPacket(new SeedPacket(new Pumpkin()));
-    Global.addSeedPacket(new SeedPacket(new CoffeeBean()));
-    Global.addSeedPacket(new SeedPacket(new DoomShroom()));
-    // Global.addSeedPacket(new SeedPacket(new Repeater()));
-    // Global.addSeedPacket(new SeedPacket(new GatlingPea()));
+
+//    Global.addSeedPacket(new SeedPacket(new Cherrybomb()));
+//    Global.addSeedPacket(new SeedPacket(new Jalapeno()));
+//    Global.addSeedPacket(new SeedPacket(new WallNut()));
+//    Global.addSeedPacket(new SeedPacket(new IceShroom()));
+//    Global.addSeedPacket(new SeedPacket(new Squash()));
+//    Global.addSeedPacket(new SeedPacket(new SpikeWeed()));
+//    Global.addSeedPacket(new SeedPacket(new Pumpkin()));
+//    Global.addSeedPacket(new SeedPacket(new CoffeeBean()));
+//    Global.addSeedPacket(new SeedPacket(new DoomShroom()));
+     Global.addSeedPacket(new SeedPacket(new Repeater()));
+     Global.addSeedPacket(new SeedPacket(new GatlingPea()));
+
+    Global.addSeedPacket(new SeedPacket(new Sunflower()));
+    Global.addSeedPacket(new SeedPacket(new TwinSunflower()));
+
+    Global.addSeedPacket(new SeedPacket(new FumeShroom()));
+    Global.addSeedPacket(new SeedPacket(new GloomShroom()));
     // Global.addZombie(new NormalZombie(0));
 
     //game.add(new Selector(game));

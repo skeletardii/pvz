@@ -19,8 +19,8 @@ public abstract class Shroom extends Plant {
 
   @Override
   public void update() {
+    super.update();
     if (!isAsleep) {
-      super.update();
       shroomUpdate();
     }
   }

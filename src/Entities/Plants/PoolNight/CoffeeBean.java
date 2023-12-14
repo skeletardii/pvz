@@ -23,7 +23,7 @@ public class CoffeeBean extends Plant {
         .setRow(row)
         .setCol(col)
         .setSunCost(75)
-        .setHealth(110)
+        .setHealth(115)
         .setSprite(sprite)
         .setSpriteWidth(78)
         .setSpriteHeight(235)
@@ -38,10 +38,11 @@ public class CoffeeBean extends Plant {
   public void update() {
     this.takeDamage(1);
     if (this.getHealth() <= 0) {
-      this.setVisible(false);
       ((Shroom) (Global.plants[(int) getRow()][(int) getCol()])).setAsleep(
           false
         );
+      this.remove();
+      return;
     }
   }
   public void paintComponent(Graphics2D g){

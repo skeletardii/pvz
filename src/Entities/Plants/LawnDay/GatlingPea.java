@@ -27,6 +27,12 @@ public class GatlingPea extends Peashooter implements Upgraded {
   public int getIncreasingSunCost() {
     return 250;
   }
+
+  @Override
+  public Object getLowerClass() {
+    return new Repeater();
+  }
+
   public void paintComponent(Graphics2D g){
     setFrame(frame1);
     frame1=renderSprite(g, 0);

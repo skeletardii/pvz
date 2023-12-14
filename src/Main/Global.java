@@ -1,5 +1,6 @@
 package Main;
 
+import Entities.Interfaces.Upgraded;
 import Entities.Misc.LawnMower;
 import Entities.Misc.ZombieSpawner;
 import Entities.Plants.LawnNight.Shroom;
@@ -89,14 +90,22 @@ public class Global implements Updater {
         throw new Exception("No plants in the cell for Pumpkin");
       }
       plants[row][col].setPumpkin(p);
+      plants[row][col].add(p);
+    } else if (p instanceof Upgraded) {
+      if (plants[row][col] != null && plants[row][col].getClass() == ((Upgraded) p).getLowerClass().getClass()) {
+        Global.removePlant(row, col);
+        plants[row][col] = p;
+        game.add(p);
+      } else {
+        throw new Exception(("Plant is not its upgradable counterpart"));
+      }
     } else {
       if (plants[row][col] != null) {
         throw new ArrayStoreException("Plant already in plot");
       }
       plants[row][col] = p;
+      game.add(p);
     }
-
-    game.add(p);
     p.setRow(row);
     p.setCol(col);
     p.setZindex(5 + row + (Constants.PLANT_COLS_COUNT-col) * 0.1);

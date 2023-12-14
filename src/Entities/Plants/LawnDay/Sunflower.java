@@ -1,7 +1,6 @@
 package Entities.Plants.LawnDay;
 
 import Entities.Interfaces.SunProducer;
-import Entities.Interfaces.Upgradable;
 import Entities.Interfaces.Upgraded;
 import Entities.Plants.Plant;
 import Entities.Plants.PlantBuilder;
@@ -10,7 +9,7 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 
-public class Sunflower extends Plant implements SunProducer, Upgradable {
+public class Sunflower extends Plant implements SunProducer {
   private static final Image sprite = new ImageIcon(
     "assets/plants/sunflower.png"
   )
@@ -61,10 +60,4 @@ public class Sunflower extends Plant implements SunProducer, Upgradable {
   public void paintComponent(Graphics2D g) {
     renderSprite(g, 0);
   }
-
-  @Override
-  public Upgraded upgrade() {
-    return new TwinSunflower();
-  }
-
 }

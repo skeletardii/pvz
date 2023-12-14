@@ -16,6 +16,9 @@ public class Squash extends InstaKiller {
   )
     .getImage();
 
+  private boolean foundZombie = false;
+  private int jumpCtr = 0;
+
   public Squash(int row, int col) {
     super(
       new PlantBuilder()
@@ -42,11 +45,15 @@ public class Squash extends InstaKiller {
     super.update();
 
     // check if zombie is near, if so explode
-    for (Zombie z : Global.zombies[(int) this.getRow()]) {
-      if (Math.abs(z.getCol() - this.getCol()) <= 1) {
-        activate();
-        return;
+    if (!foundZombie) {
+      for (Zombie z : Global.zombies[(int) this.getRow()]) {
+        if (Math.abs(z.getCol() - this.getCol()) <= 2) {
+          foundZombie = true;
+          jumpCtr = 120;
+        }
       }
+    } else if (jumpCtr-- <= 0) {
+      activate();
     }
   }
 
@@ -56,11 +63,9 @@ public class Squash extends InstaKiller {
 
   @Override
   public void activate() {
-    // will add pa ani, dapat mu jump sya
-    // also gi "activate" nako kay di mani siya technically mu explode
 
     for (Zombie z : Global.zombies[(int) this.getRow()]) {
-      if (Math.abs(z.getCol() - this.getCol()) <= 1) {
+      if (Math.abs(z.getCol() - this.getCol()) <= 2) {
         z.kill(DeathType.NORMAL);
       }
     }

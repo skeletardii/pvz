@@ -2,6 +2,7 @@ package Entities.Plants;
 
 import Entities.Interfaces.Upgraded;
 import Entities.Misc.LiveEntity;
+import Entities.Plants.PoolNight.Pumpkin;
 import GameUtils.Sound;
 import Main.Global;
 import java.awt.Graphics2D;
@@ -64,7 +65,12 @@ public class Plant extends LiveEntity {
   public void update() {
     if (this.getHealth() <= 0) {
       Sound.play(gulp, -3f);
-      Global.removePlant((int) this.getRow(), (int) this.getCol());
+
+      if (this instanceof Pumpkin) {
+        this.remove();
+      } else {
+        Global.removePlant((int) this.getRow(), (int) this.getCol());
+      }
     }
   }
 

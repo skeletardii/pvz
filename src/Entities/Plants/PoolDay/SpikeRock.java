@@ -24,4 +24,9 @@ public class SpikeRock extends SpikeWeed implements Upgraded {
     public int getIncreasingSunCost() {
         return 100;
     }
+
+    @Override
+    public Object getLowerClass() {
+        return new SpikeWeed();
+    }
 }

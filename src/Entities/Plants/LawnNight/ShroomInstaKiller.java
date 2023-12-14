@@ -18,8 +18,7 @@ public class ShroomInstaKiller extends Shroom {
 
   public void shroomUpdate() {
     this.explodeTime--;
-    if (this.explodeTime <= 0) activate();
-    super.update();
+    if (this.explodeTime <= 0) this.activate();
   }
 
   public void activate() {
