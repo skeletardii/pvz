@@ -6,14 +6,17 @@ import Main.Global;
 import java.io.Serializable;
 import java.util.Random;
 
-public class ZombieSpawner implements Serializable {
+public class ZombieSpawner {
 
-  private static final long serialVersionUID = 1L;
-
-  // galibog pako ani, mu spawn by wave mana diay ang zombies sa pvz diba? nya each increasing wave kay more rows sila mu spawn until sa final wave where mu spawn nas tanna
   public static final Random RAND = new Random();
-  private int zombieSpawnRate = 240;
-  private int zombieSpawnCtr = 0;
+
+  private final int zombieSpawnRate;
+  private int zombieSpawnCtr;
+
+  public ZombieSpawner() {
+    zombieSpawnRate = 240 / (Global.gameSettings == null ? 1 : Global.gameSettings.zombieSpawnRateMultiplier);
+    zombieSpawnCtr = 0;
+  }
 
   public void spawnZombie() {
     // makeshift spawner pani

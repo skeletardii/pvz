@@ -31,7 +31,9 @@ public class Sun extends RenderObj implements Updater {
     double position_Y,
     int fall_frames
   ) {
-    this.sunValue = sunValue;
+//    this.sunValue = sunValue;
+
+    this.sunValue = Global.gameSettings.sunSunValue;
     posX = (int) position_Y;
     posY = (int) position_X;
     fallCtr = fall_frames;

@@ -12,12 +12,9 @@ import java.lang.invoke.ConstantCallSite;
 import java.util.Random;
 import javax.swing.ImageIcon;
 
-public class GameUI extends RenderObj implements Updater, SunProducer {
+public class GameUI extends RenderObj implements Updater {
 
   private static Image sprite;
-  private Random rand = new Random();
-  private int sunCooldown = 1440;
-  private int sunCtr = 0;
 
   public GameUI(Constants.GameMode mode) {
     sprite =
@@ -25,18 +22,6 @@ public class GameUI extends RenderObj implements Updater, SunProducer {
         .getImage();
     Navbar navbar = new Navbar();
     this.add(navbar);
-  }
-
-  // sakto raba na naa ni diri?
-  public void update() {
-    sunCtr++;
-
-    if (sunCtr >= sunCooldown) {
-      sunCtr = 0;
-      double spawnRow = rand.nextDouble(Constants.PLANT_ROWS_COUNT - 2.0) - 1;
-      double spawnColumn = rand.nextDouble(Constants.PLANT_COLS_COUNT) - 1;
-      Global.game.add(produceSunGrid(25, spawnRow, spawnColumn, 120));
-    }
   }
 
   public void paintComponent(Graphics2D g) { //228
@@ -52,6 +37,11 @@ public class GameUI extends RenderObj implements Updater, SunProducer {
       600,
       null
     );
+  }
+
+  @Override
+  public void update() {
+
   }
 }
 

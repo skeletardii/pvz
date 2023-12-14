@@ -1,6 +1,7 @@
 package Main;
 
 import Entities.Misc.SunManager;
+import Entities.Misc.SunSpawner;
 import Entities.Plants.*;
 import Entities.Plants.LawnDay.*;
 import Entities.Plants.LawnNight.DoomShroom;
@@ -22,6 +23,15 @@ import javax.swing.WindowConstants;
 public class Main {
 
   public static void main(String[] args) throws Exception {
+
+    Global.init();
+    Global.gameSettings = Global.loadFromFile();
+
+    if (Global.gameSettings == null) {
+      System.out.println("No game settings :(");
+      return;
+    }
+
     JFrame window = new JFrame("The zombies are cumming");
     window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     window.setVisible(true);
@@ -33,7 +43,8 @@ public class Main {
     );
     preload();
 
-    Global.init();
+
+    Global.sun = Global.gameSettings.startingSun;
     Global.game = game;
     Global.mouse = game.mouse;
     Global global = new Global();
@@ -44,11 +55,9 @@ public class Main {
     game.start();
 
     Global.init();
-    game.add(new SunManager());
 
-    for (int i = 0; i < Constants.PLANT_ROWS_COUNT; ++i) {
-      Global.addLawnMowers(i);
-    }
+    game.add(new SunManager());
+    game.add(new SunSpawner());
 
 //    Map<String, Zombie> zombiesMap = new HashMap<>();
 //    zombiesMap.put("Zombie", new Zombie());
@@ -90,10 +99,14 @@ public class Main {
     plantsMap.put("Pumpkin", new Pumpkin());
     plantsMap.put("CoffeeBean", new CoffeeBean());
 
-    Global.gameSettings = Global.loadFromFile();
 
-      assert Global.gameSettings != null;
-      Sound.play(new File("assets/sound/" + Global.gameSettings.music +  ".wav"), -10f);
+    Sound.play(new File("assets/sound/" + Global.gameSettings.music +  ".wav"), -10f);
+
+    if (!Global.gameSettings.noLawnmower) {
+      for (int i = 0; i < Constants.PLANT_ROWS_COUNT; ++i) {
+        Global.addLawnMowers(i);
+      }
+    }
 
     for (String p : Global.gameSettings.selectedPlants) {
       Global.addSeedPacket(new SeedPacket(plantsMap.get(p)));

@@ -11,7 +11,6 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 
 public class Sunflower extends Plant implements SunProducer, Upgradable {
-
   private static final Image sprite = new ImageIcon(
     "assets/plants/sunflower.png"
   )

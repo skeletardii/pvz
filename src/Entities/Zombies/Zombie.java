@@ -64,7 +64,7 @@ public class Zombie extends LiveEntity {
       new LiveEntityBuilder()
         .setRow(zBuilder.row)
         .setCol(zBuilder.col)
-        .setHealth(zBuilder.health)
+        .setHealth(zBuilder.health * Global.gameSettings.zombieHealthMultiplier)
         .setSprite(zBuilder.sprite)
         .setSpriteWidth(zBuilder.spriteWidth)
         .setSpriteHeight(zBuilder.spriteHeight)
@@ -72,8 +72,8 @@ public class Zombie extends LiveEntity {
         .setTargetable(zBuilder.targetable)
     );
     this.armor = zBuilder.armor;
-    this.movementSpeed = zBuilder.movementSpeed;
-    this.dps = zBuilder.dps;
+    this.movementSpeed = zBuilder.movementSpeed * Global.gameSettings.zombieMovementSpeedMultiplier;
+    this.dps = zBuilder.dps * Global.gameSettings.zombieDamageMultiplier;
 
     this.offsetOX = -50;
     this.offsetOY = 10;
@@ -83,6 +83,8 @@ public class Zombie extends LiveEntity {
     animEnd[0] = 98;
     animStart[1] = 99;
     animEnd[1] = 138;
+
+    if (Global.gameSettings.zombieInvisighoul) this.setVisible(false);
   }
 
   @Override

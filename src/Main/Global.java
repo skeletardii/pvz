@@ -42,7 +42,7 @@ public class Global implements Updater, Serializable {
 
   public static SeedPacket[] seeds = new SeedPacket[20];
   public static int seedsNum = 0;
-  public static GameSettings gameSettings = null;
+  public static GameSettings gameSettings = new GameSettings();
 
   public static void init() {
     for (int i = 0; i < Constants.PLANT_ROWS_COUNT; i++) {
