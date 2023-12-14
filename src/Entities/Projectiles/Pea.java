@@ -24,7 +24,7 @@ public class Pea extends Projectile {
     .getImage();
 
   public Pea(double row, double col) {
-    this(new LiveEntityBuilder().setRow(row).setCol(col).setSprite(sprite).setSpriteWidth(28).setSpriteHeight(28).setAnimRow(1), 10, 0.05);
+    this(new LiveEntityBuilder().setRow(row).setCol(col).setSprite(sprite).setSpriteWidth(28).setSpriteHeight(28).setAnimRow(1), 20, 0.05);
   }
 
   public Pea(LiveEntityBuilder leBuilder, int projectileDamage, double projectileSpeed) {

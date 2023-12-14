@@ -13,7 +13,7 @@ public class ZombieBuilder {
   int health = 181;
   Armor armor = null;
   double movementSpeed = ZombieSpeed.NORMAL.getValue();
-  int dps = 1;
+  double dps = 100;
   Image sprite = new ImageIcon("assets/zombies/zombie.png").getImage();
   // int spriteWidth = 961;
   // int spriteHeight = 723;
@@ -52,7 +52,7 @@ public class ZombieBuilder {
     return this;
   }
 
-  public ZombieBuilder setDps(int dps) {
+  public ZombieBuilder setDps(double dps) {
     this.dps = dps;
     return this;
   }

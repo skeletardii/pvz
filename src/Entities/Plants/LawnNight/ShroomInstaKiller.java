@@ -12,8 +12,8 @@ public class ShroomInstaKiller extends Shroom {
   );
 
   protected ShroomInstaKiller(PlantBuilder pBuilder) {
-    super(pBuilder.setHealth(Integer.MAX_VALUE));
-    setTargetable(false);
+    super(pBuilder);
+    setTargetable(isAsleep());
   }
 
   public void shroomUpdate() {

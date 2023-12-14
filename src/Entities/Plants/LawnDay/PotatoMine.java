@@ -26,7 +26,7 @@ public class PotatoMine extends InstaKiller {
         .setCol(col)
         .setSunCost(25)
         .setHealth(300)
-        .setPacketCooldown(SeedPacketRechargeTime.VERY_SLOW.getValue())
+        .setPacketCooldown(SeedPacketRechargeTime.SLOW.getValue())
         .setSprite(sprite)
         .setSpriteWidth(467)
         .setSpriteHeight(381)

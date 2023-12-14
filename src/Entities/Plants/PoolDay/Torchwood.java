@@ -17,9 +17,9 @@ public class Torchwood extends Plant {
       new PlantBuilder()
         .setRow(row)
         .setCol(col)
-        .setHealth(100)
-        .setSunCost(150)
-        .setPacketCooldown(SeedPacketRechargeTime.VERY_SLOW.getValue())
+        .setHealth(300)
+        .setSunCost(175)
+        .setPacketCooldown(SeedPacketRechargeTime.FAST.getValue())
         .setSprite(sprite)
     );
     animStart[0] = 0;

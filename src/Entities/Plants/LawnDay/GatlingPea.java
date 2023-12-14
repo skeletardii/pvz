@@ -1,6 +1,7 @@
 package Entities.Plants.LawnDay;
 
 import Entities.Interfaces.Upgraded;
+import Entities.Plants.PlantBuilder;
 
 public class GatlingPea extends Peashooter implements Upgraded {
 
@@ -9,7 +10,7 @@ public class GatlingPea extends Peashooter implements Upgraded {
   }
 
   public GatlingPea(double row, double col) {
-    super(row, col, 4, 250);
+    super(new PlantBuilder().setRow(row).setCol(col).setSunCost(250), 4);
   }
 
   @Override

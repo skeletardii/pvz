@@ -23,7 +23,7 @@ public class WallNut extends Plant {
         .setCol(col)
         .setHealth(4000)
         .setSunCost(50)
-        .setPacketCooldown(SeedPacketRechargeTime.VERY_SLOW.getValue())
+        .setPacketCooldown(SeedPacketRechargeTime.SLOW.getValue())
         .setSprite(sprite)
         .setSpriteWidth(509)
         .setSpriteHeight(496)

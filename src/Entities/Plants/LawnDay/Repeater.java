@@ -2,6 +2,7 @@ package Entities.Plants.LawnDay;
 
 import Entities.Interfaces.Upgradable;
 import Entities.Interfaces.Upgraded;
+import Entities.Plants.PlantBuilder;
 
 public class Repeater extends Peashooter implements Upgradable {
 
@@ -10,7 +11,7 @@ public class Repeater extends Peashooter implements Upgradable {
   }
 
   public Repeater(double row, double col) {
-    super(row, col, 2, 150);
+    super(new PlantBuilder().setRow(row).setCol(col).setSunCost(200), 2);
   }
 
   @Override

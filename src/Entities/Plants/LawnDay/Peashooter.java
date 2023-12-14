@@ -21,23 +21,20 @@ public class Peashooter extends Plant implements Attacker {
   }
 
   public Peashooter(double row, double col) {
-    this(row, col, 1, 100);
+    this(new PlantBuilder().setRow(row).setCol(col), 1);
   }
 
-  public Peashooter(double row, double col, int shotsPerAttack, int sunCost) {
+  public Peashooter(PlantBuilder plantBuilder, int shotsPerAttack) {
     super(
       new PlantBuilder()
-        .setHealth(100)
-        .setRow(row)
-        .setCol(col)
-        .setSunCost(sunCost)
+        .setHealth(300)
         .setSpriteWidth(375)
         .setSpriteHeight(353)
     );
+
     this.shotsPerAttack = shotsPerAttack;
     animStart[0] = 79;
     animEnd[0] = 103;
-    // sprite = new ImageIcon("assets/plants/peashooter.png").getImage();
   }
 
   @Override

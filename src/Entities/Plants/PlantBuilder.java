@@ -8,8 +8,8 @@ public class PlantBuilder {
   protected double row = 0;
   protected double col = 0;
   protected int sunCost = 100;
-  protected int health = 100;
-  protected double packetCooldown = 7.5;
+  protected int health = 300;
+  protected double packetCooldown = Plant.SeedPacketRechargeTime.FAST.getValue();
   protected Image sprite = new ImageIcon("assets/plants/peashooter.png")
     .getImage();
   protected int spriteWidth = 375;

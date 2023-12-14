@@ -12,6 +12,6 @@ public class BurningPea extends Pea {
             .getImage();
 
     public BurningPea(double row, double col) {
-        super(new LiveEntityBuilder().setRow(row).setCol(col).setSprite(sprite).setSpriteWidth(28).setSpriteHeight(28).setAnimRow(1), 20, 0.05);
+        super(new LiveEntityBuilder().setRow(row).setCol(col).setSprite(sprite).setSpriteWidth(28).setSpriteHeight(28).setAnimRow(1), 40, 0.05);
     }
 }

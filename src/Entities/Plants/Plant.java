@@ -50,7 +50,7 @@ public class Plant extends LiveEntity {
   }
 
   @Override
-  public void takeDamage(int damage) {
+  public void takeDamage(double damage) {
     if (Global.gameSettings.plantInvulnerable) return;
 
     if (pumpkin != null) {

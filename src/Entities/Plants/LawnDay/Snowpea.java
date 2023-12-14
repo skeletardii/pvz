@@ -1,5 +1,6 @@
 package Entities.Plants.LawnDay;
 
+import Entities.Plants.PlantBuilder;
 import Entities.Projectiles.SnowPea;
 
 public class Snowpea extends Peashooter {
@@ -9,7 +10,7 @@ public class Snowpea extends Peashooter {
   }
 
   public Snowpea(double row, double col) {
-    super(row, col, 1, 125);
+    super(new PlantBuilder().setRow(row).setCol(col).setHealth(300).setSunCost(175).setSunCost(125), 1);
   }
 
   @Override

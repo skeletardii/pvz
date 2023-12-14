@@ -6,7 +6,7 @@ public class LiveEntityBuilder {
 
   public double row;
   public double col;
-  public int health;
+  public double health;
   public boolean targetable = true;
   public int offsetX;
   public int offsetY;
@@ -50,7 +50,7 @@ public class LiveEntityBuilder {
     return this;
   }
 
-  public LiveEntityBuilder setHealth(int health) {
+  public LiveEntityBuilder setHealth(double health) {
     this.health = health;
     return this;
   }

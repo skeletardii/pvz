@@ -12,7 +12,7 @@ public abstract class LiveEntity extends RenderObj implements Updater {
 
   private double row;
   private double col;
-  private int health;
+  private double health;
   private boolean targetable = true;
   protected final int offsetX;
   protected final int offsetY;
@@ -104,7 +104,7 @@ public abstract class LiveEntity extends RenderObj implements Updater {
     return this.row == e.row && Math.abs(this.col - e.col) <= 1;
   }
 
-  public void takeDamage(int damage) {
+  public void takeDamage(double damage) {
     this.health -= damage;
   }
 
@@ -189,11 +189,11 @@ public abstract class LiveEntity extends RenderObj implements Updater {
     return ly;
   }
 
-  public int getHealth() {
+  public double getHealth() {
     return health;
   }
 
-  public void setHealth(int health) {
+  public void setHealth(double health) {
     this.health = health;
   }
 

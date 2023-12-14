@@ -15,13 +15,15 @@ public class Zombie extends LiveEntity {
 
   protected Armor armor;
   protected double movementSpeed;
-  protected int dps;
+  protected double dps;
 
   private int eatFrame = 0;
   private boolean isEating = false;
 
   private int slowed = 0;
   private int frozen = 0;
+
+  private int eatingCtr = 0;
 
   private static final File[] eat_snd = {
     new File("assets/sound/chomp0.wav"),
@@ -114,13 +116,19 @@ public class Zombie extends LiveEntity {
     ) {
       isEating = true;
       animSpeed = 0;
-      p.takeDamage(this.dps);
+
+      if (eatingCtr-- <= 0) {
+        p.takeDamage(this.dps);
+        eatingCtr = 60;
+      }
+
       if (eatFrame++ >= 45) eatFrame = 0;
       if (eatFrame == 0) Sound.play(eat_snd[(int) Math.round(Math.random())]);
       return;
     }
 
     // zombie moves
+    eatingCtr = 0;
     this.moveCol(-this.movementSpeed / (this.slowed > 0 ? 2 : 1));
     isEating = false;
     animSpeed = 1;
@@ -132,7 +140,7 @@ public class Zombie extends LiveEntity {
   }
 
   @Override
-  public void takeDamage(int projectileDamage) {
+  public void takeDamage(double projectileDamage) {
     if (this.armor != null) {
       this.armor.setHealth(getHealth() - projectileDamage);
     } else {

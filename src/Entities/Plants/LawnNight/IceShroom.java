@@ -16,7 +16,7 @@ public class IceShroom extends ShroomInstaKiller {
     super(
       new PlantBuilder()
         .setRow(row)
-        .setCol(col)
+        .setCol(col).setHealth(300)
         .setSunCost(75)
         .setPacketCooldown(SeedPacketRechargeTime.VERY_SLOW.getValue())
     );

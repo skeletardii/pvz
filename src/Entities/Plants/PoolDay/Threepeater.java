@@ -14,7 +14,7 @@ public class Threepeater extends Peashooter {
   }
 
   public Threepeater(double row, double col) {
-    super(row, col, 1, 125);
+    super(new PlantBuilder().setRow(row).setCol(col).setSunCost(200).setPacketCooldown(SeedPacketRechargeTime.FAST.getValue()), 1);
   }
 
   @Override
