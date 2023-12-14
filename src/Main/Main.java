@@ -9,8 +9,13 @@ import Entities.Plants.LawnDay.Repeater;
 import Entities.Plants.LawnDay.Snowpea;
 import Entities.Plants.LawnDay.WallNut;
 import Entities.Plants.LawnNight.DoomShroom;
+import Entities.Plants.LawnNight.FumeShroom;
+import Entities.Plants.LawnNight.GloomShroom;
 import Entities.Plants.LawnNight.IceShroom;
+import Entities.Plants.LawnNight.Shroom;
 import Entities.Plants.PoolDay.Threepeater;
+import Entities.Plants.Roof.CoffeeBean;
+import Entities.Plants.Roof.Pumpkin;
 import Entities.Zombies.Zombie;
 import GUI.*;
 import GameUtils.*;
@@ -36,6 +41,7 @@ public class Main {
     Global.game = game;
     Global.mouse = game.mouse;
     Global global = new Global();
+    game.setPrintFPS(true);
     game.add(new GameUI(Global.gameMode));
     game.add(global);
     game.start();
@@ -53,8 +59,10 @@ public class Main {
     Global.addSeedPacket(new SeedPacket(new WallNut()));
 
     Global.addSeedPacket(new SeedPacket(new Peashooter()));
-    Global.addSeedPacket(new SeedPacket(new IceShroom()));
-    Global.addSeedPacket(new SeedPacket(new DoomShroom()));
+    // Global.addSeedPacket(new SeedPacket(new FumeShroom()));
+    Global.addSeedPacket(new SeedPacket(new Pumpkin()));
+    Global.addSeedPacket(new SeedPacket(new CoffeeBean()));
+    Global.addSeedPacket(new SeedPacket(new GloomShroom()));
     // Global.addSeedPacket(new SeedPacket(new Repeater()));
     // Global.addSeedPacket(new SeedPacket(new GatlingPea()));
     // Global.addZombie(new NormalZombie(0));

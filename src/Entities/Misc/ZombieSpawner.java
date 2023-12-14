@@ -1,11 +1,6 @@
 package Entities.Misc;
 
-import Entities.Zombies.DiggerZombie;
-import Entities.Zombies.DolphinRiderZombie;
-import Entities.Zombies.Gargantuar;
-import Entities.Zombies.LadderZombie;
-import Entities.Zombies.PogoZombie;
-import Entities.Zombies.Zombie;
+import Entities.Zombies.*;
 import Main.Constants;
 import Main.Global;
 import java.io.Serializable;

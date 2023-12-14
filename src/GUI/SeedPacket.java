@@ -174,6 +174,8 @@ public class SeedPacket extends RenderObj implements Updater {
           Sound.play(seed_plant);
         } catch (ArrayStoreException e) {
           Sound.play(seed_error);
+        } catch (Exception e) {
+          Sound.play(seed_error);
         }
 
         state = 0;

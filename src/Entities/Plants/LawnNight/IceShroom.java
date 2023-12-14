@@ -20,6 +20,8 @@ public class IceShroom extends ShroomInstaKiller {
         .setSunCost(75)
         .setPacketCooldown(SeedPacketRechargeTime.VERY_SLOW.getValue())
     );
+    animStart[0] = 79;
+    animEnd[0] = 103;
   }
 
   @Override

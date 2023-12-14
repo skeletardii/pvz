@@ -77,7 +77,7 @@ public class Zombie extends LiveEntity {
 
     this.offsetOX = -50;
     this.offsetOY = 10;
-    this.scale = 0.225;
+    this.scale = 0.225 * 3;
 
     animStart[0] = 0;
     animEnd[0] = 98;

@@ -21,6 +21,8 @@ public class DoomShroom extends ShroomInstaKiller {
         .setSunCost(125)
         .setPacketCooldown(SeedPacketRechargeTime.VERY_SLOW.getValue())
     );
+    animStart[0] = 79;
+    animEnd[0] = 103;
   }
 
   @Override

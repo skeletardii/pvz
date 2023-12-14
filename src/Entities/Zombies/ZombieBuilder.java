@@ -15,8 +15,10 @@ public class ZombieBuilder {
   double movementSpeed = ZombieSpeed.NORMAL.getValue();
   int dps = 1;
   Image sprite = new ImageIcon("assets/zombies/zombie.png").getImage();
-  int spriteWidth = 961;
-  int spriteHeight = 723;
+  // int spriteWidth = 961;
+  // int spriteHeight = 723;
+  int spriteWidth = 961/3;
+  int spriteHeight = 723/3;
   int animRow = 2;
   boolean targetable = true;
 

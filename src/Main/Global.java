@@ -3,8 +3,10 @@ package Main;
 import Entities.Interfaces.Upgradable;
 import Entities.Misc.LawnMower;
 import Entities.Misc.ZombieSpawner;
+import Entities.Plants.LawnNight.Shroom;
 import Entities.Plants.Plant;
 import Entities.Plants.Roof.CoffeeBean;
+import Entities.Plants.Roof.Pumpkin;
 import Entities.Zombies.Zombie;
 import GUI.SeedPacket;
 import GameUtils.Game;
@@ -100,24 +102,33 @@ public class Global implements Updater, Serializable {
     game.add(particle);
   }
 
-  public static void addPlant(Plant p, int row, int col)
-    throws ArrayStoreException {
-    // logic for coffee bean
+  public static void addPlant(Plant p, int row, int col) throws Exception {
     if (p instanceof CoffeeBean) {
       if (plants[row][col] == null) {
-        System.out.println("No plants in the cell");
-        return;
+        throw new Exception("No plants in the cell for coffee bean");
       }
+      if (
+        !(plants[row][col] instanceof Shroom) ||
+        !((Shroom) plants[row][col]).isAsleep()
+      ) {
+        throw new Exception("Plant is not alseep");
+      }
+      Global.plants[row][col].add(p);
+    } else if (p instanceof Pumpkin) {
+      if (plants[row][col] == null) {
+        throw new Exception("No plants in the cell for pumpking");
+      }
+      plants[row][col].setPumpkin(p);
+    } else {
+      if (plants[row][col] != null) {
+        throw new ArrayStoreException("Plant already in plot");
+      }
+      plants[row][col] = p;
     }
 
-    if (plants[row][col] != null) {
-      throw new ArrayStoreException("Plant already in plot");
-    }
-
-    plants[row][col] = p;
+    game.add(p);
     p.setRow(row);
     p.setCol(col);
-    game.add(p);
     p.setZindex(5 + row + col * 0.1);
   }
 

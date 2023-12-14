@@ -29,6 +29,7 @@ public class Plant extends LiveEntity {
   protected int actionCtr = 0;
   protected int previewFrame = 0;
   protected boolean hasLadder = false;
+  protected Plant pumpkin = null;
 
   public final int sunCost;
   public final double packetCooldown;
@@ -46,6 +47,15 @@ public class Plant extends LiveEntity {
     );
     this.sunCost = pBuilder.sunCost;
     this.packetCooldown = pBuilder.packetCooldown;
+  }
+
+  @Override
+  public void takeDamage(int damage) {
+    if (pumpkin != null) {
+      pumpkin.takeDamage(damage);
+    } else {
+      super.takeDamage(damage);
+    }
   }
 
   @Override
@@ -79,5 +89,13 @@ public class Plant extends LiveEntity {
 
   public void setHasLadder(boolean hasLadder) {
     this.hasLadder = hasLadder;
+  }
+
+  public Plant getPumpkin() {
+    return pumpkin;
+  }
+
+  public void setPumpkin(Plant pumpkin) {
+    this.pumpkin = pumpkin;
   }
 }
