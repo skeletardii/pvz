@@ -9,8 +9,18 @@ import Main.Global;
 @SuppressWarnings("all")
 public class DoomShroom extends ShroomInstaKiller {
 
-  protected DoomShroom(PlantBuilder pBuilder) {
-    super(pBuilder);
+  public DoomShroom() {
+    this(-1, -1);
+  }
+
+  protected DoomShroom(double row, double col) {
+    super(
+      new PlantBuilder()
+        .setRow(row)
+        .setCol(col)
+        .setSunCost(125)
+        .setPacketCooldown(SeedPacketRechargeTime.VERY_SLOW.getValue())
+    );
   }
 
   @Override

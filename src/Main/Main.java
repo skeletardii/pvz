@@ -8,6 +8,8 @@ import Entities.Plants.LawnDay.Peashooter;
 import Entities.Plants.LawnDay.Repeater;
 import Entities.Plants.LawnDay.Snowpea;
 import Entities.Plants.LawnDay.WallNut;
+import Entities.Plants.LawnNight.DoomShroom;
+import Entities.Plants.LawnNight.IceShroom;
 import Entities.Plants.PoolDay.Threepeater;
 import Entities.Zombies.Zombie;
 import GUI.*;
@@ -51,8 +53,8 @@ public class Main {
     Global.addSeedPacket(new SeedPacket(new WallNut()));
 
     Global.addSeedPacket(new SeedPacket(new Peashooter()));
-    Global.addSeedPacket(new SeedPacket(new Snowpea()));
-    Global.addSeedPacket(new SeedPacket(new Threepeater()));
+    Global.addSeedPacket(new SeedPacket(new IceShroom()));
+    Global.addSeedPacket(new SeedPacket(new DoomShroom()));
     // Global.addSeedPacket(new SeedPacket(new Repeater()));
     // Global.addSeedPacket(new SeedPacket(new GatlingPea()));
     // Global.addZombie(new NormalZombie(0));

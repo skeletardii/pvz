@@ -7,7 +7,6 @@ import java.io.File;
 public class ShroomInstaKiller extends Shroom {
 
   protected int explodeTime = 100;
-  protected int explodeSpeed = 1;
   private static final File explodeSnd = new File(
     "assets/sound/cherrybomb.wav"
   );
@@ -19,7 +18,7 @@ public class ShroomInstaKiller extends Shroom {
 
   @Override
   public void update() {
-    this.explodeTime -= this.explodeSpeed;
+    this.explodeTime--;
     if (this.explodeTime <= 0) activate();
     super.update();
   }

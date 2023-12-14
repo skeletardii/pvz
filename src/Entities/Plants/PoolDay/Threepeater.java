@@ -19,12 +19,13 @@ public class Threepeater extends Peashooter {
 
   @Override
   public void update() {
-    for (int k = (int) this.getRow() - 1; k < (int) this.getRow() + 1; ++k) {
+    for (int k = (int) this.getRow() - 1; k <= (int) this.getRow() + 1; ++k) {
       if (k < 0 || k > Constants.PLANT_ROWS_COUNT) continue;
       for (Zombie z : Global.zombies[k]) {
         if (z.getCol() >= this.getCol() && z.isTargetable()) {
+          super.update();
           attack();
-          break;
+          return;
         }
       }
     }

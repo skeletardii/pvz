@@ -4,6 +4,7 @@ import Entities.Interfaces.Upgradable;
 import Entities.Misc.LawnMower;
 import Entities.Misc.ZombieSpawner;
 import Entities.Plants.Plant;
+import Entities.Plants.Roof.CoffeeBean;
 import Entities.Zombies.Zombie;
 import GUI.SeedPacket;
 import GameUtils.Game;
@@ -101,6 +102,14 @@ public class Global implements Updater, Serializable {
 
   public static void addPlant(Plant p, int row, int col)
     throws ArrayStoreException {
+    // logic for coffee bean
+    if (p instanceof CoffeeBean) {
+      if (plants[row][col] == null) {
+        System.out.println("No plants in the cell");
+        return;
+      }
+    }
+
     if (plants[row][col] != null) {
       throw new ArrayStoreException("Plant already in plot");
     }

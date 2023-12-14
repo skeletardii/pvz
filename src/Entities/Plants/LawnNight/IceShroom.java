@@ -8,8 +8,18 @@ import Main.Global;
 @SuppressWarnings("all")
 public class IceShroom extends ShroomInstaKiller {
 
-  protected IceShroom(PlantBuilder pBuilder) {
-    super(pBuilder);
+  public IceShroom() {
+    this(-1, -1);
+  }
+
+  protected IceShroom(double row, double col) {
+    super(
+      new PlantBuilder()
+        .setRow(row)
+        .setCol(col)
+        .setSunCost(75)
+        .setPacketCooldown(SeedPacketRechargeTime.VERY_SLOW.getValue())
+    );
   }
 
   @Override
