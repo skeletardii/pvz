@@ -25,7 +25,7 @@ public class Cherrybomb extends InstaKiller {
         .setCol(col)
         .setSunCost(125)
         .setHealth(100)
-        .setPacketCooldown(SeedPacketRechargeTime.SLOW.getValue())
+        .setPacketCooldown(SeedPacketRechargeTime.VERY_SLOW.getValue())
         .setSprite(sprite)
         .setSpriteWidth(625)
         .setSpriteHeight(458)
