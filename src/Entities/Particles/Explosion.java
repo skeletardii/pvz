@@ -1,6 +1,7 @@
 package Entities.Particles;
 
 import GameUtils.RenderObj;
+import Main.Constants;
 import Main.Global;
 
 import java.awt.AlphaComposite;
@@ -11,15 +12,14 @@ import java.awt.geom.AffineTransform;
 import javax.swing.ImageIcon;
 
 public class Explosion extends RenderObj {
-
   private double random(double min, double max) {
     return min + Math.random() * (max - min);
   }
 
   public Explosion(int row, double col) {
     setZindex(20);
-    int ox = (int) Math.round((col) * 100 + 0 + 30 + 45);
-    int oy = (int) Math.round((row) * 100 + 0 + 60 + 84);
+    int ox = (int) Math.round((col) * Constants.COL_PIXEL_OFFSET + Constants.GRID_OFFSET_X);
+    int oy = (int) Math.round((row) * Constants.ROW_PIXEL_OFFSET + Constants.GRID_OFFSET_Y);
     for (int i = 0; i <= 10; i++) {
       this.add(
           new ExplosionCloud(

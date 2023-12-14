@@ -5,7 +5,7 @@ import javax.swing.ImageIcon;
 
 public class PlantBuilder {
 
-  protected int row = 0;
+  protected double row = 0;
   protected double col = 0;
   protected int sunCost = 100;
   protected int health = 100;
@@ -16,7 +16,7 @@ public class PlantBuilder {
   protected int spriteHeight = 0;
   protected int animRow = 1;
 
-  public PlantBuilder setRow(int row) {
+  public PlantBuilder setRow(double row) {
     this.row = row;
     return this;
   }

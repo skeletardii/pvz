@@ -28,6 +28,8 @@ public class Plant extends LiveEntity {
   protected int actionSpeed = -1;
   protected int actionCtr = 0;
   protected int previewFrame = 0;
+  protected boolean hasLadder = false;
+
   public final int sunCost;
   public final double packetCooldown;
   private static final File gulp = new File("assets/sound/gulp.wav");
@@ -50,7 +52,7 @@ public class Plant extends LiveEntity {
   public void update() {
     if (this.getHealth() <= 0) {
       Sound.play(gulp, -3f);
-      Global.removePlant(this.getRow(), (int) this.getCol());
+      Global.removePlant((int) this.getRow(), (int) this.getCol());
     }
   }
 
@@ -69,5 +71,13 @@ public class Plant extends LiveEntity {
   @Override
   public void paintComponent(Graphics2D g) {
     renderSprite(g, 0);
+  }
+
+  public boolean hasLadder() {
+    return hasLadder;
+  }
+
+  public void setHasLadder(boolean hasLadder) {
+    this.hasLadder = hasLadder;
   }
 }

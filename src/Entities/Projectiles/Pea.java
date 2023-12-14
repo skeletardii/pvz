@@ -2,6 +2,7 @@ package Entities.Projectiles;
 
 import Entities.Zombies.Zombie;
 import GameUtils.Sound;
+import Main.Constants;
 import Main.Global;
 import java.awt.Image;
 import java.io.File;
@@ -9,7 +10,7 @@ import javax.swing.ImageIcon;
 
 public class Pea extends Projectile {
 
-  private static final File[] sndFiles = {
+  protected static final File[] sndFiles = {
     new File("assets/sound/splat.wav"),
     new File("assets/sound/splat2.wav"),
   };
@@ -21,7 +22,7 @@ public class Pea extends Projectile {
   public static final Image sprite2 = new ImageIcon("assets/plants/wallnut.png")
     .getImage();
 
-  public Pea(int row, double col) {
+  public Pea(double row, double col) {
     super(row, col, 0.05, 10, sprite1, 28, 28, 1);
     animStart[0] = 0;
     animEnd[0] = 0;
@@ -32,15 +33,24 @@ public class Pea extends Projectile {
 
   @Override
   public void update() {
-    for (Zombie z : Global.zombies[this.getRow()]) {
+    if (this.getRow() < 0 || this.getRow() >= Constants.PLANT_ROWS_COUNT) {
+      this.remove();
+      return;
+    }
+
+    for (Zombie z : Global.zombies[(int) this.getRow()]) {
       if (this.isTouching(z)) {
-        z.takeDamage(this.projectileDamage);
-        Sound.play(sndFiles[(int)Math.round(Math.random())]);
-        this.remove();
+        hitZombie(z);
         return;
       }
     }
 
     this.moveCol(this.projectileSpeed);
+  }
+
+  public void hitZombie(Zombie z) {
+    z.takeDamage(this.projectileDamage);
+    Sound.play(sndFiles[(int) Math.round(Math.random())]);
+    this.remove();
   }
 }

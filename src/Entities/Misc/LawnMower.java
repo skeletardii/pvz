@@ -32,7 +32,7 @@ public class LawnMower extends LiveEntity {
 
     if (!isActivated) {
       // may possibly implement as a more general case??
-      for (Zombie z : Global.zombies[this.getRow()]) {
+      for (Zombie z : Global.zombies[(int) this.getRow()]) {
         if (this.isTouching(z)) {
           isActivated = true;
           Sound.play(sndfile);
@@ -43,7 +43,7 @@ public class LawnMower extends LiveEntity {
     if (isActivated) {
       this.moveCol(LawnMower.MOVEMENT_SPEED);
 
-      for (Zombie z : Global.zombies[this.getRow()]) {
+      for (Zombie z : Global.zombies[(int) this.getRow()]) {
         if (this.isTouching(z)) {
           z.kill(null);
         }

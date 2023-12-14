@@ -2,14 +2,14 @@ package Entities.Zombies;
 
 import Entities.ZombieItems.Armor;
 import Entities.Zombies.Zombie.ZombieSpeed;
-import Main.Global;
+import Main.Constants;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 
 public class ZombieBuilder {
 
-  int row = 0;
-  double col = Global.PLANT_COLS_COUNT + 2.0;
+  double row = 0;
+  double col = Constants.PLANT_COLS_COUNT + 2.0;
   int health = 181;
   Armor armor = null;
   double movementSpeed = ZombieSpeed.NORMAL.getValue();
@@ -27,7 +27,7 @@ public class ZombieBuilder {
     return this;
   }
 
-  public ZombieBuilder setRow(int row) {
+  public ZombieBuilder setRow(double row) {
     this.row = row;
     return this;
   }

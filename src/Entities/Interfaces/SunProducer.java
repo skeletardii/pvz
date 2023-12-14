@@ -1,6 +1,7 @@
 package Entities.Interfaces;
 
 import Entities.Misc.Sun;
+import Main.Constants;
 import Main.Global;
 
 public interface SunProducer {
@@ -16,8 +17,8 @@ public interface SunProducer {
   default Sun produceSunGrid(int sunValue, double row, double col, int fall) {
     return produceSun(
       sunValue,
-      (row * Global.ROW_PIXEL_OFFSET),
-      (col * Global.COL_PIXEL_OFFSET),
+      (row * Constants.ROW_PIXEL_OFFSET),
+      (col * Constants.COL_PIXEL_OFFSET),
       fall
     );
   }

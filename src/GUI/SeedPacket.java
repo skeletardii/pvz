@@ -1,8 +1,9 @@
 package GUI;
 
-import Entities.Plants.InstaKillers.*;
+import Entities.Plants.LawnDay.PotatoMine;
 import Entities.Plants.Plant;
 import GameUtils.*;
+import Main.Constants;
 import Main.Global;
 import java.awt.AlphaComposite;
 import java.awt.Color;
@@ -52,14 +53,16 @@ public class SeedPacket extends RenderObj implements Updater {
 
     if (p instanceof PotatoMine) sx = lx * 30;
   }
-  private int getDigits(int num){
+
+  private int getDigits(int num) {
     int ctr = 0;
-    while(num>1){
-      num/=10;
+    while (num > 1) {
+      num /= 10;
       ctr++;
     }
     return ctr;
   }
+
   public void paintComponent(Graphics2D g) {
     g.drawImage(card, posX, 7, posX + 55, 7 + 73, 0, 0, 100, 140, null);
     g.drawImage(
@@ -75,7 +78,7 @@ public class SeedPacket extends RenderObj implements Updater {
       null
     );
     g.setColor(Color.black);
-    g.drawString("" + cost, posX + 20 - (5 * (getDigits(cost)-1)), 75);
+    g.drawString("" + cost, posX + 20 - (5 * (getDigits(cost) - 1)), 75);
     if (state == 0) {
       setZindex(initZ);
       return;
@@ -86,15 +89,17 @@ public class SeedPacket extends RenderObj implements Updater {
       setZindex(100);
       int row = (Global.mouse.y - 60) / 88;
       int col = (Global.mouse.x - 30) / 80;
-      if (row >= Global.PLANT_ROWS_COUNT) row = Global.PLANT_ROWS_COUNT - 1;
-      if (col >= Global.PLANT_COLS_COUNT) col = Global.PLANT_COLS_COUNT - 1;
+      if (row >= Constants.PLANT_ROWS_COUNT) row =
+        Constants.PLANT_ROWS_COUNT - 1;
+      if (col >= Constants.PLANT_COLS_COUNT) col =
+        Constants.PLANT_COLS_COUNT - 1;
       if (row < 0) row = 0;
       if (col < 0) col = 0;
       if (Global.plants[row][col] == null) {
         g.setComposite(makeComposite(0.5f));
 
-        int ox = (col) * Global.COL_PIXEL_OFFSET + Global.GRID_OFFSET_X;
-        int oy = (row) * Global.ROW_PIXEL_OFFSET + Global.GRID_OFFSET_Y;
+        int ox = (col) * Constants.COL_PIXEL_OFFSET + Constants.GRID_OFFSET_X;
+        int oy = (row) * Constants.ROW_PIXEL_OFFSET + Constants.GRID_OFFSET_Y;
         dx = ox - (int) (lx * scale) / 2;
         dy = oy - (int) (ly * scale);
         g.drawImage(
@@ -154,8 +159,10 @@ public class SeedPacket extends RenderObj implements Updater {
     if (!Global.mouse.left && state == 3) {
       int row = ((Global.mouse.y - 60) / 88);
       int col = ((Global.mouse.x - 30) / 80);
-      if (row >= Global.PLANT_ROWS_COUNT) row = Global.PLANT_ROWS_COUNT - 1;
-      if (col >= Global.PLANT_COLS_COUNT) col = Global.PLANT_COLS_COUNT - 1;
+      if (row >= Constants.PLANT_ROWS_COUNT) row =
+        Constants.PLANT_ROWS_COUNT - 1;
+      if (col >= Constants.PLANT_COLS_COUNT) col =
+        Constants.PLANT_COLS_COUNT - 1;
       if (row < 0) row = 0;
       if (col < 0) col = 0;
       try {

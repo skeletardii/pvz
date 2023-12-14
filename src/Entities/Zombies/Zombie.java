@@ -2,9 +2,11 @@ package Entities.Zombies;
 
 import Entities.Misc.LiveEntity;
 import Entities.Misc.LiveEntityBuilder;
+import Entities.Plants.Plant;
 import Entities.ZombieItems.Armor;
 import GameUtils.Game;
 import GameUtils.Sound;
+import Main.Constants;
 import Main.Global;
 import java.awt.Graphics2D;
 import java.io.File;
@@ -17,6 +19,9 @@ public class Zombie extends LiveEntity {
 
   private int eatFrame = 0;
   private boolean isEating = false;
+
+  private int slowed = 0;
+  private int frozen = 0;
 
   private static final File[] eat_snd = {
     new File("assets/sound/chomp0.wav"),
@@ -84,29 +89,37 @@ public class Zombie extends LiveEntity {
   public void update() {
     super.update();
 
-    int row = this.getRow();
+    this.frozen = Math.max(0, this.frozen - 1);
+    if (this.frozen > 0) return;
+
+    this.slowed = Math.max(0, this.slowed - 1);
+
+    int row = (int) this.getRow();
     int col = (int) Math.round(this.getCol());
+    Plant p = row < Constants.PLANT_ROWS_COUNT &&
+      col < Constants.PLANT_COLS_COUNT
+      ? Global.plants[row][col]
+      : null;
 
     // zombie attacks
     if (
       isTargetable() &&
       row >= 0 &&
       col >= 0 &&
-      row < Global.PLANT_ROWS_COUNT &&
-      col < Global.PLANT_COLS_COUNT &&
-      Global.plants[row][col] != null &&
-      Global.plants[row][col].isTargetable()
+      p != null &&
+      p.isTargetable() &&
+      !p.hasLadder()
     ) {
       isEating = true;
       animSpeed = 0;
-      Global.plants[row][col].takeDamage(this.dps);
+      p.takeDamage(this.dps);
       if (eatFrame++ >= 45) eatFrame = 0;
       if (eatFrame == 0) Sound.play(eat_snd[(int) Math.round(Math.random())]);
       return;
     }
 
     // zombie moves
-    this.moveCol(-this.movementSpeed);
+    this.moveCol(-this.movementSpeed / (this.slowed > 0 ? 2 : 1));
     isEating = false;
     animSpeed = 1;
     eatFrame = -10;
@@ -119,9 +132,9 @@ public class Zombie extends LiveEntity {
   @Override
   public void takeDamage(int projectileDamage) {
     if (this.armor != null) {
-      this.armor.setHealth(Math.max(0, getHealth() - projectileDamage));
+      this.armor.setHealth(getHealth() - projectileDamage);
     } else {
-      setHealth(Math.max(0, getHealth() - projectileDamage));
+      setHealth(getHealth() - projectileDamage);
     }
   }
 
@@ -148,5 +161,21 @@ public class Zombie extends LiveEntity {
   @Override
   public void paintComponent(Graphics2D g) {
     if (isEating) renderSprite(g, 1); else renderSprite(g, 0);
+  }
+
+  public int isSlowed() {
+    return slowed;
+  }
+
+  public void setSlowed(int isSlowed) {
+    this.slowed = isSlowed;
+  }
+
+  public int getFrozen() {
+    return frozen;
+  }
+
+  public void setFrozen(int isFrozen) {
+    this.frozen = isFrozen;
   }
 }

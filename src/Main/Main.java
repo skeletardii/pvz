@@ -2,7 +2,14 @@ package Main;
 
 import Entities.Misc.SunManager;
 import Entities.Plants.*;
-import Entities.Plants.InstaKillers.*;
+import Entities.Plants.LawnDay.CherryBomb;
+import Entities.Plants.LawnDay.GatlingPea;
+import Entities.Plants.LawnDay.Peashooter;
+import Entities.Plants.LawnDay.Repeater;
+import Entities.Plants.LawnDay.Snowpea;
+import Entities.Plants.LawnDay.WallNut;
+import Entities.Plants.PoolDay.Threepeater;
+import Entities.Zombies.Zombie;
 import GUI.*;
 import GameUtils.*;
 import java.io.File;
@@ -11,15 +18,16 @@ import javax.swing.WindowConstants;
 
 public class Main {
 
-  static final int WINDOW_SIZE_X = 800;
-  static final int WINDOW_SIZE_Y = 600;
-
   public static void main(String[] args) throws Exception {
     JFrame window = new JFrame("The zombies are cumming");
     window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     window.setVisible(true);
     window.setResizable(true);
-    Game game = new Game(window, WINDOW_SIZE_X, WINDOW_SIZE_Y);
+    Game game = new Game(
+      window,
+      Constants.WINDOW_SIZE_X,
+      Constants.WINDOW_SIZE_Y
+    );
     preload();
 
     Global.init();
@@ -32,25 +40,22 @@ public class Main {
     game.start();
     Global.init();
     game.add(new SunManager());
-    for (int i = 0; i < Global.PLANT_ROWS_COUNT; ++i) {
+    for (int i = 0; i < Constants.PLANT_ROWS_COUNT; ++i) {
       Global.addLawnMowers(i);
     }
+
     Sound.play(new File("assets/sound/bg0.wav"), -10f);
 
-    // Global.addSeedPacket(new SeedPacket(new Sunflower()));
-    // Global.addSeedPacket(new SeedPacket(new Sunflower.TwinSunflower()));
+    // Global.addPlant(new CabbagePult(), 0, 0);
     Global.addSeedPacket(new SeedPacket(new CherryBomb()));
-    Global.addPlant(new CabbagePult(), 0, 0);
     Global.addSeedPacket(new SeedPacket(new CabbagePult()));
     Global.addSeedPacket(new SeedPacket(new WallNut()));
-    // Global.addSeedPacket(new SeedPacket(new Peashooter()));
-    // Global.addSeedPacket(new SeedPacket(new PotatoMine()));
-    // Global.addSeedPacket(new SeedPacket(new Jalapeno()));
-    // Global.addSeedPacket(new SeedPacket(new SpikeWeed()));
 
     Global.addSeedPacket(new SeedPacket(new Peashooter()));
-    Global.addSeedPacket(new SeedPacket(new Repeater()));
-    Global.addSeedPacket(new SeedPacket(new GatlingPea()));
+    Global.addSeedPacket(new SeedPacket(new Snowpea()));
+    Global.addSeedPacket(new SeedPacket(new Threepeater()));
+    // Global.addSeedPacket(new SeedPacket(new Repeater()));
+    // Global.addSeedPacket(new SeedPacket(new GatlingPea()));
     // Global.addZombie(new NormalZombie(0));
     //game.add(new Selector(game));
   }

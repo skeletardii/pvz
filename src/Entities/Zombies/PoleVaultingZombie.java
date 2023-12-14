@@ -29,13 +29,12 @@ public class PoleVaultingZombie extends Zombie {
     super(zBuilder);
   }
 
-  // fucking shitty ass implementation
   @Override
   public void update() {
     super.update();
 
     if (!this.jumped) {
-      for (Plant p : Global.plants[this.getRow()]) {
+      for (Plant p : Global.plants[(int) this.getRow()]) {
         if (p != null && this.isTouching(p)) {
           this.moveCol(-1.5);
           this.jumped = true;

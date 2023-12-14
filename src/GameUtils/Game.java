@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.geom.AffineTransform;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.concurrent.BlockingQueue;
@@ -19,7 +20,10 @@ import javax.swing.JLayeredPane;
 import javax.swing.OverlayLayout;
 import javax.swing.event.MouseInputListener;
 
-public class Game implements Runnable {
+public class Game implements Runnable, Serializable {
+
+  // Serialization vars
+  private static final long serialVersionUID = 1L;
 
   //Option vars
   public static final double TARGET_FPS = 60.0;
@@ -58,9 +62,14 @@ public class Game implements Runnable {
         @Override
         protected void paintComponent(Graphics g) {
           Graphics2D g2d = (Graphics2D) g;
-          g2d.setTransform(AffineTransform.getScaleInstance(1.25*frame.getSize().getWidth()/814.0,1.25*frame.getSize().getHeight()/637.0));
+          // g2d.setTransform(
+          //   AffineTransform.getScaleInstance(
+          //     1.25 * frame.getSize().getWidth() / 814.0,
+          //     1.25 * frame.getSize().getHeight() / 637.0
+          //   )
+          // );
           // System.out.println(frame.getSize().getHeight()); //814,637
-          // g2d.setTransform(AffineTransform.getScaleInstance(1,1));
+          // g2d.setTransform(AffineTransform.getScaleInstance(1, 1));
           g2d.setRenderingHint(
             RenderingHints.KEY_ANTIALIASING,
             RenderingHints.VALUE_ANTIALIAS_ON
@@ -183,7 +192,7 @@ public class Game implements Runnable {
   }
 }
 
-class InputListener implements KeyListener, MouseInputListener {
+class InputListener implements KeyListener, MouseInputListener, Serializable {
 
   private boolean[] keys = new boolean[265];
   private Mouse mouse = new Mouse();
