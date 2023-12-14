@@ -1,8 +1,6 @@
 package Entities.Plants.LawnDay;
 
-import Entities.Interfaces.SunProducer;
 import Entities.Plants.Plant;
-import Entities.Plants.Plant.SeedPacketRechargeTime;
 import Entities.Plants.PlantBuilder;
 import Entities.Zombies.Zombie;
 import Entities.Zombies.Zombie.DeathType;

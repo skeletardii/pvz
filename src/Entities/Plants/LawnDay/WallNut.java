@@ -1,7 +1,6 @@
 package Entities.Plants.LawnDay;
 
 import Entities.Plants.Plant;
-import Entities.Plants.Plant.SeedPacketRechargeTime;
 import Entities.Plants.PlantBuilder;
 import java.awt.Graphics2D;
 import java.awt.Image;

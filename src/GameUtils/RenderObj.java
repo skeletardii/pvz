@@ -16,6 +16,7 @@ public abstract class RenderObj implements Comparable<RenderObj>, Serializable {
   private ArrayList<RenderObj> children;
   private RenderObj parent;
   private boolean resort = false;
+  @SuppressWarnings("all")
   private int childrenIndex = 0;
 
   protected void setGame(Game game) {

@@ -1,7 +1,6 @@
 package Entities.Plants.LawnNight;
 
 import Entities.Interfaces.Attacker;
-import Entities.Plants.Plant;
 import Entities.Plants.PlantBuilder;
 import Entities.Projectiles.Pea;
 import Entities.Zombies.Zombie;

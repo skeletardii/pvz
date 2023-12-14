@@ -8,7 +8,6 @@ import java.awt.RenderingHints;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
-import java.awt.geom.AffineTransform;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
@@ -310,7 +309,7 @@ class Renderer implements Runnable{
   }
 }
 class RootUpdaterObj implements Updater{
-  private static final int THREADS = 2;
+  private static final int THREADS = 4;
   private static ArrayList<Updater> children = new ArrayList<Updater>();
   private UpdaterConsumer[] updaterConsumers = new UpdaterConsumer[THREADS];
   public static BlockingQueue<Updater> queue = new LinkedBlockingQueue<>();

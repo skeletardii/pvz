@@ -18,7 +18,7 @@ import java.io.*;
 import java.util.ArrayList;
 
 @SuppressWarnings("CallToPrintStackTrace")
-public class Global implements Updater, Serializable {
+public class Global implements Updater {
 
   @Serial
   private static final long serialVersionUID = 1L;

@@ -4,8 +4,6 @@ import Entities.Misc.LiveEntity;
 import Entities.Misc.LiveEntityBuilder;
 
 import java.awt.Graphics2D;
-import java.awt.Image;
-import javax.swing.ImageIcon;
 
 public abstract class Projectile extends LiveEntity {
 
