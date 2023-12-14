@@ -14,7 +14,6 @@ public abstract class LiveEntity extends RenderObj implements Updater {
   private double col;
   private int health;
   private boolean targetable = true;
-
   protected final int offsetX;
   protected final int offsetY;
   protected Image sprite;

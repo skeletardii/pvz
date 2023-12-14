@@ -75,6 +75,9 @@ public class PVZLevelEditor extends  JFrame {
     private JCheckBox cbGargantuar;
     private JCheckBox cbZomboni;
     private JCheckBox cbDrSerato;
+    private JTextPane tpZombies;
+    private JTextPane tpPlants;
+    private JCheckBox cbTwinSunflower;
     private JTextArea taPlants;
     private JTextArea taZombies;
 
@@ -112,6 +115,14 @@ public class PVZLevelEditor extends  JFrame {
             slZombieMovementSpeed.setValue(gameSettings.zombieMovementSpeedMultiplier);
             slZombieSpawnRate.setValue(gameSettings.zombieSpawnRateMultiplier);
 
+            for (Map.Entry<String, JCheckBox> entry : plantsMap.entrySet()) {
+                entry.getValue().setSelected(false);
+            }
+
+            for (Map.Entry<String, JCheckBox> entry : zombiesMap.entrySet()) {
+                entry.getValue().setSelected(false);
+            }
+
             for (String s : gameSettings.selectedPlants) {
                 (plantsMap.get(s)).setSelected(true);
             }
@@ -120,14 +131,14 @@ public class PVZLevelEditor extends  JFrame {
                 (zombiesMap.get(s)).setSelected(true);
             }
 
-            taPlants.setText("");
+            tpPlants.setText("");
             for (String p : gameSettings.selectedPlants) {
-                taPlants.setText(taPlants.getText() + p + "\n");
+                tpPlants.setText(tpPlants.getText() + p + "\n");
             }
 
-            taZombies.setText("");
+            tpZombies.setText("");
             for (String z : gameSettings.selectedZombies) {
-                taZombies.setText(taZombies.getText() + z + "\n");
+                tpZombies.setText(tpZombies.getText() + z + "\n");
             }
 
             System.out.println("Game settings loaded from file successfully.");
@@ -159,6 +170,7 @@ public class PVZLevelEditor extends  JFrame {
         zombiesMap.put("BungeeZombie", cbBungeeZombie);
 
         plantsMap.put("Sunflower", cbSunflower);
+        plantsMap.put("TwinSunflower", cbTwinSunflower);
         plantsMap.put("Peashooter", cbPeashooter);
         plantsMap.put("Repeater", cbRepeater);
         plantsMap.put("GatlingPea", cbGatlingPea);
@@ -205,9 +217,9 @@ public class PVZLevelEditor extends  JFrame {
                     gameSettings.selectedPlants.remove(cleanString(pName));
                 }
 
-                taPlants.setText("");
+                tpPlants.setText("");
                 for (String p : gameSettings.selectedPlants) {
-                    taPlants.setText(taPlants.getText() + p + "\n");
+                    tpPlants.setText(tpPlants.getText() + p + "\n");
                 }
 
             }
@@ -232,9 +244,9 @@ public class PVZLevelEditor extends  JFrame {
                     gameSettings.selectedZombies.remove(cleanString(zName));
                 }
 
-                taZombies.setText("");
+                tpZombies.setText("");
                 for (String z : gameSettings.selectedZombies) {
-                    taZombies.setText(taZombies.getText() + z + "\n");
+                    tpZombies.setText(tpZombies.getText() + z + "\n");
                 }
             }
         };
@@ -305,7 +317,7 @@ public class PVZLevelEditor extends  JFrame {
         slSunValue.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-                gameSettings.sunFallRate = ((JSlider)(e.getSource())).getValue();
+                gameSettings.sunSunValue = ((JSlider)(e.getSource())).getValue();
             }
         });
         slStartingSun.addChangeListener(new ChangeListener() {

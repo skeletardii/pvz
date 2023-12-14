@@ -74,6 +74,7 @@ public class Main {
     Map<String, Plant> plantsMap = new HashMap<>();
 
     plantsMap.put("Sunflower", new Sunflower());
+    plantsMap.put("TwinSunflower", new TwinSunflower());
     plantsMap.put("Peashooter", new Peashooter());
     plantsMap.put("Repeater", new Repeater());
     plantsMap.put("GatlingPea", new GatlingPea());
@@ -91,7 +92,7 @@ public class Main {
     plantsMap.put("Threepeater", new Threepeater());
     plantsMap.put("Squash", new Squash());
     plantsMap.put("SpikeWeed", new SpikeWeed());
-    plantsMap.put("SpikeRock", new SpikeWeed.SpikeRock());
+    plantsMap.put("SpikeRock", new SpikeRock());
     plantsMap.put("TallNut", new TallNut());
     plantsMap.put("Jalapeno", new Jalapeno());
     plantsMap.put("Torchwood", new Torchwood());
@@ -136,16 +137,28 @@ public class Main {
       "Entities.Zombies.ZombieBuilder",
       "Entities.Particles.Explosion",
       "Entities.Plants.PlantBuilder",
-      "Entities.Plants.CabbagePult",
-      "Entities.Plants.Chomper",
-      "Entities.Plants.Peashooter",
-      "Entities.Plants.SpikeWeed",
-      "Entities.Plants.WallNut",
-      "Entities.Plants.SunProducers.Sunflower",
-      "Entities.Plants.InstaKillers.CherryBomb",
-      "Entities.Plants.InstaKillers.Jalapeno",
-      "Entities.Plants.InstaKillers.PotatoMine",
-      "Entities.Plants.InstaKillers.Squash",
+      "Entities.Plants.Roof.CabbagePult",
+      "Entities.Plants.LawnDay.Chomper",
+      "Entities.Plants.LawnDay.Peashooter",
+      "Entities.Plants.LawnDay.WallNut",
+      "Entities.Plants.LawnDay.Sunflower",
+      "Entities.Plants.LawnDay.Repeater",
+      "Entities.Plants.LawnDay.GatlingPea",
+      "Entities.Plants.LawnDay.Snowpea",
+      "Entities.Plants.LawnDay.PotatoMine",
+      "Entities.Plants.LawnDay.Cherrybomb",
+      "Entities.Plants.LawnNight.FumeShroom",
+      "Entities.Plants.LawnNight.DoomShroom",
+      "Entities.Plants.LawnNight.IceShroom",
+      "Entities.Plants.PoolDay.SpikeWeed",
+      "Entities.Plants.PoolDay.Jalapeno",
+      "Entities.Plants.PoolDay.Torchwood",
+      "Entities.Plants.PoolDay.Threepeater",
+      "Entities.Plants.PoolDay.SpikeRock",
+      "Entities.Plants.PoolDay.Squash",
+      "Entities.Plants.PoolDay.TallNut",
+      "Entities.Plants.PoolNight.CoffeeBean",
+      "Entities.Plants.PoolNight.Pumpkin",
       "GUI.SeedPacket",
       "GUI.GameUI",
       "GUI.Selector",

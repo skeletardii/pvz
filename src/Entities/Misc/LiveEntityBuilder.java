@@ -4,26 +4,26 @@ import java.awt.Image;
 
 public class LiveEntityBuilder {
 
-  double row;
-  double col;
-  int health;
-  boolean targetable = true;
-  int offsetX;
-  int offsetY;
-  Image sprite;
-  int lx, ly, frame;
-  double scale = 0.25;
-  int[] animStart;
-  int[] animEnd;
-  int offsetOY = (int) Math.random() * 10 - 5;
-  int offsetOX = (int) Math.random() * 10 - 5;
-  int shadowOffsetX = 0;
-  int shadowOffsetY = 0;
-  double shadowScale = 1.0;
-  int animSpeed = 1;
-  int animRow = 1;
-  int spriteWidth;
-  int spriteHeight;
+  public double row;
+  public double col;
+  public int health;
+  public boolean targetable = true;
+  public int offsetX;
+  public int offsetY;
+  public Image sprite;
+  public int lx, ly, frame;
+  public double scale = 0.25;
+  public int[] animStart;
+  public int[] animEnd;
+  public int offsetOY = (int) Math.random() * 10 - 5;
+  public int offsetOX = (int) Math.random() * 10 - 5;
+  public int shadowOffsetX = 0;
+  public int shadowOffsetY = 0;
+  public double shadowScale = 1.0;
+  public int animSpeed = 1;
+  public int animRow = 1;
+  public int spriteWidth;
+  public int spriteHeight;
 
   public LiveEntityBuilder setSpriteWidth(int spriteWidth) {
     this.spriteWidth = spriteWidth;
