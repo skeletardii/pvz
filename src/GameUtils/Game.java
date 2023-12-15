@@ -169,6 +169,7 @@ public class Game implements Runnable{
         keys = inputListener.getKeys();
         mouse = inputListener.getMouse();
 
+//        implement pause?? or bao i dunno basin la nay time
         //Update objects:
         for (int i = 0; i < updaters.size(); i++) {
           updaters.get(i).updateWithChildren();

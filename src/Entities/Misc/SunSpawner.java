@@ -14,7 +14,7 @@ public class SunSpawner implements Updater, SunProducer {
     private static int sunCooldown;
 
     public SunSpawner() {
-        sunCooldown = 1440 / (Global.gameSettings == null ? 1 : Global.gameSettings.sunFallRate);
+        sunCooldown = 600 / (Global.gameSettings == null ? 1 : Global.gameSettings.sunFallRate);
     }
 
     public void update() {

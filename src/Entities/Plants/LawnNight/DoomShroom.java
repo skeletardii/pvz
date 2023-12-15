@@ -4,6 +4,7 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
+import Entities.Particles.Explosion;
 import Entities.Plants.PlantBuilder;
 import Entities.Zombies.Zombie;
 import Entities.Zombies.Zombie.DeathType;
@@ -36,6 +37,7 @@ public class DoomShroom extends ShroomInstaKiller {
   @Override
   public void activate() {
     super.activate();
+    Global.addParticle(new Explosion((int)this.getRow(), this.getCol()));
 
     for (int k = 0; k < Constants.PLANT_ROWS_COUNT; ++k) {
       for (Zombie z : Global.zombies[k]) {

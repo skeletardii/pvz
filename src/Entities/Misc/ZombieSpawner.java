@@ -16,6 +16,7 @@ public class ZombieSpawner implements Updater {
   private int zombieSpawnCtr;
 
   private static ArrayList<Zombie> zombiesToSpawn;
+  private static double difficultyMultiplier = 1;
 
   public ZombieSpawner() {
     zombieSpawnRate = 240 / (Global.gameSettings == null ? 1 : Global.gameSettings.zombieSpawnRateMultiplier);
@@ -27,16 +28,29 @@ public class ZombieSpawner implements Updater {
     for (String s : Global.gameSettings.selectedZombies) {
       zombiesToSpawn.add(Constants.zombiesMap.get(s));
     }
-    System.out.println(zombiesToSpawn);
   }
 
   public void spawnZombie() {
+    int zombieCount = 0;
+    for (int i = 0; i < Constants.PLANT_ROWS_COUNT; ++i) {
+      zombieCount += Global.zombies[i].size();
+    }
+
+    if (zombieCount > 0) {
+      return;
+    }
+
     try {
-      int spawnRow = RAND.nextInt(Constants.PLANT_ROWS_COUNT);
-      int spawnIndex = RAND.nextInt(zombiesToSpawn.size() - 1);
-      Zombie z = zombiesToSpawn.get(spawnIndex).getClass().getDeclaredConstructor().newInstance();
-      z.setRow(spawnRow);
-      Global.addZombie(z);
+      for (int i = 0; i < (int)difficultyMultiplier; ++i) {
+        int spawnRow = RAND.nextInt(Constants.PLANT_ROWS_COUNT - 1);
+        int n = zombiesToSpawn.size();
+        int spawnIndex = RAND.nextInt((n / 2) + 1) + RAND.nextInt((n / 2) + 1);
+
+        Zombie z = zombiesToSpawn.get(spawnIndex).getClass().getDeclaredConstructor().newInstance();
+        z.setRow(spawnRow);
+        Global.addZombie(z);
+      }
+
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -45,6 +59,7 @@ public class ZombieSpawner implements Updater {
   @Override
   public void update() {
     zombieSpawnCtr++;
+    difficultyMultiplier += 0.001;
 
     if (zombieSpawnCtr >= zombieSpawnRate) {
       zombieSpawnCtr = 0;

@@ -2,6 +2,8 @@ package Entities.Zombies;
 
 import Entities.ZombieItems.Armor;
 
+import javax.swing.*;
+
 public class FootballZombie extends Zombie {
 
   public FootballZombie(int row) {
@@ -9,8 +11,10 @@ public class FootballZombie extends Zombie {
       new ZombieBuilder()
         .setRow(row)
         .setArmor(new Armor.FootballGear())
-        .setMovementSpeed(ZombieSpeed.FAST.getValue())
+        .setMovementSpeed(ZombieSpeed.FAST.getValue()).setSprite(new ImageIcon("assets/zombies/football.png").getImage())
+              .setSpriteWidth(420).setSpriteHeight(323)
     );
+
   }
 
 

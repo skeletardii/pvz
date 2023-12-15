@@ -5,16 +5,13 @@ import Entities.Misc.SunSpawner;
 import Entities.Misc.ZombieSpawner;
 import GUI.*;
 import GameUtils.*;
-
+import Main.Constants;
 import java.io.File;
 import javax.swing.*;
-
-import Main.Constants;
 
 public class Main {
 
   public static void main(String[] args) throws Exception {
-
     Global.init();
     Constants constants = new Constants();
     Global.gameSettings = Global.loadFromFile();
@@ -24,7 +21,7 @@ public class Main {
       return;
     }
 
-    JFrame window = new JFrame("The zombies are cumming");
+    JFrame window = new JFrame("The zombies are coming (sfw)");
     window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     window.setVisible(true);
     window.setResizable(true);
@@ -34,7 +31,6 @@ public class Main {
       Constants.WINDOW_SIZE_Y
     );
     preload();
-
 
     Global.sun = Global.gameSettings.startingSun;
     Global.game = game;
@@ -53,8 +49,15 @@ public class Main {
     Global.init();
     Global.zombieSpawner.init();
 
+    Sound.play(
+      new File("assets/sound/" + Global.gameSettings.music + ".wav"),
+      -10f
+    );
 
-    Sound.play(new File("assets/sound/" + Global.gameSettings.music +  ".wav"), -10f);
+    Sound.play(
+            new File("assets/sound/readysetplant.wav"),
+            0f
+    );
 
     if (!Global.gameSettings.noLawnmower) {
       for (int i = 0; i < Constants.PLANT_ROWS_COUNT; ++i) {
@@ -65,17 +68,16 @@ public class Main {
     for (String s : Global.gameSettings.selectedPlants) {
       Global.addSeedPacket(new SeedPacket(Constants.plantsMap.get(s)));
     }
-    
-//    Global.addPlant(new Sunflower(), 0, 0);
-//    Global.addPlant(new Peashooter(), 3, 0);
-//    Global.addPlant(new Repeater(), 4, 0);
-//    Global.addPlant(new Snowpea(), 5, 0);
-//    Global.addPlant(new FumeShroom(), 0, 1);
-//    Global.addPlant(new CabbagePult(), 1, 1);
-//    Global.addPlant(new PotatoMine(), 2, 1);
-//    Global.addPlant(new Torchwood(), 4, 1);
-//    Global.addPlant(new Chomper(), 5, 1);
-//    Global.addPlant(new WallNut(), 0, 2);
+    //    lobal.addPlant(new Sunflower(), 0, 0);
+    //    Global.addPlant(new Peashooter(), 3, 0);
+    //    Global.addPlant(new Repeater(), 4, 0);
+    //    Global.addPlant(new Snowpea(), 5, 0);
+    //    Global.addPlant(new FumeShroom(), 0, 1);
+    //    Global.addPlant(new CabbagePult(), 1, 1);
+    //    Global.addPlant(new PotatoMine(), 2, 1);
+    //    Global.addPlant(new Torchwood(), 4, 1);
+    //    Global.addPlant(new Chomper(), 5, 1);
+    //    Global.addPlant(new WallNut(), 0, 2);
 //    Global.addPlant(new TallNut(), 1, 2);
 
 //    Global.addSeedPacket(new SeedPacket(new Cherrybomb()));

@@ -14,7 +14,7 @@ public class Sunflower extends Plant implements SunProducer {
     "assets/plants/sunflower.png"
   )
     .getImage();
-  int sunCooldown = 1440;
+  int sunCooldown = 900 * Global.gameSettings.sunFallRate;
   int sunCtr = 0;
 
   public Sunflower(int row, int col) {

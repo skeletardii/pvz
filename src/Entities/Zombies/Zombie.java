@@ -49,8 +49,9 @@ public class Zombie extends LiveEntity {
       this.value = value;
     }
 
+
     public double getValue() {
-      return value / Game.TARGET_FPS;
+      return value / Game.TARGET_FPS / 1.5;
     }
   }
 
@@ -101,10 +102,18 @@ public class Zombie extends LiveEntity {
 
     int row = (int) this.getRow();
     int col = (int) Math.round(this.getCol());
-    Plant p = row < Constants.PLANT_ROWS_COUNT &&
+
+    Plant p = col >= 0 && row < Constants.PLANT_ROWS_COUNT &&
       col < Constants.PLANT_COLS_COUNT
       ? Global.plants[row][col]
       : null;
+
+    if (col < 0) {
+      Sound.play(
+              new File("assets/sound/scream.wav"),
+              -10f
+      );
+    }
 
     // zombie attacks
     if (

@@ -1,5 +1,7 @@
 package Entities.Zombies;
 
+import Entities.Misc.ZombieSpawner;
+
 public class DiggerZombie extends Zombie {
 
   private boolean digging = true;
@@ -7,13 +9,17 @@ public class DiggerZombie extends Zombie {
   public DiggerZombie(int row) {
     super(
       new ZombieBuilder()
-        .setMovementSpeed(0.015)
+        .setMovementSpeed(ZombieSpeed.FAST.getValue())
         .setRow(row)
         .setTargetable(false)
     );
   }
 
-  @Override
+    public DiggerZombie() {
+        this(-1);
+    }
+
+    @Override
   public void update() {
     super.update();
     if (this.digging && this.getCol() <= 0) {

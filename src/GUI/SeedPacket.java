@@ -12,6 +12,8 @@ import java.awt.Image;
 import java.io.File;
 import javax.swing.ImageIcon;
 
+import static GameUtils.Game.TARGET_FPS;
+
 public class SeedPacket extends RenderObj implements Updater {
 
   private static final Image card = new ImageIcon("assets/ui/seedpacket.png")
@@ -31,6 +33,9 @@ public class SeedPacket extends RenderObj implements Updater {
   private Image sprite;
   private Plant p;
   private boolean isOnTop = false;
+  private double cooldown = 0;
+  private double maxCooldown;
+
   public SeedPacket(Plant p) {
     this.p = p;
     sprite = p.getPreview();
@@ -43,6 +48,7 @@ public class SeedPacket extends RenderObj implements Updater {
     scale = p.getScale();
     offsetCX = p.getOffsetOX();
     offsetCY = p.getOffsetOY();
+    maxCooldown = p.getCooldown();
     if (ly > lx) {
       prevY = 40;
       prevX = (int) ((1.0 * lx / ly) * prevY);
@@ -78,6 +84,10 @@ public class SeedPacket extends RenderObj implements Updater {
       ly,
       null
     );
+    g.setComposite(makeComposite(0.5f));
+    g.fillRect(posX, 7, 55, (int)(73 * cooldown / maxCooldown));
+    g.setComposite(makeComposite(1f));
+
     g.setColor(Color.black);
     g.drawString("" + cost, posX + 20 - (5 * (getDigits(cost) - 1)), 75);
     if (state == 0) {
@@ -138,9 +148,8 @@ public class SeedPacket extends RenderObj implements Updater {
   }
 
   public void update() {
-    // gi addan nako ani para mu change ang sunCost sa mga upgradables
-    // pero mu move ang cost tho lol, basta mu increase na
     cost = this.p.getSunCost();
+    this.cooldown = Math.max(this.cooldown - 1 / TARGET_FPS, 0);
 
     statePrev = state;
     if (
@@ -151,26 +160,34 @@ public class SeedPacket extends RenderObj implements Updater {
       Global.mouse.y > 8 &&
       Global.mouse.y < 79
     ) {
-      state = 3;
-      Sound.play(seed_click);
+      if (Global.sun < cost || this.cooldown > 0) {
+        Sound.play(seed_error);
+      } else {
+        state = 3;
+        Sound.play(seed_click);
+      }
     }
     if (statePrev == 3 && Global.mouse.left && Global.mouse_prev.left) state =
       3;
     if (!Global.mouse.left && state == 3) {
+
       int row = ((Global.mouse.y - 60) / 88);
       int col = ((Global.mouse.x - 30) / 80);
+
       if (row >= Constants.PLANT_ROWS_COUNT) row =
         Constants.PLANT_ROWS_COUNT - 1;
       if (col >= Constants.PLANT_COLS_COUNT) col =
         Constants.PLANT_COLS_COUNT - 1;
       if (row < 0) row = 0;
       if (col < 0) col = 0;
+
       try {
         Object newPlant = plant.getDeclaredConstructor().newInstance();
 
         try {
           Global.addPlant((Plant) newPlant, row, col);
           Global.sun -= cost;
+          this.cooldown = ((Plant) newPlant).getCooldown();
           Sound.play(seed_plant);
         } catch (ArrayStoreException e) {
           Sound.play(seed_error);
