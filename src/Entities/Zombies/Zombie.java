@@ -48,8 +48,6 @@ public class Zombie extends LiveEntity {
     ZombieSpeed(double value) {
       this.value = value;
     }
-
-
     public double getValue() {
       return value / Game.TARGET_FPS / 1.5;
     }
@@ -157,6 +155,7 @@ public class Zombie extends LiveEntity {
   public void takeDamage(double projectileDamage) {
     if (this.armor != null) {
       this.armor.setHealth(getHealth() - projectileDamage);
+      if (armor.getHealth() <= 0) armor = null;
     } else {
       setHealth(getHealth() - projectileDamage);
     }

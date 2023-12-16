@@ -298,14 +298,6 @@
                               <text value="Invisighoul"/>
                             </properties>
                           </component>
-                          <component id="23b35" class="javax.swing.JCheckBox" binding="cbDrSerato">
-                            <constraints>
-                              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                            </constraints>
-                            <properties>
-                              <text value="Dr. Serato"/>
-                            </properties>
-                          </component>
                         </children>
                       </grid>
                       <grid id="432e7" layout-manager="GridLayoutManager" row-count="4" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">

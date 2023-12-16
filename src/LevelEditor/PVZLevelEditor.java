@@ -75,7 +75,6 @@ public class PVZLevelEditor extends  JFrame {
     private JCheckBox cbScreendoorZombie;
     private JCheckBox cbGargantuar;
     private JCheckBox cbZomboni;
-    private JCheckBox cbDrSerato;
     private JTextPane tpZombies;
     private JTextPane tpPlants;
     private JCheckBox cbTwinSunflower;
@@ -388,12 +387,6 @@ public class PVZLevelEditor extends  JFrame {
         lawnNightRadioButton.addActionListener(listener1);
         lawnWinterRadioButton.addActionListener(listener1);
 
-        cbDrSerato.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                gameSettings.isBossFight = ((JCheckBox)e.getSource()).isSelected();
-            }
-        });
     }
 
     public static void main(String[] args) {

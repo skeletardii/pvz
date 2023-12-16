@@ -212,7 +212,9 @@ public abstract class LiveEntity extends RenderObj implements Updater {
     //g.drawOval(ox-5,oy-5,10,10);
   }
 
-  public void update() {}
+  public void update() {
+
+  }
 
   public Image getPreview() {
     return sprite;
