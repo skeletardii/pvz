@@ -11,8 +11,6 @@ import java.awt.event.MouseEvent;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
@@ -59,14 +57,6 @@ public class Game implements Runnable{
         @Override
         protected void paintComponent(Graphics g) {
           Graphics2D g2d = (Graphics2D) g;
-          // g2d.setTransform(
-          //   AffineTransform.getScaleInstance(
-          //     1.25 * frame.getSize().getWidth() / 814.0,
-          //     1.25 * frame.getSize().getHeight() / 637.0
-          //   )
-          // );
-          // System.out.println(frame.getSize().getHeight()); //814,637
-          // g2d.setTransform(AffineTransform.getScaleInstance(1, 1));
           g2d.setRenderingHint(
             RenderingHints.KEY_ANTIALIASING,
             RenderingHints.VALUE_ANTIALIAS_ON
@@ -103,20 +93,9 @@ public class Game implements Runnable{
   }
 
   public void remove(Updater obj) throws NoSuchElementException {
-    try{
-    updaters.remove(obj);
-    return;
-
-    } catch (Exception e){
-      
-    throw new NoSuchElementException("Object not found in Updater Collection.");
+    if (!updaters.remove(obj)) {
+      throw new NoSuchElementException("Object not found in Updater Collection.");
     }
-    // for (int i = 0; i < updaters.size(); i++) {
-    //   if (updaters.get(i) == obj) {
-    //     updaters.remove(i);
-    //     return;
-    //   }
-    // }
   }
 
   public void setPrintFPS(boolean set){
@@ -124,12 +103,7 @@ public class Game implements Runnable{
   }
   public void start() {
     thread = new Thread(this);
-    Runnable r = new Runnable() { //spooky
-      public void run() {
-        thread.start();
-      }
-    };
-    new Thread(r).start();
+    thread.start();
   }
 
   public void stop() {
@@ -192,7 +166,7 @@ public class Game implements Runnable{
 
 class InputListener implements KeyListener, MouseInputListener, Serializable {
 
-  private boolean[] keys = new boolean[265];
+  private boolean[] keys = new boolean[512];
   private Mouse mouse = new Mouse();
 
   public void keyPressed(KeyEvent e) {
@@ -247,118 +221,38 @@ class InputListener implements KeyListener, MouseInputListener, Serializable {
   public void mouseExited(MouseEvent e) {}
 }
 
-class RootRenderObj extends RenderObj implements Updater{
-  private static final int THREADS = 0;
-  public static BlockingQueue<RenderObj> queue;
-  private Renderer[] renderers;
+class RootRenderObj extends RenderObj implements Updater {
   public void paintComponent(Graphics2D g) {}
-  public void update(){}
-  @SuppressWarnings("all")
-  public void render(Graphics2D g){
+  public void update() {}
+
+  @Override
+  public void render(Graphics2D g) {
     resort();
-    if(THREADS==0) {
-      for (int i = 0; i < getChildren().size(); i++)
-        getChildren().get(i).render(g);
-    } else {
-      for (int j = 0; j < THREADS; j++) {
-        renderers[j].g=g;
-      } 
-      for (int i = 0; i < getChildren().size(); i++) {
-          if(i<=2) getChildren().get(i).render(g);
-          else //if (i<=getChildren().size()-2)
-          {
-            try{
-              queue.put(getChildren().get(i));
-            } catch(Exception e) {e.printStackTrace();}
-          }
-          //else getChildren().get(i).render(g);
-      }
-      while(!queue.isEmpty()){
-        try{
-          wait(1);
-        } catch(Exception e){
-        }
-      }
-    }
-  }
-  public RootRenderObj(){
-    
-    if(THREADS>=0){
-      Renderer.queue = queue;
-      queue = new LinkedBlockingQueue<>();
-      renderers = new Renderer[THREADS];
-      for (int j = 0; j < THREADS; j++) {
-        renderers[j]=new Renderer();
-        new Thread(renderers[j]).start();
-      } 
-    }
-    
-  }
-}
-class Renderer implements Runnable{
-  public Graphics2D g;
-  public static BlockingQueue<RenderObj> queue;
-  public void run(){
-    try {
-      while(true){
-        RenderObj r = queue.take();
-        r.render(g);
-      }
-    } catch (InterruptedException e){
-      Thread.currentThread().interrupt();
+    for (int i = 0; i < getChildren().size(); i++) {
+      getChildren().get(i).render(g);
     }
   }
 }
-class RootUpdaterObj implements Updater{
-  private static final int THREADS = 4;
-  private static ArrayList<Updater> children = new ArrayList<Updater>();
-  private UpdaterConsumer[] updaterConsumers = new UpdaterConsumer[THREADS];
-  public static BlockingQueue<Updater> queue = new LinkedBlockingQueue<>();
-  public void add(Updater u){
+
+class RootUpdaterObj implements Updater {
+  private final ArrayList<Updater> children = new ArrayList<>();
+
+  public void add(Updater u) {
     children.add(u);
   }
-  public void remove(Updater u){
-    try{
-      children.remove(u);
-    } catch (Exception e){
 
-    }
+  public boolean remove(Updater u) {
+    return children.remove(u);
   }
-  public Updater get(int index){
+
+  public Updater get(int index) {
     return children.get(index);
   }
-  public int size(){
+
+  public int size() {
     return children.size();
   }
-  public void update() {
-    for(int i=0; i<children.size(); i++){
-      queue.add(children.get(i));
-    }
-    while(!queue.isEmpty()){
-      try{
-        wait(1);
-      } catch(Exception e){
-      }
-    }
-  }
-  public RootUpdaterObj(){
-    UpdaterConsumer.queue=queue;
-    for(int i=0; i<THREADS; i++){
-      updaterConsumers[i] = new UpdaterConsumer();
-      new Thread(updaterConsumers[i]).start();
-    }
-  }
-}
-class UpdaterConsumer implements Runnable{
-  public static BlockingQueue<Updater> queue;
-  public void run(){
-    try {
-      while(true){
-        Updater u = queue.take();
-        u.updateWithChildren();
-      }
-    } catch (InterruptedException e){
-      Thread.currentThread().interrupt();
-    }
-  }
+
+  @Override
+  public void update() {}
 }

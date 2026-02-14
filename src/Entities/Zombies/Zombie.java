@@ -86,7 +86,7 @@ public class Zombie extends LiveEntity {
     animStart[1] = 99;
     animEnd[1] = 138;
 
-    if (Global.gameSettings.zombieInvisighoul) this.setVisible(false);
+    if (Global.gameSettings.zombieInvisighost) this.setVisible(false);
   }
 
   @Override
@@ -144,8 +144,7 @@ public class Zombie extends LiveEntity {
   }
 
   public void kill(DeathType type) {
-    if(type==DeathType.EXPLODED) {
-      System.out.println("aaa");
+    if (type != null && type == DeathType.EXPLODED) {
       Global.addParticle(new CharredZombie(getRow(), getCol()));
     }
     setHealth(0);
@@ -154,8 +153,12 @@ public class Zombie extends LiveEntity {
   @Override
   public void takeDamage(double projectileDamage) {
     if (this.armor != null) {
-      this.armor.setHealth(getHealth() - projectileDamage);
+      double armorHealth = armor.getHealth();
+      double damageToArmor = Math.min(projectileDamage, armorHealth);
+      double overflowDamage = projectileDamage - damageToArmor;
+      armor.setHealth(armorHealth - damageToArmor);
       if (armor.getHealth() <= 0) armor = null;
+      setHealth(getHealth() - overflowDamage);
     } else {
       setHealth(getHealth() - projectileDamage);
     }

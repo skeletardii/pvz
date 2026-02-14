@@ -114,9 +114,7 @@ public abstract class LiveEntity extends RenderObj implements Updater {
 
   public void takeDamage(double damage) {
     this.health -= damage;
-    if(lastDamaged==1){
-      lastDamaged--;
-    }
+    lastDamaged = damageFlashCooldown;
   }
 
   public void setFrame(int frame) {

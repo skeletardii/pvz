@@ -45,7 +45,7 @@ public class LawnMower extends LiveEntity {
 
       for (Zombie z : Global.zombies[(int) this.getRow()]) {
         if (this.isTouching(z)) {
-          z.kill(null);
+          z.kill(Zombie.DeathType.NORMAL);
         }
       }
     }

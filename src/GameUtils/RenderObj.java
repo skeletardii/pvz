@@ -15,8 +15,6 @@ public abstract class RenderObj implements Comparable<RenderObj> {
   private ArrayList<RenderObj> children;
   private RenderObj parent;
   private boolean resort = false;
-  @SuppressWarnings("all")
-  private int childrenIndex = 0;
 
   protected void setGame(Game game) {
     this.game = game;
@@ -90,7 +88,6 @@ public abstract class RenderObj implements Comparable<RenderObj> {
       resort = false;
     }
     if (visible) paintComponent(g);
-    //System.out.println("rendering" + this);
     if (childrenVisible && children.size() > 0) {
       for (int i = 0; i < children.size(); i++) {
         children.get(i).render(g);
@@ -100,10 +97,6 @@ public abstract class RenderObj implements Comparable<RenderObj> {
 
   public void resort() {
     Collections.sort(children);
-    childrenIndex = 0;
-    for (int i = 0; i < children.size(); i++) {
-      if (zIndex < children.get(i).zIndex) childrenIndex = i;
-    }
   }
 
   public abstract void paintComponent(Graphics2D g);

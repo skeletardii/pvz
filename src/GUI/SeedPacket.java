@@ -189,7 +189,7 @@ public class SeedPacket extends RenderObj implements Updater {
           Global.sun -= cost;
           this.cooldown = ((Plant) newPlant).getCooldown();
           Sound.play(seed_plant);
-        } catch (ArrayStoreException e) {
+        } catch (IllegalStateException e) {
           Sound.play(seed_error);
         } catch (Exception e) {
           Sound.play(seed_error);

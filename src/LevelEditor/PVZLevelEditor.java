@@ -54,14 +54,14 @@ public class PVZLevelEditor extends  JFrame {
     private JRadioButton lawnFallRadioButton;
     private JRadioButton lawnNightRadioButton;
     private JRadioButton lawnWinterRadioButton;
-    private JCheckBox cbInvisighoul;
+    private JCheckBox cbInvisighost;
     private JTabbedPane tabbedPane2;
     private JCheckBox cbFumeShroom;
     private JCheckBox cbDoomShroom;
     private JCheckBox cbIceShroom;
     private JCheckBox cbGloomShroom;
     private JCheckBox cbThreepeater;
-    private JCheckBox cbTorchwoord;
+    private JCheckBox cbTorchwood;
     private JCheckBox cbJalapeno;
     private JCheckBox cbPumpkin;
     private JCheckBox cbCoffeeBean;
@@ -109,7 +109,7 @@ public class PVZLevelEditor extends  JFrame {
             slSunValue.setValue(gameSettings.sunSunValue);
             slStartingSun.setValue(gameSettings.startingSun);
 
-            cbInvisighoul.setSelected(gameSettings.zombieInvisighoul);
+            cbInvisighost.setSelected(gameSettings.zombieInvisighost);
             slZombieHealth.setValue(gameSettings.zombieHealthMultiplier);
             slZombieDamage.setValue(gameSettings.zombieDamageMultiplier);
             slZombieMovementSpeed.setValue(gameSettings.zombieMovementSpeedMultiplier);
@@ -191,7 +191,7 @@ public class PVZLevelEditor extends  JFrame {
         plantsMap.put("SpikeRock", cbSpikeRock);
         plantsMap.put("TallNut", cbTallNut);
         plantsMap.put("Jalapeno", cbJalapeno);
-        plantsMap.put("Torchwood", cbTorchwoord);
+        plantsMap.put("Torchwood", cbTorchwood);
 
         plantsMap.put("Pumpkin", cbPumpkin);
         plantsMap.put("CoffeeBean", cbCoffeeBean);
@@ -368,10 +368,10 @@ public class PVZLevelEditor extends  JFrame {
         fullscreenRadioButton.addActionListener(listener);
         windowedRadioButton.addActionListener(listener);
 
-        cbInvisighoul.addActionListener(new ActionListener() {
+        cbInvisighost.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                gameSettings.zombieInvisighoul = ((JCheckBox)e.getSource()).isSelected();
+                gameSettings.zombieInvisighost = ((JCheckBox)e.getSource()).isSelected();
             }
         });
 

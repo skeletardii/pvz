@@ -13,7 +13,7 @@ public class Main {
 
   public static void main(String[] args) throws Exception {
     Global.init();
-    Constants constants = new Constants();
+    new Constants();
     Global.gameSettings = Global.loadFromFile();
 
     if (Global.gameSettings == null) {
@@ -40,24 +40,12 @@ public class Main {
     game.setPrintFPS(true);
     game.add(new GameUI(Global.gameMode));
     game.add(global);
-    game.start();
-
     game.add(new SunManager());
     game.add(new SunSpawner());
-    game.add(new ZombieSpawner());
-
-    Global.init();
-    Global.zombieSpawner.init();
-
-    Sound.play(
-      new File("assets/sound/" + Global.gameSettings.music + ".wav"),
-      -10f
-    );
-
-    Sound.play(
-            new File("assets/sound/readysetplant.wav"),
-            0f
-    );
+    ZombieSpawner zombieSpawner = new ZombieSpawner();
+    game.add(zombieSpawner);
+    Global.zombieSpawner = zombieSpawner;
+    zombieSpawner.init();
 
     if (!Global.gameSettings.noLawnmower) {
       for (int i = 0; i < Constants.PLANT_ROWS_COUNT; ++i) {
@@ -68,38 +56,18 @@ public class Main {
     for (String s : Global.gameSettings.selectedPlants) {
       Global.addSeedPacket(new SeedPacket(Constants.plantsMap.get(s)));
     }
-    //    lobal.addPlant(new Sunflower(), 0, 0);
-    //    Global.addPlant(new Peashooter(), 3, 0);
-    //    Global.addPlant(new Repeater(), 4, 0);
-    //    Global.addPlant(new Snowpea(), 5, 0);
-    //    Global.addPlant(new FumeShroom(), 0, 1);
-    //    Global.addPlant(new CabbagePult(), 1, 1);
-    //    Global.addPlant(new PotatoMine(), 2, 1);
-    //    Global.addPlant(new Torchwood(), 4, 1);
-    //    Global.addPlant(new Chomper(), 5, 1);
-    //    Global.addPlant(new WallNut(), 0, 2);
-//    Global.addPlant(new TallNut(), 1, 2);
 
-//    Global.addSeedPacket(new SeedPacket(new Cherrybomb()));
-//    Global.addSeedPacket(new SeedPacket(new Jalapeno()));
-//    Global.addSeedPacket(new SeedPacket(new WallNut()));
-//    Global.addSeedPacket(new SeedPacket(new IceShroom()));
-//    Global.addSeedPacket(new SeedPacket(new Squash()));
-//    Global.addSeedPacket(new SeedPacket(new SpikeWeed()));
-//    Global.addSeedPacket(new SeedPacket(new Pumpkin()));
-//    Global.addSeedPacket(new SeedPacket(new CoffeeBean()));
-//    Global.addSeedPacket(new SeedPacket(new DoomShroom()));
-//     Global.addSeedPacket(new SeedPacket(new Repeater()));
-//     Global.addSeedPacket(new SeedPacket(new GatlingPea()));
-//
-//    Global.addSeedPacket(new SeedPacket(new Sunflower()));
-//    Global.addSeedPacket(new SeedPacket(new TwinSunflower()));
-//
-//    Global.addSeedPacket(new SeedPacket(new FumeShroom()));
-//    Global.addSeedPacket(new SeedPacket(new GloomShroom()));
-    // Global.addZombie(new NormalZombie(0));
+    game.start();
 
-    //game.add(new Selector(game));
+    Sound.play(
+      new File("assets/sound/" + Global.gameSettings.music + ".wav"),
+      -10f
+    );
+
+    Sound.play(
+      new File("assets/sound/readysetplant.wav"),
+      0f
+    );
   }
 
   private static void preload() {

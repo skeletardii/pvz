@@ -1,5 +1,7 @@
 package LevelEditor;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -8,6 +10,11 @@ public class GameSettings implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
+
+    /** @deprecated Use zombieInvisighost. Kept for deserialization of old saves. */
+    @Deprecated
+    @SuppressWarnings("unused")
+    private boolean zombieInvisighoul = false;
 
     public boolean plantInvulnerable = false;
     public  boolean plantNoCooldown = false;
@@ -18,7 +25,7 @@ public class GameSettings implements Serializable {
     public  int sunSunValue = 26;
     public  int startingSun = 50;
 
-    public boolean zombieInvisighoul = false;
+    public boolean zombieInvisighost = false;
     public  int zombieHealthMultiplier  = 1;
     public  int zombieDamageMultiplier = 1;
     public  int zombieMovementSpeedMultiplier = 1;
@@ -38,7 +45,10 @@ public class GameSettings implements Serializable {
         selectedZombies = new ArrayList<String>();
     }
 
-
-
-
+    private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
+        ois.defaultReadObject();
+        if (zombieInvisighoul) {
+            zombieInvisighost = true;
+        }
+    }
 }

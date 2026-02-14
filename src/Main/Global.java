@@ -17,6 +17,7 @@ import Main.Constants.GameMode;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 @SuppressWarnings("CallToPrintStackTrace")
 public class Global implements Updater {
@@ -81,7 +82,7 @@ public class Global implements Updater {
         !(plants[row][col] instanceof Shroom) ||
         !((Shroom) plants[row][col]).isAsleep()
       ) {
-        throw new Exception("Plant is not alseep");
+        throw new Exception("Plant is not asleep");
       }
       Global.plants[row][col].add(p);
     } else if (p instanceof Pumpkin) {
@@ -100,7 +101,7 @@ public class Global implements Updater {
       }
     } else {
       if (plants[row][col] != null) {
-        throw new ArrayStoreException("Plant already in plot");
+        throw new IllegalStateException("Plant already in plot");
       }
       plants[row][col] = p;
       game.add(p);
@@ -125,23 +126,17 @@ public class Global implements Updater {
     game.add(z);
   }
 
-  public static void checkZombiesToRemove() { //wtf is this bro
-    @SuppressWarnings("unchecked")
-    ArrayList<Zombie>[] updatedZombies = new ArrayList[Constants.PLANT_ROWS_COUNT];
+  public static void checkZombiesToRemove() {
     for (int i = 0; i < Constants.PLANT_ROWS_COUNT; i++) {
-      updatedZombies[i] = new ArrayList<>();
-    }
-
-    for (int i = 0; i < Constants.PLANT_ROWS_COUNT; i++) {
-      for (Zombie z : zombies[i]) {
+      Iterator<Zombie> it = zombies[i].iterator();
+      while (it.hasNext()) {
+        Zombie z = it.next();
         if (z.getHealth() <= 0) {
           z.remove();
-        } else {
-          updatedZombies[i].add(z);
+          it.remove();
         }
       }
     }
-    zombies = updatedZombies;
   }
 
   public static void addLawnMowers(int row) {
